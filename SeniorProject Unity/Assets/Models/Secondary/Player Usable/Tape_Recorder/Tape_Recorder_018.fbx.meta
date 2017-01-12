@@ -1,0 +1,319 @@
+fileFormatVersion: 2
+guid: f0a97427f1aa5c3459562fed5b1b554b
+timeCreated: 1480982392
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: TR_Body
+    100004: TR_Knob
+    100006: TR_Lever
+    100008: TR_Reel_L
+    100010: TR_Reel_R
+    400000: //RootNode
+    400002: TR_Body
+    400004: TR_Knob
+    400006: TR_Lever
+    400008: TR_Reel_L
+    400010: TR_Reel_R
+    2300000: TR_Body
+    2300002: TR_Knob
+    2300004: TR_Lever
+    2300006: TR_Reel_L
+    2300008: TR_Reel_R
+    3300000: TR_Body
+    3300002: TR_Knob
+    3300004: TR_Lever
+    3300006: TR_Reel_L
+    3300008: TR_Reel_R
+    4300000: TR_Body
+    4300002: TR_Knob
+    4300004: TR_Reel_L
+    4300006: TR_Lever
+    4300008: TR_Reel_R
+    7400000: TR_Knob|knobAction
+    7400002: TR_Knob|LeverAction
+    7400004: TR_Knob|LeverActionEnd
+    7400006: TR_Knob|Reel_L_Action
+    7400008: TR_Knob|Reel_R_Action
+    7400010: TR_Reel_L|knobAction
+    7400012: TR_Reel_L|LeverAction
+    7400014: TR_Reel_L|LeverActionEnd
+    7400016: TR_Reel_L|Reel_L_Action
+    7400018: TR_Reel_L|Reel_R_Action
+    7400020: TR_Lever|knobAction
+    7400022: TR_Lever|LeverAction
+    7400024: TR_Lever|LeverActionEnd
+    7400026: TR_Lever|Reel_L_Action
+    7400028: TR_Lever|Reel_R_Action
+    7400030: TR_Reel_R|knobAction
+    7400032: TR_Reel_R|LeverAction
+    7400034: TR_Reel_R|LeverActionEnd
+    7400036: TR_Reel_R|Reel_L_Action
+    7400038: TR_Reel_R|Reel_R_Action
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: TR_Knob|knobAction
+      takeName: TR_Knob|knobAction
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: TR_Body
+        weight: 1
+      - path: TR_Knob
+        weight: 1
+      - path: TR_Lever
+        weight: 1
+      - path: TR_Reel_L
+        weight: 1
+      - path: TR_Reel_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TR_Reel_L|Reel_L_Action
+      takeName: TR_Reel_L|Reel_L_Action
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: TR_Body
+        weight: 1
+      - path: TR_Knob
+        weight: 1
+      - path: TR_Lever
+        weight: 1
+      - path: TR_Reel_L
+        weight: 1
+      - path: TR_Reel_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TR_Lever|LeverAction
+      takeName: TR_Lever|LeverAction
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: TR_Body
+        weight: 1
+      - path: TR_Knob
+        weight: 1
+      - path: TR_Lever
+        weight: 1
+      - path: TR_Reel_L
+        weight: 1
+      - path: TR_Reel_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TR_Lever|LeverActionEnd
+      takeName: TR_Lever|LeverActionEnd
+      firstFrame: 0
+      lastFrame: 175
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: TR_Body
+        weight: 1
+      - path: TR_Knob
+        weight: 1
+      - path: TR_Lever
+        weight: 1
+      - path: TR_Reel_L
+        weight: 1
+      - path: TR_Reel_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: TR_Reel_R|Reel_R_Action
+      takeName: TR_Reel_R|Reel_R_Action
+      firstFrame: 0
+      lastFrame: 120
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: TR_Body
+        weight: 1
+      - path: TR_Knob
+        weight: 1
+      - path: TR_Lever
+        weight: 1
+      - path: TR_Reel_L
+        weight: 1
+      - path: TR_Reel_R
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 0.12
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
