@@ -21,8 +21,6 @@ public class scareLockedInRoom : MonoBehaviour {
         previousLockState = readyToLock;
 
         currentSound = scareSounds[Random.Range(0, scareSounds.Length)];
-
-        scareSounds = GameObject.FindGameObjectsWithTag("lockedScareSound");
     }
 	
 	// Update is called once per frame
