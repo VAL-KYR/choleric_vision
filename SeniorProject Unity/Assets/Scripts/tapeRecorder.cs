@@ -33,6 +33,7 @@ public class tapeRecorder : MonoBehaviour
 	private Text uiText;
 	public float interactDistance = 3.0f;
 	public bool playQueue;
+	public bool remoteOn = false;
 
 	// Use this for initialization
 	void Start()
@@ -43,7 +44,7 @@ public class tapeRecorder : MonoBehaviour
 		/*
 		interactSpace = false;
 		*/
-
+		remoteOn = false;
 		playQueue = false;
 		render = gameObject.GetComponent<Renderer>();
 		uiText = ui.GetComponent<Text>();
@@ -62,6 +63,7 @@ public class tapeRecorder : MonoBehaviour
 			gameObject.GetComponent<AudioSource>().Play();
 			anim.SetBool("tapePlaying", true);
 			playQueue = false;
+			//remoteOn = false;
 		}
 
 		//If tape is done change playing state
@@ -108,11 +110,16 @@ public class tapeRecorder : MonoBehaviour
 				anim.SetTrigger(interactHash);
 				playQueue = true;
 			}
-
 		}
 
 		if (debug)
 			Debug.Log("Looking At Recorder " + gameObject);
+	}
+
+	public void remote()
+	{
+		anim.SetTrigger(interactHash);
+		playQueue = true;
 	}
 
 	// Coliider method for interaction distance
