@@ -5,6 +5,7 @@ public class triggerRemote : MonoBehaviour {
 
 	public string triggerTag;
 	public GameObject activateObject;
+    public bool triggered = false;
 
 	void OnTriggerEnter()
 	{
@@ -14,15 +15,13 @@ public class triggerRemote : MonoBehaviour {
 			go.GetComponent<soundTrigger>().arm();
 		}
 
-		// activate the activate object
-		if (!activateObject.activeSelf)
-		{
-			activateObject.SetActive(true);
-		}
-		else 
-		{
-			activateObject.SetActive(false);
-		}
+        // activate the activate object
+        if (!activateObject.activeSelf && !triggered)
+        {
+            activateObject.SetActive(true);
+            //Debug.Log(activateObject.name + " object is " + activateObject.activeSelf);
+            triggered = true;
+        }	
 
 	}
 }

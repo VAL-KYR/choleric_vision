@@ -60,9 +60,17 @@ public class generatorLever : MonoBehaviour {
                 {
                     // flips active state
                     if (g.gameObject.activeSelf)
+                    {
                         g.gameObject.SetActive(false);
+                        eventObjectsActivate = false;
+                    }
+
                     else
+                    {
                         g.gameObject.SetActive(true);
+                        eventObjectsActivate = false;
+                    }
+                        
                 }
             }
 
