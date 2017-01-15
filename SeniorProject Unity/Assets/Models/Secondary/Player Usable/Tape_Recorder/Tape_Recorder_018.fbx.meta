@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: f0a97427f1aa5c3459562fed5b1b554b
-timeCreated: 1480982392
+timeCreated: 1484499211
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -102,15 +102,15 @@ ModelImporter:
       - path: 
         weight: 1
       - path: TR_Body
-        weight: 1
+        weight: 0
       - path: TR_Knob
         weight: 1
       - path: TR_Lever
-        weight: 1
+        weight: 0
       - path: TR_Reel_L
-        weight: 1
+        weight: 0
       - path: TR_Reel_R
-        weight: 1
+        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
@@ -142,15 +142,15 @@ ModelImporter:
       - path: 
         weight: 1
       - path: TR_Body
-        weight: 1
+        weight: 0
       - path: TR_Knob
-        weight: 1
+        weight: 0
       - path: TR_Lever
-        weight: 1
+        weight: 0
       - path: TR_Reel_L
         weight: 1
       - path: TR_Reel_R
-        weight: 1
+        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
@@ -182,22 +182,22 @@ ModelImporter:
       - path: 
         weight: 1
       - path: TR_Body
-        weight: 1
+        weight: 0
       - path: TR_Knob
-        weight: 1
+        weight: 0
       - path: TR_Lever
         weight: 1
       - path: TR_Reel_L
-        weight: 1
+        weight: 0
       - path: TR_Reel_R
-        weight: 1
+        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: TR_Lever|LeverActionEnd
       takeName: TR_Lever|LeverActionEnd
-      firstFrame: 0
+      firstFrame: 170
       lastFrame: 175
       wrapMode: 0
       orientationOffsetY: 0
@@ -222,15 +222,15 @@ ModelImporter:
       - path: 
         weight: 1
       - path: TR_Body
-        weight: 1
+        weight: 0
       - path: TR_Knob
-        weight: 1
+        weight: 0
       - path: TR_Lever
         weight: 1
       - path: TR_Reel_L
-        weight: 1
+        weight: 0
       - path: TR_Reel_R
-        weight: 1
+        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
@@ -262,13 +262,13 @@ ModelImporter:
       - path: 
         weight: 1
       - path: TR_Body
-        weight: 1
+        weight: 0
       - path: TR_Knob
-        weight: 1
+        weight: 0
       - path: TR_Lever
-        weight: 1
+        weight: 0
       - path: TR_Reel_L
-        weight: 1
+        weight: 0
       - path: TR_Reel_R
         weight: 1
       maskType: 0

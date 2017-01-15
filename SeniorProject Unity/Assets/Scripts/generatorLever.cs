@@ -3,11 +3,14 @@ using UnityEngine.UI;
 using System.Collections;
 
 public class generatorLever : MonoBehaviour {
+    AudioSource lever;
 
     public bool debug;
     public bool interactSpace;
     public GameObject generatorAnim;
-    //public bool buttonPushed = false;
+    public AudioClip[] leverSounds;
+    public AudioClip leverSound;
+    private bool leverThrown = false;
 
     Renderer render;
     public bool eventObjectsActivate;
@@ -33,6 +36,9 @@ public class generatorLever : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        lever = gameObject.GetComponent<AudioSource>();
+        leverSounds = Resources.LoadAll<AudioClip>("SoundEffects/GeneratorLever");
+        lever.clip = leverSounds[Random.Range(0, leverSounds.Length)];
 
         anim = generatorAnim.GetComponent<Animator>();
         render = gameObject.GetComponent<Renderer>();
@@ -77,6 +83,13 @@ public class generatorLever : MonoBehaviour {
             // Power these
             lights.SetActive(true);
             elevator.GetComponent<elevator>().powerSupplied();
+        }
+
+        if (leverState.fullPathHash == doneStateHash && !leverThrown)
+        {
+            // lever click sound
+            lever.Play();
+            leverThrown = true;
         }
     }
 

@@ -162,7 +162,9 @@ public class doorAnimator : MonoBehaviour
 	{
         // We give a GUI queue here on the door mesh
         if (interactSpace)
-        { 
+        {
+            if (debug)
+                Debug.Log("Text Queue " + uiText + " " + uiTextAlt);
             uiText.enabled = true;
             uiTextAlt.enabled = true;
 

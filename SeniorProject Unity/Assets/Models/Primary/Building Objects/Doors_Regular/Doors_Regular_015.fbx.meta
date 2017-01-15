@@ -31,19 +31,22 @@ ModelImporter:
     6400002: door_knob_right
     6400004: Door_Left
     6400006: Door_Right
-    7400000: Door_Right|door_knob_Action
+    7400000: Door_Right|Closed
     7400002: Door_Right|Door_Left_Action
     7400004: Door_Right|Door_Right_Action
     7400006: door_knob_right|door_knob_Action
     7400008: door_knob_right|Door_Left_Action
     7400010: door_knob_right|Door_Right_Action
     7400012: Door_Left|door_knob_Action
-    7400014: Door_Left|Door_Left_Action
+    7400014: Door_Left|Open
     7400016: Door_Left|Door_Right_Action
     7400018: door_knob_left|door_knob_Action
     7400020: door_knob_left|Door_Left_Action
     7400022: door_knob_left|Door_Right_Action
+    7400024: Door_Right|Open
+    7400026: Door_Left|Closed
     9500000: //RootNode
+    11100000: //RootNode
   materials:
     importMaterials: 1
     materialName: 0
@@ -53,12 +56,12 @@ ModelImporter:
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
-    motionNodeName: 
+    motionNodeName: <Root Transform>
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
-    animationCompression: 1
+    animationCompression: 3
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
@@ -66,9 +69,9 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: Door_Right|Door_Right_Action
+      name: Door_Right|Closed
       takeName: Door_Right|Door_Right_Action
-      firstFrame: 0
+      firstFrame: 44
       lastFrame: 45
       wrapMode: 0
       orientationOffsetY: 0
@@ -93,9 +96,47 @@ ModelImporter:
       - path: 
         weight: 1
       - path: Door_Left
-        weight: 1
+        weight: 0
       - path: Door_Left/door_knob_left
+        weight: 0
+      - path: Door_Right
         weight: 1
+      - path: Door_Right/door_knob_right
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Door_Right|Open
+      takeName: Door_Right|Door_Right_Action
+      firstFrame: 24
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door_Left
+        weight: 0
+      - path: Door_Left/door_knob_left
+        weight: 0
       - path: Door_Right
         weight: 1
       - path: Door_Right/door_knob_right
@@ -131,47 +172,9 @@ ModelImporter:
       - path: 
         weight: 1
       - path: Door_Left
-        weight: 1
+        weight: 0
       - path: Door_Left/door_knob_left
-        weight: 1
-      - path: Door_Right
-        weight: 1
-      - path: Door_Right/door_knob_right
-        weight: 1
-      maskType: 0
-      maskSource: {instanceID: 0}
-      additiveReferencePoseFrame: 0
-    - serializedVersion: 16
-      name: Door_Left|Door_Left_Action
-      takeName: Door_Left|Door_Left_Action
-      firstFrame: 0
-      lastFrame: 45
-      wrapMode: 0
-      orientationOffsetY: 0
-      level: 0
-      cycleOffset: 0
-      loop: 0
-      hasAdditiveReferencePose: 0
-      loopTime: 0
-      loopBlend: 0
-      loopBlendOrientation: 0
-      loopBlendPositionY: 0
-      loopBlendPositionXZ: 0
-      keepOriginalOrientation: 0
-      keepOriginalPositionY: 1
-      keepOriginalPositionXZ: 0
-      heightFromFeet: 0
-      mirror: 0
-      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
-      events: []
-      transformMask:
-      - path: 
-        weight: 1
-      - path: Door_Left
-        weight: 1
-      - path: Door_Left/door_knob_left
-        weight: 1
+        weight: 0
       - path: Door_Right
         weight: 1
       - path: Door_Right/door_knob_right
@@ -211,9 +214,85 @@ ModelImporter:
       - path: Door_Left/door_knob_left
         weight: 1
       - path: Door_Right
-        weight: 1
+        weight: 0
       - path: Door_Right/door_knob_right
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Door_Left|Open
+      takeName: Door_Left|Door_Left_Action
+      firstFrame: 24
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
         weight: 1
+      - path: Door_Left
+        weight: 1
+      - path: Door_Left/door_knob_left
+        weight: 1
+      - path: Door_Right
+        weight: 0
+      - path: Door_Right/door_knob_right
+        weight: 0
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Door_Left|Closed
+      takeName: Door_Left|Door_Left_Action
+      firstFrame: 44
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Door_Left
+        weight: 1
+      - path: Door_Left/door_knob_left
+        weight: 1
+      - path: Door_Right
+        weight: 0
+      - path: Door_Right/door_knob_right
+        weight: 0
       maskType: 0
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
