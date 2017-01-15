@@ -39,7 +39,7 @@ public class lookAt : MonoBehaviour {
 			// For triggerLookAt elements that need to pass a lookAt command
 			if (playerLookAt.CompareTag(lookAtTag))
 			{
-				playerLookAt.GetComponent<triggerLookAt>().lookTrigger(lookAtDist);
+				playerLookAt.GetComponent<triggerLookAt>().lookTrigger();
 				lastLookedAt = playerLookAt;
 			}
 

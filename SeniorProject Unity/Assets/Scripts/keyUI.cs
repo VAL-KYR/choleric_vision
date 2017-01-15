@@ -100,7 +100,7 @@ public class keyUI : MonoBehaviour {
 				// This unlocks the door
 				// I've created a door tag for later so we can choose what the key does and filter what it unlocks by tag
 				if (lockedObject.CompareTag("door"))
-					lockedObject.GetComponent<doorAnimator>().unLock();
+					lockedObject.GetComponent<doorMaster>().unLock();
 
 				if (lockedObject.CompareTag("documentCabinet"))
 					lockedObject.GetComponent<documentCabinet>().unLock();
