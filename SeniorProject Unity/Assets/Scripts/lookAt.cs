@@ -86,7 +86,7 @@ public class lookAt : MonoBehaviour {
 				if (debug)
 					Debug.Log("Recorder Dist: " + lookAtDist);
 
-				playerLookAt.GetComponent<tapeRecorder>().lookingAtMe(lookAtDist);
+				playerLookAt.GetComponent<tapeMaster>().lookingAtMe(lookAtDist);
 
 				// Pass Object for UIqueue maybe?
 				//look = playerLookAt.GetComponent<UIqueue>().lookingAtMe(lookAtDist);
@@ -124,7 +124,7 @@ public class lookAt : MonoBehaviour {
 				else if (lastLookedAt.CompareTag("tapeRecorder"))
 				{
 					//lastLookedAt.GetComponent<UIqueue>().lookingAtMe(lookAtDist);
-					lastLookedAt.GetComponent<tapeRecorder>().lookingAtMe(lookAtDist);
+					lastLookedAt.GetComponent<tapeMaster>().lookingAtMe(lookAtDist);
 				}
 			}
 

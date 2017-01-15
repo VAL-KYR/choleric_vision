@@ -46,6 +46,20 @@ public class doorMaster : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+        doorState = anim.GetCurrentAnimatorStateInfo(0);
+
+        if (doorState.fullPathHash == leftClosedStateHash)
+        {
+            doorOpen = false;
+            anim.SetBool("doorOpen", doorOpen);
+        }
+        else if(doorState.fullPathHash == leftOpenStateHash)
+        {
+            doorOpen = true;
+            anim.SetBool("doorOpen", doorOpen);
+        }
+
+
         // Flags trigger forced open door
         if (flags.Count > 0 && !anim.GetBool("doorOpen") && anim.GetBool("doorLocked"))
         {
@@ -67,9 +81,12 @@ public class doorMaster : MonoBehaviour
 
                 // Needed because stubborn doors are being stubborn (animation synch error)
                 forceOpen();
+
+                forceOpen();
+                //
             }
         }
-        //
+
     }
 
     public void OnTriggerEnter()
@@ -129,15 +146,11 @@ public class doorMaster : MonoBehaviour
     public void forceOpen()
 	{
         anim.SetTrigger(doorInteractHash);
-        doorOpen = true;
-        anim.SetBool("doorOpen", doorOpen);
     }
 
     public void forceClosed()
     {
         anim.SetTrigger(doorInteractHash);
-        doorOpen = false;
-        anim.SetBool("doorOpen", doorOpen);
     }
 
     public void keySearch()

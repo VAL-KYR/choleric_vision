@@ -47,7 +47,7 @@ public class triggerTape : MonoBehaviour {
 	{
 		if (!triggered && armed)
 		{
-			tapeRecorder.GetComponent<tapeRecorder>().remote();
+			tapeRecorder.GetComponent<tapeMaster>().remote();
 			triggered = true;
 		}
 

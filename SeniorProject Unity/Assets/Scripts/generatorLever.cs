@@ -78,6 +78,12 @@ public class generatorLever : MonoBehaviour {
             lights.SetActive(true);
             elevator.GetComponent<elevator>().powerSupplied();
         }
+
+        if (leverState.fullPathHash == doneStateHash)
+        {
+            // lever click sound
+
+        }
     }
 
     public void lookingAtMe(float lookAtDist)
