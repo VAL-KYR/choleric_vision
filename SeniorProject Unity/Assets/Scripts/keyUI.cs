@@ -2,8 +2,21 @@
 using System.Collections;
 
 public class keyUI : MonoBehaviour {
+    // Key audio compenent for all key sounds
+    AudioSource keySource;
 
-	public bool debug;
+    // Key unlock sounds
+    public AudioClip[] unlockSounds;
+    public AudioClip unlockSound;
+    private bool unlockSounded = false;
+
+    // Key pickup sounds
+    /*
+    public AudioClip pickupSounds;
+    private bool pickedUp = false;
+    */
+
+    public bool debug;
     public bool startDead;
     public bool keyGrabbed;
 
@@ -31,7 +44,22 @@ public class keyUI : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		triggerEvent = false;
+        // key sound gen
+        keySource = gameObject.GetComponent<AudioSource>();
+        unlockSounds = Resources.LoadAll<AudioClip>("SoundEffects/Key/Unlock");
+        unlockSound = unlockSounds[Random.Range(0, unlockSounds.Length)];
+
+
+        // This is the code for playing a sound for an event
+        // switch clip
+        // play
+        /*
+        keySource.clip = unlockSound;
+        keySource.Play();
+        */
+
+        // key logic
+        triggerEvent = false;
         keyGrabbed = false;
         doorPos = lockedObject.transform.position;
 
@@ -104,6 +132,13 @@ public class keyUI : MonoBehaviour {
 
 				if (lockedObject.CompareTag("documentCabinet"))
 					lockedObject.GetComponent<documentCabinet>().unLock();
+
+                // Playing Sound on object unlock
+                if (!unlockSounded)
+                {
+                    keySource.clip = unlockSound;
+                    keySource.Play();
+                }
 
 				// Trigger on key use
 				if (triggerOnUse)

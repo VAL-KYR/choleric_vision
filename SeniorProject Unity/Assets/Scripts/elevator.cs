@@ -2,7 +2,13 @@
 using System.Collections;
 
 public class elevator : MonoBehaviour {
+    // Key audio compenent for all key sounds
+    AudioSource elevatorSource;
 
+    // elevator ready sounds
+    public AudioClip[] bellSounds;
+    public AudioClip bellSound;
+    private bool bellSounded = false;
 
     public GameObject playerC;
 
@@ -28,6 +34,21 @@ public class elevator : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+        // bell sound gen
+        elevatorSource = gameObject.GetComponent<AudioSource>();
+        bellSounds = Resources.LoadAll<AudioClip>("SoundEffects/Elevator/Bell");
+        bellSound = bellSounds[Random.Range(0, bellSounds.Length)];
+
+
+        // This is the code for playing a sound for an event
+        // switch clip
+        // play
+        /*
+        elevatorSource.clip = bellSound;
+        elevatorSource.Play();
+        */
+
+        // Elevator logic
         elePos = transform.position;
 
         eleXPos = elePos[0];
@@ -85,6 +106,13 @@ public class elevator : MonoBehaviour {
 	public void powerSupplied()
 	{
 		powerOn = true;
-	}
+        if (!bellSounded)
+        {
+            elevatorSource.clip = bellSound;
+            elevatorSource.Play();
+            bellSounded = true;
+        }
+
+    }
 
 }
