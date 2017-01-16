@@ -12,7 +12,7 @@ public class lookAt : MonoBehaviour {
 
 	private Vector3 observer;
 	private Vector3 observed;
-	private float lookAtDist;
+	public float lookAtDist;
 
 
 

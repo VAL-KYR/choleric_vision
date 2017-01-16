@@ -11,10 +11,8 @@ public class keyUI : MonoBehaviour {
     private bool unlockSounded = false;
 
     // Key pickup sounds
-    /*
-    public AudioClip pickupSounds;
+    public AudioClip pickupSound;
     private bool pickedUp = false;
-    */
 
     public bool debug;
     public bool startDead;
@@ -49,7 +47,7 @@ public class keyUI : MonoBehaviour {
         unlockSounds = Resources.LoadAll<AudioClip>("SoundEffects/Key/Unlock");
         unlockSound = unlockSounds[Random.Range(0, unlockSounds.Length)];
 
-
+        unlockSounded = false;
         // This is the code for playing a sound for an event
         // switch clip
         // play
@@ -57,6 +55,8 @@ public class keyUI : MonoBehaviour {
         keySource.clip = unlockSound;
         keySource.Play();
         */
+
+        keySource = gameObject.GetComponent<AudioSource>();
 
         // key logic
         triggerEvent = false;
@@ -95,8 +95,11 @@ public class keyUI : MonoBehaviour {
                 transform.position = new Vector3(100, 100, 100);
                 keyGrabbed = true;
 
-				// Flip Active state of despawnObject
-				if (enableOrDisableObject)
+                keySource.clip = pickupSound;
+                keySource.Play();
+
+                // Flip Active state of despawnObject
+                if (enableOrDisableObject)
 				{
 					if(!activeObject.activeSelf)
 						activeObject.SetActive(true);
@@ -138,6 +141,7 @@ public class keyUI : MonoBehaviour {
                 {
                     keySource.clip = unlockSound;
                     keySource.Play();
+                    unlockSounded = true;
                 }
 
 				// Trigger on key use
