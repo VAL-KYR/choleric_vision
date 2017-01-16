@@ -26,7 +26,7 @@ public class doorMaster : MonoBehaviour
     public bool doorOpen;
 	public bool interactSpace;
 
-    private bool doorHasKey = false;
+    public bool doorHasKey = false;
 
     private string lastDoorState;
     public AnimatorStateInfo doorState;

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class scareLockedInRoom : MonoBehaviour {
 
     public List<GameObject> doors;
+    public bool lockOnce = false;
     public float time = 0;
     public float lockT = 0;
     public bool readyToLock = false;
@@ -19,7 +20,7 @@ public class scareLockedInRoom : MonoBehaviour {
     // Use this for initialization
     void Start () {
         previousLockState = readyToLock;
-
+        lockOnce = false;
         currentSound = scareSounds[Random.Range(0, scareSounds.Length)];
     }
 	
@@ -33,25 +34,26 @@ public class scareLockedInRoom : MonoBehaviour {
             lockT = lockT + Time.deltaTime;
         }
 
-        if (lockT > 1 && readyToLock)
+        if (lockT > 1 && readyToLock && !lockOnce)
         {
             for (int t = 0; t < doors.Count; t++)
             {
-                if (!doors[t].GetComponent<doorAnimator>().doorOpen)
+                if (!doors[t].GetComponent<doorMaster>().doorOpen)
                 {
-                    doors[t].GetComponent<doorAnimator>().forceLock();
+                    doors[t].GetComponent<doorMaster>().forceLock();
                 }
             }
 
             readyToLock = false;
             //lockT = 0;
+            lockOnce = true;
         }
 
         if(time > lockReleaseTime && !readyToLock && previousLockState)
         {
             for (int t = 0; t < doors.Count; t++)
             {
-                doors[t].GetComponent<doorAnimator>().unLock();
+                doors[t].GetComponent<doorMaster>().unLock();
                 readyToLock = false;
                 previousLockState = readyToLock;
 
@@ -79,9 +81,9 @@ public class scareLockedInRoom : MonoBehaviour {
                 {
                     for (int t = 0; t < doors.Count; t++)
                     {
-                        if (doors[t].GetComponent<doorAnimator>().doorOpen)
+                        if (doors[t].GetComponent<doorMaster>().doorOpen)
                         {
-                            doors[t].GetComponent<doorAnimator>().forceClosed();
+                            doors[t].GetComponent<doorMaster>().forceClosed();
                             readyToLock = true;
                             previousLockState = readyToLock;
 
