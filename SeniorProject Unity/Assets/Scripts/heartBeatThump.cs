@@ -21,17 +21,19 @@ public class heartBeatThump : MonoBehaviour {
 
 	// Threshold of restDifference to change HR volume
 	public float elevatedThreshold = 1.2f;
+    public bool playerPanic = false;
 
 	// trigger volume in HR
-	public bool elevatedTrigger;
-	public bool restingTrigger;
+	//public bool elevatedTrigger;
+	//public bool restingTrigger;
 
 	// Use this for initialization
 	void Start () {
 		beatReset = beatDelay;
 
-		elevatedTrigger = false;
-		restingTrigger = false;
+        playerPanic = false;
+        //elevatedTrigger = false;
+		//restingTrigger = false;
 
 		player = GameObject.FindGameObjectWithTag("GameController");
 
@@ -60,14 +62,17 @@ public class heartBeatThump : MonoBehaviour {
 		}
 
 		// elevate HR Sound
-		if (restDifference >= elevatedThreshold && !elevatedTrigger)
+        if (restDifference >= elevatedThreshold)
 		{
 			elevateSoundHR();
-		}
-		else if (restDifference < elevatedThreshold && !restingTrigger)
-		{
+            playerPanic = true;
+        }
+
+        else if (restDifference < elevatedThreshold)
+        {
 			restingSoundHR();
-		}
+            playerPanic = false;
+        }
 
         // elevate HR for listening
         if (heartListening)
@@ -89,14 +94,10 @@ public class heartBeatThump : MonoBehaviour {
 	void elevateSoundHR()
 	{
 		elevatedHR.TransitionTo(transitionTime);
-		elevatedTrigger = true;
-		restingTrigger = false;
 	}
 
 	void restingSoundHR()
 	{
 		restingHR.TransitionTo(transitionTime);
-		restingTrigger = true;
-		elevatedTrigger = false;
 	}
 }
