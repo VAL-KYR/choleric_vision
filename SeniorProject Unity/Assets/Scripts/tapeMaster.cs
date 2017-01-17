@@ -60,6 +60,7 @@ public class tapeMaster : MonoBehaviour
 		{
 			gameObject.GetComponent<AudioSource>().Play();
 			anim.SetBool("tapePlaying", true);
+            uiText.text = "Press A to Stop Recording";
 			playQueue = false;
 			//remoteOn = false;
 		}
@@ -67,7 +68,8 @@ public class tapeMaster : MonoBehaviour
 		//If tape is done change playing state
 		else if (!playQueue && (rTapeState.fullPathHash == rNothingStateHash || lTapeState.fullPathHash == lNothingStateHash))
 		{
-			gameObject.GetComponent<AudioSource>().Stop();
+            uiText.text = "Press A to Start Recording";
+            gameObject.GetComponent<AudioSource>().Stop();
 		}
 
 		//If the tape is done turn it off
