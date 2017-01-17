@@ -17,7 +17,7 @@ public class heartBeat : MonoBehaviour {
 
     public int avBeatPerMin;
 
-    SerialPort sp = new SerialPort("COM5", 9600);
+    SerialPort sp = new SerialPort("COM4", 9600);
 
     private int BPMavg;
 
