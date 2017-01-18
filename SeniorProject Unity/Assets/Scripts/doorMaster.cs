@@ -5,8 +5,22 @@ using System.Collections.Generic;
 
 public class doorMaster : MonoBehaviour
 {
+    private AudioSource doorSounder;
 
-	Animator anim;
+    public AudioClip[] lockSounds;
+    public AudioClip lockSound;
+    public bool lockReset = false;
+
+    public AudioClip[] openSounds;
+    public AudioClip openSound;
+    public bool openReset = false;
+
+    public AudioClip[] closeSounds;
+    public AudioClip closeSound;
+    public bool closedReset = false;
+
+
+    Animator anim;
 
     // For Zone Flags
     public List<GameObject> flags;
@@ -34,11 +48,22 @@ public class doorMaster : MonoBehaviour
     // Use this for initialization
     void Start()
 	{
-		anim = gameObject.GetComponent<Animator>();
+        // Sound
+        doorSounder = gameObject.GetComponent<AudioSource>();
+        lockSounds = Resources.LoadAll<AudioClip>("SoundEffects/Door/Locked");
+        openSounds = Resources.LoadAll<AudioClip>("SoundEffects/Door/Open");
+        closeSounds = Resources.LoadAll<AudioClip>("SoundEffects/Door/Close");
+        lockSound = lockSounds[Random.Range(0, lockSounds.Length)];
+        openSound = openSounds[Random.Range(0, openSounds.Length)];
+        closeSound = openSounds[Random.Range(0, closeSounds.Length)];
+
+        // Animation
+        anim = gameObject.GetComponent<Animator>();
 
         anim.SetBool("doorLocked", doorLocked);
         anim.SetBool("doorOpen", doorOpen);
 
+        // Logic
         // Check for new keys that can unlock this door
         keySearch();
     }
@@ -53,10 +78,11 @@ public class doorMaster : MonoBehaviour
             doorOpen = false;
             anim.SetBool("doorOpen", doorOpen);
         }
+
         else if(doorState.fullPathHash == leftOpenStateHash)
         {
             doorOpen = true;
-            anim.SetBool("doorOpen", doorOpen);
+            anim.SetBool("doorOpen", doorOpen);     
         }
 
 
@@ -118,9 +144,27 @@ public class doorMaster : MonoBehaviour
                     if (!doorHasKey)
                     {
                         // UI queue for later that the door is broken
+                        doorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+                        doorSounder.Play();
                     }
 
                     // UI queue for later that it needs a key
+                    doorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+                    doorSounder.Play();
+                }
+
+                else
+                {
+                    if (doorState.fullPathHash == leftClosedStateHash)
+                    {
+                        doorSounder.clip = openSounds[Random.Range(0, openSounds.Length)];
+                        doorSounder.Play();
+                    }
+                    else if(doorState.fullPathHash == leftOpenStateHash)
+                    {
+                        doorSounder.clip = closeSounds[Random.Range(0, closeSounds.Length)];
+                        doorSounder.Play();
+                    }
                 }
 
                 anim.SetTrigger(doorInteractHash);
