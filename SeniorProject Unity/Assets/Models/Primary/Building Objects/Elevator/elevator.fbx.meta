@@ -289,6 +289,56 @@ ModelImporter:
     4300094: Gates:doorPart30
     4300096: elevatorFrame
     4300098: elevator
+    6400000: elevator
+    6400002: elevatorFrame
+    6400004: Gates:door1_L1
+    6400006: Gates:door1_R
+    6400008: Gates:door2_L
+    6400010: Gates:door2_R
+    6400012: Gates:door3_L
+    6400014: Gates:door3_R
+    6400016: Gates:door4_L
+    6400018: Gates:door4_R
+    6400020: Gates:door5_L
+    6400022: Gates:door5_R
+    6400024: Gates:door6_L
+    6400026: Gates:door6_R
+    6400028: Gates:doorPart1
+    6400030: Gates:doorPart10
+    6400032: Gates:doorPart11
+    6400034: Gates:doorPart12
+    6400036: Gates:doorPart13
+    6400038: Gates:doorPart14
+    6400040: Gates:doorPart15
+    6400042: Gates:doorPart16
+    6400044: Gates:doorPart17
+    6400046: Gates:doorPart18
+    6400048: Gates:doorPart19
+    6400050: Gates:doorPart2
+    6400052: Gates:doorPart20
+    6400054: Gates:doorPart21
+    6400056: Gates:doorPart22
+    6400058: Gates:doorPart23
+    6400060: Gates:doorPart24
+    6400062: Gates:doorPart25
+    6400064: Gates:doorPart26
+    6400066: Gates:doorPart27
+    6400068: Gates:doorPart28
+    6400070: Gates:doorPart29
+    6400072: Gates:doorPart3
+    6400074: Gates:doorPart30
+    6400076: Gates:doorPart31
+    6400078: Gates:doorPart32
+    6400080: Gates:doorPart33
+    6400082: Gates:doorPart34
+    6400084: Gates:doorPart35
+    6400086: Gates:doorPart36
+    6400088: Gates:doorPart4
+    6400090: Gates:doorPart5
+    6400092: Gates:doorPart6
+    6400094: Gates:doorPart7
+    6400096: Gates:doorPart8
+    6400098: Gates:doorPart9
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -316,7 +366,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     importBlendShapes: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
