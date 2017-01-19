@@ -68,6 +68,7 @@ public class controller : MonoBehaviour
     public GameObject hintsPage;
     public bool notebookLook;
     Animator anim;
+    public GameObject noteBookGO;
     // these are named after the actual layer in unity for the state machine
     static int closedStateHash = Animator.StringToHash("Base Layer.Closed");
     static int openStateHash = Animator.StringToHash("Base Layer.Opened");
@@ -212,6 +213,7 @@ public class controller : MonoBehaviour
 				playerSprint = false;
 
             headJoint.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
+            noteBookGO.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
 
             crouch = true;
         }
@@ -219,6 +221,7 @@ public class controller : MonoBehaviour
         else if(Input.GetButtonDown("Crouch") && crouch)
         {
             headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
+            noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
 
             crouch = false;
         }
