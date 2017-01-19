@@ -63,6 +63,8 @@ public class keyUI : MonoBehaviour {
         keyGrabbed = false;
         doorPos = lockedObject.transform.position;
 
+        playerC = GameObject.FindGameObjectWithTag("GameController");
+
     }
 	
 	// Update is called once per frame
