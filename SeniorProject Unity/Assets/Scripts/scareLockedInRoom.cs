@@ -29,53 +29,55 @@ public class scareLockedInRoom : MonoBehaviour {
 
         time = time + Time.deltaTime;
 
-        if(readyToLock)
+        if (!lockOnce)
         {
-            lockT = lockT + Time.deltaTime;
-        }
-
-        if (lockT > 1 && readyToLock && !lockOnce)
-        {
-            for (int t = 0; t < doors.Count; t++)
+            if (readyToLock)
             {
-                if (!doors[t].GetComponent<doorMaster>().doorOpen)
+                lockT = lockT + Time.deltaTime;
+            }
+
+            if (lockT > 1 && readyToLock && !lockOnce)
+            {
+                for (int t = 0; t < doors.Count; t++)
                 {
-                    doors[t].GetComponent<doorMaster>().forceLock();
+                    if (!doors[t].GetComponent<doorMaster>().doorOpen)
+                    {
+                        doors[t].GetComponent<doorMaster>().forceLock();
+                    }
+                }
+
+                readyToLock = false;
+                //lockT = 0;
+                //lockOnce = true;
+            }
+
+            if (time > lockReleaseTime && !readyToLock && previousLockState)
+            {
+                for (int t = 0; t < doors.Count; t++)
+                {
+                    doors[t].GetComponent<doorMaster>().unLock();
+                    readyToLock = false;
+                    previousLockState = readyToLock;
+
+                    lockOnce = true;
+                    lockT = 0;
                 }
             }
 
-            readyToLock = false;
-            //lockT = 0;
-            lockOnce = true;
-        }
 
-        if(time > lockReleaseTime && !readyToLock && previousLockState)
-        {
-            for (int t = 0; t < doors.Count; t++)
+            if (!currentSound.GetComponent<AudioSource>().isPlaying && lockT > 0)
             {
-                doors[t].GetComponent<doorMaster>().unLock();
-                readyToLock = false;
-                previousLockState = readyToLock;
-
-                lockT = 0;
+                currentSound = scareSounds[Random.Range(0, scareSounds.Length)];
+                currentSound.GetComponent<AudioSource>().Play();
             }
         }
-
-
-        if (!currentSound.GetComponent<AudioSource>().isPlaying && lockT > 0)
-        {
-            currentSound = scareSounds[Random.Range(0, scareSounds.Length)];
-            currentSound.GetComponent<AudioSource>().Play();
-        }
-
-
 
     }
 
     void OnTriggerEnter(Collider entity)
     {
         if (entity.gameObject.CompareTag("GameController")){
-            if (time > lockReadyTime)
+            if (time > lockReadyTime && !lockOnce)
             {
                 if (!readyToLock)
                 {
