@@ -13,13 +13,15 @@ public class eventOfficeCollapse : MonoBehaviour {
 	public float interactDistance = 3.0f;
 
 	public bool enableOrDisableObject = false;
-	public GameObject activeObject;
+	public GameObject[] activeObject;
+    //public bool activeOnce = false;
 
 	// Use this for initialization
 	void Start()
 	{
-		
-	}
+        //activeOnce = false;
+
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -39,13 +41,20 @@ public class eventOfficeCollapse : MonoBehaviour {
 			}
 
 			// Flip Active state of despawnObject
-			if (enableOrDisableObject)
-			{
-				if (!activeObject.activeSelf)
-					activeObject.SetActive(true);
-				if (activeObject.activeSelf)
-					activeObject.SetActive(false);
-			}
+			//if (enableOrDisableObject && !activeOnce)
+            if (enableOrDisableObject)
+            {
+                foreach(GameObject g in activeObject)
+                {
+                    if (!g.activeSelf)
+                        g.SetActive(true);
+                    else
+                        g.SetActive(false);
+                }
+
+                //activeOnce = true;
+
+            }
 
 			lights.SetActive(true);
 			keySpawn.SetActive(true);
