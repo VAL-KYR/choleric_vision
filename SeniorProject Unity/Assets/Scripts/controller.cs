@@ -249,15 +249,15 @@ public class controller : MonoBehaviour
 
 
         // TEST   -  Not needed with new code fix, but will keep just incase
-        /*if (Input.GetButton("VRup") && playerVR.transform.position.y < 1.75)
+        if (Input.GetButton("VRup") && headJoint.transform.position.y < 1.75)
         {
-            playerVR.transform.position += new Vector3(0.0f, 0.01f, 0.0f);
+            headJoint.transform.position += new Vector3(0.0f, 0.01f, 0.0f);
         }
 
-        if (Input.GetButton("VRdown") && playerVR.transform.position.y > 1.15)
+        if (Input.GetButton("VRdown") && headJoint.transform.position.y > 1.15)
         {
-            playerVR.transform.position -= new Vector3(0.0f, 0.01f, 0.0f);
-        }*/
+            headJoint.transform.position -= new Vector3(0.0f, 0.01f, 0.0f);
+        }
 
 
         
