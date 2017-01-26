@@ -5,7 +5,10 @@ using System.Collections.Generic;
 
 public class doorMaster : MonoBehaviour
 {
-    private AudioSource doorSounder;
+    public GameObject lDoorSound;
+    private AudioSource lDoorSounder;
+    public GameObject rDoorSound;
+    private AudioSource rDoorSounder;
 
     public AudioClip[] lockSounds;
     public AudioClip lockSound;
@@ -49,7 +52,8 @@ public class doorMaster : MonoBehaviour
     void Start()
 	{
         // Sound
-        doorSounder = gameObject.GetComponent<AudioSource>();
+        lDoorSounder = lDoorSound.GetComponent<AudioSource>();
+        rDoorSounder = rDoorSound.GetComponent<AudioSource>();
         lockSounds = Resources.LoadAll<AudioClip>("SoundEffects/Door/Locked");
         openSounds = Resources.LoadAll<AudioClip>("SoundEffects/Door/Open");
         closeSounds = Resources.LoadAll<AudioClip>("SoundEffects/Door/Close");
@@ -144,26 +148,59 @@ public class doorMaster : MonoBehaviour
                     if (!doorHasKey)
                     {
                         // UI queue for later that the door is broken
-                        doorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
-                        doorSounder.Play();
+                        if (lDoorSound.activeSelf)
+                        {
+                            lDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+                            lDoorSounder.Play();
+                        }
+                        else
+                        {
+                            rDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+                            rDoorSounder.Play();
+                        }
+
                     }
 
                     // UI queue for later that it needs a key
-                    doorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
-                    doorSounder.Play();
+                    if (lDoorSound.activeSelf)
+                    {
+                        lDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+                        lDoorSounder.Play();
+                    }
+                    else
+                    {
+                        rDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+                        rDoorSounder.Play();
+                    }
                 }
 
                 else
                 {
                     if (doorState.fullPathHash == leftClosedStateHash)
                     {
-                        doorSounder.clip = openSounds[Random.Range(0, openSounds.Length)];
-                        doorSounder.Play();
+                        if (lDoorSound.activeSelf)
+                        {
+                            lDoorSounder.clip = openSounds[Random.Range(0, openSounds.Length)];
+                            lDoorSounder.Play();
+                        }
+                        else
+                        {
+                            rDoorSounder.clip = openSounds[Random.Range(0, openSounds.Length)];
+                            rDoorSounder.Play();
+                        }
                     }
                     else if(doorState.fullPathHash == leftOpenStateHash)
                     {
-                        doorSounder.clip = closeSounds[Random.Range(0, closeSounds.Length)];
-                        doorSounder.Play();
+                        if (lDoorSound.activeSelf)
+                        {
+                            lDoorSounder.clip = closeSounds[Random.Range(0, closeSounds.Length)];
+                            lDoorSounder.Play();
+                        }
+                        else
+                        {
+                            rDoorSounder.clip = closeSounds[Random.Range(0, closeSounds.Length)];
+                            rDoorSounder.Play();
+                        }
                     }
                 }
 
