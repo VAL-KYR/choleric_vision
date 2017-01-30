@@ -110,9 +110,9 @@ public class doorMaster : MonoBehaviour
                 forceOpen();
 
                 // Needed because stubborn doors are being stubborn (animation synch error)
-                forceOpen();
+                //forceOpen();
 
-                forceOpen();
+                //forceOpen();
                 //
             }
         }
@@ -153,7 +153,7 @@ public class doorMaster : MonoBehaviour
                             lDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
                             lDoorSounder.Play();
                         }
-                        else
+                        if (rDoorSound.activeSelf)
                         {
                             rDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
                             rDoorSounder.Play();
@@ -167,7 +167,7 @@ public class doorMaster : MonoBehaviour
                         lDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
                         lDoorSounder.Play();
                     }
-                    else
+                    if (rDoorSound.activeSelf)
                     {
                         rDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
                         rDoorSounder.Play();
@@ -183,7 +183,7 @@ public class doorMaster : MonoBehaviour
                             lDoorSounder.clip = openSounds[Random.Range(0, openSounds.Length)];
                             lDoorSounder.Play();
                         }
-                        else
+                        if (rDoorSound.activeSelf)
                         {
                             rDoorSounder.clip = openSounds[Random.Range(0, openSounds.Length)];
                             rDoorSounder.Play();
@@ -196,7 +196,7 @@ public class doorMaster : MonoBehaviour
                             lDoorSounder.clip = closeSounds[Random.Range(0, closeSounds.Length)];
                             lDoorSounder.Play();
                         }
-                        else
+                        if (rDoorSound.activeSelf)
                         {
                             rDoorSounder.clip = closeSounds[Random.Range(0, closeSounds.Length)];
                             rDoorSounder.Play();
