@@ -12,14 +12,13 @@ public class eventOfficeCollapse : MonoBehaviour {
 	public GameObject keySpawn;
 	public float interactDistance = 3.0f;
 
-	public bool enableOrDisableObject = false;
+	public bool enableOrDisableObject = true;
 	public GameObject[] activeObject;
-    //public bool activeOnce = false;
 
 	// Use this for initialization
 	void Start()
 	{
-        //activeOnce = false;
+        enableOrDisableObject = true;
 
     }
 
@@ -29,22 +28,22 @@ public class eventOfficeCollapse : MonoBehaviour {
 		
 	}
 
-	public void lookingAtMe(float lookAtDist)
-	{
+    //public void lookingAtMe(float lookAtDist)
+    public void OnTriggerEnter()
+    {
+        if (!activated)
+        {
 
-		if (lookAtDist <= interactDistance && !activated)
-		{
-			
-			if (!cielingCollapse.GetComponent<AudioSource>().isPlaying)
-			{
-				cielingCollapse.GetComponent<AudioSource>().Play();
-			}
+            if (!cielingCollapse.GetComponent<AudioSource>().isPlaying)
+            {
+                cielingCollapse.GetComponent<AudioSource>().Play();
+            }
 
-			// Flip Active state of despawnObject
-			//if (enableOrDisableObject && !activeOnce)
+            // Flip Active state of despawnObject
+            //if (enableOrDisableObject && !activeOnce)
             if (enableOrDisableObject)
             {
-                foreach(GameObject g in activeObject)
+                foreach (GameObject g in activeObject)
                 {
                     if (!g.activeSelf)
                         g.SetActive(true);
@@ -52,18 +51,20 @@ public class eventOfficeCollapse : MonoBehaviour {
                         g.SetActive(false);
                 }
 
-                //activeOnce = true;
+                enableOrDisableObject = false;
 
             }
 
-			lights.SetActive(true);
-			keySpawn.SetActive(true);
+            lights.SetActive(true);
+            keySpawn.SetActive(true);
 
-			activated = true;
-
-		}
+            activated = true;
+        }
 
 		if (debug)
-			Debug.Log("Cieling Collapse " + activated + lookAtDist);
-	}
+        {
+            Debug.Log("Cieling Collapse " + activated);
+        }
+
+    }
 }

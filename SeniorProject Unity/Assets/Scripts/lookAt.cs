@@ -14,18 +14,22 @@ public class lookAt : MonoBehaviour {
 	private Vector3 observed;
 	public float lookAtDist;
 
+    public RaycastHit hit;
+    public Vector3 cameraCenter;
 
 
-	// Use this for initialization
-	void Start () {
+
+    // Use this for initialization
+    void Start () {
 		lastLookedAt = playerLookAt;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		RaycastHit hit;
+        //RaycastHit hit;
+        //var cameraCenter = GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, GetComponent<Camera>().nearClipPlane));
 
-		var cameraCenter = GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, GetComponent<Camera>().nearClipPlane));
+        cameraCenter = GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, GetComponent<Camera>().nearClipPlane));
 
 
 		if (Physics.Raycast(cameraCenter, this.transform.forward, out hit, 1000))
@@ -34,10 +38,11 @@ public class lookAt : MonoBehaviour {
 
 			observer = gameObject.transform.position;
 			observed = playerLookAt.transform.position;
-			lookAtDist = Vector3.Distance(observed, observer);
 
-			// For triggerLookAt elements that need to pass a lookAt command
-			if (playerLookAt.CompareTag(lookAtTag))
+            lookAtDist = Vector3.Distance(hit.point, observer);
+
+            // For triggerLookAt elements that need to pass a lookAt command
+            if (playerLookAt.CompareTag(lookAtTag))
 			{
 				playerLookAt.GetComponent<triggerLookAt>().lookTrigger();
 				lastLookedAt = playerLookAt;
@@ -47,12 +52,6 @@ public class lookAt : MonoBehaviour {
 			else if (playerLookAt.CompareTag("sinkCorpse"))
 			{
 				playerLookAt.GetComponent<soundTrigger>().lookTrigger();
-				lastLookedAt = playerLookAt;
-			}
-
-			else if (playerLookAt.CompareTag("cielingCollapse"))
-			{
-				playerLookAt.GetComponent<eventOfficeCollapse>().lookingAtMe(lookAtDist);
 				lastLookedAt = playerLookAt;
 			}
 
@@ -94,15 +93,6 @@ public class lookAt : MonoBehaviour {
 				lastLookedAt = playerLookAt;
 			}
 
-			else if (playerLookAt.CompareTag("generatorButton"))
-			{
-				if (debug)
-					Debug.Log("GeneratorButton Dist: " + lookAtDist);
-
-				playerLookAt.GetComponent<generatorButton>().lookingAtMe(lookAtDist);
-				lastLookedAt = playerLookAt;
-			}
-
             else if (playerLookAt.CompareTag("generatorLever"))
             {
                 if (debug)
@@ -128,9 +118,10 @@ public class lookAt : MonoBehaviour {
 				}
 			}
 
-			if (debug)
+            if (debug)
 				Debug.Log("Player looking at " + playerLookAt);
 
 		}
 	}
+
 }

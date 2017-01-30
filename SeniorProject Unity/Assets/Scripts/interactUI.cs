@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class interactUI : MonoBehaviour {
 
@@ -8,6 +9,14 @@ public class interactUI : MonoBehaviour {
     public GameObject lookAt;
     public GameObject vrLookAt;
     public GameObject currLookAt;
+    public GameObject seeingObject;
+    public GameObject lastSeenObject;
+
+    public Shader unlitShader;
+    public Shader litShader;
+    public List<Shader> shaders;
+    public List<Shader> unlitShaders;
+    public List<Shader> litShaders;
 
     public Sprite hand;
     public Sprite doorOpen;
@@ -15,11 +24,22 @@ public class interactUI : MonoBehaviour {
     public Sprite doorLocked;
     public Sprite doorBroken;
 
+    public float lookAtDist;
+    public float lookAtLastDist;
+    public Vector3 uiReset;
+
     SpriteRenderer ui;
 
 	// Use this for initialization
 	void Start () {
+        if(lookAt.activeSelf)
+            lookAtDist = lookAt.GetComponent<lookAt>().lookAtDist;
+        else
+            lookAtDist = vrLookAt.GetComponent<lookAt>().lookAtDist;
 
+        uiReset = transform.localPosition;
+        //unlitShader = Shader.Find("Diffuse");
+        litShader = Shader.Find("Unlit/Color");
     }
 	
 	// Update is called once per frame
@@ -28,11 +48,19 @@ public class interactUI : MonoBehaviour {
         if (lookAt.activeSelf)
         {
             currLookAt = lookAt;
+            lookAtDist = lookAt.GetComponent<lookAt>().lookAtDist;
+            seeingObject = lookAt.GetComponent<lookAt>().playerLookAt;
+            lastSeenObject = lookAt.GetComponent<lookAt>().lastLookedAt;
         }
         else
         {
             currLookAt = vrLookAt;
+            lookAtDist = vrLookAt.GetComponent<lookAt>().lookAtDist;
+            seeingObject = vrLookAt.GetComponent<lookAt>().playerLookAt;
+            lastSeenObject = vrLookAt.GetComponent<lookAt>().lastLookedAt;
         }
+
+        lookAtLastDist = Vector3.Distance(seeingObject.transform.position, gameObject.transform.position);
 
         ui = gameObject.GetComponent<SpriteRenderer>();
 
@@ -43,13 +71,13 @@ public class interactUI : MonoBehaviour {
         if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("key") || currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("documentCabinet") || currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("generatorLever"))
         {
             ui.sprite = hand;
-            ui.color = new Color(1, 1, 1, 1);
+            uiQueue();
         }
 
         else if(currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("tapeRecorder") && currLookAt.GetComponent<lookAt>().lookAtDist <= 2.0f)
         {
             ui.sprite = hand;
-            ui.color = new Color(1, 1, 1, 1);
+            uiQueue();
         }
 
 
@@ -63,12 +91,12 @@ public class interactUI : MonoBehaviour {
                 if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
                 {
                     ui.sprite = doorLocked;
-                    ui.color = new Color(1, 1, 1, 1);
+                    uiQueue();
                 }
                 else if(!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
                 {
                     ui.sprite = doorBroken;
-                    ui.color = new Color(1, 1, 1, 1);
+                    uiQueue();
                 }
             }
 
@@ -78,12 +106,12 @@ public class interactUI : MonoBehaviour {
                 if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
                 {
                     ui.sprite = doorClose;
-                    ui.color = new Color(1, 1, 1, 1);
+                    uiQueue();
                 }
                 else if (!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
                 {
                     ui.sprite = doorOpen;
-                    ui.color = new Color(1, 1, 1, 1);
+                    uiQueue();
                 }
             }
         }
@@ -91,8 +119,91 @@ public class interactUI : MonoBehaviour {
         // Not looking at interactUI objects
         else
         {
+            if (lookAtDist > 3.0f)
+            {
+                ui.color = new Color(0, 0, 0, 0);
+                transform.localPosition = uiReset;
+
+                if (seeingObject.GetComponent<Renderer>())
+                {
+                    unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
+
+                    /*
+                    if (seeingObject != lastSeenObject)
+                    {
+                        getMats(seeingObject);
+                    }
+                    */
+                    lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
+                }
+                
+            }
+        }
+
+        if (lookAtLastDist >= 3.0f)
+        {
             ui.color = new Color(0, 0, 0, 0);
+            transform.localPosition = uiReset;
+
+            if (seeingObject.GetComponent<Renderer>())
+            {
+                unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
+
+                /*
+                if (seeingObject != lastSeenObject)
+                {
+                    getMats(seeingObject);
+                }
+                */
+                lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
+            }
         }
 	
 	}
+
+    //seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length-1].shader = litShader;
+
+    public void uiQueue()
+    {
+        if(lookAtDist <= 3.0f)
+        {
+            ui.color = new Color(1, 1, 1, 1);
+            transform.localPosition = new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.5f));
+
+            if (seeingObject.GetComponent<Renderer>())
+            {
+                seeingObject.GetComponent<Renderer>().material.shader = litShader;
+            }
+               
+            
+        }
+        
+
+        //changeMats(seeingObject, shaders);
+    }
+
+    /*
+    public void getMats(GameObject g)
+    {
+        shaders = new List<Shader>();
+
+        foreach (Material m in g.GetComponent<Renderer>().materials)
+        {
+            shaders.Add(m.shader);
+        }
+    }
+
+    public void changeMats(GameObject g, List<Shader> s)
+    {
+        //int i = s.Count;
+        int i = 0;
+
+        foreach (Material m in g.GetComponent<Renderer>().materials)
+        {
+            i++;
+            m.shader = s[i];
+
+        }
+    }
+    */
 }
