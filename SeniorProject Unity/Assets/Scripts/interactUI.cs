@@ -14,6 +14,8 @@ public class interactUI : MonoBehaviour {
 
     public Shader unlitShader;
     public Shader litShader;
+    public Material unlitMat;
+    public Material litMat;
     public List<Shader> shaders;
     public List<Shader> unlitShaders;
     public List<Shader> litShaders;
@@ -39,7 +41,7 @@ public class interactUI : MonoBehaviour {
 
         uiReset = transform.localPosition;
         //unlitShader = Shader.Find("Diffuse");
-        litShader = Shader.Find("Unlit/Color");
+        //litShader = Shader.Find("Outlined/Silhouette Only");
     }
 	
 	// Update is called once per frame
@@ -127,6 +129,8 @@ public class interactUI : MonoBehaviour {
                 if (seeingObject.GetComponent<Renderer>())
                 {
                     unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
+                    //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
+                    //unlitMat = seeingObject.GetComponent<Renderer>().material;
 
                     /*
                     if (seeingObject != lastSeenObject)
@@ -134,7 +138,10 @@ public class interactUI : MonoBehaviour {
                         getMats(seeingObject);
                     }
                     */
+
                     lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
+                    //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
+                    //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
                 }
                 
             }
@@ -148,6 +155,8 @@ public class interactUI : MonoBehaviour {
             if (seeingObject.GetComponent<Renderer>())
             {
                 unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
+                //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
+                //unlitMat = seeingObject.GetComponent<Renderer>().material;
 
                 /*
                 if (seeingObject != lastSeenObject)
@@ -155,7 +164,10 @@ public class interactUI : MonoBehaviour {
                     getMats(seeingObject);
                 }
                 */
+
                 lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
+                //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
+                //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
             }
         }
 	
@@ -173,6 +185,8 @@ public class interactUI : MonoBehaviour {
             if (seeingObject.GetComponent<Renderer>())
             {
                 seeingObject.GetComponent<Renderer>().material.shader = litShader;
+                //seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1] = litMat;
+                //seeingObject.GetComponent<Renderer>().material = litMat;
             }
                
             
