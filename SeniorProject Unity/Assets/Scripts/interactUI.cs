@@ -14,11 +14,14 @@ public class interactUI : MonoBehaviour {
 
     public Shader unlitShader;
     public Shader litShader;
-    public Material unlitMat;
-    public Material litMat;
-    public List<Shader> shaders;
-    public List<Shader> unlitShaders;
-    public List<Shader> litShaders;
+    //public Material unlitMat;
+    //public Material litMat;
+    //public List<Shader> shaders;
+    //public List<Shader> unlitShaders;
+    //public List<Shader> litShaders;
+
+    //public Shader[] unlitShaders;
+    //public Shader[] litShaders;
 
     public Sprite hand;
     public Sprite doorOpen;
@@ -126,7 +129,7 @@ public class interactUI : MonoBehaviour {
                 ui.color = new Color(0, 0, 0, 0);
                 transform.localPosition = uiReset;
 
-                if (seeingObject.GetComponent<Renderer>())
+                if (seeingObject.GetComponent<Renderer>() != null)
                 {
                     unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
                     //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
@@ -152,7 +155,7 @@ public class interactUI : MonoBehaviour {
             ui.color = new Color(0, 0, 0, 0);
             transform.localPosition = uiReset;
 
-            if (seeingObject.GetComponent<Renderer>())
+            if (seeingObject.GetComponent<Renderer>() != null)
             {
                 unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
                 //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
@@ -169,6 +172,7 @@ public class interactUI : MonoBehaviour {
                 //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
                 //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
             }
+            
         }
 	
 	}
@@ -182,13 +186,12 @@ public class interactUI : MonoBehaviour {
             ui.color = new Color(1, 1, 1, 1);
             transform.localPosition = new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.5f));
 
-            if (seeingObject.GetComponent<Renderer>())
+            if (seeingObject.GetComponent<Renderer>() != null)
             {
                 seeingObject.GetComponent<Renderer>().material.shader = litShader;
                 //seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1] = litMat;
                 //seeingObject.GetComponent<Renderer>().material = litMat;
-            }
-               
+            }               
             
         }
         
