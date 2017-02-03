@@ -41,9 +41,13 @@ public class noteBook : MonoBehaviour {
 
         // Starting text for notes and hints
         currentNotes.Add("Notes: ");
-        currentHints.Add("Hints: ");
+        currentHints.Add("Controls: ");
 		currentHints.Add("Hold (RB) to listen to your heartbeat.");
-
+        currentHints.Add("Hit (X) to open/close your Journal.");
+        currentHints.Add("Hit (Y) to turn your flashlight on/off.");
+        currentHints.Add("Hit (A) to interact with objects.");
+        currentHints.Add("Hit (B) to toggle crouch/standing.");
+        currentHints.Add("Press in the (left stick) to run");
         hintsText.text = string.Join("\n", currentHints.ToArray());
     }
 	
@@ -81,13 +85,15 @@ public class noteBook : MonoBehaviour {
 		}
 
 
-		// Add new hint
+        // Add new hint
+        /*
 		currentHints.Add(hint);
         hintsText.text = string.Join("\n", currentHints.ToArray());
 
 		// Remove null hints
 		int hintCountN = currentHints.Count;
 
+        
 		for (int s = 0; s < hintCountN; s++) 
 		{
 			if (currentHints[s] == null)
@@ -96,13 +102,14 @@ public class noteBook : MonoBehaviour {
 				hintCountN--;
 			}
 		}
+        
 
 		// Remove Hint Overflow
 		if (currentHints.Count > hintsOverflow)
 		{
 			currentHints.RemoveAt(1);
 		}
-
+        */
     }
 
     // remove text command
@@ -110,8 +117,8 @@ public class noteBook : MonoBehaviour {
     {
         if (type == "note")
             currentNotes.RemoveAt(index);
-        if (type == "hint")
-            currentHints.RemoveAt(index);
+        //if (type == "hint")
+            //currentHints.RemoveAt(index);
     }
 
     // open or close noteBook command
