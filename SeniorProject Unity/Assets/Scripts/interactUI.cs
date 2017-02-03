@@ -98,11 +98,13 @@ public class interactUI : MonoBehaviour {
                     ui.sprite = doorLocked;
                     uiQueue();
                 }
+                /*
                 else if(!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
                 {
                     ui.sprite = doorBroken;
                     uiQueue();
                 }
+                */
             }
 
             // Not locked door
@@ -124,7 +126,7 @@ public class interactUI : MonoBehaviour {
         // Not looking at interactUI objects
         else
         {
-            if (lookAtDist > 3.0f)
+            if (lookAtDist > 2.0f)
             {
                 ui.color = new Color(0, 0, 0, 0);
                 transform.localPosition = uiReset;
@@ -150,7 +152,7 @@ public class interactUI : MonoBehaviour {
             }
         }
 
-        if (lookAtLastDist >= 3.0f)
+        if (lookAtLastDist >= 2.0f)
         {
             ui.color = new Color(0, 0, 0, 0);
             transform.localPosition = uiReset;
@@ -181,7 +183,7 @@ public class interactUI : MonoBehaviour {
 
     public void uiQueue()
     {
-        if(lookAtDist <= 3.0f)
+        if(lookAtDist <= 2.0f)
         {
             ui.color = new Color(1, 1, 1, 1);
             transform.localPosition = new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.5f));
@@ -191,6 +193,7 @@ public class interactUI : MonoBehaviour {
                 seeingObject.GetComponent<Renderer>().material.shader = litShader;
                 //seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1] = litMat;
                 //seeingObject.GetComponent<Renderer>().material = litMat;
+
             }               
             
         }
