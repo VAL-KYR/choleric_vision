@@ -14,9 +14,14 @@ public class interactUI : MonoBehaviour {
 
     public Shader unlitShader;
     public Shader litShader;
-    public List<Shader> shaders;
-    public List<Shader> unlitShaders;
-    public List<Shader> litShaders;
+    //public Material unlitMat;
+    //public Material litMat;
+    //public List<Shader> shaders;
+    //public List<Shader> unlitShaders;
+    //public List<Shader> litShaders;
+
+    //public Shader[] unlitShaders;
+    //public Shader[] litShaders;
 
     public Sprite hand;
     public Sprite doorOpen;
@@ -39,7 +44,7 @@ public class interactUI : MonoBehaviour {
 
         uiReset = transform.localPosition;
         //unlitShader = Shader.Find("Diffuse");
-        litShader = Shader.Find("Unlit/Color");
+        //litShader = Shader.Find("Outlined/Silhouette Only");
     }
 	
 	// Update is called once per frame
@@ -93,11 +98,13 @@ public class interactUI : MonoBehaviour {
                     ui.sprite = doorLocked;
                     uiQueue();
                 }
+                /*
                 else if(!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
                 {
                     ui.sprite = doorBroken;
                     uiQueue();
                 }
+                */
             }
 
             // Not locked door
@@ -119,14 +126,16 @@ public class interactUI : MonoBehaviour {
         // Not looking at interactUI objects
         else
         {
-            if (lookAtDist > 3.0f)
+            if (lookAtDist > 2.0f)
             {
                 ui.color = new Color(0, 0, 0, 0);
                 transform.localPosition = uiReset;
 
-                if (seeingObject.GetComponent<Renderer>())
+                if (seeingObject.GetComponent<Renderer>() != null)
                 {
                     unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
+                    //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
+                    //unlitMat = seeingObject.GetComponent<Renderer>().material;
 
                     /*
                     if (seeingObject != lastSeenObject)
@@ -134,20 +143,25 @@ public class interactUI : MonoBehaviour {
                         getMats(seeingObject);
                     }
                     */
+
                     lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
+                    //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
+                    //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
                 }
                 
             }
         }
 
-        if (lookAtLastDist >= 3.0f)
+        if (lookAtLastDist >= 2.0f)
         {
             ui.color = new Color(0, 0, 0, 0);
             transform.localPosition = uiReset;
 
-            if (seeingObject.GetComponent<Renderer>())
+            if (seeingObject.GetComponent<Renderer>() != null)
             {
                 unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
+                //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
+                //unlitMat = seeingObject.GetComponent<Renderer>().material;
 
                 /*
                 if (seeingObject != lastSeenObject)
@@ -155,8 +169,12 @@ public class interactUI : MonoBehaviour {
                     getMats(seeingObject);
                 }
                 */
+
                 lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
+                //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
+                //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
             }
+            
         }
 	
 	}
@@ -165,16 +183,18 @@ public class interactUI : MonoBehaviour {
 
     public void uiQueue()
     {
-        if(lookAtDist <= 3.0f)
+        if(lookAtDist <= 2.0f)
         {
             ui.color = new Color(1, 1, 1, 1);
             transform.localPosition = new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.5f));
 
-            if (seeingObject.GetComponent<Renderer>())
+            if (seeingObject.GetComponent<Renderer>() != null)
             {
                 seeingObject.GetComponent<Renderer>().material.shader = litShader;
-            }
-               
+                //seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1] = litMat;
+                //seeingObject.GetComponent<Renderer>().material = litMat;
+
+            }               
             
         }
         
