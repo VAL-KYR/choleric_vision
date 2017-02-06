@@ -8,7 +8,10 @@ public class eventOfficeCollapse : MonoBehaviour {
 	public bool activated = false;
 
 	public GameObject cielingCollapse;
-	public GameObject lights;
+    public GameObject headJoint;
+    public GameObject nonVRCam;
+    public GameObject VRCam;
+    public GameObject lights;
 	public GameObject keySpawn;
 	public float interactDistance = 3.0f;
 
@@ -50,6 +53,15 @@ public class eventOfficeCollapse : MonoBehaviour {
                     else
                         g.SetActive(false);
                 }
+
+                //headJoint.GetComponent<CameraShake>().ShakeCamera(1.8f, 0.7f);
+
+                
+                if(VRCam.activeSelf)
+                    VRCam.GetComponent<CameraShake>().ShakeCamera(6f, 6f);
+                else
+                    nonVRCam.GetComponent<CameraShake>().ShakeCamera(6f, 6f);
+                
 
                 enableOrDisableObject = false;
 
