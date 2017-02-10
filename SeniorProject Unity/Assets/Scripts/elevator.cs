@@ -8,6 +8,7 @@ public class elevator : MonoBehaviour {
     // elevator ready sounds
     public AudioClip[] bellSounds;
     public AudioClip bellSound;
+	public GameObject soundDone;
     private bool bellSounded = false;
 
     public GameObject playerC;
@@ -77,7 +78,7 @@ public class elevator : MonoBehaviour {
 		else
 			onEle = false;
 
-        if (eleTop == true && onEle == true)
+        if (eleTop == true && onEle == true && !soundDone.GetComponent<AudioSource>().isPlaying)
         {
             eleYPos -= eleSpeed;
             transform.position = new Vector3(eleXPos, eleYPos, eleZPos);
