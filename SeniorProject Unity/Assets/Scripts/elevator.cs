@@ -29,6 +29,22 @@ public class elevator : MonoBehaviour {
     private float eleYPos;
     private float eleZPos;
 
+	public GameObject[] upperDoors;
+	public GameObject upperGate;
+	public GameObject lowerGate;
+
+	public GameObject uGateStart;
+	public GameObject uGateEnd;
+
+	public GameObject lGateStart;
+	public GameObject lGateEnd;
+
+	private bool uGateMove = false;
+	private bool uGateMoveBack = false;
+	private bool lGateMove = false;
+	private bool lGateMoveBack = false;
+	private bool uGateState = false;
+	private bool lGateState = false;
     private bool eleTop;
     private bool onEle;
     private bool eleDone;
@@ -60,37 +76,76 @@ public class elevator : MonoBehaviour {
         onEle = false;
         eleDone = true;
     }
-	
+
 	// Update is called once per frame
-	void Update () {
+	void Update()
+	{
 
-        playerPos = playerC.transform.position;
-        elePos = transform.position;
+		playerPos = playerC.transform.position;
+		elePos = transform.position;
 
 
-        currentDis = Vector3.Distance(playerPos, elePos);
+		currentDis = Vector3.Distance(playerPos, elePos);
 
-		if(debug)
-        	Debug.Log("Ele Dist: " + currentDis);
-		
+		if (debug)
+			Debug.Log("Ele Dist: " + currentDis);
+
+
+
 		if (playerInElevator && powerOn)
+		{
 			onEle = true;
+		}
 		else
 			onEle = false;
 
-        if (eleTop == true && onEle == true && !soundDone.GetComponent<AudioSource>().isPlaying)
-        {
-            eleYPos -= eleSpeed;
-            transform.position = new Vector3(eleXPos, eleYPos, eleZPos);
+		if (eleTop && powerOn && !playerInElevator)
+		{
+			uGateMoveBack = false;
+			uGateMove = true;
+		}
+		else if (eleTop && powerOn && playerInElevator) 
+		{
+			uGateMove = false;
+			uGateMoveBack = true;
+		}
 
-            if (eleYPos <= eleMaxHeight)
-            {
-                eleYPos = eleMaxHeight;
-                eleTop = false;
-            }
-        }
+		if (lGateMove)
+		{
+			lowerGate.transform.position = Vector3.Slerp(lowerGate.transform.position, lGateEnd.transform.position, 0.5f * Time.deltaTime);
+		}
 
-    }
+		if (uGateMove)
+		{
+			upperGate.transform.position = Vector3.Slerp(upperGate.transform.position, uGateEnd.transform.position, 0.5f * Time.deltaTime);
+			uGateState = true;
+		}
+
+		if (uGateMoveBack)
+		{
+			upperGate.transform.position = Vector3.Slerp(upperGate.transform.position, uGateStart.transform.position, 0.5f * Time.deltaTime);
+			uGateState = false;
+		}
+
+		if (eleTop && onEle && !soundDone.GetComponent<AudioSource>().isPlaying && !uGateState)
+		{
+			eleYPos -= eleSpeed;
+			transform.position = new Vector3(eleXPos, eleYPos, eleZPos);
+
+			if (eleYPos <= eleMaxHeight)
+			{
+				eleYPos = eleMaxHeight;
+				eleTop = false;
+
+				if (transform.position.y < -10.5f)
+				{
+					lGateMove = true;
+				}
+
+			}
+		}
+
+	}
 
 	void OnTriggerEnter(Collider other)
 	{
