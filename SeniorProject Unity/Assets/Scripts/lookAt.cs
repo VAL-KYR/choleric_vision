@@ -44,8 +44,8 @@ public class lookAt : MonoBehaviour {
             // For triggerLookAt elements that need to pass a lookAt command
             if (playerLookAt.CompareTag(lookAtTag))
 			{
-				playerLookAt.GetComponent<triggerLookAt>().lookTrigger();
-				lastLookedAt = playerLookAt;
+                playerLookAt.GetComponent<triggerLookAt>().lookTrigger();
+                lastLookedAt = playerLookAt;
 			}
 
 			// For that corpse in the sink BY SEARCHING FOR TAG
@@ -65,17 +65,6 @@ public class lookAt : MonoBehaviour {
 
 				// debug look to test
 				look = playerLookAt.GetComponent<UIqueue>().lookingAtMe(lookAtDist);
-
-				lastLookedAt = playerLookAt;
-			}
-
-			else if (playerLookAt.CompareTag("documentCabinet"))
-			{
-				if (debug)
-					Debug.Log("Document Cabinet Dist: " + lookAtDist);
-
-				//no idea why this works
-				playerLookAt.GetComponent<documentCabinet>().lookingAtMe(lookAtDist);
 
 				lastLookedAt = playerLookAt;
 			}
