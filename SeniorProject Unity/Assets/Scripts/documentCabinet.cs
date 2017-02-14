@@ -10,10 +10,10 @@ public class documentCabinet : MonoBehaviour {
 	public bool interactSpace;
 
 	public GameObject doorOpen;
-	public GameObject doorOpenAlt;
 
 	public GameObject eExitLight;
 	public GameObject eExitLightRed;
+    public GameObject[] activeObjects;
 
 	// UI
 	Renderer render;
@@ -71,17 +71,13 @@ public class documentCabinet : MonoBehaviour {
 			Debug.Log("Exited cabinet interactSpace " + gameObject);
 	}
 
-	public void lookingAtMe(float lookAtDist)
+	public void lookingAtMe()
 	{
-		// We give a GUI queue here on the door mesh
-		if (lookAtDist <= interactDistance)
-		{
-			uiText.enabled = true;
-		}
-		else
-		{
-			uiText.enabled = false;
-		}
+        if (debug)
+            Debug.Log("Looking At Document Cabinet " + gameObject);
+
+        // We give a GUI queue here on the door mesh
+		uiText.enabled = true;
 
 		if (interactSpace)
 		{
@@ -90,10 +86,8 @@ public class documentCabinet : MonoBehaviour {
 				if (!cabinetOpen)
 				{
 					// Unlock Emergency Doors
-					doorOpen.GetComponent<doorAnimator>().unLock();
-					doorOpen.GetComponent<doorAnimator>().forceOpen();
-					doorOpenAlt.GetComponent<doorAnimator>().unLock();
-					doorOpenAlt.GetComponent<doorAnimator>().forceOpen();
+					doorOpen.GetComponent<doorMaster>().unLock();
+					doorOpen.GetComponent<doorMaster>().forceOpen();
 
 					// Turn off Emergency Light
 					eExitLight.SetActive(false);
@@ -101,13 +95,19 @@ public class documentCabinet : MonoBehaviour {
 					// Turn on Emergency Climax Light
 					eExitLightRed.SetActive(true);
 
-					cabinetOpen = true;
+                    foreach(GameObject g in activeObjects)
+                    {
+                        // flips active state
+                        if (g.gameObject.activeSelf)
+                            g.gameObject.SetActive(false);
+                        else
+                            g.gameObject.SetActive(true);
+                    }
+
+                    cabinetOpen = true;
 				}
 			}
 		}
-
-		if (debug)
-			Debug.Log("Looking At Document Cabinet " + gameObject);
 	}
 
 	public void unLock()

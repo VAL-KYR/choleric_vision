@@ -73,7 +73,7 @@ public class interactUI : MonoBehaviour {
             Debug.Log("UI for " + currLookAt.GetComponent<lookAt>().playerLookAt + " with sprite " + ui.sprite + " because tag " + currLookAt.GetComponent<lookAt>().lookAtTag);
 
         // Interact objects
-        if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("key") || currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("documentCabinet") || currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("generatorLever"))
+        if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("key") || currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("generatorLever"))
         {
             ui.sprite = hand;
             uiQueue();
@@ -89,38 +89,46 @@ public class interactUI : MonoBehaviour {
         // Doors & States
         else if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag(currLookAt.GetComponent<lookAt>().lookAtTag))
         {
-
-            // Locked door
-            if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorLocked)
+            if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>())
             {
-                if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
+                // Locked door
+                if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorLocked)
                 {
-                    ui.sprite = doorLocked;
-                    uiQueue();
+                    if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
+                    {
+                        ui.sprite = doorLocked;
+                        uiQueue();
+                    }
+                    /*
+                    else if(!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
+                    {
+                        ui.sprite = doorBroken;
+                        uiQueue();
+                    }
+                    */
                 }
-                /*
-                else if(!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
-                {
-                    ui.sprite = doorBroken;
-                    uiQueue();
-                }
-                */
-            }
 
-            // Not locked door
-            else
-            {
-                if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
+                // Not locked door
+                else
                 {
-                    ui.sprite = doorClose;
-                    uiQueue();
-                }
-                else if (!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
-                {
-                    ui.sprite = doorOpen;
-                    uiQueue();
+                    if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
+                    {
+                        ui.sprite = doorClose;
+                        uiQueue();
+                    }
+                    else if (!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
+                    {
+                        ui.sprite = doorOpen;
+                        uiQueue();
+                    }
                 }
             }
+            else if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<documentCabinet>())
+            {
+                ui.sprite = hand;
+                uiQueue();
+            }
+            
         }
 
         // Not looking at interactUI objects

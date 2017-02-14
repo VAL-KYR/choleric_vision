@@ -7,10 +7,10 @@ public class triggerLookAt : MonoBehaviour {
 
 	// Use this for initialization
 	public void lookTrigger() {
-		if(rootObject.CompareTag("door"))
+		if (rootObject.CompareTag("door"))
 			rootObject.GetComponent<doorMaster>().lookingAtMe();
-		//else if (rootObject.CompareTag("documentCabinet"))
-			//rootObject.GetComponent<documentCabinet>().lookingAtMe();
+		else if (rootObject.CompareTag("documentCabinet"))
+			rootObject.GetComponent<documentCabinet>().lookingAtMe();
 	}
 
 }
