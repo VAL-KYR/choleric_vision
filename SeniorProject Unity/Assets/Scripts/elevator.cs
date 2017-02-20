@@ -29,17 +29,36 @@ public class elevator : MonoBehaviour {
     private float eleYPos;
     private float eleZPos;
 
+
 	public GameObject[] upperDoors;
-	public GameObject upperGate;
-	public GameObject lowerGate;
+	//public GameObject upperGate;
+	//public GameObject lowerGate;
 
-	public GameObject uGateStart;
-	public GameObject uGateEnd;
+    public GameObject rUpperGate;
+    public GameObject lUpperGate;
 
-	public GameObject lGateStart;
-	public GameObject lGateEnd;
+    public GameObject rLowerGate;
+    public GameObject lLowerGate;
 
-	private bool uGateMove = false;
+
+    //public GameObject uGateStart;
+	//public GameObject uGateEnd;
+
+    public GameObject uRGateStart;
+    public GameObject uLGateStart;
+    public GameObject uRGateEnd;
+    public GameObject uLGateEnd;
+
+
+    //public GameObject lGateStart;
+	//public GameObject lGateEnd;
+
+    public GameObject lRGateStart;
+    public GameObject lLGateStart;
+    public GameObject lRGateEnd;
+    public GameObject lLGateEnd;
+
+    private bool uGateMove = false;
 	private bool uGateMoveBack = false;
 	private bool lGateMove = false;
 	private bool lGateMoveBack = false;
@@ -112,19 +131,25 @@ public class elevator : MonoBehaviour {
 
 		if (lGateMove)
 		{
-			lowerGate.transform.position = Vector3.Slerp(lowerGate.transform.position, lGateEnd.transform.position, 0.5f * Time.deltaTime);
-		}
+            //lowerGate.transform.position = Vector3.Slerp(lowerGate.transform.position, lGateEnd.transform.position, 0.5f * Time.deltaTime);
+            lLowerGate.transform.position = Vector3.Slerp(lLowerGate.transform.position, lLGateEnd.transform.position, 0.5f * Time.deltaTime);
+            rLowerGate.transform.position = Vector3.Slerp(rLowerGate.transform.position, lRGateEnd.transform.position, 0.5f * Time.deltaTime);
+        }
 
 		if (uGateMove)
 		{
-			upperGate.transform.position = Vector3.Slerp(upperGate.transform.position, uGateEnd.transform.position, 0.5f * Time.deltaTime);
-			uGateState = true;
+			//upperGate.transform.position = Vector3.Slerp(upperGate.transform.position, uGateEnd.transform.position, 0.5f * Time.deltaTime);
+            lUpperGate.transform.position = Vector3.Lerp(lUpperGate.transform.position, uLGateEnd.transform.position, 0.5f * Time.deltaTime);
+            rUpperGate.transform.position = Vector3.Lerp(rUpperGate.transform.position, uRGateEnd.transform.position, 0.5f * Time.deltaTime);
+            uGateState = true;
 		}
 
 		if (uGateMoveBack)
 		{
-			upperGate.transform.position = Vector3.Slerp(upperGate.transform.position, uGateStart.transform.position, 0.5f * Time.deltaTime);
-			uGateState = false;
+			//upperGate.transform.position = Vector3.Slerp(upperGate.transform.position, uGateStart.transform.position, 0.5f * Time.deltaTime);
+            lUpperGate.transform.position = Vector3.Lerp(lUpperGate.transform.position, uLGateStart.transform.position, 0.5f * Time.deltaTime);
+            rUpperGate.transform.position = Vector3.Lerp(rUpperGate.transform.position, uRGateStart.transform.position, 0.5f * Time.deltaTime);
+            uGateState = false;
 		}
 
 		if (eleTop && onEle && !soundDone.GetComponent<AudioSource>().isPlaying && !uGateState)

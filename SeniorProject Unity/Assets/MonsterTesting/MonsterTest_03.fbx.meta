@@ -1,0 +1,1742 @@
+fileFormatVersion: 2
+guid: 2fc1f999582cbc145b9b0870b0c21aaa
+timeCreated: 1487541678
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ChinBase
+    100002: ChinTip
+    100004: clusterAbs
+    100006: clusterChest
+    100008: clusterHips
+    100010: clusterNeckBase
+    100012: ctrl_Global
+    100014: curve_Spine
+    100016: grp_IKHandles
+    100018: grp_Meshes
+    100020: grp_Root
+    100022: grp_SpineCluster
+    100024: ikHandle_L_Arm
+    100026: ikHandle_Neck
+    100028: ikHandle_R_Arm
+    100030: ikHandle_Spine
+    100032: jnt_Hang_Root
+    100034: jnt_Head
+    100036: jnt_HeadTop
+    100038: jnt_Hip
+    100040: jnt_Intestine1
+    100042: jnt_Intestine10
+    100044: jnt_Intestine11
+    100046: jnt_Intestine2
+    100048: jnt_Intestine3
+    100050: jnt_Intestine4
+    100052: jnt_Intestine5
+    100054: jnt_Intestine6
+    100056: jnt_Intestine7
+    100058: jnt_Intestine8
+    100060: jnt_Intestine9
+    100062: jnt_L_Elbow
+    100064: jnt_L_Forearm
+    100066: jnt_L_Index1
+    100068: jnt_L_Index2
+    100070: jnt_L_Index3
+    100072: jnt_L_Index4
+    100074: jnt_L_Middle1
+    100076: jnt_L_Middle2
+    100078: jnt_L_Middle3
+    100080: jnt_L_Middle4
+    100082: jnt_L_Pinky1
+    100084: jnt_L_Pinky2
+    100086: jnt_L_Pinky3
+    100088: jnt_L_Pinky4
+    100090: jnt_L_Ring1
+    100092: jnt_L_Ring2
+    100094: jnt_L_Ring3
+    100096: jnt_L_Ring4
+    100098: jnt_L_Shoulder
+    100100: jnt_L_Thumb1
+    100102: jnt_L_Thumb2
+    100104: jnt_L_Thumb3
+    100106: jnt_L_Wrist
+    100108: jnt_LargeVine1
+    100110: jnt_LargeVine10
+    100112: jnt_LargeVine11
+    100114: jnt_LargeVine12
+    100116: jnt_LargeVine13
+    100118: jnt_LargeVine14
+    100120: jnt_LargeVine15
+    100122: jnt_LargeVine16
+    100124: jnt_LargeVine17
+    100126: jnt_LargeVine18
+    100128: jnt_LargeVine19
+    100130: jnt_LargeVine2
+    100132: jnt_LargeVine20
+    100134: jnt_LargeVine21
+    100136: jnt_LargeVine22
+    100138: jnt_LargeVine23
+    100140: jnt_LargeVine24
+    100142: jnt_LargeVine25
+    100144: jnt_LargeVine26
+    100146: jnt_LargeVine27
+    100148: jnt_LargeVine3
+    100150: jnt_LargeVine4
+    100152: jnt_LargeVine5
+    100154: jnt_LargeVine6
+    100156: jnt_LargeVine7
+    100158: jnt_LargeVine8
+    100160: jnt_LargeVine9
+    100162: jnt_MediumVine1
+    100164: jnt_MediumVine10
+    100166: jnt_MediumVine11
+    100168: jnt_MediumVine12
+    100170: jnt_MediumVine13
+    100172: jnt_MediumVine14
+    100174: jnt_MediumVine15
+    100176: jnt_MediumVine16
+    100178: jnt_MediumVine17
+    100180: jnt_MediumVine18
+    100182: jnt_MediumVine19
+    100184: jnt_MediumVine2
+    100186: jnt_MediumVine20
+    100188: jnt_MediumVine3
+    100190: jnt_MediumVine4
+    100192: jnt_MediumVine5
+    100194: jnt_MediumVine6
+    100196: jnt_MediumVine7
+    100198: jnt_MediumVine8
+    100200: jnt_MediumVine9
+    100202: jnt_Neck
+    100204: jnt_NeckBase
+    100206: jnt_R_Elbow
+    100208: jnt_R_Forearm
+    100210: jnt_R_Index1
+    100212: jnt_R_Index2
+    100214: jnt_R_Index3
+    100216: jnt_R_Index4
+    100218: jnt_R_Middle1
+    100220: jnt_R_Middle2
+    100222: jnt_R_Middle3
+    100224: jnt_R_Middle4
+    100226: jnt_R_Pinky1
+    100228: jnt_R_Pinky2
+    100230: jnt_R_Pinky3
+    100232: jnt_R_Pinky4
+    100234: jnt_R_Ring1
+    100236: jnt_R_Ring2
+    100238: jnt_R_Ring3
+    100240: jnt_R_Ring4
+    100242: jnt_R_Shoulder
+    100244: jnt_R_Thumb1
+    100246: jnt_R_Thumb2
+    100248: jnt_R_Thumb3
+    100250: jnt_R_Wrist
+    100252: jnt_Root
+    100254: jnt_SmallVine1
+    100256: jnt_SmallVine10
+    100258: jnt_SmallVine11
+    100260: jnt_SmallVine12
+    100262: jnt_SmallVine13
+    100264: jnt_SmallVine14
+    100266: jnt_SmallVine15
+    100268: jnt_SmallVine2
+    100270: jnt_SmallVine3
+    100272: jnt_SmallVine4
+    100274: jnt_SmallVine5
+    100276: jnt_SmallVine6
+    100278: jnt_SmallVine7
+    100280: jnt_SmallVine8
+    100282: jnt_SmallVine9
+    100284: jnt_Spine1
+    100286: jnt_Spine2
+    100288: jnt_Spine3
+    100290: MeshIntestine
+    100292: MeshMonsterBody
+    100294: MeshTeeth
+    100296: MeshVineLarge
+    100298: MeshVineMedium
+    100300: MeshVineSmall
+    100302: //RootNode
+    100304: transform1
+    100306: transform2
+    400000: ChinBase
+    400002: ChinTip
+    400004: clusterAbs
+    400006: clusterChest
+    400008: clusterHips
+    400010: clusterNeckBase
+    400012: ctrl_Global
+    400014: curve_Spine
+    400016: grp_IKHandles
+    400018: grp_Meshes
+    400020: grp_Root
+    400022: grp_SpineCluster
+    400024: ikHandle_L_Arm
+    400026: ikHandle_Neck
+    400028: ikHandle_R_Arm
+    400030: ikHandle_Spine
+    400032: jnt_Hang_Root
+    400034: jnt_Head
+    400036: jnt_HeadTop
+    400038: jnt_Hip
+    400040: jnt_Intestine1
+    400042: jnt_Intestine10
+    400044: jnt_Intestine11
+    400046: jnt_Intestine2
+    400048: jnt_Intestine3
+    400050: jnt_Intestine4
+    400052: jnt_Intestine5
+    400054: jnt_Intestine6
+    400056: jnt_Intestine7
+    400058: jnt_Intestine8
+    400060: jnt_Intestine9
+    400062: jnt_L_Elbow
+    400064: jnt_L_Forearm
+    400066: jnt_L_Index1
+    400068: jnt_L_Index2
+    400070: jnt_L_Index3
+    400072: jnt_L_Index4
+    400074: jnt_L_Middle1
+    400076: jnt_L_Middle2
+    400078: jnt_L_Middle3
+    400080: jnt_L_Middle4
+    400082: jnt_L_Pinky1
+    400084: jnt_L_Pinky2
+    400086: jnt_L_Pinky3
+    400088: jnt_L_Pinky4
+    400090: jnt_L_Ring1
+    400092: jnt_L_Ring2
+    400094: jnt_L_Ring3
+    400096: jnt_L_Ring4
+    400098: jnt_L_Shoulder
+    400100: jnt_L_Thumb1
+    400102: jnt_L_Thumb2
+    400104: jnt_L_Thumb3
+    400106: jnt_L_Wrist
+    400108: jnt_LargeVine1
+    400110: jnt_LargeVine10
+    400112: jnt_LargeVine11
+    400114: jnt_LargeVine12
+    400116: jnt_LargeVine13
+    400118: jnt_LargeVine14
+    400120: jnt_LargeVine15
+    400122: jnt_LargeVine16
+    400124: jnt_LargeVine17
+    400126: jnt_LargeVine18
+    400128: jnt_LargeVine19
+    400130: jnt_LargeVine2
+    400132: jnt_LargeVine20
+    400134: jnt_LargeVine21
+    400136: jnt_LargeVine22
+    400138: jnt_LargeVine23
+    400140: jnt_LargeVine24
+    400142: jnt_LargeVine25
+    400144: jnt_LargeVine26
+    400146: jnt_LargeVine27
+    400148: jnt_LargeVine3
+    400150: jnt_LargeVine4
+    400152: jnt_LargeVine5
+    400154: jnt_LargeVine6
+    400156: jnt_LargeVine7
+    400158: jnt_LargeVine8
+    400160: jnt_LargeVine9
+    400162: jnt_MediumVine1
+    400164: jnt_MediumVine10
+    400166: jnt_MediumVine11
+    400168: jnt_MediumVine12
+    400170: jnt_MediumVine13
+    400172: jnt_MediumVine14
+    400174: jnt_MediumVine15
+    400176: jnt_MediumVine16
+    400178: jnt_MediumVine17
+    400180: jnt_MediumVine18
+    400182: jnt_MediumVine19
+    400184: jnt_MediumVine2
+    400186: jnt_MediumVine20
+    400188: jnt_MediumVine3
+    400190: jnt_MediumVine4
+    400192: jnt_MediumVine5
+    400194: jnt_MediumVine6
+    400196: jnt_MediumVine7
+    400198: jnt_MediumVine8
+    400200: jnt_MediumVine9
+    400202: jnt_Neck
+    400204: jnt_NeckBase
+    400206: jnt_R_Elbow
+    400208: jnt_R_Forearm
+    400210: jnt_R_Index1
+    400212: jnt_R_Index2
+    400214: jnt_R_Index3
+    400216: jnt_R_Index4
+    400218: jnt_R_Middle1
+    400220: jnt_R_Middle2
+    400222: jnt_R_Middle3
+    400224: jnt_R_Middle4
+    400226: jnt_R_Pinky1
+    400228: jnt_R_Pinky2
+    400230: jnt_R_Pinky3
+    400232: jnt_R_Pinky4
+    400234: jnt_R_Ring1
+    400236: jnt_R_Ring2
+    400238: jnt_R_Ring3
+    400240: jnt_R_Ring4
+    400242: jnt_R_Shoulder
+    400244: jnt_R_Thumb1
+    400246: jnt_R_Thumb2
+    400248: jnt_R_Thumb3
+    400250: jnt_R_Wrist
+    400252: jnt_Root
+    400254: jnt_SmallVine1
+    400256: jnt_SmallVine10
+    400258: jnt_SmallVine11
+    400260: jnt_SmallVine12
+    400262: jnt_SmallVine13
+    400264: jnt_SmallVine14
+    400266: jnt_SmallVine15
+    400268: jnt_SmallVine2
+    400270: jnt_SmallVine3
+    400272: jnt_SmallVine4
+    400274: jnt_SmallVine5
+    400276: jnt_SmallVine6
+    400278: jnt_SmallVine7
+    400280: jnt_SmallVine8
+    400282: jnt_SmallVine9
+    400284: jnt_Spine1
+    400286: jnt_Spine2
+    400288: jnt_Spine3
+    400290: MeshIntestine
+    400292: MeshMonsterBody
+    400294: MeshTeeth
+    400296: MeshVineLarge
+    400298: MeshVineMedium
+    400300: MeshVineSmall
+    400302: //RootNode
+    400304: transform1
+    400306: transform2
+    2300000: MeshTeeth
+    3300000: MeshTeeth
+    4300000: MeshMonsterBody
+    4300002: MeshIntestine
+    4300004: MeshVineLarge
+    4300006: MeshVineMedium
+    4300008: MeshVineSmall
+    4300010: MeshTeeth
+    7400000: Take 001
+    7400002: Idle
+    7400004: Chase
+    7400006: Attack
+    7400008: Search
+    9500000: //RootNode
+    13700000: MeshIntestine
+    13700002: MeshMonsterBody
+    13700004: MeshVineLarge
+    13700006: MeshVineMedium
+    13700008: MeshVineSmall
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      firstFrame: 10
+      lastFrame: 109
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrl_Global
+        weight: 1
+      - path: grp_IKHandles
+        weight: 1
+      - path: grp_IKHandles/ikHandle_L_Arm
+        weight: 1
+      - path: grp_IKHandles/ikHandle_Neck
+        weight: 1
+      - path: grp_IKHandles/ikHandle_R_Arm
+        weight: 1
+      - path: grp_IKHandles/ikHandle_Spine
+        weight: 1
+      - path: grp_Meshes
+        weight: 1
+      - path: grp_Meshes/MeshIntestine
+        weight: 1
+      - path: grp_Meshes/MeshMonsterBody
+        weight: 1
+      - path: grp_Meshes/MeshTeeth
+        weight: 1
+      - path: grp_Meshes/MeshVineLarge
+        weight: 1
+      - path: grp_Meshes/MeshVineMedium
+        weight: 1
+      - path: grp_Meshes/MeshVineSmall
+        weight: 1
+      - path: grp_Root
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9/jnt_Intestine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9/jnt_Intestine10/jnt_Intestine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25/jnt_LargeVine26
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25/jnt_LargeVine26/jnt_LargeVine27
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18/jnt_MediumVine19
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18/jnt_MediumVine19/jnt_MediumVine20
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13/jnt_SmallVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13/jnt_SmallVine14/jnt_SmallVine15
+        weight: 1
+      - path: grp_Root/jnt_Root
+        weight: 1
+      - path: grp_Root/jnt_Root/curve_Spine
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterAbs
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterChest
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterHips
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterNeckBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2/jnt_L_Index3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2/jnt_L_Index3/jnt_L_Index4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2/jnt_L_Middle3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2/jnt_L_Middle3/jnt_L_Middle4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2/jnt_L_Pinky3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2/jnt_L_Pinky3/jnt_L_Pinky4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2/jnt_L_Ring3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2/jnt_L_Ring3/jnt_L_Ring4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1/jnt_L_Thumb2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1/jnt_L_Thumb2/jnt_L_Thumb3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop/ChinBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop/ChinBase/ChinTip
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2/jnt_R_Index3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2/jnt_R_Index3/jnt_R_Index4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2/jnt_R_Middle3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2/jnt_R_Middle3/jnt_R_Middle4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2/jnt_R_Pinky3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2/jnt_R_Pinky3/jnt_R_Pinky4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2/jnt_R_Ring3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2/jnt_R_Ring3/jnt_R_Ring4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1/jnt_R_Thumb2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1/jnt_R_Thumb2/jnt_R_Thumb3
+        weight: 1
+      - path: transform1
+        weight: 1
+      - path: transform2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Chase
+      takeName: Take 001
+      firstFrame: 120
+      lastFrame: 299
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrl_Global
+        weight: 1
+      - path: grp_IKHandles
+        weight: 1
+      - path: grp_IKHandles/ikHandle_L_Arm
+        weight: 1
+      - path: grp_IKHandles/ikHandle_Neck
+        weight: 1
+      - path: grp_IKHandles/ikHandle_R_Arm
+        weight: 1
+      - path: grp_IKHandles/ikHandle_Spine
+        weight: 1
+      - path: grp_Meshes
+        weight: 1
+      - path: grp_Meshes/MeshIntestine
+        weight: 1
+      - path: grp_Meshes/MeshMonsterBody
+        weight: 1
+      - path: grp_Meshes/MeshTeeth
+        weight: 1
+      - path: grp_Meshes/MeshVineLarge
+        weight: 1
+      - path: grp_Meshes/MeshVineMedium
+        weight: 1
+      - path: grp_Meshes/MeshVineSmall
+        weight: 1
+      - path: grp_Root
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9/jnt_Intestine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9/jnt_Intestine10/jnt_Intestine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25/jnt_LargeVine26
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25/jnt_LargeVine26/jnt_LargeVine27
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18/jnt_MediumVine19
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18/jnt_MediumVine19/jnt_MediumVine20
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13/jnt_SmallVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13/jnt_SmallVine14/jnt_SmallVine15
+        weight: 1
+      - path: grp_Root/jnt_Root
+        weight: 1
+      - path: grp_Root/jnt_Root/curve_Spine
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterAbs
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterChest
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterHips
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterNeckBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2/jnt_L_Index3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2/jnt_L_Index3/jnt_L_Index4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2/jnt_L_Middle3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2/jnt_L_Middle3/jnt_L_Middle4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2/jnt_L_Pinky3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2/jnt_L_Pinky3/jnt_L_Pinky4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2/jnt_L_Ring3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2/jnt_L_Ring3/jnt_L_Ring4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1/jnt_L_Thumb2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1/jnt_L_Thumb2/jnt_L_Thumb3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop/ChinBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop/ChinBase/ChinTip
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2/jnt_R_Index3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2/jnt_R_Index3/jnt_R_Index4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2/jnt_R_Middle3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2/jnt_R_Middle3/jnt_R_Middle4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2/jnt_R_Pinky3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2/jnt_R_Pinky3/jnt_R_Pinky4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2/jnt_R_Ring3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2/jnt_R_Ring3/jnt_R_Ring4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1/jnt_R_Thumb2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1/jnt_R_Thumb2/jnt_R_Thumb3
+        weight: 1
+      - path: transform1
+        weight: 1
+      - path: transform2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack
+      takeName: Take 001
+      firstFrame: 310
+      lastFrame: 339
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrl_Global
+        weight: 1
+      - path: grp_IKHandles
+        weight: 1
+      - path: grp_IKHandles/ikHandle_L_Arm
+        weight: 1
+      - path: grp_IKHandles/ikHandle_Neck
+        weight: 1
+      - path: grp_IKHandles/ikHandle_R_Arm
+        weight: 1
+      - path: grp_IKHandles/ikHandle_Spine
+        weight: 1
+      - path: grp_Meshes
+        weight: 1
+      - path: grp_Meshes/MeshIntestine
+        weight: 1
+      - path: grp_Meshes/MeshMonsterBody
+        weight: 1
+      - path: grp_Meshes/MeshTeeth
+        weight: 1
+      - path: grp_Meshes/MeshVineLarge
+        weight: 1
+      - path: grp_Meshes/MeshVineMedium
+        weight: 1
+      - path: grp_Meshes/MeshVineSmall
+        weight: 1
+      - path: grp_Root
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9/jnt_Intestine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9/jnt_Intestine10/jnt_Intestine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25/jnt_LargeVine26
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25/jnt_LargeVine26/jnt_LargeVine27
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18/jnt_MediumVine19
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18/jnt_MediumVine19/jnt_MediumVine20
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13/jnt_SmallVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13/jnt_SmallVine14/jnt_SmallVine15
+        weight: 1
+      - path: grp_Root/jnt_Root
+        weight: 1
+      - path: grp_Root/jnt_Root/curve_Spine
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterAbs
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterChest
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterHips
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterNeckBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2/jnt_L_Index3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2/jnt_L_Index3/jnt_L_Index4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2/jnt_L_Middle3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2/jnt_L_Middle3/jnt_L_Middle4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2/jnt_L_Pinky3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2/jnt_L_Pinky3/jnt_L_Pinky4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2/jnt_L_Ring3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2/jnt_L_Ring3/jnt_L_Ring4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1/jnt_L_Thumb2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1/jnt_L_Thumb2/jnt_L_Thumb3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop/ChinBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop/ChinBase/ChinTip
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2/jnt_R_Index3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2/jnt_R_Index3/jnt_R_Index4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2/jnt_R_Middle3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2/jnt_R_Middle3/jnt_R_Middle4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2/jnt_R_Pinky3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2/jnt_R_Pinky3/jnt_R_Pinky4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2/jnt_R_Ring3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2/jnt_R_Ring3/jnt_R_Ring4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1/jnt_R_Thumb2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1/jnt_R_Thumb2/jnt_R_Thumb3
+        weight: 1
+      - path: transform1
+        weight: 1
+      - path: transform2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Search
+      takeName: Take 001
+      firstFrame: 350
+      lastFrame: 489
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: ctrl_Global
+        weight: 1
+      - path: grp_IKHandles
+        weight: 1
+      - path: grp_IKHandles/ikHandle_L_Arm
+        weight: 1
+      - path: grp_IKHandles/ikHandle_Neck
+        weight: 1
+      - path: grp_IKHandles/ikHandle_R_Arm
+        weight: 1
+      - path: grp_IKHandles/ikHandle_Spine
+        weight: 1
+      - path: grp_Meshes
+        weight: 1
+      - path: grp_Meshes/MeshIntestine
+        weight: 1
+      - path: grp_Meshes/MeshMonsterBody
+        weight: 1
+      - path: grp_Meshes/MeshTeeth
+        weight: 1
+      - path: grp_Meshes/MeshVineLarge
+        weight: 1
+      - path: grp_Meshes/MeshVineMedium
+        weight: 1
+      - path: grp_Meshes/MeshVineSmall
+        weight: 1
+      - path: grp_Root
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9/jnt_Intestine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_Intestine1/jnt_Intestine2/jnt_Intestine3/jnt_Intestine4/jnt_Intestine5/jnt_Intestine6/jnt_Intestine7/jnt_Intestine8/jnt_Intestine9/jnt_Intestine10/jnt_Intestine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25/jnt_LargeVine26
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_LargeVine1/jnt_LargeVine2/jnt_LargeVine3/jnt_LargeVine4/jnt_LargeVine5/jnt_LargeVine6/jnt_LargeVine7/jnt_LargeVine8/jnt_LargeVine9/jnt_LargeVine10/jnt_LargeVine11/jnt_LargeVine12/jnt_LargeVine13/jnt_LargeVine14/jnt_LargeVine15/jnt_LargeVine16/jnt_LargeVine17/jnt_LargeVine18/jnt_LargeVine19/jnt_LargeVine20/jnt_LargeVine21/jnt_LargeVine22/jnt_LargeVine23/jnt_LargeVine24/jnt_LargeVine25/jnt_LargeVine26/jnt_LargeVine27
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18/jnt_MediumVine19
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_MediumVine1/jnt_MediumVine2/jnt_MediumVine3/jnt_MediumVine4/jnt_MediumVine5/jnt_MediumVine6/jnt_MediumVine7/jnt_MediumVine8/jnt_MediumVine9/jnt_MediumVine10/jnt_MediumVine11/jnt_MediumVine12/jnt_MediumVine13/jnt_MediumVine14/jnt_MediumVine15/jnt_MediumVine16/jnt_MediumVine17/jnt_MediumVine18/jnt_MediumVine19/jnt_MediumVine20
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13/jnt_SmallVine14
+        weight: 1
+      - path: grp_Root/jnt_Hang_Root/jnt_SmallVine1/jnt_SmallVine2/jnt_SmallVine3/jnt_SmallVine4/jnt_SmallVine5/jnt_SmallVine6/jnt_SmallVine7/jnt_SmallVine8/jnt_SmallVine9/jnt_SmallVine10/jnt_SmallVine11/jnt_SmallVine12/jnt_SmallVine13/jnt_SmallVine14/jnt_SmallVine15
+        weight: 1
+      - path: grp_Root/jnt_Root
+        weight: 1
+      - path: grp_Root/jnt_Root/curve_Spine
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterAbs
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterChest
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterHips
+        weight: 1
+      - path: grp_Root/jnt_Root/grp_SpineCluster/clusterNeckBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2/jnt_L_Index3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Index1/jnt_L_Index2/jnt_L_Index3/jnt_L_Index4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2/jnt_L_Middle3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Middle1/jnt_L_Middle2/jnt_L_Middle3/jnt_L_Middle4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2/jnt_L_Pinky3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Pinky1/jnt_L_Pinky2/jnt_L_Pinky3/jnt_L_Pinky4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2/jnt_L_Ring3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Ring1/jnt_L_Ring2/jnt_L_Ring3/jnt_L_Ring4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1/jnt_L_Thumb2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_L_Shoulder/jnt_L_Elbow/jnt_L_Forearm/jnt_L_Wrist/jnt_L_Thumb1/jnt_L_Thumb2/jnt_L_Thumb3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop/ChinBase
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_NeckBase/jnt_Neck/jnt_Head/jnt_HeadTop/ChinBase/ChinTip
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2/jnt_R_Index3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Index1/jnt_R_Index2/jnt_R_Index3/jnt_R_Index4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2/jnt_R_Middle3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Middle1/jnt_R_Middle2/jnt_R_Middle3/jnt_R_Middle4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2/jnt_R_Pinky3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Pinky1/jnt_R_Pinky2/jnt_R_Pinky3/jnt_R_Pinky4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2/jnt_R_Ring3
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Ring1/jnt_R_Ring2/jnt_R_Ring3/jnt_R_Ring4
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1/jnt_R_Thumb2
+        weight: 1
+      - path: grp_Root/jnt_Root/jnt_Hip/jnt_Spine1/jnt_Spine2/jnt_Spine3/jnt_R_Shoulder/jnt_R_Elbow/jnt_R_Forearm/jnt_R_Wrist/jnt_R_Thumb1/jnt_R_Thumb2/jnt_R_Thumb3
+        weight: 1
+      - path: transform1
+        weight: 1
+      - path: transform2
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 110
+    normalImportMode: 1
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
