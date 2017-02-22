@@ -12,8 +12,12 @@ public class elevator : MonoBehaviour {
     private bool bellSounded = false;
 
     public GameObject playerC;
+    public GameObject triggerMonsterAppearence;
+    public GameObject triggerSeeMonster;
+    public GameObject triggerSecondMonsterAppearence;
+    public GameObject triggerSecondSeeMonster;
 
-	public bool debug;
+    public bool debug;
 
     public float eleSpeed;
     public float eleMaxHeight;
@@ -62,8 +66,7 @@ public class elevator : MonoBehaviour {
 	private bool uGateMoveBack = false;
 	private bool lGateMove = false;
 	private bool lGateMoveBack = false;
-	private bool uGateState = false;
-	private bool lGateState = false;
+	private bool gateState = false;
     private bool eleTop;
     private bool onEle;
     private bool eleDone;
@@ -111,12 +114,15 @@ public class elevator : MonoBehaviour {
 
 
 
-		if (playerInElevator && powerOn)
+		if (playerInElevator && powerOn && !gateState)
 		{
 			onEle = true;
 		}
 		else
-			onEle = false;
+        {
+            onEle = false;
+        }
+			
 
 		if (eleTop && powerOn && !playerInElevator)
 		{
@@ -131,28 +137,23 @@ public class elevator : MonoBehaviour {
 
 		if (lGateMove)
 		{
-            //lowerGate.transform.position = Vector3.Slerp(lowerGate.transform.position, lGateEnd.transform.position, 0.5f * Time.deltaTime);
             lLowerGate.transform.position = Vector3.Slerp(lLowerGate.transform.position, lLGateEnd.transform.position, 0.5f * Time.deltaTime);
             rLowerGate.transform.position = Vector3.Slerp(rLowerGate.transform.position, lRGateEnd.transform.position, 0.5f * Time.deltaTime);
         }
 
 		if (uGateMove)
 		{
-			//upperGate.transform.position = Vector3.Slerp(upperGate.transform.position, uGateEnd.transform.position, 0.5f * Time.deltaTime);
             lUpperGate.transform.position = Vector3.Lerp(lUpperGate.transform.position, uLGateEnd.transform.position, 0.5f * Time.deltaTime);
             rUpperGate.transform.position = Vector3.Lerp(rUpperGate.transform.position, uRGateEnd.transform.position, 0.5f * Time.deltaTime);
-            uGateState = true;
 		}
 
 		if (uGateMoveBack)
 		{
-			//upperGate.transform.position = Vector3.Slerp(upperGate.transform.position, uGateStart.transform.position, 0.5f * Time.deltaTime);
             lUpperGate.transform.position = Vector3.Lerp(lUpperGate.transform.position, uLGateStart.transform.position, 0.5f * Time.deltaTime);
             rUpperGate.transform.position = Vector3.Lerp(rUpperGate.transform.position, uRGateStart.transform.position, 0.5f * Time.deltaTime);
-            uGateState = false;
 		}
 
-		if (eleTop && onEle && !soundDone.GetComponent<AudioSource>().isPlaying && !uGateState)
+		if (eleTop && onEle && !soundDone.GetComponent<AudioSource>().isPlaying && !gateState)
 		{
 			eleYPos -= eleSpeed;
 			transform.position = new Vector3(eleXPos, eleYPos, eleZPos);
@@ -165,11 +166,46 @@ public class elevator : MonoBehaviour {
 				if (transform.position.y < -10.5f)
 				{
 					lGateMove = true;
-				}
+                    elevatorSource.clip = bellSound;
+                    elevatorSource.Play();
+                }
 
 			}
 		}
 
+        /// Monster upper appearence trigger on/off
+        if (!gateState && eleTop && playerInElevator)
+        {
+            triggerMonsterAppearence.SetActive(true);
+            triggerSeeMonster.SetActive(true);
+        }
+        else
+        {
+            triggerMonsterAppearence.SetActive(false);
+            triggerSeeMonster.SetActive(false);
+        }
+
+        /// Monster lower appearence trigger on/off
+        if (gateState && !eleTop && playerInElevator)
+        {
+            triggerSecondMonsterAppearence.SetActive(true);
+            triggerSecondSeeMonster.SetActive(true);
+        }
+        else
+        {
+            triggerSecondMonsterAppearence.SetActive(false);
+            triggerSecondSeeMonster.SetActive(false);
+        }
+
+        /// Test to see if gates at bottom and top are open
+        if (((lUpperGate.transform.position - uLGateStart.transform.position).magnitude <= 0.2f) && ((lLowerGate.transform.position - lLGateStart.transform.position).magnitude <= 0.2f))
+        {
+            gateState = false;
+        }
+        else
+        {
+            gateState = true;
+        }
 	}
 
 	void OnTriggerEnter(Collider other)

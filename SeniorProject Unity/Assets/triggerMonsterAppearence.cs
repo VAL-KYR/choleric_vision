@@ -4,6 +4,7 @@ using System.Collections;
 public class triggerMonsterAppearence : MonoBehaviour {
 
     public GameObject monster;
+    private bool isTripped;
 
     // Use this for initialization
     void Start () {
@@ -18,9 +19,11 @@ public class triggerMonsterAppearence : MonoBehaviour {
 
     void OnTriggerEnter(Collider c)
     {
-        if(c.CompareTag("GameController") && !monster.activeSelf)
+        if(c.CompareTag("GameController") && !monster.activeSelf && !isTripped)
         {
+
             monster.SetActive(true);
+            isTripped = true;
         }
     }
 }
