@@ -73,7 +73,6 @@ public class controller : MonoBehaviour
     static int closedStateHash = Animator.StringToHash("Base Layer.Closed");
     static int openStateHash = Animator.StringToHash("Base Layer.Opened");
 
-
     // Use this for initialization
     void Start()
 	{
@@ -128,10 +127,6 @@ public class controller : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-
-        //print("First:" + transform.position);
-
-        
 
         // Update Standing Position if Player is not crouched
         if (!crouch)
@@ -212,6 +207,7 @@ public class controller : MonoBehaviour
 			if (playerSprint)
 				playerSprint = false;
 
+            
             headJoint.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
             noteBookGO.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
 
@@ -222,7 +218,7 @@ public class controller : MonoBehaviour
         {
             headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
             noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
-
+            
             crouch = false;
         }
 
