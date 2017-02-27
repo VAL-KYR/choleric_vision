@@ -124,7 +124,11 @@ public class monsterSound : MonoBehaviour {
         // Sends the queued voice info over and over until it is played in the waitForSilence if version and voiceQueue becomes false
         if (voiceQueue)
         {
-            Voice(voiceQueuedUtterance, voiceQueuedDelay, true);
+            if (!monsterVoice.isPlaying)
+            {
+                Voice(voiceQueuedUtterance, voiceQueuedDelay, true);
+            }
+            
         }
 
         // Developer voice test buttons
@@ -249,15 +253,21 @@ public class monsterSound : MonoBehaviour {
 
         if (waitForSilence)
         {
-            if (!monsterVoice.isPlaying)
+            Debug.Log("Waiting for silence");
+
+            if (!monsterVoice.isPlaying && voiceQueue)
             {
+                    Debug.Log("Playing Queued Sound");
                     monsterVoice.PlayDelayed(delay);
                     voiceQueue = false;
             }
             else
             {
+                Debug.Log("Queued sound is waiting");
+
                 if (!voiceQueue)
                 {
+                    Debug.Log("Creating a Voice Queue");
                     voiceQueuedUtterance = utterance;
                     voiceQueuedDelay = delay;
                     voiceQueue = true;
