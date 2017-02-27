@@ -110,9 +110,9 @@ public class doorMaster : MonoBehaviour
                 forceOpen();
 
                 // Needed because stubborn doors are being stubborn (animation synch error)
-                //forceOpen();
+                forceOpen();
 
-                //forceOpen();
+                forceOpen();
                 //
             }
         }

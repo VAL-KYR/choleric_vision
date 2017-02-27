@@ -1,6 +1,6 @@
 fileFormatVersion: 2
-guid: 2f143860de0427a4b95d7fc16c6a7152
-timeCreated: 1486413024
+guid: 5d52fe94b1b77be48875c8d2ddda5726
+timeCreated: 1488224700
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
@@ -9,7 +9,7 @@ ModelImporter:
     400000: //RootNode
     2300000: //RootNode
     3300000: //RootNode
-    4300000: pCube14
+    4300000: basementStructure
     6400000: //RootNode
     9500000: //RootNode
   materials:
