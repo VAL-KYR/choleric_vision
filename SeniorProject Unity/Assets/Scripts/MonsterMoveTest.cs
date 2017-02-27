@@ -4,10 +4,11 @@ using System;
 
 public class MonsterMoveTest : MonoBehaviour {
 
-    public Rigidbody rb;
+    public bool debug = false;
+    //public Rigidbody rb;
     public GameObject[] pos;
-    public GameObject[] unaturalLights;
-    public float[] unaturalLightIntensity;
+    GameObject[] unaturalLights;
+    float[] unaturalLightIntensity;
     int i = 0;
     int x = 0;
 
@@ -16,7 +17,7 @@ public class MonsterMoveTest : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody>();
+        //rb = GetComponent<Rigidbody>();
         lastPosition = new Vector3(0, 0, 0);
         unaturalLights = GameObject.FindGameObjectsWithTag("unaturalLight");
 
@@ -35,8 +36,8 @@ public class MonsterMoveTest : MonoBehaviour {
         
         if (i >= pos.Length)
         {
-
-            Debug.Log("movement end");
+            if(debug)
+                Debug.Log("movement end");
 
             for (int y = 0; y < unaturalLights.Length; y++)
             {
@@ -52,13 +53,15 @@ public class MonsterMoveTest : MonoBehaviour {
                     lightsNormal++;
                 }
             }
-
-            Debug.Log("lightsnorml " + lightsNormal);
+            if(debug)
+                Debug.Log("lightsnorml " + lightsNormal);
 
             if (lightsNormal >= unaturalLights.Length)
             {
                 gameObject.SetActive(false);
-                Debug.Log("monster poof");
+
+                if(debug)
+                    Debug.Log("monster poof");
             }
 
         }

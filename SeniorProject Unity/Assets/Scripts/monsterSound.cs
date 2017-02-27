@@ -14,26 +14,26 @@ public class monsterSound : MonoBehaviour {
 
     // Sound file arrays
     AudioClip[] monsterAlertSounds;
-    public AudioClip monsterAlertSound;
+    AudioClip monsterAlertSound;
 
     AudioClip[] monsterAttackSounds;
-    public AudioClip monsterAttackSound;
+    AudioClip monsterAttackSound;
 
     AudioClip[] monsterGrowlSounds;
-    public AudioClip monsterGrowlSound;
+    AudioClip monsterGrowlSound;
 
     AudioClip[] monsterNoticeSounds;
-    public AudioClip monsterNoticeSound;
+    AudioClip monsterNoticeSound;
 
     AudioClip[] monsterRambleSounds;
-    public AudioClip monsterRambleSound;
+    AudioClip monsterRambleSound;
 
     AudioClip[] monsterSearchSounds;
-    public AudioClip monsterSearchSound;
+    AudioClip monsterSearchSound;
     //
 
     // Voice function variables
-    bool voiceQueue = false;
+    bool voiceQueue;
     string voiceQueuedUtterance;
     float voiceQueuedDelay;
     //
@@ -50,7 +50,7 @@ public class monsterSound : MonoBehaviour {
 
     /// <summary>
     /// YOU CAN CALL VOICES IN OTHER SCRIPTS WITH THIS
-    /// [TheMonsterScriptsObject].GetComponent<monsterSound>().Voice([string utterance], [float delay]);
+    /// [TheMonsterScriptsObject].GetComponent<monsterSound>().Voice([string utterance], [float delay], [bool waitForSilence]);
     /// 
     /// </summary>
 
@@ -251,8 +251,8 @@ public class monsterSound : MonoBehaviour {
         {
             if (!monsterVoice.isPlaying)
             {
-                monsterVoice.PlayDelayed(delay);
-                voiceQueue = false;     
+                    monsterVoice.PlayDelayed(delay);
+                    voiceQueue = false;
             }
             else
             {
