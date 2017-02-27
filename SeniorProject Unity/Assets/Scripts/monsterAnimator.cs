@@ -32,8 +32,13 @@ public class monsterAnimator : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = gameObject.GetComponent<Animator>();
+        
+        // REMOVE FOR ERICA'S VERSION MAYBE? update should fix everything
+        if(devAnimTesting)
+            idle = true; 
+        else
+            idle = false;
 
-        idle = false;
         search = false;
         chase = false;
         attack = false;
@@ -41,6 +46,14 @@ public class monsterAnimator : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+        // accessing animation state
+        monsterAnimState = anim.GetCurrentAnimatorStateInfo(0);
+
+        // Set bool parameters in anim from these bools
+        anim.SetBool("idleing", idle);
+        anim.SetBool("searching", search);
+        anim.SetBool("chasing", chase);
 
 
         // Developer voice test buttons
@@ -71,14 +84,6 @@ public class monsterAnimator : MonoBehaviour {
         }
 
 
-        // accessing animation state
-        monsterAnimState = anim.GetCurrentAnimatorStateInfo(0);
-
-        // Set bool parameters in anim from these bools
-        anim.SetBool("idleing", idle);
-        anim.SetBool("searching", search);
-        anim.SetBool("chasing", chase);
-
         if (idle)
         {
             gameObject.GetComponent<monsterSound>().Voice("ramble", 0.0f, true);
@@ -95,8 +100,15 @@ public class monsterAnimator : MonoBehaviour {
             //monsterAnimState.fullPathHash == chaseStateHash
         }
 
+        // CHANGE FOR ERICA'S VERSION'
+    
+        // make this animation driven later for now just trigger on hit
+        // also later it'll do a check for box collider on hand hit player for "death"
+        // trigger death function from here
+
         if (attack)
         {
+            gameObject.GetComponent<monsterSound>().Voice("attack", 0.5f, false);
             anim.SetTrigger("attack");
 
             // making the attack animation bool instant
@@ -113,14 +125,9 @@ public class monsterAnimator : MonoBehaviour {
                 search = false;
                 chase = false;
             }
+
             //monsterAnimState.fullPathHash == attackStateHash
         }
-
-        if (monsterAnimState.fullPathHash == attackStateHash)
-            gameObject.GetComponent<monsterSound>().Voice("attack", 0.0f, true);
-
-        // make this animation driven later for now just trigger on hit
-        // also later it'll do a check for box collider on hand hit player for "death"
-        // trigger death function from here
+        
     }
 }
