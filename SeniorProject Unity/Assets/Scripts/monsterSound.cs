@@ -15,21 +15,27 @@ public class monsterSound : MonoBehaviour {
     // Sound file arrays
     AudioClip[] monsterAlertSounds;
     AudioClip monsterAlertSound;
+    AudioClip lastMonsterAlertSound;
 
     AudioClip[] monsterAttackSounds;
     AudioClip monsterAttackSound;
+    AudioClip lastMonsterAttackSound;
 
     AudioClip[] monsterGrowlSounds;
     AudioClip monsterGrowlSound;
+    AudioClip lastMonsterGrowlSound;
 
     AudioClip[] monsterNoticeSounds;
     AudioClip monsterNoticeSound;
+    AudioClip lastMonsterNoticeSound;
 
     AudioClip[] monsterRambleSounds;
     AudioClip monsterRambleSound;
+    AudioClip lastMonsterRambleSound;
 
     AudioClip[] monsterSearchSounds;
     AudioClip monsterSearchSound;
+    AudioClip lastMonsterSearchSound;
     //
 
     // Voice function variables
@@ -42,6 +48,10 @@ public class monsterSound : MonoBehaviour {
     public bool voiceWarmup = false;
     public bool devVoiceTesting = false;
     int testVoice = 0;
+    public float time = 0.0f;
+    public float playTime = 2.0f;
+    public float playTimeVariance = 0.0f;
+    public float randPlayTime = 0.0f;
     //
 
 
@@ -60,24 +70,35 @@ public class monsterSound : MonoBehaviour {
         //
         //
 
+        // Confguring rest period
+        time = 0.0f;
+        randPlayTime = 0.0f;
+        //
+
         // Load All sound files from resources
         monsterAlertSounds = Resources.LoadAll<AudioClip>("Monster/Alert");
         monsterAlertSound = monsterAlertSounds[Random.Range(0, monsterAlertSounds.Length)];
+        lastMonsterAlertSound = monsterAlertSound;
 
         monsterAttackSounds = Resources.LoadAll<AudioClip>("Monster/Attack");
         monsterAttackSound = monsterAttackSounds[Random.Range(0, monsterAttackSounds.Length)];
+        lastMonsterAttackSound = monsterAttackSound;
 
         monsterGrowlSounds = Resources.LoadAll<AudioClip>("Monster/Growl");
         monsterGrowlSound = monsterGrowlSounds[Random.Range(0, monsterGrowlSounds.Length)];
+        lastMonsterGrowlSound = monsterGrowlSound;
 
         monsterNoticeSounds = Resources.LoadAll<AudioClip>("Monster/Notice");
         monsterNoticeSound = monsterNoticeSounds[Random.Range(0, monsterNoticeSounds.Length)];
+        lastMonsterNoticeSound = monsterNoticeSound;
 
         monsterRambleSounds = Resources.LoadAll<AudioClip>("Monster/Ramble");
         monsterRambleSound = monsterRambleSounds[Random.Range(0, monsterRambleSounds.Length)];
+        lastMonsterRambleSound = monsterRambleSound;
 
         monsterSearchSounds = Resources.LoadAll<AudioClip>("Monster/Search");
         monsterSearchSound = monsterSearchSounds[Random.Range(0, monsterSearchSounds.Length)];
+        lastMonsterSearchSound = monsterSearchSound;
         //
 
         // Create or load AudioSource
@@ -114,6 +135,9 @@ public class monsterSound : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        time += Time.deltaTime;
+        randPlayTime = playTime + Random.Range(playTimeVariance, playTimeVariance * -1);
+
         // Test the voice if the user has chosen to start with a voice warmup
         if (voiceWarmup)
         {
@@ -124,7 +148,11 @@ public class monsterSound : MonoBehaviour {
         // Sends the queued voice info over and over until it is played in the waitForSilence if version and voiceQueue becomes false
         if (voiceQueue)
         {
-            Voice(voiceQueuedUtterance, voiceQueuedDelay, true);
+            if (!monsterVoice.isPlaying)
+            {
+                Voice(voiceQueuedUtterance, voiceQueuedDelay, true);
+            }
+            
         }
 
         // Developer voice test buttons
@@ -161,12 +189,63 @@ public class monsterSound : MonoBehaviour {
     // Re-randomize all the sounds from the file arrays
     public void RandomizeSounds()
     {
-        monsterAlertSound = monsterAlertSounds[Random.Range(0, monsterAlertSounds.Length)];
-        monsterAttackSound = monsterAttackSounds[Random.Range(0, monsterAttackSounds.Length)];
-        monsterGrowlSound = monsterGrowlSounds[Random.Range(0, monsterGrowlSounds.Length)];
-        monsterNoticeSound = monsterNoticeSounds[Random.Range(0, monsterNoticeSounds.Length)];
-        monsterRambleSound = monsterRambleSounds[Random.Range(0, monsterRambleSounds.Length)];
-        monsterSearchSound = monsterSearchSounds[Random.Range(0, monsterSearchSounds.Length)];
+        int alertSoundsChoice = Random.Range(0, monsterAlertSounds.Length);
+        int attackSoundsChoice = Random.Range(0, monsterAttackSounds.Length);
+        int growlSoundsChoice = Random.Range(0, monsterGrowlSounds.Length);
+        int noticeSoundsChoice = Random.Range(0, monsterNoticeSounds.Length);
+        int rambleSoundsChoice = Random.Range(0, monsterRambleSounds.Length);
+        int searchSoundsChoice = Random.Range(0, monsterSearchSounds.Length);
+
+        monsterAlertSound = monsterAlertSounds[alertSoundsChoice];
+        monsterAttackSound = monsterAttackSounds[attackSoundsChoice];
+        monsterGrowlSound = monsterGrowlSounds[growlSoundsChoice];
+        monsterNoticeSound = monsterNoticeSounds[noticeSoundsChoice];
+        monsterRambleSound = monsterRambleSounds[rambleSoundsChoice];
+        monsterSearchSound = monsterSearchSounds[searchSoundsChoice];
+
+        if(lastMonsterAlertSound == monsterAlertSound)
+        {
+            if(alertSoundsChoice <= monsterAlertSounds.Length && alertSoundsChoice > 0)
+                monsterAlertSound = monsterAlertSounds[alertSoundsChoice - 1];
+            else if (alertSoundsChoice == 0)
+                monsterAlertSound = monsterAlertSounds[monsterAlertSounds.Length];
+        }
+        if (lastMonsterAttackSound == monsterAttackSound)
+        {
+            if (attackSoundsChoice <= monsterAttackSounds.Length && attackSoundsChoice > 0)
+                monsterAttackSound = monsterAttackSounds[attackSoundsChoice - 1];
+            else if (attackSoundsChoice == 0)
+                monsterAttackSound = monsterAttackSounds[monsterAttackSounds.Length];
+        }
+        if (lastMonsterGrowlSound == monsterGrowlSound)
+        {
+            if (growlSoundsChoice <= monsterGrowlSounds.Length && growlSoundsChoice > 0)
+                monsterGrowlSound = monsterGrowlSounds[growlSoundsChoice - 1];
+            else if (growlSoundsChoice == 0)
+                monsterGrowlSound = monsterGrowlSounds[monsterGrowlSounds.Length];
+        }
+        if (lastMonsterNoticeSound == monsterNoticeSound)
+        {
+            if (noticeSoundsChoice <= monsterNoticeSounds.Length && noticeSoundsChoice > 0)
+                monsterNoticeSound = monsterNoticeSounds[noticeSoundsChoice - 1];
+            else if (noticeSoundsChoice == 0)
+                monsterNoticeSound = monsterNoticeSounds[monsterNoticeSounds.Length];
+        }
+        if (lastMonsterRambleSound == monsterRambleSound)
+        {
+            if (rambleSoundsChoice <= monsterRambleSounds.Length && rambleSoundsChoice > 0)
+                monsterRambleSound = monsterRambleSounds[rambleSoundsChoice - 1];
+            else if (rambleSoundsChoice == 0)
+                monsterRambleSound = monsterRambleSounds[monsterRambleSounds.Length];
+        }
+        if (lastMonsterSearchSound == monsterSearchSound)
+        {
+            if (searchSoundsChoice <= monsterSearchSounds.Length && searchSoundsChoice > 0)
+                monsterSearchSound = monsterSearchSounds[searchSoundsChoice - 1];
+            else if (searchSoundsChoice == 0)
+                monsterSearchSound = monsterSearchSounds[monsterSearchSounds.Length];
+        }
+        
     }
 
     // Test the voice by cycling once through each utterance type
@@ -222,55 +301,87 @@ public class monsterSound : MonoBehaviour {
     // The Voice Functions
     public void Voice(string utterance, float delay, bool waitForSilence)
     {
-
-        if (!voiceQueue)
+        if (utterance == "attack")
         {
             RandomizeSounds();
+            monsterVoice.clip = monsterAttackSound;
+            monsterVoice.PlayDelayed(delay);
+            lastMonsterAttackSound = monsterAttackSound;
+        }
+        else if (utterance != "attack" && time > randPlayTime && !monsterVoice.isPlaying)
+        {
+            if (!voiceQueue)
+            {
+                RandomizeSounds();
+            }
 
             if (utterance == "alert")
+            {
                 monsterVoice.clip = monsterAlertSound;
-
-            if (utterance == "attack")
-                monsterVoice.clip = monsterAttackSound;
-
+                lastMonsterAlertSound = monsterAlertSound;
+            }
+               
             if (utterance == "growl")
+            {
                 monsterVoice.clip = monsterGrowlSound;
-
+                lastMonsterGrowlSound = monsterGrowlSound;
+            }
+               
             if (utterance == "notice")
+            {
                 monsterVoice.clip = monsterNoticeSound;
-
+                lastMonsterNoticeSound = monsterNoticeSound;
+            }
+                
             if (utterance == "ramble")
+            {
                 monsterVoice.clip = monsterRambleSound;
+                lastMonsterRambleSound = monsterRambleSound; 
+            }   
 
             if (utterance == "search")
-                monsterVoice.clip = monsterSearchSound;
-        }
-        
-
-        if (waitForSilence)
-        {
-            if (!monsterVoice.isPlaying)
             {
+                monsterVoice.clip = monsterSearchSound;
+                lastMonsterRambleSound = monsterRambleSound;
+            }
+               
+            //}
+
+
+            if (waitForSilence)
+            {
+                Debug.Log("Waiting for silence");
+
+                if (!monsterVoice.isPlaying && voiceQueue)
+                {
+                    Debug.Log("Playing Queued Sound");
                     monsterVoice.PlayDelayed(delay);
                     voiceQueue = false;
+                }
+                else
+                {
+                    Debug.Log("Queued sound is waiting");
+
+                    if (!voiceQueue)
+                    {
+                        Debug.Log("Creating a Voice Queue");
+                        voiceQueuedUtterance = utterance;
+                        voiceQueuedDelay = delay;
+                        voiceQueue = true;
+                    }
+                }
             }
             else
             {
                 if (!voiceQueue)
                 {
-                    voiceQueuedUtterance = utterance;
-                    voiceQueuedDelay = delay;
-                    voiceQueue = true;
+                    monsterVoice.PlayDelayed(delay);
                 }
             }
+
+            time = 0.0f;
         }
-        else
-        {
-            if (!voiceQueue)
-            {
-                monsterVoice.PlayDelayed(delay);
-            }
-        }
+
 
     }
 
