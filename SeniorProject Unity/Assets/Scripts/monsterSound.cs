@@ -45,6 +45,7 @@ public class monsterSound : MonoBehaviour {
     //
 
     // UI stuff that the player can mess with
+    public bool debug = false;
     public bool voiceWarmup = false;
     public bool devVoiceTesting = false;
     int testVoice = 0;
@@ -350,21 +351,25 @@ public class monsterSound : MonoBehaviour {
 
             if (waitForSilence)
             {
-                Debug.Log("Waiting for silence");
+                if (debug)
+                    Debug.Log("Waiting for silence");
 
                 if (!monsterVoice.isPlaying && voiceQueue)
                 {
-                    Debug.Log("Playing Queued Sound");
+                    if (debug)
+                        Debug.Log("Playing Queued Sound");
                     monsterVoice.PlayDelayed(delay);
                     voiceQueue = false;
                 }
                 else
                 {
-                    Debug.Log("Queued sound is waiting");
+                    if (debug)
+                        Debug.Log("Queued sound is waiting");
 
                     if (!voiceQueue)
                     {
-                        Debug.Log("Creating a Voice Queue");
+                        if (debug)
+                            Debug.Log("Creating a Voice Queue");
                         voiceQueuedUtterance = utterance;
                         voiceQueuedDelay = delay;
                         voiceQueue = true;
