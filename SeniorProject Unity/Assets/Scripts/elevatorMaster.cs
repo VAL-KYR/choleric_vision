@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class elevator : MonoBehaviour {
+public class elevatorMaster : MonoBehaviour {
     // Key audio compenent for all key sounds
     AudioSource elevatorSource;
 

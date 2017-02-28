@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class unloadAssets : MonoBehaviour {
+public class loadAssets : MonoBehaviour {
 
     public GameObject[] unloadThese;
 
@@ -21,8 +21,8 @@ public class unloadAssets : MonoBehaviour {
         {
             foreach (GameObject g in unloadThese)
             {
-                if(g.activeSelf)
-                    g.SetActive(false);
+                if(!g.activeSelf)
+                    g.SetActive(true);
             }
         }
         
