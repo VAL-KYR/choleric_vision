@@ -304,10 +304,11 @@ public class monsterSound : MonoBehaviour {
     {
         if (utterance == "attack")
         {
+            lastMonsterAttackSound = monsterAttackSound;
             RandomizeSounds();
             monsterVoice.clip = monsterAttackSound;
             monsterVoice.PlayDelayed(delay);
-            lastMonsterAttackSound = monsterAttackSound;
+            
         }
         else if (utterance != "attack" && time > randPlayTime && !monsterVoice.isPlaying)
         {
@@ -318,32 +319,37 @@ public class monsterSound : MonoBehaviour {
 
             if (utterance == "alert")
             {
-                monsterVoice.clip = monsterAlertSound;
                 lastMonsterAlertSound = monsterAlertSound;
+                monsterVoice.clip = monsterAlertSound;
+                
             }
                
             if (utterance == "growl")
             {
-                monsterVoice.clip = monsterGrowlSound;
                 lastMonsterGrowlSound = monsterGrowlSound;
+                monsterVoice.clip = monsterGrowlSound;
+               
             }
                
             if (utterance == "notice")
             {
-                monsterVoice.clip = monsterNoticeSound;
                 lastMonsterNoticeSound = monsterNoticeSound;
+                monsterVoice.clip = monsterNoticeSound;
+                
             }
                 
             if (utterance == "ramble")
             {
+                lastMonsterRambleSound = monsterRambleSound;
                 monsterVoice.clip = monsterRambleSound;
-                lastMonsterRambleSound = monsterRambleSound; 
+                
             }   
 
             if (utterance == "search")
             {
-                monsterVoice.clip = monsterSearchSound;
                 lastMonsterRambleSound = monsterRambleSound;
+                monsterVoice.clip = monsterSearchSound;
+                
             }
                
             //}
