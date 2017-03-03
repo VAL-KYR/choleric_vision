@@ -220,7 +220,7 @@ public class elevator : MonoBehaviour {
 			playerInElevator = false;
 	}
 
-	public void powerSupplied()
+	public void PowerSupplied()
 	{
 		powerOn = true;
         if (!bellSounded)

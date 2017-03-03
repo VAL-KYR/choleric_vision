@@ -8,6 +8,7 @@ public class elevatorMaster : MonoBehaviour {
     // elevator ready sounds
     public AudioClip[] bellSounds;
     public AudioClip bellSound;
+    public AudioClip eleStop;
 	public GameObject soundDone;
     private bool bellSounded = false;
 
@@ -19,24 +20,15 @@ public class elevatorMaster : MonoBehaviour {
 
     public bool debug;
 
-    public float eleSpeed;
-    public float eleMaxHeight;
-    public float eleMinHeight;
 	public bool playerInElevator = false;
 	public bool powerOn = false;
 
-    private Vector3 playerPos;
-    private Vector3 elePos;
+    // Movement Variables
+    public int currPos = 0;
+    public float time = 0.0f;
+    public GameObject[] positions;
 
-    private float currentDis;
-    private float eleXPos;
-    private float eleYPos;
-    private float eleZPos;
-
-
-	//public GameObject[] upperDoors;
-	//public GameObject upperGate;
-	//public GameObject lowerGate;
+    //
 
     public GameObject rUpperGate;
     public GameObject lUpperGate;
@@ -45,17 +37,11 @@ public class elevatorMaster : MonoBehaviour {
     public GameObject lLowerGate;
 
 
-    //public GameObject uGateStart;
-	//public GameObject uGateEnd;
-
     public GameObject uRGateStart;
     public GameObject uLGateStart;
     public GameObject uRGateEnd;
     public GameObject uLGateEnd;
 
-
-    //public GameObject lGateStart;
-	//public GameObject lGateEnd;
 
     public GameObject lRGateStart;
     public GameObject lLGateStart;
@@ -70,6 +56,8 @@ public class elevatorMaster : MonoBehaviour {
     private bool eleTop;
     private bool onEle;
     private bool eleDone;
+    private bool moveEle;
+    public bool monsterGone = false;
 
     // Use this for initialization
     void Start () {
@@ -78,64 +66,89 @@ public class elevatorMaster : MonoBehaviour {
         bellSounds = Resources.LoadAll<AudioClip>("SoundEffects/Elevator/Bell");
         bellSound = bellSounds[Random.Range(0, bellSounds.Length)];
 
-
-        // This is the code for playing a sound for an event
-        // switch clip
-        // play
-        /*
-        elevatorSource.clip = bellSound;
-        elevatorSource.Play();
-        */
-
-        // Elevator logic
-        elePos = transform.position;
-
-        eleXPos = elePos[0];
-        eleYPos = elePos[1];
-        eleZPos = elePos[2];
-
         eleTop = true;
+        moveEle = false;
         onEle = false;
         eleDone = true;
+
+        // setting up position markers
+        foreach(GameObject g in positions)
+        {
+            if (g.GetComponent<SphereCollider>() == null)
+            {
+                g.AddComponent<SphereCollider>();
+                g.GetComponent<SphereCollider>().radius = 0.5f;
+                g.GetComponent<SphereCollider>().isTrigger = true;
+            }
+        }
+        //
     }
 
 	// Update is called once per frame
 	void Update()
 	{
 
-		playerPos = playerC.transform.position;
-		elePos = transform.position;
-
-
-		currentDis = Vector3.Distance(playerPos, elePos);
-
-		if (debug)
-			Debug.Log("Ele Dist: " + currentDis);
-
-
-
-		if (playerInElevator && powerOn && !gateState)
-		{
-			onEle = true;
-		}
-		else
+        // Hecka Good movement code
+        // IF ELEVATOR ON
+        if(currPos < positions.Length && !gateState && moveEle)
         {
-            onEle = false;
+            if (!positions[currPos].GetComponent<SphereCollider>().bounds.Contains(gameObject.transform.position))
+            {
+                transform.position = Vector3.Slerp(transform.position, positions[currPos].transform.position, 0.3f * Time.deltaTime);
+            }
+            else
+            {
+                currPos++;
+            }
+        }
+        //
+        if(monsterGone && playerInElevator && !gateState && powerOn && currPos <= 1)
+        {
+            moveEle = true;
+        }
+        else if (monsterGone && playerInElevator && !gateState && powerOn && currPos >= 2 && time < 10.0f)
+        {
+            moveEle = false;
+            time += Time.deltaTime;
+
+            if (!elevatorSource.isPlaying && elevatorSource.clip == bellSound)
+            {
+                elevatorSource.clip = eleStop;
+                elevatorSource.Play();
+                elevatorSource.spatialBlend = 0.0f;
+            }
+            
+            
+        }
+        else if (monsterGone && playerInElevator && !gateState && powerOn && currPos >= 2 && time > 10.0f && !elevatorSource.isPlaying)
+        {
+            moveEle = true;
+            bellSounded = false;
+            elevatorSource.spatialBlend = 1.0f;
+        }
+        else
+        {
+            moveEle = false;
         }
 			
 
-		if (eleTop && powerOn && !playerInElevator)
+		if (currPos == 0 && powerOn && !playerInElevator)
 		{
 			uGateMoveBack = false;
 			uGateMove = true;
 		}
-		else if (eleTop && powerOn && playerInElevator) 
+		else if (currPos == 0 && powerOn && playerInElevator) 
 		{
 			uGateMove = false;
 			uGateMoveBack = true;
-		}
+        }
+        else if (currPos >= positions.Length && powerOn && playerInElevator)
+        {
+            lGateMove = true;
+            lGateMoveBack = false;
+        }
 
-		if (lGateMove)
+        if (lGateMove)
 		{
             lLowerGate.transform.position = Vector3.Slerp(lLowerGate.transform.position, lLGateEnd.transform.position, 0.5f * Time.deltaTime);
             rLowerGate.transform.position = Vector3.Slerp(rLowerGate.transform.position, lRGateEnd.transform.position, 0.5f * Time.deltaTime);
@@ -153,43 +166,25 @@ public class elevatorMaster : MonoBehaviour {
             rUpperGate.transform.position = Vector3.Lerp(rUpperGate.transform.position, uRGateStart.transform.position, 0.5f * Time.deltaTime);
 		}
 
-		if (eleTop && onEle && !soundDone.GetComponent<AudioSource>().isPlaying && !gateState)
-		{
-			eleYPos -= eleSpeed;
-			transform.position = new Vector3(eleXPos, eleYPos, eleZPos);
-
-			if (eleYPos <= eleMaxHeight)
-			{
-				eleYPos = eleMaxHeight;
-				eleTop = false;
-
-				if (transform.position.y < -10.5f)
-				{
-					lGateMove = true;
-                    elevatorSource.clip = bellSound;
-                    elevatorSource.Play();
-                }
-
-			}
-		}
-
         /// Monster upper appearence trigger on/off
-        if (!gateState && eleTop && playerInElevator)
+        if (!gateState && currPos == 0 && playerInElevator)
         {
             triggerMonsterAppearence.SetActive(true);
             triggerSeeMonster.SetActive(true);
         }
-        else
-        {
-            triggerMonsterAppearence.SetActive(false);
-            triggerSeeMonster.SetActive(false);
-        }
 
         /// Monster lower appearence trigger on/off
-        if (gateState && !eleTop && playerInElevator)
+        if (gateState && currPos >= positions.Length && playerInElevator)
         {
             triggerSecondMonsterAppearence.SetActive(true);
             triggerSecondSeeMonster.SetActive(true);
+
+            if (!bellSounded)
+            {
+                elevatorSource.clip = bellSound;
+                elevatorSource.Play();
+                bellSounded = true;
+            }
         }
         else
         {
@@ -206,7 +201,11 @@ public class elevatorMaster : MonoBehaviour {
         {
             gateState = true;
         }
-	}
+
+        /// MonsterGone Test
+        if (triggerMonsterAppearence.GetComponent<triggerMonsterAppearence>().monster.GetComponent<MonsterMoveTest>().monsterGone)
+            monsterGone = true;
+    }
 
 	void OnTriggerEnter(Collider other)
 	{
@@ -220,10 +219,10 @@ public class elevatorMaster : MonoBehaviour {
 			playerInElevator = false;
 	}
 
-	public void powerSupplied()
+	public void PowerSupplied()
 	{
 		powerOn = true;
-        if (!bellSounded)
+        if (!bellSounded && currPos == 0)
         {
             elevatorSource.clip = bellSound;
             elevatorSource.Play();

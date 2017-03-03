@@ -12,6 +12,8 @@ public class MonsterMoveTest : MonoBehaviour {
     int i = 0;
     int x = 0;
 
+    public bool monsterGone = false;
+
     private Vector3 lastPosition;
     private Vector3 velocity;
 
@@ -29,6 +31,8 @@ public class MonsterMoveTest : MonoBehaviour {
         {
             unaturalLightIntensity[x] = unaturalLights[x].GetComponent<Light>().intensity;
         }
+
+        monsterGone = false;
     }
 	
 	// Update is called once per frame
@@ -63,6 +67,8 @@ public class MonsterMoveTest : MonoBehaviour {
                 if(debug)
                     Debug.Log("monster poof");
             }
+
+            monsterGone = true;
 
         }
         else
