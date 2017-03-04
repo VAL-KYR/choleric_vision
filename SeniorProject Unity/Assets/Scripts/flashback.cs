@@ -69,7 +69,6 @@ public class flashback : MonoBehaviour {
 		{
 			RemoveVisualEffects();
 			areaMusicSnapshot.TransitionTo(transitionTime);
-			Debug.Log("flashback bleed out");
 		}
 
     }
@@ -89,20 +88,17 @@ public class flashback : MonoBehaviour {
 		{
 			gameObject.GetComponent<AudioSource>().Play();
 			voicePlayed = true;
-			Debug.Log("voice played");
 		}
 
 		if (!musicPlayed && !flashbackDone && deSatFactor > 0.1f)
 		{
 			flashbackSnapshot.TransitionTo(transitionTime);
 			musicPlayed = true;
-			Debug.Log("music played");
 		}
 
 		if (voicePlayed && !gameObject.GetComponent<AudioSource>().isPlaying)
 		{
 			flashbackDone = true;
-			Debug.Log("flashback over");
 		}
         
     }
