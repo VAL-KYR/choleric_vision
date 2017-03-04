@@ -108,6 +108,7 @@ public class flashback : MonoBehaviour {
 		if (!VRSettings.enabled)
 		{
 			nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 1.0f, deSatTime * Time.deltaTime);
+			//onVrCam.GetComponent<Vortex>().
 		}
 		else
 		{
