@@ -6,19 +6,22 @@ using System.Collections;
 public class flashback : MonoBehaviour {
 
     // visual effects
-    public GameObject vrCam;
-    public GameObject nonVrCam;
-    public bool flashbackTripped = false;
-    public bool flashbackDone = false;
-	public bool voicePlayed;
+    GameObject vrCam;
+    GameObject nonVrCam;
+    
+	bool voicePlayed;
+	bool musicPlayed;
+	float deSatFactor;
 
 	public AudioMixerSnapshot flashbackSnapshot;
 	public AudioMixerSnapshot areaMusicSnapshot;
 
 	public float transitionTime = 8.0f;
-	public bool musicPlayed;
-	public float deSatFactor;
+
 	public float deSatTime = 0.5f;
+
+	public bool flashbackTripped = false;
+	public bool flashbackDone = false;
 
     // Use this for initialization
     void Start () {
