@@ -66,7 +66,7 @@ public class controller2 : MonoBehaviour
 		{
             // If the notebooks don't start open, open them at the start of the game
             if(!n.activeSelf)
-			    n.GetComponent<noteBook>().OpenClose();
+			    n.GetComponent<noteBook>().Open();
 		}
 
         // Grab gController and it's speed states
@@ -232,7 +232,7 @@ public class controller2 : MonoBehaviour
 
             foreach (GameObject n in noteBooks)
             {
-                n.GetComponent<noteBook>().OpenClose();
+                n.GetComponent<noteBook>().Open();
             }      
         }
            

@@ -3,7 +3,6 @@ using System.Collections;
 
 public class bodyBagDragScare : MonoBehaviour {
 
-	//public Rigidbody rb;
     public GameObject[] pos;
 	GameObject[] unaturalLights;
 	float[] unaturalLightIntensity;
@@ -45,7 +44,7 @@ public class bodyBagDragScare : MonoBehaviour {
 			// Hecka Good movement code
 			if (!pos[i].GetComponent<SphereCollider>().bounds.Contains(gameObject.transform.position))
 			{
-				transform.position = Vector3.Slerp(transform.position, pos[i].transform.position, 0.3f * Time.deltaTime);
+				transform.position = Vector3.Slerp(transform.position, pos[i].transform.position, 0.25f * Time.deltaTime);
 			}
 			else
 			{
@@ -53,9 +52,6 @@ public class bodyBagDragScare : MonoBehaviour {
 			}
 			//
 		}
-
-		// Hecka bad turning code
-        //rb.MoveRotation(Quaternion.Lerp(rb.rotation, Quaternion.LookRotation(rb.velocity), 1.0f * Time.deltaTime));
 
         // Hecka good turning code
 

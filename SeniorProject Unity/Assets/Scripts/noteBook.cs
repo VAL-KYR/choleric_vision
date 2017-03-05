@@ -23,17 +23,21 @@ public class noteBook : MonoBehaviour {
     public int notesOverflow = 2;
     public int hintsOverflow = 2;
 
+    public bool bookOpen = true;
+
     public List<string> currentNotes = new List<string>();
     public List<string> currentHints = new List<string>();
 
     // Use this for initialization
     void Start () {
 
+        bookOpen = true;
+
         // Initialize animator from placeholder arms
         anim = GameObject.FindGameObjectWithTag("arms").GetComponent<Animator>();
 
         // Initialize state of animation based on notes object active state 
-        anim.SetBool("OpenClosed", notes.activeSelf);
+        anim.SetBool("OpenClosed", bookOpen);
 
         // Initialize text from files specified
         notesText = notes.GetComponent<Text>();
@@ -55,7 +59,7 @@ public class noteBook : MonoBehaviour {
 	void Update () {
 
         // If the notes text objects are active then animate the arms to open or close
-        anim.SetBool("OpenClosed", notes.activeSelf);
+        anim.SetBool("OpenClosed", bookOpen);
 
     }
 
@@ -123,16 +127,17 @@ public class noteBook : MonoBehaviour {
 
     // open or close noteBook command
     // Animation queues go here
-    public void OpenClose()
+    public void Open()
     {
-        if (!notes.activeSelf)
-            notes.SetActive(true);
-        else
-            notes.SetActive(false);
+        bookOpen = true;
+        notes.SetActive(true);
+        hints.SetActive(true);
+    }
 
-        if (!hints.activeSelf)
-            hints.SetActive(true);
-        else
-            hints.SetActive(false);
+    public void Close()
+    {
+        bookOpen = false;
+        notes.SetActive(false);
+        hints.SetActive(false);
     }
 }
