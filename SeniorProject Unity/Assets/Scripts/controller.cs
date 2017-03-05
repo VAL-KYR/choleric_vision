@@ -95,7 +95,7 @@ public class controller : MonoBehaviour
         {
             // If the notebooks don't start open, open them at the start of the game
             if (!n.activeSelf)
-                n.GetComponent<noteBook>().OpenClose();
+                n.GetComponent<noteBook>().Open();
         }
 
         //Set variablets
@@ -269,11 +269,23 @@ public class controller : MonoBehaviour
             heart.GetComponent<heartBeatThump>().heartListening = true;
 
             // Remove the notes for HBListening
-            notesPage.SetActive(false);
-            hintsPage.SetActive(false);
+            //notesPage.SetActive(false);
+            //hintsPage.SetActive(false);
+
+            
+            noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
+
+            foreach (GameObject n in noteBooks)
+            {
+                if (n.GetComponent<noteBook>().bookOpen)
+                {
+                    n.GetComponent<noteBook>().Close();
+                }
+            }
 
             // If the player is holding the HBListen key the animation is triggered
             anim.SetBool("HBListen", true);
+            
         }
 
         // NOT Heart Beat Listening
@@ -284,8 +296,25 @@ public class controller : MonoBehaviour
             heart.GetComponent<heartBeatThump>().heartListening = false;
 
             // Remove the hints for HBListening
-            notesPage.SetActive(true);
-            hintsPage.SetActive(true);
+            //notesPage.SetActive(true);
+            //hintsPage.SetActive(true);
+
+            
+            noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
+
+            foreach (GameObject n in noteBooks)
+            {
+                if (n.GetComponent<noteBook>().bookOpen)
+                {
+                    n.GetComponent<noteBook>().Open();
+                }
+                else
+                {
+                    n.GetComponent<noteBook>().Close();
+                }
+                
+            }
+            
 
             // If the player is holding the HBListen key the animation is triggered
             anim.SetBool("HBListen", false);
@@ -295,13 +324,21 @@ public class controller : MonoBehaviour
         
 
         // Toggle Journal (Alpha)
-        if (Input.GetButtonUp("NoteBook"))
+        if (Input.GetButtonDown("NoteBook"))
         {
             noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
 
             foreach (GameObject n in noteBooks)
             {
-                n.GetComponent<noteBook>().OpenClose();
+                if (!n.GetComponent<noteBook>().bookOpen)
+                {
+                    n.GetComponent<noteBook>().Open();
+                }
+                else
+                {
+                    n.GetComponent<noteBook>().Close();
+                }
+                
             }      
         }
         
