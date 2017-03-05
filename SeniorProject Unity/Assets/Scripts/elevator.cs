@@ -34,7 +34,7 @@ public class elevator : MonoBehaviour {
     private float eleZPos;
 
 
-	public GameObject[] upperDoors;
+	//public GameObject[] upperDoors;
 	//public GameObject upperGate;
 	//public GameObject lowerGate;
 
@@ -220,7 +220,7 @@ public class elevator : MonoBehaviour {
 			playerInElevator = false;
 	}
 
-	public void powerSupplied()
+	public void PowerSupplied()
 	{
 		powerOn = true;
         if (!bellSounded)

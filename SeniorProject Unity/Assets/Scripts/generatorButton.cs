@@ -60,7 +60,7 @@ public class generatorButton : MonoBehaviour {
 
 				// Power these
 				lights.SetActive(true);
-				elevator.GetComponent<elevator>().powerSupplied();
+				elevator.GetComponent<elevator>().PowerSupplied();
 
 				// Button is now pushed
 				buttonPushed = true;

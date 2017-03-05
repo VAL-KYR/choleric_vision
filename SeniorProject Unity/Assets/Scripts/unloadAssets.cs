@@ -21,7 +21,8 @@ public class unloadAssets : MonoBehaviour {
         {
             foreach (GameObject g in unloadThese)
             {
-                g.SetActive(false);
+                if(g.activeSelf)
+                    g.SetActive(false);
             }
         }
         

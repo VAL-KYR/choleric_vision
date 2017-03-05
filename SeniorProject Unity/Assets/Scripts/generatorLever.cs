@@ -82,7 +82,7 @@ public class generatorLever : MonoBehaviour {
 
             // Power these
             lights.SetActive(true);
-            elevator.GetComponent<elevator>().powerSupplied();
+            elevator.GetComponent<elevatorMaster>().PowerSupplied();
         }
 
         if (leverState.fullPathHash == doneStateHash && !leverThrown)

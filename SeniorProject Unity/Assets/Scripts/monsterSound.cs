@@ -45,6 +45,7 @@ public class monsterSound : MonoBehaviour {
     //
 
     // UI stuff that the player can mess with
+    public bool debug = false;
     public bool voiceWarmup = false;
     public bool devVoiceTesting = false;
     int testVoice = 0;
@@ -303,10 +304,11 @@ public class monsterSound : MonoBehaviour {
     {
         if (utterance == "attack")
         {
+            lastMonsterAttackSound = monsterAttackSound;
             RandomizeSounds();
             monsterVoice.clip = monsterAttackSound;
             monsterVoice.PlayDelayed(delay);
-            lastMonsterAttackSound = monsterAttackSound;
+            
         }
         else if (utterance != "attack" && time > randPlayTime && !monsterVoice.isPlaying)
         {
@@ -317,32 +319,37 @@ public class monsterSound : MonoBehaviour {
 
             if (utterance == "alert")
             {
-                monsterVoice.clip = monsterAlertSound;
                 lastMonsterAlertSound = monsterAlertSound;
+                monsterVoice.clip = monsterAlertSound;
+                
             }
                
             if (utterance == "growl")
             {
-                monsterVoice.clip = monsterGrowlSound;
                 lastMonsterGrowlSound = monsterGrowlSound;
+                monsterVoice.clip = monsterGrowlSound;
+               
             }
                
             if (utterance == "notice")
             {
-                monsterVoice.clip = monsterNoticeSound;
                 lastMonsterNoticeSound = monsterNoticeSound;
+                monsterVoice.clip = monsterNoticeSound;
+                
             }
                 
             if (utterance == "ramble")
             {
+                lastMonsterRambleSound = monsterRambleSound;
                 monsterVoice.clip = monsterRambleSound;
-                lastMonsterRambleSound = monsterRambleSound; 
+                
             }   
 
             if (utterance == "search")
             {
-                monsterVoice.clip = monsterSearchSound;
                 lastMonsterRambleSound = monsterRambleSound;
+                monsterVoice.clip = monsterSearchSound;
+                
             }
                
             //}
@@ -350,21 +357,25 @@ public class monsterSound : MonoBehaviour {
 
             if (waitForSilence)
             {
-                Debug.Log("Waiting for silence");
+                if (debug)
+                    Debug.Log("Waiting for silence");
 
                 if (!monsterVoice.isPlaying && voiceQueue)
                 {
-                    Debug.Log("Playing Queued Sound");
+                    if (debug)
+                        Debug.Log("Playing Queued Sound");
                     monsterVoice.PlayDelayed(delay);
                     voiceQueue = false;
                 }
                 else
                 {
-                    Debug.Log("Queued sound is waiting");
+                    if (debug)
+                        Debug.Log("Queued sound is waiting");
 
                     if (!voiceQueue)
                     {
-                        Debug.Log("Creating a Voice Queue");
+                        if (debug)
+                            Debug.Log("Creating a Voice Queue");
                         voiceQueuedUtterance = utterance;
                         voiceQueuedDelay = delay;
                         voiceQueue = true;
