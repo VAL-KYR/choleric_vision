@@ -231,7 +231,7 @@ public class MonsterAI : MonoBehaviour {
         
         
         /// Engage a chase within distance
-        if(playerDistance < 2.0f)
+        if(playerDistance < 3.5f)
         {
             if(debugMonsterSpeakStates)
                 Debug.Log("FOUND YOU!");
@@ -257,7 +257,7 @@ public class MonsterAI : MonoBehaviour {
 
         /// chasing the player
         // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later]
-        if (playerDistance < 4.0f || presence > 0.4f)
+        if (playerDistance < 5.0f || presence > 0.4f)
         {
             if (debugMonsterSpeakStates)
                 Debug.Log("HERE'S JOHNNY!!!");
@@ -400,7 +400,7 @@ public class MonsterAI : MonoBehaviour {
     public void PlayerAwarenessCheck()
     {
         // The only variables it checks is it's search starting distance[make later] checked against player distance, and then presence vs search starting presence[make later]
-        if (playerFlashlight && presence > 0.5f && playerDistance < 3.0f)
+        if (playerFlashlight && presence > 0.5f && playerDistance < 4.0f)
         {
             if (debugMonsterSpeakStates)
                 Debug.Log("What was that?");
