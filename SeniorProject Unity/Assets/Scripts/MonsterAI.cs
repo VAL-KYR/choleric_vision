@@ -19,16 +19,20 @@ public class MonsterAI : MonoBehaviour {
     int destinationIterator = 0;
     int x = 0;
 
+    // Player variables
+    public float playerHealth;
+    public GameObject[] playerSpawns;
+
+    // CHASE state calculation variables
+    public float playerDistance;
+    public bool playerFlashlight;
+
     // Objects of interest
     public GameObject player;
     public GameObject[] doors;
     public GameObject[] tapeRecorders;
     public GameObject investigateRecorder;
     public GameObject searchObject;
-
-    // CHASE state calculation variables
-    public float playerDistance;
-    public bool playerFlashlight;
 
     // action operation handler
     public float actionCooldown = 2.0f;
@@ -38,7 +42,7 @@ public class MonsterAI : MonoBehaviour {
     public GameObject[] unaturalLights;
     float[] unaturalLightIntensity;
     
-
+    // monster details
     public bool monsterGone = false;
     public string state = "patrol";
     public float presence;
@@ -56,6 +60,9 @@ public class MonsterAI : MonoBehaviour {
         // remember to give him tape recorders
         // remmeber to give him doors
         // remmenber to give him flashlights
+
+        // Player variables
+        playerHealth = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
 
         time = 0.0f;
 		actionTime = 0.0f;
@@ -88,12 +95,16 @@ public class MonsterAI : MonoBehaviour {
 		time += Time.deltaTime;
         ///
 
+        /// Player variables Update
+        playerHealth = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
+        /// 
+
+
         /// CHASE state variables update
         playerFlashlight = player.GetComponent<Presence>().playerFlashlight;
         presence = player.GetComponent<Presence>().curPres;
         playerDistance = Vector3.Distance(gameObject.transform.position, player.transform.position);
         ///
-
 
         /// State runner - chooses appropriate function for state, or instances another instant action function (like attack)
         if (state == "patrol")
@@ -292,14 +303,23 @@ public class MonsterAI : MonoBehaviour {
 
         gameObject.GetComponent<monsterAnimator>().attack = true;
 
-        /// deal damage & remove health
-
         // damage player
-        //-- DamagePlayer();
+        DamagePlayer();
     }
 
     public void DamagePlayer()
     {
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth = playerHealth - 35.0f;
+
+        if(playerHealth <= 0.0f)
+        {
+            PlayerDeath();
+        }
+        else
+        {
+            PlayerKO();
+        }
+
         // if player health is less than or equal to 0
         //-- PlayerDeath();
         // else just knock out the player
@@ -308,7 +328,17 @@ public class MonsterAI : MonoBehaviour {
 
     public void PlayerKO()
     {
-        // remove player health
+        int monsterDestination = UnityEngine.Random.Range(0, patrolDestinations.Length);
+
+        gameObject.transform.position = patrolDestinations[monsterDestination].transform.position;
+        // idk if this is necessary
+        agent.SetDestination(patrolDestinations[monsterDestination].transform.position);
+
+
+        int playerDestination = UnityEngine.Random.Range(0, playerSpawns.Length);
+        
+        player.transform.position = playerSpawns[playerDestination].transform.position;
+        
         // fade to black on controller
         // spawn monster somwhere else
         // spawn player somewhere else (CREATE PLAYER SPAWN POINTS)
@@ -317,6 +347,11 @@ public class MonsterAI : MonoBehaviour {
 
     public void PlayerDeath()
     {
+        state = "patrol";
+
+        if(debugMonsterSpeakStates)
+            Debug.Log(" Y O U   D I E D ");
+
         // Change scene to death screen 
         // GAME OVER
     }
