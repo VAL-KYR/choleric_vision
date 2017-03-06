@@ -384,10 +384,7 @@ public class monsterSound : MonoBehaviour {
             }
             else
             {
-                if (!voiceQueue)
-                {
-                    monsterVoice.PlayDelayed(delay);
-                }
+                monsterVoice.PlayDelayed(delay);
             }
 
             time = 0.0f;
