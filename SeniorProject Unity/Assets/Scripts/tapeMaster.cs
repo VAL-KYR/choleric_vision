@@ -132,5 +132,16 @@ public class tapeMaster : MonoBehaviour
 		anim.SetTrigger(interactHash);
 		playQueue = true;
 	}
+
+    public void forceStop()
+    {
+        //if the tape is spinning
+        if ((rTapeState.fullPathHash == rSpinStateHash || lTapeState.fullPathHash == lSpinStateHash) && gameObject.GetComponent<AudioSource>().isPlaying)
+        {
+            anim.SetBool("tapePlaying", false);
+            playQueue = false;
+            anim.ResetTrigger(interactHash);
+        }
+    }
     
 }

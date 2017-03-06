@@ -14,6 +14,11 @@ public class MonsterAI : MonoBehaviour {
     int destinationIterator = 0;
     int x = 0;
 
+    // Objects of interest
+    public GameObject[] tapeRecorders;
+    public GameObject investigateRecorder;
+    public GameObject searchObject;
+
 
     // lights
     GameObject[] unaturalLights;
@@ -25,12 +30,16 @@ public class MonsterAI : MonoBehaviour {
     public bool stateSearch = false;
     public bool stateChase = false;
     public bool stateInvestigate = false;
+    public bool stateInvestigateSound = false;
 
     private Vector3 lastPosition;
     private Vector3 velocity;
 
     // Use this for initialization
     void Start () {
+        // objects of interest startup
+        // remember to give him tape recorders
+
         agent = GetComponent<NavMeshAgent>();
         lastPosition = new Vector3(0, 0, 0);
         unaturalLights = GameObject.FindGameObjectsWithTag("unaturalLight");
@@ -51,18 +60,20 @@ public class MonsterAI : MonoBehaviour {
         stateSearch = false;
         stateChase = false;
         stateInvestigate = false;
+        stateInvestigateSound = false;
     }
 	
 	// Update is called once per frame
 	void Update () {
 
-        /// State switcher - chooses appropriate function for state, or instances another instant action function (like attack)
+        /// State runner - chooses appropriate function for state, or instances another instant action function (like attack)
         if (statePatrol)
         {
             // stop other states
             stateSearch = false;
             stateChase = false;
             stateInvestigate = false;
+            stateInvestigateSound = false;
 
             Patrol();
         }
@@ -72,6 +83,7 @@ public class MonsterAI : MonoBehaviour {
             statePatrol = false;
             stateChase = false;
             stateInvestigate = false;
+            stateInvestigateSound = false;
 
             Search();
         }
@@ -81,21 +93,38 @@ public class MonsterAI : MonoBehaviour {
             statePatrol = false;
             stateSearch = false;
             stateInvestigate = false;
+            stateInvestigateSound = false;
 
             Chase();
         }
-        else if (stateInvestigate)
+        else if (stateInvestigateSound)
         {
             // stop other states
             statePatrol = false;
             stateSearch = false;
             stateChase = false;
+            stateInvestigate = false;
 
-            Investigate();
+            InvestigateSound();
         }
         ///
 
+        /// State switcher / trigger machine - this has the rules for enabling and disabling behaviours
+        foreach (GameObject r in tapeRecorders)
+        {
+            if (r.GetComponent<AudioSource>().isPlaying && investigateRecorder == null)
+            {
+                Debug.Log("searching for recorder " + investigateRecorder);
+                investigateRecorder = r;
+                Investigate(); // instance to determine source of sound and where to go
+            }
+        }
 
+        
+        /// 
+
+
+        // Generic Monster behaviours
         DimLights();
 
     }
@@ -131,7 +160,35 @@ public class MonsterAI : MonoBehaviour {
 
     public void Investigate()
     {
+        float[] searchDistances = null;
 
+        for(int s = 0; s < searchDestinations.Length; s++)
+        {
+            searchDistances[s] = Vector3.Distance(investigateRecorder.transform.position, searchDestinations[s].transform.position);
+        }
+
+        float toDistance = Mathf.Min(searchDistances);
+
+        for (int s = 0; s < searchDestinations.Length; s++)
+        {
+            if (searchDistances[s] == toDistance)
+            {
+                searchObject = searchDestinations[s];
+                stateInvestigateSound = true;
+            }
+        }
+
+
+
+
+    }
+
+    public void InvestigateSound()
+    {
+        // go to searchDestination as searchObject
+        // stop the current recorder and investigateRecorder.forceStop();
+        // set investigateRecorder = null
+        // execute search with stateSearch
     }
 
     ///  the monster does this all the time, basically he dims eletrical power
