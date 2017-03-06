@@ -108,13 +108,17 @@ public class monsterAnimator : MonoBehaviour {
 
         if (attack)
         {
-            gameObject.GetComponent<monsterSound>().Voice("attack", 0.5f, false);
+            // Trigger animation
             anim.SetTrigger("attack");
 
-            // making the attack animation bool instant
+            // making the attack animation bool instant this way the whole function will only run once
             if(monsterAnimState.fullPathHash != attackStateHash)
             {
                 attack = false;
+            }
+            else
+            {
+                gameObject.GetComponent<monsterSound>().Voice("attack", 0.5f, false);
             }
             
 

@@ -6,6 +6,7 @@ public class MonsterAI : MonoBehaviour {
 
     public NavMeshAgent agent;
 
+    public bool debugMonsterSpeakStates = false;
     public bool debugInvestigate = false;
     public bool debugInvestigateSound = false;
     public bool debugDoorAction = false;
@@ -131,16 +132,65 @@ public class MonsterAI : MonoBehaviour {
 
         }
 
-        PlayerAwarenessCheck();
+        // check for the player if the monster should start a search
+        if(state != "chase")
+        {
+            PlayerAwarenessCheck();
+        }
         /// 
 
 
         // Generic Monster behaviours
         DimLights();
+        MonsterAnimate();
+        CalculateRanges();
         //
 
     }
 
+    /// This will control what animations the monster is doing, and the sounds are handled by the monsterAnimation script
+    public void MonsterAnimate()
+    {
+        if(state == "patrol")
+        {
+            // Idle
+            gameObject.GetComponent<monsterAnimator>().idle = true;
+            gameObject.GetComponent<monsterAnimator>().search = false;
+            gameObject.GetComponent<monsterAnimator>().chase = false;
+        }
+        else if (state == "search")
+        {
+            // Search
+            gameObject.GetComponent<monsterAnimator>().idle = false;
+            gameObject.GetComponent<monsterAnimator>().search = true;
+            gameObject.GetComponent<monsterAnimator>().chase = false;
+        }
+        else if (state == "chase")
+        {
+            // Chase
+            gameObject.GetComponent<monsterAnimator>().idle = false;
+            gameObject.GetComponent<monsterAnimator>().search = false;
+            gameObject.GetComponent<monsterAnimator>().chase = true;
+        }
+        else if (state == "investigate")
+        {
+            // change to same as last state mayber?
+            // Idle
+            gameObject.GetComponent<monsterAnimator>().idle = true;
+            gameObject.GetComponent<monsterAnimator>().search = false;
+            gameObject.GetComponent<monsterAnimator>().chase = false;
+        }
+        else if (state == "investigateSound")
+        {
+            // Idle
+            gameObject.GetComponent<monsterAnimator>().idle = true;
+            gameObject.GetComponent<monsterAnimator>().search = false;
+            gameObject.GetComponent<monsterAnimator>().chase = false;
+        }
+
+    }
+
+    /// This is the monster's default state for travelling
     public void Patrol()
     {
         // Patrol destination loop
@@ -160,40 +210,118 @@ public class MonsterAI : MonoBehaviour {
         //    
     }
 
+    /// This function is a search, meaning it uses the monster's head to raycast to target and see if they should persue them
     public void Search()
     {
-		// do search
-		// play search animation
-		// if player found
-		// go to chase
-		// else
-		// go to patrol
+        // visual confirmation (trip a local bool)
+
+        // later this will be changed to a visual confirmation, distance check, and presence check if statement
+        // those parameters will make a chageEngage local bool
+        
+        
+        /// Engage a chase within distance
+        if(playerDistance < 2.0f)
+        {
+            if(debugMonsterSpeakStates)
+                Debug.Log("FOUND YOU!");
+
+            state = "chase";
+        }
+        /// Ignore/Miss player
+        else
+        {
+            // this should be replaced with a laststate return later
+            if (debugMonsterSpeakStates)
+                Debug.Log("WHERE ARE YOU?");
+
+            state = "patrol";
+        }
     }
 
+    /// This is a chase which is sustained so long as the player is in range or their presence is still high (no visual confirmation so he can chase around corners)
     public void Chase()
 	{
-		// if presence is still high enough
+        // action is a cooldown type so calculate time while in state
+        actionTime += Time.deltaTime;
+
+        /// chasing the player
+        // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later]
+        if (playerDistance < 4.0f || presence > 0.4f)
+        {
+            if (debugMonsterSpeakStates)
+                Debug.Log("HERE'S JOHNNY!!!");
+
+            // travel to player
+            agent.SetDestination(player.transform.position);
+
+            // Attack the player within a certain distance
+            if(playerDistance < 1.0f && actionTime > actionCooldown)
+            {
+                Attack();
+                actionTime = 0.0f;
+            }
+        }
+        /// lost the player
+        else
+        {
+            if (debugMonsterSpeakStates)
+                Debug.Log("WHERE DID YOU GO???");
+
+            state = "patrol";
+        }
+
+        // maybe set new speeds for the agent too?
+        
+
+        // if presence is still high enough
         /// AND visual contact (use raycast method)
         /// AND close enough to player (scales to double if flashlight is on) - Access the boolean GameObject.FindGameObjectWithTag("GameController").GetComponent<Presence>().playerFlashlight;
-		// continue to chase player
-		// play chase animation
-		// // if player within attack range
-		// // call instance of Attack() [use cooldown too]
-		// else
-		// go to patrol
+        // continue to chase player
+        // play chase animation
+        // // if player within attack range
+        // // call instance of Attack() [use cooldown too]
+        // else
+        // go to patrol
     }
 
 	public void Attack()
 	{
-		// play attack animation
-		// deal damage & remove health
-		// fade to black on controller
-		// teleport player
-		// teleport monster
-		// fade back
-	}
 
-	// an instance function to look at the tape playing's closest search point
+        if (debugMonsterSpeakStates)
+            Debug.Log("DIE");
+
+        gameObject.GetComponent<monsterAnimator>().attack = true;
+
+        /// deal damage & remove health
+
+        // damage player
+        //-- DamagePlayer();
+    }
+
+    public void DamagePlayer()
+    {
+        // if player health is less than or equal to 0
+        //-- PlayerDeath();
+        // else just knock out the player
+        //-- PlayerKO();
+    }
+
+    public void PlayerKO()
+    {
+        // remove player health
+        // fade to black on controller
+        // spawn monster somwhere else
+        // spawn player somewhere else (CREATE PLAYER SPAWN POINTS)
+        // once fade done, and player moved fade to normal again
+    }
+
+    public void PlayerDeath()
+    {
+        // Change scene to death screen 
+        // GAME OVER
+    }
+
+    // an instance function to look at the tape playing's closest search point
     public void Investigate()
     {
 		if (investigateRecorder != null)
@@ -233,8 +361,21 @@ public class MonsterAI : MonoBehaviour {
 
     }
 
-    /// Monster checks to see if it knows the player is there
+    /// Monster checks to see if it knows the player is there, if it confirms it will do a search
     public void PlayerAwarenessCheck()
+    {
+        // The only variables it checks is it's search starting distance[make later] checked against player distance, and then presence vs search starting presence[make later]
+        if (playerFlashlight && presence > 0.5f && playerDistance < 3.0f)
+        {
+            if (debugMonsterSpeakStates)
+                Debug.Log("What was that?");
+
+            state = "search";
+        }
+    }
+
+    // later this will be used to calculate state engagement ranges based on player presence and/or flashlight
+    public void CalculateRanges()
     {
 
     }
