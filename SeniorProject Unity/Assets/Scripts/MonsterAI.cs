@@ -4,12 +4,19 @@ using System;
 
 public class MonsterAI : MonoBehaviour {
 
-    public NavMeshAgent agent;
+    
 
-    public bool debugMonsterSpeakStates = false;
-    public bool debugInvestigate = false;
-    public bool debugInvestigateSound = false;
-    public bool debugDoorAction = false;
+    [System.Serializable]
+    public class mDebug
+    {
+        public bool monsterSpeakStates = false;
+        public bool investigate = false;
+        public bool investigateSound = false;
+        public bool doorAction = false;
+    }
+    public mDebug debug = new mDebug();
+
+    private NavMeshAgent agent;
 
     public float time = 0.0f;
 
@@ -27,23 +34,35 @@ public class MonsterAI : MonoBehaviour {
     public float playerDistance;
     public bool playerFlashlight;
 
+    // SEARCH state variables
+    public float sightDistance = 3.4f;
+    public float monsterSightDistance;
+    public bool playerSeen = false;
+
     // Objects of interest
+    public GameObject monsterEyes;
+    public GameObject seen;
+    private RaycastHit hit;
+    private Vector3 cameraCenter;
+
     public GameObject player;
     public GameObject[] doors;
     public GameObject[] tapeRecorders;
-    public GameObject investigateRecorder;
-    public GameObject searchObject;
+    private GameObject investigateRecorder;
+    private GameObject searchObject;
 
     // action operation handler
     public float actionCooldown = 2.0f;
 	public float actionTime = 0.0f;
 
+    public float searchCooldown = 8.0f;
+    public float searchTime = 0.0f;
+
     // lights
-    public GameObject[] unaturalLights;
+    private GameObject[] unaturalLights;
     float[] unaturalLightIntensity;
     
     // monster details
-    public bool monsterGone = false;
     public string state = "patrol";
     public float presence;
 
@@ -67,6 +86,11 @@ public class MonsterAI : MonoBehaviour {
         time = 0.0f;
 		actionTime = 0.0f;
 
+        // search state stuff
+
+        playerSeen = false;
+        monsterSightDistance = sightDistance;
+
         agent = GetComponent<NavMeshAgent>();
         lastPosition = new Vector3(0, 0, 0);
         unaturalLights = GameObject.FindGameObjectsWithTag("unaturalLight");
@@ -79,8 +103,6 @@ public class MonsterAI : MonoBehaviour {
         {
             unaturalLightIntensity[x] = unaturalLights[x].GetComponent<Light>().intensity;
         }
-
-        monsterGone = false;
 
 		// states bool startup
 		state = "patrol";
@@ -97,6 +119,14 @@ public class MonsterAI : MonoBehaviour {
 
         /// Player variables Update
         playerHealth = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
+        if (playerFlashlight)
+        {
+            monsterSightDistance = sightDistance;
+        }
+        else
+        {
+            monsterSightDistance = sightDistance/2;
+        }
         /// 
 
 
@@ -134,7 +164,7 @@ public class MonsterAI : MonoBehaviour {
         {
 			if (r.GetComponent<AudioSource>().isPlaying && r != null && searchObject == null)
             {
-                if(debugInvestigate)
+                if(debug.investigate)
 				    Debug.Log("searching for recorder " + r + " is now recorder " + investigateRecorder);
 
 				investigateRecorder = r;
@@ -154,6 +184,7 @@ public class MonsterAI : MonoBehaviour {
         // Generic Monster behaviours
         DimLights();
         MonsterAnimate();
+        Looking();
         CalculateRanges();
         //
 
@@ -224,29 +255,46 @@ public class MonsterAI : MonoBehaviour {
     /// This function is a search, meaning it uses the monster's head to raycast to target and see if they should persue them
     public void Search()
     {
-        // visual confirmation (trip a local bool)
+        searchTime += Time.deltaTime;
 
-        // later this will be changed to a visual confirmation, distance check, and presence check if statement
+        // visual confirmation (trip a local bool)
+        
+        // just in case
+        MonsterAnimate();
+        //Looking();
+
+        // later this will be changed to a visual confirmation, distance check, and presence check if statement maybe
         // those parameters will make a chageEngage local bool
-        
-        
+
+
         /// Engage a chase within distance
-        if(playerDistance < 3.5f)
+
+        // this should be replaced with a laststate return later
+        if (debug.monsterSpeakStates)
+            Debug.Log("WHERE ARE YOU?");
+
+        if (playerDistance <= sightDistance && playerSeen)
         {
-            if(debugMonsterSpeakStates)
+            if(debug.monsterSpeakStates)
                 Debug.Log("FOUND YOU!");
 
             state = "chase";
+            searchTime = 0;
         }
         /// Ignore/Miss player
         else
         {
-            // this should be replaced with a laststate return later
-            if (debugMonsterSpeakStates)
-                Debug.Log("WHERE ARE YOU?");
+            if (searchTime > searchCooldown)
+            {
+                if (debug.monsterSpeakStates)
+                    Debug.Log("Guess it was nothing");
 
-            state = "patrol";
+                state = "patrol";
+                searchTime = 0;
+            }
+
         }
+
     }
 
     /// This is a chase which is sustained so long as the player is in range or their presence is still high (no visual confirmation so he can chase around corners)
@@ -256,10 +304,10 @@ public class MonsterAI : MonoBehaviour {
         actionTime += Time.deltaTime;
 
         /// chasing the player
-        // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later]
-        if (playerDistance < 5.0f || presence > 0.4f)
+        // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later], also make it so that if he can still see you then keep chasing
+        if (playerDistance < 5.0f || presence > 3.4f)
         {
-            if (debugMonsterSpeakStates)
+            if (debug.monsterSpeakStates)
                 Debug.Log("HERE'S JOHNNY!!!");
 
             // travel to player
@@ -275,35 +323,50 @@ public class MonsterAI : MonoBehaviour {
         /// lost the player
         else
         {
-            if (debugMonsterSpeakStates)
+            if (debug.monsterSpeakStates)
                 Debug.Log("WHERE DID YOU GO???");
 
             state = "patrol";
         }
 
         // maybe set new speeds for the agent too?
-        
-
-        // if presence is still high enough
-        /// AND visual contact (use raycast method)
-        /// AND close enough to player (scales to double if flashlight is on) - Access the boolean GameObject.FindGameObjectWithTag("GameController").GetComponent<Presence>().playerFlashlight;
-        // continue to chase player
-        // play chase animation
-        // // if player within attack range
-        // // call instance of Attack() [use cooldown too]
-        // else
-        // go to patrol
+       
     }
 
-	public void Attack()
+    /// This is a chase which is sustained so long as the player is in range or their presence is still high (no visual confirmation so he can chase around corners)
+    public void ScriptedChase()
+    {
+        // action is a cooldown type so calculate time while in state
+        actionTime += Time.deltaTime;
+
+        /// chasing the player
+        // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later], also make it so that if he can still see you then keep chasing
+       
+        if (debug.monsterSpeakStates)
+            Debug.Log("HERE'S JOHNNY!!!");
+
+        // travel to player
+        agent.SetDestination(player.transform.position);
+
+        // Attack the player within a certain distance
+        if (playerDistance < 1.0f && actionTime > actionCooldown)
+        {
+            Attack();
+            actionTime = 0.0f;
+        }
+       
+    }
+
+    public void Attack()
 	{
 
-        if (debugMonsterSpeakStates)
+        if (debug.monsterSpeakStates)
             Debug.Log("DIE");
 
         gameObject.GetComponent<monsterAnimator>().attack = true;
 
         // damage player
+        // for damage to hit arm must pass through player ???
         DamagePlayer();
     }
 
@@ -320,10 +383,6 @@ public class MonsterAI : MonoBehaviour {
             PlayerKO();
         }
 
-        // if player health is less than or equal to 0
-        //-- PlayerDeath();
-        // else just knock out the player
-        //-- PlayerKO();
     }
 
     public void PlayerKO()
@@ -349,7 +408,7 @@ public class MonsterAI : MonoBehaviour {
     {
         state = "patrol";
 
-        if(debugMonsterSpeakStates)
+        if(debug.monsterSpeakStates)
             Debug.Log(" Y O U   D I E D ");
 
         // Change scene to death screen 
@@ -363,7 +422,7 @@ public class MonsterAI : MonoBehaviour {
 		{
 			float[] searchDistances = new float[searchDestinations.Length];
 
-            if(debugInvestigate)
+            if(debug.investigate)
 			    Debug.Log("new distances instanced " + searchDistances);
 
 			for (int s = 0; s < searchDestinations.Length; s++)
@@ -371,12 +430,12 @@ public class MonsterAI : MonoBehaviour {
 				searchDistances[s] = Vector3.Distance(investigateRecorder.transform.position, searchDestinations[s].transform.position);
 			}
 
-            if(debugInvestigate)
+            if(debug.investigate)
 			    Debug.Log("new distances assigned " + searchDistances);
 
 			float toDistance = Mathf.Min(searchDistances);
 
-            if(debugInvestigate)
+            if(debug.investigate)
 			    Debug.Log("todistance is " + toDistance);
 
 			for (int s = 0; s < searchDestinations.Length; s++)
@@ -384,7 +443,7 @@ public class MonsterAI : MonoBehaviour {
 				if (searchDistances[s] == toDistance)
 				{
 					searchObject = searchDestinations[s];
-                    if(debugInvestigate)
+                    if(debug.investigate)
 					    Debug.Log("now investigating sound at " + searchObject);
 
 					state = "investigateSound";
@@ -400,9 +459,9 @@ public class MonsterAI : MonoBehaviour {
     public void PlayerAwarenessCheck()
     {
         // The only variables it checks is it's search starting distance[make later] checked against player distance, and then presence vs search starting presence[make later]
-        if (playerFlashlight && presence > 0.5f && playerDistance < 4.0f)
+        if (presence > 0.34f && playerDistance < 5.0f)
         {
-            if (debugMonsterSpeakStates)
+            if (debug.monsterSpeakStates)
                 Debug.Log("What was that?");
 
             state = "search";
@@ -415,13 +474,45 @@ public class MonsterAI : MonoBehaviour {
 
     }
 
+    /// THe function looks for the player and trips a boolean that the player has been seen
+    public void Looking()
+    {
+        //playerSeen = monsterEyes.GetComponent<monsterEyes>().playerSeen;
+        
+        
+        cameraCenter = monsterEyes.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, monsterEyes.GetComponent<Camera>().nearClipPlane));
+
+        
+        // raycast from camera
+        if (Physics.Raycast(cameraCenter, monsterEyes.transform.forward, out hit, 1000))
+        {
+            // the object seen is what the raycast hit
+            seen = hit.transform.gameObject;
+
+            Debug.Log("seen object " + seen);
+
+            // see if the seen object is the player
+            if (seen.CompareTag("GameController") && state == "search")
+            {
+                if (Vector3.Distance(hit.point, gameObject.transform.position) <= sightDistance)
+                {
+                    playerSeen = true;
+                }
+            }
+
+            Debug.Log("seen player " + playerSeen);
+
+        }
+        
+    }
+
     /// Monster moves to the trigger sound room
     public void InvestigateSound()
     {
 		// go to searchDestination as searchObject
 		if (!searchObject.GetComponent<SphereCollider>().bounds.Contains(gameObject.transform.position))
 		{
-            if(debugInvestigateSound)
+            if(debug.investigateSound)
 			    Debug.Log("travelling to " + searchObject);
 
 			velocity = (transform.position - lastPosition) / Time.deltaTime;
@@ -444,7 +535,7 @@ public class MonsterAI : MonoBehaviour {
 				investigateRecorder.GetComponent<tapeMaster>().forceStop();
 			}
 
-            if (debugInvestigateSound)
+            if (debug.investigateSound)
                 Debug.Log("turned off " + investigateRecorder + " " + investigateRecorder.GetComponent<AudioSource>().isPlaying);
 
 			// Exit to patrol or search state when music is turned off
@@ -462,6 +553,13 @@ public class MonsterAI : MonoBehaviour {
 		}
     }
 
+    public void OnDrawGizmos()
+    {
+            // Draws a blue line from this transform to the target
+            Gizmos.color = Color.blue;
+            Gizmos.DrawLine(cameraCenter, hit.point);
+    }
+
     /// Extra actions the monster can do - this one is to prevent getting stuck on a door
 	public void OpenNearbyDoor()
 	{
@@ -469,7 +567,7 @@ public class MonsterAI : MonoBehaviour {
 
 		float[] doorDistances = new float[doors.Length];
 
-        if (debugDoorAction)
+        if (debug.doorAction)
             Debug.Log("new door distances instanced " + doorDistances);
 
 		for (int s = 0; s < doors.Length; s++)
@@ -477,12 +575,12 @@ public class MonsterAI : MonoBehaviour {
 			doorDistances[s] = Vector3.Distance(gameObject.transform.position, doors[s].transform.position);
 		}
 
-        if (debugDoorAction)
+        if (debug.doorAction)
             Debug.Log("new door distances assigned " + doorDistances);
 
 		float toDistance = Mathf.Min(doorDistances);
 
-        if (debugDoorAction)
+        if (debug.doorAction)
             Debug.Log("to door distance is " + toDistance);
 
 		for (int s = 0; s < doors.Length; s++)

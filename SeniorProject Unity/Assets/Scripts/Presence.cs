@@ -29,6 +29,13 @@ public class Presence : MonoBehaviour {
     public Vector3 velocity;
     private Vector3 lastPosition;
 
+    [System.Serializable]
+    public class presenceTweak
+    {
+        public float crouchFactor = 0.1f;
+    }
+    public presenceTweak presence = new presenceTweak();
+
     public bool playerCrouch = false;
     public bool playerFlashlight = false;
 
@@ -87,7 +94,7 @@ public class Presence : MonoBehaviour {
         {
             if (debug)
             {
-                Debug.Log("Not using heartrate for presence");
+                Debug.Log("Using heartrate for presence");
             }
 
             speedVar = (speed * 0.041f) - 0.15f;
@@ -113,9 +120,31 @@ public class Presence : MonoBehaviour {
             {
                 // HB Presence calculation
                 if(hbHighest < avrBPM + 7)
-                    curPres = 50.0f + (HBVar) * speedVar;
+                {
+                    // crouching reduces presence
+                    if (playerCrouch)
+                    {
+                        curPres = (50.0f + (HBVar) * speedVar) - presence.crouchFactor;
+                    }
+                    else
+                    {
+                        curPres = 50.0f + (HBVar) * speedVar;
+                    }
+                }
+                    
                 else
-                    curPres = (0.5f + (HBVar - (Time.deltaTime * 3)) * speedVar * 0.01f);
+                {
+                    // crouching reduces presence
+                    if (playerCrouch)
+                    {
+                        curPres = (0.5f + (HBVar - (Time.deltaTime * 3)) * speedVar * 0.01f) - presence.crouchFactor;
+                    }
+                    else
+                    {
+                        curPres = (0.5f + (HBVar - (Time.deltaTime * 3)) * speedVar * 0.01f);
+                    }
+                }
+                    
 
 
                 hbTimerCur -= Time.deltaTime;
@@ -130,10 +159,19 @@ public class Presence : MonoBehaviour {
         {
             if (debug)
             {
-                Debug.Log("Using heartrate for presence");
+                Debug.Log("Not using heartrate for presence");
             }
 
-            speedVar = (speed * 0.069f) - 0.15f;
+            // crouching reduces presence
+            if (playerCrouch)
+            {
+                speedVar = ((speed * 0.069f) - 0.15f) - presence.crouchFactor;
+            }
+            else
+            {
+                speedVar = (speed * 0.069f) - 0.15f;
+            }
+            
 
             // No HB Presence calculation
             curPres = 0.5f + speedVar;

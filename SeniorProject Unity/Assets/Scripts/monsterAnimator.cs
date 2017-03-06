@@ -24,6 +24,7 @@ public class monsterAnimator : MonoBehaviour {
     public bool search;
     public bool chase;
     public bool attack;
+    public bool headRotating = false;
 
     // UI FOR PLAYER
     public bool devAnimTesting = false;
@@ -32,9 +33,9 @@ public class monsterAnimator : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = gameObject.GetComponent<Animator>();
-        
+
         // REMOVE FOR ERICA'S VERSION MAYBE? update should fix everything
-        if(devAnimTesting)
+        if (devAnimTesting)
             idle = true; 
         else
             idle = false;
@@ -42,6 +43,7 @@ public class monsterAnimator : MonoBehaviour {
         search = false;
         chase = false;
         attack = false;
+        headRotating = false;
     }
 
     // Update is called once per frame
@@ -83,6 +85,16 @@ public class monsterAnimator : MonoBehaviour {
             }
         }
 
+        /*
+        if(monsterAnimState.fullPathHash == searchStateHash && monsterAnimState.length > monsterAnimState.normalizedTime)
+        {
+            headRotating = true;
+        }
+        else
+        {
+            headRotating = false;
+        }
+        */
 
         if (idle)
         {
