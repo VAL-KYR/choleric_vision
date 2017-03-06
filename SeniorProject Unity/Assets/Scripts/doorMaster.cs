@@ -6,9 +6,9 @@ using System.Collections.Generic;
 public class doorMaster : MonoBehaviour
 {
     public GameObject lDoorSound;
-    private AudioSource lDoorSounder;
+    public AudioSource lDoorSounder;
     public GameObject rDoorSound;
-    private AudioSource rDoorSounder;
+    public AudioSource rDoorSounder;
 
     public AudioClip[] lockSounds;
     public AudioClip lockSound;
@@ -37,6 +37,8 @@ public class doorMaster : MonoBehaviour
 	static int leftOpenStateHash = Animator.StringToHash("Left Door.Opened");
     static int rightClosedStateHash = Animator.StringToHash("Right Door.Closed");
     static int rightOpenStateHash = Animator.StringToHash("Right Door.Opened");
+	static int leftTurnStateHash = Animator.StringToHash("Left Door.Turn");
+	static int rightTurnStateHash = Animator.StringToHash("Right Door.Turn");
 
     public bool debug;
 	public bool doorLocked;
@@ -216,22 +218,76 @@ public class doorMaster : MonoBehaviour
 	{
 		doorLocked = false;
         anim.SetBool("doorLocked", doorLocked);
+
+		if (lDoorSound.activeSelf)
+		{
+			lDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+			lDoorSounder.Play();
+		}
+		if (rDoorSound.activeSelf)
+		{
+			rDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+			rDoorSounder.Play();
+		}
     }
 
     public void forceLock()
     {
         doorLocked = true;
         anim.SetBool("doorLocked", doorLocked);
+
+		if (lDoorSound.activeSelf)
+		{
+			lDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+			lDoorSounder.Play();
+		}
+		if (rDoorSound.activeSelf)
+		{
+			rDoorSounder.clip = lockSounds[Random.Range(0, lockSounds.Length)];
+			rDoorSounder.Play();
+		}
+
     }
 
     public void forceOpen()
 	{
         anim.SetTrigger(doorInteractHash);
+
+		if (doorState.fullPathHash == leftClosedStateHash)
+		{
+			if (lDoorSound.activeSelf)
+			{
+				lDoorSounder.clip = openSounds[Random.Range(0, openSounds.Length)];
+				lDoorSounder.Play();
+			}
+			if (rDoorSound.activeSelf)
+			{
+				rDoorSounder.clip = openSounds[Random.Range(0, openSounds.Length)];
+				rDoorSounder.Play();
+			}
+		}
+
     }
 
     public void forceClosed()
     {
         anim.SetTrigger(doorInteractHash);
+
+
+		if (doorState.fullPathHash == leftOpenStateHash)
+		{
+			if (lDoorSound.activeSelf)
+			{
+				lDoorSounder.clip = closeSounds[Random.Range(0, closeSounds.Length)];
+				lDoorSounder.Play();
+			}
+			if (rDoorSound.activeSelf)
+			{
+				rDoorSounder.clip = closeSounds[Random.Range(0, closeSounds.Length)];
+				rDoorSounder.Play();
+			}
+		}
+
     }
 
     public void keySearch()
