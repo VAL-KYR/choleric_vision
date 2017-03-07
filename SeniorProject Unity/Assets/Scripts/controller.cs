@@ -30,6 +30,10 @@ public class controller : MonoBehaviour
 
     private GameObject headJoint;
 
+    // Player Death Effects
+    GameObject vrCam;
+    GameObject nonVrCam;
+
     //Player Positions
     private float yLookLimit = 70;
     private Vector3 prevPlayerPos;
@@ -73,11 +77,21 @@ public class controller : MonoBehaviour
     static int closedStateHash = Animator.StringToHash("Base Layer.Closed");
     static int openStateHash = Animator.StringToHash("Base Layer.Opened");
 
+    public bool holdObj;
+
     // Use this for initialization
     void Start()
 	{
-
-
+        // Player Death Effects
+        if (!VRSettings.enabled)
+        {
+            nonVrCam = GameObject.FindGameObjectWithTag("NonVRCam");
+        }
+        else
+        {
+            vrCam = GameObject.FindGameObjectWithTag("VRCam");
+        }
+            
 
         //Find Gameobjects or componants
         camerasgroup.playerVR = GameObject.FindGameObjectWithTag("VRCam");
@@ -127,6 +141,19 @@ public class controller : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+        if (!VRSettings.enabled)
+        {
+            if (!nonVrCam)
+                nonVrCam = GameObject.FindGameObjectWithTag("NonVRCam");
+        }
+        else
+        {
+            if (!vrCam)
+                vrCam = GameObject.FindGameObjectWithTag("VRCam");
+        }
+
+        // Player Damage Effects
+        Effects();
 
         // Update Standing Position if Player is not crouched
         if (!crouch)
@@ -135,91 +162,112 @@ public class controller : MonoBehaviour
         }
 
         // If player is sprinting set to sprintspeed
-        if (playerSprint)
-            playerSpeed = playerSpeedGroup.sprintSpeed;
-        else if (crouch)
-            playerSpeed = playerSpeedGroup.crouchSpeed;
+        if(playerHealth >= 100)
+        {
+            if (playerSprint)
+                playerSpeed = playerSpeedGroup.sprintSpeed;
+            else if (crouch)
+                playerSpeed = playerSpeedGroup.crouchSpeed;
+            else
+                playerSpeed = playerSpeedGroup.walkSpeed;
+        }
+        else if (playerHealth <= 50)
+        {
+            if (playerSprint)
+                playerSpeed = playerSpeedGroup.sprintSpeed / 1.5f;
+            else if (crouch)
+                playerSpeed = playerSpeedGroup.crouchSpeed / 1.5f;
+            else
+                playerSpeed = playerSpeedGroup.walkSpeed / 1.5f;
+        }
+        else if (playerHealth <= 0)
+        {
+            if (playerSprint)
+                playerSpeed = playerSpeedGroup.sprintSpeed / 2;
+            else if (crouch)
+                playerSpeed = playerSpeedGroup.crouchSpeed / 2;
+            else
+                playerSpeed = playerSpeedGroup.walkSpeed / 2;
+        }
+
+
+        if (!holdObj)
+        {
+
+            //-------------------------------------------------------------------------------Ask Chris about this
+            // Without look restraints
+            mYaw += playerSpeedGroup.speedH * Input.GetAxis("Mouse X");
+
+            // Toggle look constraints for VR
+            if (!VRSettings.enabled)
+            {
+                // With look restraints
+                if ((mPitch <= yLookLimit) && (Input.GetAxis("Mouse Y") < 0))
+                    mPitch -= playerSpeedGroup.speedV * Input.GetAxis("Mouse Y");
+                else if ((mPitch >= -yLookLimit) && (Input.GetAxis("Mouse Y") > 0))
+                    mPitch -= playerSpeedGroup.speedV * Input.GetAxis("Mouse Y");
+            }
+
+            if (VRSettings.enabled)
+            {
+                transform.eulerAngles = new Vector3(0.0f, mYaw, 0.0f);
+            }
+            if (!VRSettings.enabled)
+            {
+                transform.eulerAngles = new Vector3(0.0f, mYaw, 0.0f);
+                camerasgroup.playerNormal.transform.eulerAngles = new Vector3(mPitch, mYaw, 0.0f);
+            }
+
+            if (debug)
+            {
+                Debug.Log("mPitch " + mPitch);
+                Debug.Log("mYaw " + mYaw);
+                Debug.Log("Vertical " + Input.GetAxis("Vertical"));
+                Debug.Log("Horizontal " + Input.GetAxis("Horizontal"));
+                Debug.Log(moveDirection.x + "moveDirection.x");
+                Debug.Log(moveDirection.y + "moveDirection.y");
+                Debug.Log(moveDirection.z + "moveDirection.z");
+            }
+
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection.x *= playerSpeed;
+            moveDirection.z *= playerSpeed;
+
+            //crouch state
+            if (Input.GetButtonDown("Crouch") && !crouch)
+            {
+                if (playerSprint)
+                    playerSprint = false;
+
+
+                headJoint.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
+                noteBookGO.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
+
+                crouch = true;
+            }
+
+            else if (Input.GetButtonDown("Crouch") && crouch)
+            {
+                headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
+                noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
+
+                crouch = false;
+            }
+        }
         else
-            playerSpeed = playerSpeedGroup.walkSpeed;
-
-
-
-        //-------------------------------------------------------------------------------Ask Chris about this
-        // Without look restraints
-        mYaw += playerSpeedGroup.speedH * Input.GetAxis("Mouse X");
-
-
-
-
-        // Toggle look constraints for VR
-        if (!VRSettings.enabled)
         {
-            // With look restraints
-            if ((mPitch <= yLookLimit) && (Input.GetAxis("Mouse Y") < 0))
-                mPitch -= playerSpeedGroup.speedV * Input.GetAxis("Mouse Y");
-            else if ((mPitch >= -yLookLimit) && (Input.GetAxis("Mouse Y") > 0))
-                mPitch -= playerSpeedGroup.speedV * Input.GetAxis("Mouse Y");
-        }
+            moveDirection = new Vector3(0.0f, 0.0f, 0.0f);
 
+            noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
 
-        //transform.eulerAngles = new Vector3(mPitch, mYaw, 0.0f);
-
-        if (VRSettings.enabled)
-        {
-            transform.eulerAngles = new Vector3(0.0f, mYaw, 0.0f);
-        }
-        if (!VRSettings.enabled)
-        {
-            transform.eulerAngles = new Vector3 (0.0f, mYaw, 0.0f);
-            camerasgroup.playerNormal.transform.eulerAngles = new Vector3(mPitch, mYaw, 0.0f);
-        }
-
-        if (debug)
-        {
-            Debug.Log("mPitch " + mPitch);
-            Debug.Log("mYaw " + mYaw);
-            Debug.Log("Vertical " + Input.GetAxis("Vertical"));
-            Debug.Log("Horizontal " + Input.GetAxis("Horizontal"));
-            Debug.Log(moveDirection.x + "moveDirection.x");
-            Debug.Log(moveDirection.y + "moveDirection.y");
-            Debug.Log(moveDirection.z + "moveDirection.z");
-        }
-
-
-        //transform.Rotate(0, Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime, 0);
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        //moveDirection = Vector3.forward * Input.GetAxis("Vertical");
-        //moveDirection = Vector3.left * Input.GetAxis("Horizontal");
-        moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection.x *= playerSpeed;
-        moveDirection.z *= playerSpeed;
-        /*float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");*/
-
-        //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        
-
-
-        //crouch state
-        if (Input.GetButtonDown("Crouch") && !crouch)
-		{
-			if (playerSprint)
-				playerSprint = false;
-
-            
-            headJoint.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
-            noteBookGO.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
-
-            crouch = true;
-        }
-
-        else if(Input.GetButtonDown("Crouch") && crouch)
-        {
-            headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
-            noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
-            
-            crouch = false;
+                foreach (GameObject n in noteBooks)
+                {
+                    if (n.GetComponent<noteBook>().bookOpen)
+                    {
+                        n.GetComponent<noteBook>().Close();
+                }
+            }
         }
 
         /* A known bug is that crouch spamming can lead to poor updates of original standing Y pos 
@@ -400,5 +448,45 @@ public class controller : MonoBehaviour
 
     }
 
+    public void Effects()
+    {
+        float playerEffectScale = -1.0f * ((playerHealth / 100) - 1.0f);
+
+        if (!VRSettings.enabled)
+        {
+            nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
+        }
+        else
+        {
+            vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
+
+        }
+    }
+
+    /*
+    public void EffectsIncrease()
+    {
+        if (!VRSettings.enabled)
+        {
+            nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 1.0f, 1.0f * Time.deltaTime);
+        }
+        else
+        {
+            vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 1.0f, 1.0f * Time.deltaTime);
+        }
+    }
+
+    public void EffectsDecrease()
+    {
+        if (!VRSettings.enabled)
+        {
+            nonVrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 0.0f, 1.0f * Time.deltaTime);
+        }
+        else
+        {
+            vrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 0.0f, 1.0f * Time.deltaTime);
+        }
+    }
+    */
 
 }
