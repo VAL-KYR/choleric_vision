@@ -30,6 +30,10 @@ public class controller : MonoBehaviour
 
     private GameObject headJoint;
 
+    // Player Death Effects
+    GameObject vrCam;
+    GameObject nonVrCam;
+
     //Player Positions
     private float yLookLimit = 70;
     private Vector3 prevPlayerPos;
@@ -76,8 +80,16 @@ public class controller : MonoBehaviour
     // Use this for initialization
     void Start()
 	{
-
-
+        // Player Death Effects
+        if (!VRSettings.enabled)
+        {
+            nonVrCam = GameObject.FindGameObjectWithTag("NonVRCam");
+        }
+        else
+        {
+            vrCam = GameObject.FindGameObjectWithTag("VRCam");
+        }
+            
 
         //Find Gameobjects or componants
         camerasgroup.playerVR = GameObject.FindGameObjectWithTag("VRCam");
@@ -127,6 +139,18 @@ public class controller : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+        if (!VRSettings.enabled)
+        {
+            if (!nonVrCam)
+                nonVrCam = GameObject.FindGameObjectWithTag("NonVRCam");
+        }
+        else
+        {
+            if (!vrCam)
+                vrCam = GameObject.FindGameObjectWithTag("VRCam");
+        }
+
+        Effects();
 
         // Update Standing Position if Player is not crouched
         if (!crouch)
@@ -135,12 +159,33 @@ public class controller : MonoBehaviour
         }
 
         // If player is sprinting set to sprintspeed
-        if (playerSprint)
-            playerSpeed = playerSpeedGroup.sprintSpeed;
-        else if (crouch)
-            playerSpeed = playerSpeedGroup.crouchSpeed;
-        else
-            playerSpeed = playerSpeedGroup.walkSpeed;
+        if(playerHealth >= 100)
+        {
+            if (playerSprint)
+                playerSpeed = playerSpeedGroup.sprintSpeed;
+            else if (crouch)
+                playerSpeed = playerSpeedGroup.crouchSpeed;
+            else
+                playerSpeed = playerSpeedGroup.walkSpeed;
+        }
+        else if (playerHealth <= 50)
+        {
+            if (playerSprint)
+                playerSpeed = playerSpeedGroup.sprintSpeed / 1.5f;
+            else if (crouch)
+                playerSpeed = playerSpeedGroup.crouchSpeed / 1.5f;
+            else
+                playerSpeed = playerSpeedGroup.walkSpeed / 1.5f;
+        }
+        else if (playerHealth <= 0)
+        {
+            if (playerSprint)
+                playerSpeed = playerSpeedGroup.sprintSpeed / 2;
+            else if (crouch)
+                playerSpeed = playerSpeedGroup.crouchSpeed / 2;
+            else
+                playerSpeed = playerSpeedGroup.walkSpeed / 2;
+        }
 
 
 
@@ -400,5 +445,45 @@ public class controller : MonoBehaviour
 
     }
 
+    public void Effects()
+    {
+        float playerEffectScale = -1.0f * ((playerHealth / 100) - 1.0f);
+
+        if (!VRSettings.enabled)
+        {
+            nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
+        }
+        else
+        {
+            vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
+
+        }
+    }
+
+    /*
+    public void EffectsIncrease()
+    {
+        if (!VRSettings.enabled)
+        {
+            nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 1.0f, 1.0f * Time.deltaTime);
+        }
+        else
+        {
+            vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 1.0f, 1.0f * Time.deltaTime);
+        }
+    }
+
+    public void EffectsDecrease()
+    {
+        if (!VRSettings.enabled)
+        {
+            nonVrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 0.0f, 1.0f * Time.deltaTime);
+        }
+        else
+        {
+            vrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 0.0f, 1.0f * Time.deltaTime);
+        }
+    }
+    */
 
 }

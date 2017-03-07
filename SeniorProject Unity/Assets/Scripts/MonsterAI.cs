@@ -23,6 +23,7 @@ public class MonsterAI : MonoBehaviour {
     private float time = 0.0f;
 
     // destination points &  objects of interest
+    public GameObject deathRoom;
     public GameObject[] patrolDestinations;
     public GameObject[] searchDestinations;
     public GameObject[] doors;
@@ -93,6 +94,7 @@ public class MonsterAI : MonoBehaviour {
     void Start () {
         // finding player
         player = GameObject.FindGameObjectWithTag("GameController");
+        deathRoom = GameObject.FindGameObjectWithTag("DeathPoint");
 
         // objects of interest startup
         // remember to give him tape recorders
@@ -458,7 +460,7 @@ public class MonsterAI : MonoBehaviour {
     // Attacking the player has resulted in a hit, this will determine what the hit does
     public void DamagePlayer()
     {
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth = playerManager.health - 35.0f;
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth = playerManager.health - 50.0f;
 
         if(playerManager.health <= 0.0f)
         {
@@ -501,6 +503,8 @@ public class MonsterAI : MonoBehaviour {
 
         // Change scene to death screen 
         // GAME OVER
+
+        player.transform.position = deathRoom.transform.position;
     }
     ////////// ------ PLAYER MANAGEMENT ------ //////////
 
