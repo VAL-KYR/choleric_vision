@@ -5,7 +5,7 @@ using System.Collections;
 public class flashLightOnOff : MonoBehaviour
 {
 
-    private Light flashlight;
+    public Light flashlight;
 
 	public bool debug = false;
 

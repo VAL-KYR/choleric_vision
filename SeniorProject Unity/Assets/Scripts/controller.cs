@@ -1,11 +1,11 @@
- using UnityEngine;
+using UnityEngine;
 using System.Collections;
 using UnityEngine.VR;
 
 public class controller : MonoBehaviour
 {
     public bool debug;
-
+    public float playerHealth = 100.0f;
 
     [System.Serializable]
     public class PlayerSpeedGroup
