@@ -77,6 +77,8 @@ public class controller : MonoBehaviour
     static int closedStateHash = Animator.StringToHash("Base Layer.Closed");
     static int openStateHash = Animator.StringToHash("Base Layer.Opened");
 
+    public bool holdObj;
+
     // Use this for initialization
     void Start()
 	{
@@ -150,6 +152,7 @@ public class controller : MonoBehaviour
                 vrCam = GameObject.FindGameObjectWithTag("VRCam");
         }
 
+        // Player Damage Effects
         Effects();
 
         // Update Standing Position if Player is not crouched
@@ -188,83 +191,83 @@ public class controller : MonoBehaviour
         }
 
 
-
-        //-------------------------------------------------------------------------------Ask Chris about this
-        // Without look restraints
-        mYaw += playerSpeedGroup.speedH * Input.GetAxis("Mouse X");
-
-
-
-
-        // Toggle look constraints for VR
-        if (!VRSettings.enabled)
+        if (!holdObj)
         {
-            // With look restraints
-            if ((mPitch <= yLookLimit) && (Input.GetAxis("Mouse Y") < 0))
-                mPitch -= playerSpeedGroup.speedV * Input.GetAxis("Mouse Y");
-            else if ((mPitch >= -yLookLimit) && (Input.GetAxis("Mouse Y") > 0))
-                mPitch -= playerSpeedGroup.speedV * Input.GetAxis("Mouse Y");
+
+            //-------------------------------------------------------------------------------Ask Chris about this
+            // Without look restraints
+            mYaw += playerSpeedGroup.speedH * Input.GetAxis("Mouse X");
+
+            // Toggle look constraints for VR
+            if (!VRSettings.enabled)
+            {
+                // With look restraints
+                if ((mPitch <= yLookLimit) && (Input.GetAxis("Mouse Y") < 0))
+                    mPitch -= playerSpeedGroup.speedV * Input.GetAxis("Mouse Y");
+                else if ((mPitch >= -yLookLimit) && (Input.GetAxis("Mouse Y") > 0))
+                    mPitch -= playerSpeedGroup.speedV * Input.GetAxis("Mouse Y");
+            }
+
+            if (VRSettings.enabled)
+            {
+                transform.eulerAngles = new Vector3(0.0f, mYaw, 0.0f);
+            }
+            if (!VRSettings.enabled)
+            {
+                transform.eulerAngles = new Vector3(0.0f, mYaw, 0.0f);
+                camerasgroup.playerNormal.transform.eulerAngles = new Vector3(mPitch, mYaw, 0.0f);
+            }
+
+            if (debug)
+            {
+                Debug.Log("mPitch " + mPitch);
+                Debug.Log("mYaw " + mYaw);
+                Debug.Log("Vertical " + Input.GetAxis("Vertical"));
+                Debug.Log("Horizontal " + Input.GetAxis("Horizontal"));
+                Debug.Log(moveDirection.x + "moveDirection.x");
+                Debug.Log(moveDirection.y + "moveDirection.y");
+                Debug.Log(moveDirection.z + "moveDirection.z");
+            }
+
+            moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+            moveDirection = transform.TransformDirection(moveDirection);
+            moveDirection.x *= playerSpeed;
+            moveDirection.z *= playerSpeed;
+
+            //crouch state
+            if (Input.GetButtonDown("Crouch") && !crouch)
+            {
+                if (playerSprint)
+                    playerSprint = false;
+
+
+                headJoint.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
+                noteBookGO.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
+
+                crouch = true;
+            }
+
+            else if (Input.GetButtonDown("Crouch") && crouch)
+            {
+                headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
+                noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
+
+                crouch = false;
+            }
         }
-
-
-        //transform.eulerAngles = new Vector3(mPitch, mYaw, 0.0f);
-
-        if (VRSettings.enabled)
+        else
         {
-            transform.eulerAngles = new Vector3(0.0f, mYaw, 0.0f);
-        }
-        if (!VRSettings.enabled)
-        {
-            transform.eulerAngles = new Vector3 (0.0f, mYaw, 0.0f);
-            camerasgroup.playerNormal.transform.eulerAngles = new Vector3(mPitch, mYaw, 0.0f);
-        }
+            moveDirection = new Vector3(0.0f, 0.0f, 0.0f);
 
-        if (debug)
-        {
-            Debug.Log("mPitch " + mPitch);
-            Debug.Log("mYaw " + mYaw);
-            Debug.Log("Vertical " + Input.GetAxis("Vertical"));
-            Debug.Log("Horizontal " + Input.GetAxis("Horizontal"));
-            Debug.Log(moveDirection.x + "moveDirection.x");
-            Debug.Log(moveDirection.y + "moveDirection.y");
-            Debug.Log(moveDirection.z + "moveDirection.z");
-        }
+            noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
 
-
-        //transform.Rotate(0, Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime, 0);
-        moveDirection = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        //moveDirection = Vector3.forward * Input.GetAxis("Vertical");
-        //moveDirection = Vector3.left * Input.GetAxis("Horizontal");
-        moveDirection = transform.TransformDirection(moveDirection);
-        moveDirection.x *= playerSpeed;
-        moveDirection.z *= playerSpeed;
-        /*float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");*/
-
-        //Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        
-
-
-        //crouch state
-        if (Input.GetButtonDown("Crouch") && !crouch)
-		{
-			if (playerSprint)
-				playerSprint = false;
-
-            
-            headJoint.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
-            noteBookGO.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
-
-            crouch = true;
-        }
-
-        else if(Input.GetButtonDown("Crouch") && crouch)
-        {
-            headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
-            noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
-            
-            crouch = false;
+                foreach (GameObject n in noteBooks)
+                {
+                    if (n.GetComponent<noteBook>().bookOpen)
+                    {
+                        n.GetComponent<noteBook>().Close();
+                }
+            }
         }
 
         /* A known bug is that crouch spamming can lead to poor updates of original standing Y pos 

@@ -24,6 +24,7 @@ public class monsterAnimator : MonoBehaviour {
     public bool search;
     public bool chase;
     public bool attack;
+    public bool scriptedChase;
     public bool headRotating = false;
 
     // UI FOR PLAYER
@@ -42,6 +43,7 @@ public class monsterAnimator : MonoBehaviour {
 
         search = false;
         chase = false;
+        scriptedChase = false;
         attack = false;
         headRotating = false;
     }
@@ -57,6 +59,12 @@ public class monsterAnimator : MonoBehaviour {
         anim.SetBool("searching", search);
         anim.SetBool("chasing", chase);
 
+
+        if(gameObject.GetComponent<MonsterAI>().state == "scriptedChase")
+        {
+            scriptedChase = true;
+            chase = true;
+        }
 
         // Developer voice test buttons
         if (devAnimTesting)
@@ -111,9 +119,14 @@ public class monsterAnimator : MonoBehaviour {
             gameObject.GetComponent<monsterSound>().Voice("alert", 0.0f, true);
             //monsterAnimState.fullPathHash == chaseStateHash
         }
+        else if (scriptedChase)
+        {
+            gameObject.GetComponent<monsterSound>().Voice("growl", 0.0f, true);
+            //monsterAnimState.fullPathHash == chaseStateHash
+        }
 
         // CHANGE FOR ERICA'S VERSION'
-    
+
         // make this animation driven later for now just trigger on hit
         // also later it'll do a check for box collider on hand hit player for "death"
         // trigger death function from here
