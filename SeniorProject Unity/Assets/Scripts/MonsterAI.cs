@@ -22,9 +22,11 @@ public class MonsterAI : MonoBehaviour {
     // Init universal time
     private float time = 0.0f;
 
-    // destination points
+    // destination points &  objects of interest
     public GameObject[] patrolDestinations;
     public GameObject[] searchDestinations;
+    public GameObject[] doors;
+    public GameObject[] tapeRecorders;
     int destinationIterator = 0;
     int x = 0;
 
@@ -39,13 +41,19 @@ public class MonsterAI : MonoBehaviour {
     }
     public agentManagement agentManager = new agentManagement();
 
-    // Player variables
-    public float playerHealth;
-    public GameObject[] playerSpawns;
+    // Player class of variables
+    [System.Serializable]
+    public class playerManagement
+    {
+        // Player variables
+        public float health;
+        public GameObject[] spawns;
 
-    // CHASE state calculation variables
-    public float playerDistance;
-    public bool playerFlashlight;
+        // CHASE state calculation variables
+        public float distanceAway;
+        public bool flashlight;
+    }
+    public playerManagement playerManager = new playerManagement();
 
     // SEARCH state variables
     public float sightDistance = 3.4f;
@@ -53,14 +61,12 @@ public class MonsterAI : MonoBehaviour {
     public bool playerSeen = false;
 
     // Objects of interest
-    public GameObject monsterEyes;
-    public GameObject seen;
+    private GameObject monsterEyes;
+    private GameObject seen;
     private RaycastHit hit;
     private Vector3 cameraCenter;
 
-    public GameObject player;
-    public GameObject[] doors;
-    public GameObject[] tapeRecorders;
+    private GameObject player;
     private GameObject investigateRecorder;
     private GameObject searchObject;
 
@@ -94,7 +100,7 @@ public class MonsterAI : MonoBehaviour {
         // remmenber to give him flashlights
 
         // Player variables
-        playerHealth = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
+        playerManager.health = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
 
         // time must be universal
         time = 0.0f;
@@ -102,6 +108,7 @@ public class MonsterAI : MonoBehaviour {
         searchTime = 0.0f;
 
         // search state stuff
+        monsterEyes = GameObject.FindGameObjectWithTag("MonsterEyes");
         playerSeen = false;
         monsterSightDistance = sightDistance;
 
@@ -121,7 +128,7 @@ public class MonsterAI : MonoBehaviour {
 		// states bool startup
 		state = "patrol";
         presence = player.GetComponent<Presence>().curPres;
-        playerFlashlight = player.GetComponent<Presence>().playerFlashlight;
+        playerManager.flashlight = player.GetComponent<Presence>().playerFlashlight;
     }
 	
 	// Update is called once per frame
@@ -132,8 +139,8 @@ public class MonsterAI : MonoBehaviour {
         ///
 
         /// Player variables Update
-        playerHealth = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
-        if (playerFlashlight)
+        playerManager.health = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
+        if (playerManager.flashlight)
         {
             monsterSightDistance = sightDistance;
         }
@@ -151,9 +158,9 @@ public class MonsterAI : MonoBehaviour {
         ///
 
         /// CHASE state variables update
-        playerFlashlight = player.GetComponent<Presence>().playerFlashlight;
+        playerManager.flashlight = player.GetComponent<Presence>().playerFlashlight;
         presence = player.GetComponent<Presence>().curPres;
-        playerDistance = Vector3.Distance(gameObject.transform.position, player.transform.position);
+        playerManager.distanceAway = Vector3.Distance(gameObject.transform.position, player.transform.position);
         ///
 
         /// Behaviours - chooses appropriate function for state, or instances another instant action function (like attack)
@@ -257,7 +264,7 @@ public class MonsterAI : MonoBehaviour {
             Debug.Log("WHERE ARE YOU?");
 
         // OR THE PRESENCE CAN BE REALLY HIGH AND JUST RAISE ALL HELL
-        if ((playerDistance <= sightDistance && playerSeen) || presence > 4.5f)
+        if ((playerManager.distanceAway <= sightDistance && playerSeen) || (presence > 3.8f && playerManager.distanceAway < 4.0f))
         {
             if(debug.monsterSpeakStates)
                 Debug.Log("FOUND YOU!");
@@ -290,7 +297,7 @@ public class MonsterAI : MonoBehaviour {
 
         // chasing the player
         // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later], also make it so that if he can still see you then keep chasing
-        if (playerDistance < 5.0f || presence > 3.4f)
+        if (playerManager.distanceAway < 5.0f || presence > 3.4f)
         {
             if (debug.monsterSpeakStates)
                 Debug.Log("HERE'S JOHNNY!!!");
@@ -299,7 +306,7 @@ public class MonsterAI : MonoBehaviour {
             agent.SetDestination(player.transform.position);
 
             // Attack the player within a certain distance
-            if(playerDistance < 1.0f && actionTime > actionCooldown)
+            if(playerManager.distanceAway < 1.0f && actionTime > actionCooldown)
             {
                 Attack();
                 actionTime = 0.0f;
@@ -334,7 +341,7 @@ public class MonsterAI : MonoBehaviour {
         agent.SetDestination(player.transform.position);
 
         // Attack the player within a certain distance
-        if (playerDistance < 1.0f && actionTime > actionCooldown)
+        if (playerManager.distanceAway < 1.0f && actionTime > actionCooldown)
         {
             Attack();
             actionTime = 0.0f;
@@ -433,7 +440,7 @@ public class MonsterAI : MonoBehaviour {
     public void PlayerAwarenessCheck()
     {
         // The only variables it checks is it's search starting distance[make later] checked against player distance, and then presence vs search starting presence[make later]
-        if (presence > 0.34f && playerDistance < 5.0f)
+        if (presence > 0.34f && playerManager.distanceAway < 5.0f)
         {
             if (debug.monsterSpeakStates)
                 Debug.Log("What was that?");
@@ -451,9 +458,9 @@ public class MonsterAI : MonoBehaviour {
     // Attacking the player has resulted in a hit, this will determine what the hit does
     public void DamagePlayer()
     {
-        GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth = playerHealth - 35.0f;
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth = playerManager.health - 35.0f;
 
-        if(playerHealth <= 0.0f)
+        if(playerManager.health <= 0.0f)
         {
             PlayerDeath();
         }
@@ -474,9 +481,9 @@ public class MonsterAI : MonoBehaviour {
         agent.SetDestination(patrolDestinations[monsterDestination].transform.position);
 
 
-        int playerDestination = UnityEngine.Random.Range(0, playerSpawns.Length);
+        int playerDestination = UnityEngine.Random.Range(0, playerManager.spawns.Length);
         
-        player.transform.position = playerSpawns[playerDestination].transform.position;
+        player.transform.position = playerManager.spawns[playerDestination].transform.position;
         
         // fade to black on controller
         // spawn monster somwhere else
@@ -638,7 +645,16 @@ public class MonsterAI : MonoBehaviour {
 
             if (distanceToLight <= 10.0f)
             {
-                unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 0.0f, (distanceToLight / 10.0f) * Time.deltaTime);
+                // if it's a flashlight don't completely dim
+                if (unaturalLights[j].GetComponent<flashLightOnOff>() != null)
+                {
+                    unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 1.0f, (distanceToLight / 10.0f) * Time.deltaTime);
+                }
+                // dim normal
+                else
+                {
+                    unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 0.0f, (distanceToLight / 10.0f) * Time.deltaTime);
+                }
             }
 
             else
