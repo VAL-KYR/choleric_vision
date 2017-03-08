@@ -8,37 +8,39 @@ using System;
 
 public class triggerVoice : MonoBehaviour {
 
+    /// For Triggering Flashbacks or Voice Lines
     // Voiceline or flashback
-    public bool flashbackTrigger = false;
-    public bool voiceLineTrigger = true;
+    [System.Serializable]
+    public class Narrative
+    {
+        // VoiceLine code
+        public GameObject voiceBox;
 
-    // VoiceLine code
-    private GameObject voiceBox;
+        public bool flashbackTrigger = false;
+        public bool voiceLineTrigger = true;
 
-    public bool triggerVoiceOnce = true;
-    private bool voiceTriggered;
-    // VoiceLine code
+        public bool triggerVoiceOnce = true;
+        
+        // VoiceLine code
 
-    // Flashback code
-    public AudioClip flashback;
-    public AudioClip voiceLine;
+        // Flashback code
+        public AudioClip flashback;
+        public AudioClip voiceLine;
 
-    public bool flashbackTripped = false;
+        public bool flashbackTriggered = false;
+        public bool voiceTriggered;
+    }
+    public Narrative narrative = new Narrative();
+    /// For Triggering Flashbacks or Voice Lines
 
     // Use this for initialization
     void Start () {
-        voiceBox = GameObject.FindGameObjectWithTag("voice");
-        
-        // EITHER LINE OR FLASHBACK NOT BOTH
-        /*
-        if (flashbackTrigger && voiceLineTrigger)
-        {
-            voiceLineTrigger = false;
-        }
-        */
+        /// For Triggering Flashbacks or Voice Lines
+        narrative.voiceBox = GameObject.FindGameObjectWithTag("voice");
 
-        voiceTriggered = false;
-        flashbackTripped = false;
+        narrative.voiceTriggered = false;
+        narrative.flashbackTriggered = false;
+        /// For Triggering Flashbacks or Voice Lines
     }
 
     // Update is called once per frame
@@ -50,30 +52,30 @@ public class triggerVoice : MonoBehaviour {
     {
         if (c.CompareTag("GameController"))
         {
-            if (flashbackTrigger)
+            if (narrative.flashbackTrigger)
             {
-                if (!flashbackTripped)
+                if (!narrative.flashbackTriggered)
                 {
                     // call function in voices.cs
-                    GameObject.FindGameObjectWithTag("voice").GetComponent<voices>().startFlashback(flashback);
-                    flashbackTripped = true;
+                    narrative.voiceBox.GetComponent<voices>().startFlashback(narrative.flashback);
+                    narrative.flashbackTriggered = true;
                 }
             }
 
 
-            if (voiceLineTrigger)
+            if (narrative.voiceLineTrigger)
             {
-                if (triggerVoiceOnce)
+                if (narrative.triggerVoiceOnce)
                 {
-                    if (!voiceTriggered)
+                    if (!narrative.voiceTriggered)
                     {
-                        voiceBox.GetComponent<voices>().voiceLinePlay(voiceLine);
-                        voiceTriggered = true;
+                        narrative.voiceBox.GetComponent<voices>().voiceLinePlay(narrative.voiceLine);
+                        narrative.voiceTriggered = true;
                     }
                 }
                 else
                 {
-                    voiceBox.GetComponent<voices>().voiceLinePlay(voiceLine);
+                    narrative.voiceBox.GetComponent<voices>().voiceLinePlay(narrative.voiceLine);
                 }
             }
             
