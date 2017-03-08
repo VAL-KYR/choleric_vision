@@ -6,6 +6,8 @@ public class interactUI : MonoBehaviour {
 
     public bool debug = false;
 
+    public bool uiGlow = false;
+
     public GameObject lookAt;
     public GameObject vrLookAt;
     public GameObject currLookAt;
@@ -33,7 +35,7 @@ public class interactUI : MonoBehaviour {
     public float lookAtLastDist;
     public Vector3 uiReset;
 
-    SpriteRenderer ui;
+    public SpriteRenderer ui;
 
 	// Use this for initialization
 	void Start () {
@@ -139,6 +141,37 @@ public class interactUI : MonoBehaviour {
                 ui.color = new Color(0, 0, 0, 0);
                 transform.localPosition = uiReset;
 
+                if (uiGlow)
+                {
+                    if (seeingObject.GetComponent<Renderer>() != null)
+                    {
+                        unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
+                        //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
+                        //unlitMat = seeingObject.GetComponent<Renderer>().material;
+
+                        /*
+                        if (seeingObject != lastSeenObject)
+                        {
+                            getMats(seeingObject);
+                        }
+                        */
+
+                        lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
+                        //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
+                        //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
+                    }
+                }
+                
+            }
+        }
+
+        if (lookAtLastDist >= 2.0f)
+        {
+            ui.color = new Color(0, 0, 0, 0);
+            transform.localPosition = uiReset;
+
+            if (uiGlow)
+            {
                 if (seeingObject.GetComponent<Renderer>() != null)
                 {
                     unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
@@ -156,31 +189,6 @@ public class interactUI : MonoBehaviour {
                     //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
                     //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
                 }
-                
-            }
-        }
-
-        if (lookAtLastDist >= 2.0f)
-        {
-            ui.color = new Color(0, 0, 0, 0);
-            transform.localPosition = uiReset;
-
-            if (seeingObject.GetComponent<Renderer>() != null)
-            {
-                unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
-                //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
-                //unlitMat = seeingObject.GetComponent<Renderer>().material;
-
-                /*
-                if (seeingObject != lastSeenObject)
-                {
-                    getMats(seeingObject);
-                }
-                */
-
-                lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
-                //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
-                //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
             }
             
         }
@@ -196,13 +204,17 @@ public class interactUI : MonoBehaviour {
             ui.color = new Color(1, 1, 1, 1);
             transform.localPosition = new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.5f));
 
-            if (seeingObject.GetComponent<Renderer>() != null)
+            if (uiGlow)
             {
-                seeingObject.GetComponent<Renderer>().material.shader = litShader;
-                //seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1] = litMat;
-                //seeingObject.GetComponent<Renderer>().material = litMat;
+                if (seeingObject.GetComponent<Renderer>() != null)
+                {
+                    seeingObject.GetComponent<Renderer>().material.shader = litShader;
+                    //seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1] = litMat;
+                    //seeingObject.GetComponent<Renderer>().material = litMat;
 
-            }               
+                }
+            }
+                      
             
         }
         

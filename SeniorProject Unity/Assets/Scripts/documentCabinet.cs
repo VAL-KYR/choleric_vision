@@ -41,7 +41,8 @@ public class documentCabinet : MonoBehaviour {
 			}
 			else
 			{
-				uiText.text = "You've retrieved the documents!";
+
+                uiText.text = "You've retrieved the documents!";
 			}
 		}
 		else

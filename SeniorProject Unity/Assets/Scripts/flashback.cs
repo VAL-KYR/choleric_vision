@@ -37,9 +37,17 @@ public class flashback : MonoBehaviour {
 		deSatFactor = 0.0f;
 
 		if (!VRSettings.enabled)
-			nonVrCam.GetComponent<ColorCurvesManager>().Factor = 0.0f;
-		else
-			vrCam.GetComponent<ColorCurvesManager>().Factor = 0.0f;
+        {
+            nonVrCam.GetComponent<ColorCurvesManager>().Factor = 0.0f;
+            nonVrCam.GetComponent<ColorCurvesManager>().SaturationA = 1.0f;
+        }
+
+        else
+        {
+            vrCam.GetComponent<ColorCurvesManager>().Factor = 0.0f;
+            vrCam.GetComponent<ColorCurvesManager>().SaturationA = 1.0f;
+        }
+			
 		
     }
 	
@@ -51,14 +59,14 @@ public class flashback : MonoBehaviour {
 			if(!nonVrCam)
 				nonVrCam = GameObject.FindGameObjectWithTag("NonVRCam");
 			
-			deSatFactor = nonVrCam.GetComponent<ColorCurvesManager>().Factor;
+			deSatFactor = nonVrCam.GetComponent<ColorCurvesManager>().SaturationA;
 		}
 		else
 		{
 			if (!vrCam)
 				vrCam = GameObject.FindGameObjectWithTag("VRCam");
 			
-			deSatFactor = vrCam.GetComponent<ColorCurvesManager>().Factor;
+			deSatFactor = vrCam.GetComponent<ColorCurvesManager>().SaturationA;
 		}
 
 
@@ -87,13 +95,13 @@ public class flashback : MonoBehaviour {
     public void PlayFlashbackAudio()
 	{
 		// plays once
-		if (!voicePlayed && deSatFactor > 0.6f) 
+		if (!voicePlayed && deSatFactor < 0.6f) 
 		{
 			gameObject.GetComponent<AudioSource>().Play();
 			voicePlayed = true;
 		}
 
-		if (!musicPlayed && !flashbackDone && deSatFactor > 0.1f)
+		if (!musicPlayed && !flashbackDone && deSatFactor < 0.1f)
 		{
 			flashbackSnapshot.TransitionTo(transitionTime);
 			musicPlayed = true;
@@ -110,12 +118,12 @@ public class flashback : MonoBehaviour {
     {
 		if (!VRSettings.enabled)
 		{
-			nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 1.0f, deSatTime * Time.deltaTime);
+			nonVrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().SaturationA, 0.0f, deSatTime * Time.deltaTime);
 			//onVrCam.GetComponent<Vortex>().
 		}
 		else
 		{
-			vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(vrCam.GetComponent<ColorCurvesManager>().Factor, 1.0f, deSatTime * Time.deltaTime);
+			vrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(vrCam.GetComponent<ColorCurvesManager>().SaturationA, 0.0f, deSatTime * Time.deltaTime);
 		}
 
 
@@ -125,11 +133,11 @@ public class flashback : MonoBehaviour {
     {
 		if (!VRSettings.enabled)
 		{
-			nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 0.0f, deSatTime * Time.deltaTime);
+			nonVrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().SaturationA, 1.0f, deSatTime * Time.deltaTime);
 		}
 		else
 		{
-			vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(vrCam.GetComponent<ColorCurvesManager>().Factor, 0.0f, deSatTime * Time.deltaTime);
+			vrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(vrCam.GetComponent<ColorCurvesManager>().SaturationA, 1.0f, deSatTime * Time.deltaTime);
 		}
     }
 }
