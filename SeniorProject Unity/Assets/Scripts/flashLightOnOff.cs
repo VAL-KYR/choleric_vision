@@ -15,9 +15,11 @@ public class flashLightOnOff : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        flashlight = GetComponent<Light>();
+        flashlight = gameObject.GetComponent<Light>();
 
         flashlight.intensity = lightIntensity;
+
+		flashlight.enabled = false;
     }
 
 	// Update is called once per frame
