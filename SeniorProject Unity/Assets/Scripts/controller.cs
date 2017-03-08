@@ -8,6 +8,14 @@ public class controller : MonoBehaviour
     public float playerHealth = 100.0f;
 
     [System.Serializable]
+    public class PlayerSpawns
+    {
+        public GameObject[] spawns;
+        public int spawnChoose;
+    }
+    public PlayerSpawns playerSpawn = new PlayerSpawns();
+
+    [System.Serializable]
     public class PlayerSpeedGroup
     {
         public float walkSpeed;
@@ -91,7 +99,11 @@ public class controller : MonoBehaviour
         {
             vrCam = GameObject.FindGameObjectWithTag("VRCam");
         }
-            
+
+        /// Place the player at a spawn of choice ///
+        playerSpawn.spawns = GameObject.FindGameObjectsWithTag("PlayerSpawns");
+        gameObject.transform.position = playerSpawn.spawns[playerSpawn.spawnChoose].transform.position;
+
 
         //Find Gameobjects or componants
         camerasgroup.playerVR = GameObject.FindGameObjectWithTag("VRCam");
