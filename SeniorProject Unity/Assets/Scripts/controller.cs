@@ -27,6 +27,17 @@ public class controller : MonoBehaviour
     public PlayerSpeedGroup playerSpeedGroup = new PlayerSpeedGroup();
 
     [System.Serializable]
+    public class PlayerLean
+    {
+        public GameObject leanObject;
+        public float maxRight = -40.0f;
+        public float maxLeft = 40.0f;
+        public float leanSpeed = 1.0f;
+        public float leanReturnSpeed = 3.0f;
+    }
+    public PlayerLean playerLean = new PlayerLean();
+
+    [System.Serializable]
     public class CamerasGroup
     {
         //Cameras and joint
@@ -315,6 +326,25 @@ public class controller : MonoBehaviour
             headJoint.transform.position -= new Vector3(0.0f, 0.01f, 0.0f);
         }
 
+        // NON VR LEANING
+        if (!VRSettings.enabled)
+        {
+            if (Input.GetAxis("LLean") > 0)
+            {
+                playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), playerLean.leanSpeed * Time.deltaTime);
+                Debug.Log("LLean " + Input.GetAxis("LLean"));
+            }
+            else if (Input.GetAxis("RLean") < 0)
+            {
+                playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), playerLean.leanSpeed * Time.deltaTime);
+                Debug.Log("RLean " + Input.GetAxis("RLean"));
+            }
+            else if (Input.GetAxis("RLean") == 0)
+            {
+                playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0.0f, 0, 0), playerLean.leanReturnSpeed * Time.deltaTime);
+                Debug.Log("Back to center");
+            }
+        }
 
         
 
