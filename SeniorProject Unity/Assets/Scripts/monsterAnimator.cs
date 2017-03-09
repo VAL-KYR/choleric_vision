@@ -1,9 +1,15 @@
 ﻿using UnityEngine;
+using UnityEngine.Audio;
 using System.Collections;
 
 public class monsterAnimator : MonoBehaviour {
 
     public Animator anim;
+
+    public AudioMixerSnapshot idleSnapshot;
+    public AudioMixerSnapshot searchSnapshot;
+    public AudioMixerSnapshot chaseSnapshot;
+    public float transitionTime = 2.0f;
 
     // For triggering later
     static int idleHash = Animator.StringToHash("idleing");
@@ -107,21 +113,25 @@ public class monsterAnimator : MonoBehaviour {
         if (idle)
         {
             gameObject.GetComponent<monsterSound>().Voice("ramble", 0.0f, true);
+            idleSnapshot.TransitionTo(transitionTime * 4);
             //monsterAnimState.fullPathHash == idleStateHash
         }
         else if (search)
         {
             gameObject.GetComponent<monsterSound>().Voice("notice", 0.0f, true);
+            idleSnapshot.TransitionTo(transitionTime * 4);
             //monsterAnimState.fullPathHash == searchStateHash
         }
         else if (chase)
         {
             gameObject.GetComponent<monsterSound>().Voice("alert", 0.0f, true);
+            chaseSnapshot.TransitionTo(transitionTime);
             //monsterAnimState.fullPathHash == chaseStateHash
         }
         else if (scriptedChase)
         {
             gameObject.GetComponent<monsterSound>().Voice("growl", 0.0f, true);
+            idleSnapshot.TransitionTo(transitionTime * 4);
             //monsterAnimState.fullPathHash == chaseStateHash
         }
 

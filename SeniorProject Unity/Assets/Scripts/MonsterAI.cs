@@ -47,13 +47,15 @@ public class MonsterAI : MonoBehaviour {
     [System.Serializable]
     public class monsterBalance
     {
-        public float evasionDistance = 5.5f;
+        public float evasionDistance = 12.0f;
         public float attackDistance = 1.0f;
-        public float sightDistance = 5.5f;
+        public float sightDistance = 10.0f;
         public float hearPlayerDistance = 4.0f;
 
         public float presenceEvasion = 3.5f;
-        public float presenceSearchInterrupt = 5.0f;
+        public float presenceSearchInterrupt = 0.69f;
+        public float presenceAwareToSearch = 0.47f;
+        public float distanceAwareToSearch = 8.0f;
 
         public float actionCooldown = 2.0f;
         public float searchLength = 8.0f;
@@ -155,6 +157,8 @@ public class MonsterAI : MonoBehaviour {
         /// Universal time to sample
 		time += Time.deltaTime;
         ///
+
+        Debug.Log("state " + state);
 
         /// Player variables Update
         playerManager.health = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
@@ -328,7 +332,7 @@ public class MonsterAI : MonoBehaviour {
 
         // OR THE PRESENCE CAN BE REALLY HIGH AND JUST RAISE ALL HELL
         //if ((playerManager.distanceAway <= monsterSightDistance && playerSeen) || (presence > 3.8f && playerManager.distanceAway < 4.0f))
-        if ((playerSeen) || (presence > monsterBalancer.presenceSearchInterrupt && playerManager.distanceAway < monsterBalancer.hearPlayerDistance))
+        if ((playerSeen && (presence > monsterBalancer.presenceEvasion)) || (presence > monsterBalancer.presenceSearchInterrupt && playerManager.distanceAway < monsterBalancer.hearPlayerDistance))
         {
             if(debug.monsterSpeakStates)
                 Debug.Log("FOUND YOU!");
@@ -374,13 +378,19 @@ public class MonsterAI : MonoBehaviour {
 
         // chasing the player
         // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later], also make it so that if he can still see you then keep chasing
-        if (playerManager.distanceAway < monsterBalancer.evasionDistance || presence > monsterBalancer.presenceEvasion)
+        if ((playerManager.distanceAway < monsterBalancer.evasionDistance) || (presence > monsterBalancer.presenceEvasion))
         {
             if (debug.monsterSpeakStates)
+            {
                 Debug.Log("HERE'S JOHNNY!!!");
+                //Debug.Log("playerManager.distanceAway " + playerManager.distanceAway);
+            }
+
 
             // travel to player
             agent.SetDestination(player.transform.position);
+
+
 
             // Attack the player within a certain distance
             if(playerManager.distanceAway < monsterBalancer.attackDistance && actionTime > monsterBalancer.actionCooldown)
@@ -389,19 +399,45 @@ public class MonsterAI : MonoBehaviour {
                 actionTime = 0.0f;
             }
         }
+       
         // lost the player
         else
         {
             if (debug.monsterSpeakStates)
                 Debug.Log("WHERE DID YOU GO???");
 
-			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-			//state = "patrol";
-			PatrolReturn();
+            /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            //state = "patrol";
+            playerSeen = false;
+            PatrolReturn();
+        }
+
+        // LOST PLAYER DUE TO DISTANCE // DEACTIVATE PLAYER SEEB
+        if (playerManager.distanceAway > monsterBalancer.evasionDistance)
+        {
+            if (debug.monsterSpeakStates)
+            {
+                Debug.Log("YOU GOT AWAY");
+            }
+
+            playerSeen = false;
+            PatrolReturn();
+        }
+
+        // LOST PLAYER DUE TO lOWERED PRESENCE // DEACTIVATE PLAYER SEEB
+        if (presence < monsterBalancer.presenceEvasion)
+        {
+            if (debug.monsterSpeakStates)
+            {
+                Debug.Log("I CAN'T HEAR YOU ANYMORE");
+            }
+
+            playerSeen = false;
+            PatrolReturn();
         }
 
         // maybe set new speeds for the agent too?
-       
+
     }
 
     // This is a chase which is sustained so long as the player is in range or their presence is still high (no visual confirmation so he can chase around corners)
@@ -521,7 +557,7 @@ public class MonsterAI : MonoBehaviour {
     public void PlayerAwarenessCheck()
     {
         // The only variables it checks is it's search starting distance[make later] checked against player distance, and then presence vs search starting presence[make later]
-        if (presence > 0.7f && playerManager.distanceAway < 6.0f)
+        if (presence > monsterBalancer.presenceAwareToSearch && playerManager.distanceAway < monsterBalancer.distanceAwareToSearch)
         {
             if (debug.monsterSpeakStates)
                 Debug.Log("What was that?");
