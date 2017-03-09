@@ -105,9 +105,14 @@ public class controller : MonoBehaviour
 
     public bool holdObj;
 
+    /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
+    private bool vrBodCal;
+    /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
+
     // Use this for initialization
     void Start()
 	{
+
 		// lcok cursor
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = (CursorLockMode.Locked != wantedMode);
@@ -137,6 +142,20 @@ public class controller : MonoBehaviour
         noteBooks = GameObject.FindGameObjectsWithTag("noteBook"); // The controller identifies any notebooks in use either in VR or non-VR
         anim = GameObject.FindGameObjectWithTag("arms").GetComponent<Animator>(); // Initialize animator from placeholder arms
         rb = GetComponent<Rigidbody>();
+
+
+        /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
+        
+        if (VRSettings.enabled)
+        {
+            vrBodCal = false;
+        }
+        else
+        {
+            nonVrCam.GetComponent<Camera>().fieldOfView = 60.0f;
+        }
+        
+        /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
 
         // Every noteook starts open with this command
         foreach (GameObject n in noteBooks)
@@ -168,17 +187,29 @@ public class controller : MonoBehaviour
             camerasgroup.playerVR.SetActive(false);
             camerasgroup.playerNormal.SetActive(true);
         }
-
-        
     }
 
 	// Update is called once per frame
 	void Update()
 	{
+        /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)       
+        if (VRSettings.enabled && !vrBodCal)
+        {
+
+            vrBodCal = true;
+
+            //headJoint.transform.position += new Vector3(0.0f, 0.0f, -0.5f);
+            Debug.Log("head join pos " + headJoint.transform.position);
+
+        }
+        /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
+
         if (!VRSettings.enabled)
         {
             if (!nonVrCam)
                 nonVrCam = GameObject.FindGameObjectWithTag("NonVRCam");
+
+            nonVrCam.GetComponent<Camera>().fieldOfView = 60.0f;
         }
         else
         {

@@ -62,13 +62,14 @@ public class lookAtObject : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        gui = GameObject.FindGameObjectsWithTag("PlayerUI");
-        foreach (GameObject u in gui)
+        
+        if (VRSettings.enabled)
         {
-            if (u.activeSelf)
-            {
-                currGui = u;
-            }
+            currGui = GameObject.FindGameObjectWithTag("VRPlayerUI");
+        }
+        else
+        {
+            currGui = GameObject.FindGameObjectWithTag("PlayerUI");
         }
 
         oriLoc = transform.position;
@@ -106,12 +107,22 @@ public class lookAtObject : MonoBehaviour {
             curCam = GameObject.FindGameObjectWithTag("NonVRCam");
 
         // Updating which GUI to use
-        foreach (GameObject u in gui)
+        if (VRSettings.enabled)
         {
-            if (u.activeSelf)
-            {
-                currGui = u;
-            }
+            currGui = GameObject.FindGameObjectWithTag("VRPlayerUI");
+        }
+        else
+        {
+            currGui = GameObject.FindGameObjectWithTag("PlayerUI");
+        }
+
+        if (VRSettings.enabled)
+        {
+            objLookingAt = GameObject.FindGameObjectWithTag("VRUIRaycast").GetComponent<lookAt>().playerLookAt;
+        }
+        else
+        {
+            objLookingAt = curCam.GetComponent<lookAt>().playerLookAt;
         }
 
         if (!itemHold)
@@ -124,7 +135,7 @@ public class lookAtObject : MonoBehaviour {
                 currGui.GetComponent<interactUI>().uiQueue();
             }
 
-            objLookingAt = curCam.GetComponent<lookAt>().playerLookAt;
+            
 
             distance = Vector3.Distance(player.transform.position, transform.position);
 
