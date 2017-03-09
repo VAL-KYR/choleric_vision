@@ -100,6 +100,11 @@ public class lookAtObject : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+        if (VRSettings.enabled)
+            curCam = GameObject.FindGameObjectWithTag("VRCam");
+        else
+            curCam = GameObject.FindGameObjectWithTag("NonVRCam");
+
         // Updating which GUI to use
         foreach (GameObject u in gui)
         {

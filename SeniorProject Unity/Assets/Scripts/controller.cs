@@ -345,8 +345,6 @@ public class controller : MonoBehaviour
             {
 				playerLean.keyboard = false;
 				playerLean.controller = true;
-                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), playerLean.leanSpeed * (Time.deltaTime * Input.GetAxis("LLean")));
-                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), Input.GetAxis("LLean"));
 
                 float newLLeanAngle = Input.GetAxis("LLean") * playerLean.maxLeft;
                 playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newLLeanAngle), playerLean.leanSpeed * Time.deltaTime);
@@ -357,8 +355,6 @@ public class controller : MonoBehaviour
             {
 				playerLean.keyboard = false;
 				playerLean.controller = true;
-                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), playerLean.leanSpeed * (Time.deltaTime * (-1 * Input.GetAxis("RLean"))));
-                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), -1 * Input.GetAxis("RLean"));
 
                 float newRLeanAngle = Input.GetAxis("RLean") * playerLean.maxRight;
                 playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, -1 * newRLeanAngle), playerLean.leanSpeed * Time.deltaTime);
@@ -375,8 +371,6 @@ public class controller : MonoBehaviour
 			{
 				playerLean.keyboard = true;
 				playerLean.controller = false;
-				//playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), playerLean.leanSpeed * (Time.deltaTime * Input.GetAxis("LLean")));
-				//playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), Input.GetAxis("LLean"));
 
 				float newLLeanAngle = Input.GetAxis("MKLLean") * playerLean.maxLeft;
 				playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newLLeanAngle), playerLean.leanSpeed * Time.deltaTime);
@@ -387,8 +381,6 @@ public class controller : MonoBehaviour
 			{
 				playerLean.keyboard = true;
 				playerLean.controller = false;
-				//playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), playerLean.leanSpeed * (Time.deltaTime * (-1 * Input.GetAxis("RLean"))));
-				//playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), -1 * Input.GetAxis("RLean"));
 
 				float newRLeanAngle = Input.GetAxis("MKRLean") * playerLean.maxRight;
 				playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newRLeanAngle), playerLean.leanSpeed * Time.deltaTime);
