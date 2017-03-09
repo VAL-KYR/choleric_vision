@@ -51,6 +51,16 @@ public class Presence : MonoBehaviour {
 
         samples = new float[qSamples];
 
+		// update player flashlight status
+		foreach (GameObject f in flashLights)
+		{
+			if (f.activeSelf)
+			{
+				playerFlashlight = f.GetComponent<flashLightOnOff>().flashlight.isActiveAndEnabled;
+			}
+
+		}
+
         playerCrouch = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().crouch;
         lastPosition = new Vector3(0.0f, 0.0f, 0.0f);
     }
@@ -66,7 +76,7 @@ public class Presence : MonoBehaviour {
         {
             if (f.activeSelf)
             {
-                playerFlashlight = f.GetComponent<flashLightOnOff>().flashlight.enabled;
+                playerFlashlight = f.GetComponent<flashLightOnOff>().flashlight.isActiveAndEnabled;
             }
             
         }

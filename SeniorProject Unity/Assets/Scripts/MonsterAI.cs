@@ -88,6 +88,7 @@ public class MonsterAI : MonoBehaviour {
     private GameObject player;
     private GameObject investigateRecorder;
     private GameObject searchObject;
+	private GameObject patrolObject;
 
     // action operation handler
 	public float actionTime = 0.0f;
@@ -227,7 +228,7 @@ public class MonsterAI : MonoBehaviour {
         }
 
         // check for the player if the monster should start a search
-        if(state != "chase" && state != "scriptedChase")
+        if(state == "patrol")
         {
             PlayerAwarenessCheck();
         }
@@ -236,7 +237,6 @@ public class MonsterAI : MonoBehaviour {
 
         // Generic Monster behaviours
         CalculateRanges();
-        PatrolReturn();
         DimLights();
         MonsterAnimate();
         Looking();
@@ -268,11 +268,45 @@ public class MonsterAI : MonoBehaviour {
         //    
     }
 
-    public void PatrolReturn()
-    {
-        // return to nearest patrol point
+	public void PatrolReturn()
+	{
+		// return to nearest patrol point
+		float[] patrolDistances = new float[patrolDestinations.Length];
 
-    }
+		if (debug.investigate)
+			Debug.Log("new distances instanced " + patrolDistances);
+
+		// create list of distances
+		for (int s = 0; s < patrolDestinations.Length; s++)
+		{
+			patrolDistances[s] = Vector3.Distance(gameObject.transform.position, patrolDestinations[s].transform.position);
+		}
+
+		if (debug.investigate)
+			Debug.Log("new distances assigned " + patrolDistances);
+
+		// find the closest one
+		float toDistance = Mathf.Min(patrolDistances);
+
+		if (debug.investigate)
+			Debug.Log("todistance is " + toDistance);
+
+		// remember closest point
+		for (int s = 0; s < patrolDestinations.Length; s++)
+		{
+			if (patrolDistances[s] == toDistance)
+			{
+				//patrolObject = patrolDestinations[s];
+				destinationIterator = s;
+				if (debug.investigate)
+					Debug.Log("now investigating sound at " + patrolObject);
+
+				state = "patrol";
+			}
+		}
+	}
+
+
 
     // This function is a search, meaning it uses the monster's head to raycast to target and see if they should persue them
     public void Search()
@@ -320,7 +354,11 @@ public class MonsterAI : MonoBehaviour {
                     Debug.Log("Guess it was nothing");
 
                 playerSeen = false;
-                state = "patrol";
+
+				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                // state = "patrol";
+				PatrolReturn();
+
                 searchTime = 0;
             }
 
@@ -357,7 +395,9 @@ public class MonsterAI : MonoBehaviour {
             if (debug.monsterSpeakStates)
                 Debug.Log("WHERE DID YOU GO???");
 
-            state = "patrol";
+			/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			//state = "patrol";
+			PatrolReturn();
         }
 
         // maybe set new speeds for the agent too?
@@ -481,7 +521,7 @@ public class MonsterAI : MonoBehaviour {
     public void PlayerAwarenessCheck()
     {
         // The only variables it checks is it's search starting distance[make later] checked against player distance, and then presence vs search starting presence[make later]
-        if (presence > 0.34f && playerManager.distanceAway < 5.0f)
+        if (presence > 0.7f && playerManager.distanceAway < 6.0f)
         {
             if (debug.monsterSpeakStates)
                 Debug.Log("What was that?");
@@ -525,6 +565,10 @@ public class MonsterAI : MonoBehaviour {
         int playerDestination = UnityEngine.Random.Range(0, playerManager.spawns.Length);
         
         player.transform.position = playerManager.spawns[playerDestination].transform.position;
+
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//state = "patrol";
+		PatrolReturn();
         
         // fade to black on controller
         // spawn monster somwhere else
@@ -535,7 +579,10 @@ public class MonsterAI : MonoBehaviour {
     // The hit has caused a death this makes the player spawn in the death room, the only way out is to quit
     public void PlayerDeath()
     {
-        state = "patrol";
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//state = "patrol";
+		PatrolReturn();
+        
 
         if(debug.monsterSpeakStates)
             Debug.Log(" Y O U   D I E D ");
@@ -694,7 +741,7 @@ public class MonsterAI : MonoBehaviour {
                 // if it's a flashlight don't completely dim
                 if (unaturalLights[j].GetComponent<flashLightOnOff>() != null)
                 {
-                    unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 1.0f, (distanceToLight / 10.0f) * Time.deltaTime);
+                    unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 0.6f, (distanceToLight / 10.0f) * Time.deltaTime);
                 }
                 // dim normal
                 else

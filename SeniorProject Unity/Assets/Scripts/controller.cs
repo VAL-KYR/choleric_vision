@@ -4,8 +4,19 @@ using UnityEngine.VR;
 
 public class controller : MonoBehaviour
 {
+	CursorLockMode wantedMode;
+
+
     public bool debug;
     public float playerHealth = 100.0f;
+
+    [System.Serializable]
+    public class PlayerSpawns
+    {
+        public GameObject[] spawns;
+        public int spawnChoose;
+    }
+    public PlayerSpawns playerSpawn = new PlayerSpawns();
 
     [System.Serializable]
     public class PlayerSpeedGroup
@@ -17,6 +28,21 @@ public class controller : MonoBehaviour
         public float speedV = 2.0f;
     }
     public PlayerSpeedGroup playerSpeedGroup = new PlayerSpeedGroup();
+
+    [System.Serializable]
+    public class PlayerLean
+    {
+        public GameObject leanObject;
+        public float maxRight = -40.0f;
+        public float maxLeft = 40.0f;
+        public float leanSpeed = 1.0f;
+        public float leanReturnSpeed = 3.0f;
+        public float lEase = 0;
+        public float rEase = 0;
+		public bool keyboard = true;
+		public bool controller = false;
+    }
+    public PlayerLean playerLean = new PlayerLean();
 
     [System.Serializable]
     public class CamerasGroup
@@ -82,6 +108,10 @@ public class controller : MonoBehaviour
     // Use this for initialization
     void Start()
 	{
+		// lcok cursor
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = (CursorLockMode.Locked != wantedMode);
+
         // Player Death Effects
         if (!VRSettings.enabled)
         {
@@ -91,7 +121,11 @@ public class controller : MonoBehaviour
         {
             vrCam = GameObject.FindGameObjectWithTag("VRCam");
         }
-            
+
+        /// Place the player at a spawn of choice ///
+        playerSpawn.spawns = GameObject.FindGameObjectsWithTag("PlayerSpawns");
+        gameObject.transform.position = playerSpawn.spawns[playerSpawn.spawnChoose].transform.position;
+
 
         //Find Gameobjects or componants
         camerasgroup.playerVR = GameObject.FindGameObjectWithTag("VRCam");
@@ -303,6 +337,70 @@ public class controller : MonoBehaviour
             headJoint.transform.position -= new Vector3(0.0f, 0.01f, 0.0f);
         }
 
+        // NON VR LEANING
+        if (!VRSettings.enabled)
+        {
+            
+            if (Input.GetAxis("LLean") > 0)
+            {
+				playerLean.keyboard = false;
+				playerLean.controller = true;
+                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), playerLean.leanSpeed * (Time.deltaTime * Input.GetAxis("LLean")));
+                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), Input.GetAxis("LLean"));
+
+                float newLLeanAngle = Input.GetAxis("LLean") * playerLean.maxLeft;
+                playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newLLeanAngle), playerLean.leanSpeed * Time.deltaTime);
+                playerLean.lEase = playerLean.leanObject.transform.localRotation.eulerAngles.z;
+                //Debug.Log("LLean " + Input.GetAxis("LLean"));
+            }
+            else if (Input.GetAxis("RLean") < 0)
+            {
+				playerLean.keyboard = false;
+				playerLean.controller = true;
+                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), playerLean.leanSpeed * (Time.deltaTime * (-1 * Input.GetAxis("RLean"))));
+                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), -1 * Input.GetAxis("RLean"));
+
+                float newRLeanAngle = Input.GetAxis("RLean") * playerLean.maxRight;
+                playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, -1 * newRLeanAngle), playerLean.leanSpeed * Time.deltaTime);
+                playerLean.rEase = -1 * (playerLean.leanObject.transform.localRotation.eulerAngles.z - 360);
+                //Debug.Log("RLean " + Input.GetAxis("RLean"));
+            }
+			else if (playerLean.controller && Input.GetAxis("RLean") == 0 && Input.GetAxis("LLean") == 0)
+			{
+				playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0.0f, 0, 0), playerLean.leanReturnSpeed * Time.deltaTime);
+			}
+            
+
+			if (Input.GetButton("MKLLean"))
+			{
+				playerLean.keyboard = true;
+				playerLean.controller = false;
+				//playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), playerLean.leanSpeed * (Time.deltaTime * Input.GetAxis("LLean")));
+				//playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), Input.GetAxis("LLean"));
+
+				float newLLeanAngle = Input.GetAxis("MKLLean") * playerLean.maxLeft;
+				playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newLLeanAngle), playerLean.leanSpeed * Time.deltaTime);
+				playerLean.lEase = playerLean.leanObject.transform.localRotation.eulerAngles.z;
+				//Debug.Log("LLean " + Input.GetAxis("LLean"));
+			}
+			else if (Input.GetButton("MKRLean"))
+			{
+				playerLean.keyboard = true;
+				playerLean.controller = false;
+				//playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), playerLean.leanSpeed * (Time.deltaTime * (-1 * Input.GetAxis("RLean"))));
+				//playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), -1 * Input.GetAxis("RLean"));
+
+				float newRLeanAngle = Input.GetAxis("MKRLean") * playerLean.maxRight;
+				playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newRLeanAngle), playerLean.leanSpeed * Time.deltaTime);
+				playerLean.rEase = -1 * (playerLean.leanObject.transform.localRotation.eulerAngles.z - 360);
+				//Debug.Log("RLean " + Input.GetAxis("RLean"));
+			}
+			else if (playerLean.keyboard && !Input.GetButtonDown("MKRLean") && !Input.GetButtonDown("MKLLean"))
+			{
+				playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0.0f, 0, 0), playerLean.leanReturnSpeed * Time.deltaTime);
+			}
+
+        }
 
         
 
@@ -443,9 +541,6 @@ public class controller : MonoBehaviour
         }
 
 
-        //print("Last:" + transform.position);
-
-
     }
 
     public void Effects()
@@ -463,30 +558,5 @@ public class controller : MonoBehaviour
         }
     }
 
-    /*
-    public void EffectsIncrease()
-    {
-        if (!VRSettings.enabled)
-        {
-            nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 1.0f, 1.0f * Time.deltaTime);
-        }
-        else
-        {
-            vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 1.0f, 1.0f * Time.deltaTime);
-        }
-    }
-
-    public void EffectsDecrease()
-    {
-        if (!VRSettings.enabled)
-        {
-            nonVrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 0.0f, 1.0f * Time.deltaTime);
-        }
-        else
-        {
-            vrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().Factor, 0.0f, 1.0f * Time.deltaTime);
-        }
-    }
-    */
 
 }

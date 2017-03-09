@@ -69,21 +69,23 @@ public class flashback : MonoBehaviour {
 			deSatFactor = vrCam.GetComponent<ColorCurvesManager>().SaturationA;
 		}
 
-
+        /////////////////////////////////////////////////// KEEP
 		if (flashbackTripped && !flashbackDone)
 		{
 			ApplyVisualEffects();
 			PlayFlashbackAudio();
 		}
 
-		else if (flashbackDone && flashbackTripped)
+		else if (flashbackTripped && flashbackDone)
 		{
 			RemoveVisualEffects();
 			areaMusicSnapshot.TransitionTo(transitionTime);
 		}
+        /////////////////////////////////////////////////// KEEP
 
     }
 
+    /////////////////////////////////////////////////// KEEP
     public void OnTriggerEnter(Collider c)
     {
         if (c.CompareTag("GameController") && !flashbackTripped)
@@ -91,7 +93,9 @@ public class flashback : MonoBehaviour {
             flashbackTripped = true;
         }
     }
+    /////////////////////////////////////////////////// KEEP
 
+    /////////////////////////////////////////////////// SEND
     public void PlayFlashbackAudio()
 	{
 		// plays once
@@ -119,7 +123,6 @@ public class flashback : MonoBehaviour {
 		if (!VRSettings.enabled)
 		{
 			nonVrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(nonVrCam.GetComponent<ColorCurvesManager>().SaturationA, 0.0f, deSatTime * Time.deltaTime);
-			//onVrCam.GetComponent<Vortex>().
 		}
 		else
 		{
@@ -140,4 +143,6 @@ public class flashback : MonoBehaviour {
 			vrCam.GetComponent<ColorCurvesManager>().SaturationA = Mathf.Lerp(vrCam.GetComponent<ColorCurvesManager>().SaturationA, 1.0f, deSatTime * Time.deltaTime);
 		}
     }
+    /////////////////////////////////////////////////// SEND
+
 }
