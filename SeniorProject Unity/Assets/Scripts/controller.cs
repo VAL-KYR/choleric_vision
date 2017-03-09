@@ -105,6 +105,28 @@ public class controller : MonoBehaviour
 
     public bool holdObj;
 
+    private Vector3 orCamPos;
+    private Vector3 orJourPos;
+
+    private Vector3 iniCamPos;
+
+    private float XDif;
+    private float YDif;
+    private float ZDif;
+
+    private float nXDif;
+    private float nYDif;
+    private float nZDif;
+
+    float xChan;
+    float yChan;
+    float zChan;
+
+
+    public GameObject nb;
+
+    private bool vrBodCal;
+
     // Use this for initialization
     void Start()
 	{
@@ -120,6 +142,7 @@ public class controller : MonoBehaviour
         else
         {
             vrCam = GameObject.FindGameObjectWithTag("VRCam");
+            
         }
 
         /// Place the player at a spawn of choice ///
@@ -137,6 +160,18 @@ public class controller : MonoBehaviour
         noteBooks = GameObject.FindGameObjectsWithTag("noteBook"); // The controller identifies any notebooks in use either in VR or non-VR
         anim = GameObject.FindGameObjectWithTag("arms").GetComponent<Animator>(); // Initialize animator from placeholder arms
         rb = GetComponent<Rigidbody>();
+        nb = GameObject.FindGameObjectWithTag("noteBook");
+
+        if (VRSettings.enabled)
+        {
+            vrBodCal = false;
+            orCamPos = vrCam.transform.position;
+            orJourPos = nb.transform.position;
+
+            XDif = orCamPos.x - orJourPos.x;
+            YDif = orCamPos.y - orJourPos.y;
+            ZDif = orCamPos.z - orJourPos.z;
+        }
 
         // Every noteook starts open with this command
         foreach (GameObject n in noteBooks)
@@ -175,6 +210,30 @@ public class controller : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+
+        if (VRSettings.enabled && !vrBodCal)
+        {
+            vrBodCal = true;
+            iniCamPos = headJoint.transform.position;
+
+       
+            nXDif = iniCamPos.x - orJourPos.x;
+            nYDif = iniCamPos.y - orJourPos.y;
+            nZDif = iniCamPos.z - orJourPos.z;
+
+            xChan = nXDif - XDif;
+            yChan = nYDif - YDif;
+            zChan = nZDif - ZDif;
+
+
+            print("Old X dif: " + XDif + " - New X Dif: " + nXDif + " - Dif: " + xChan);
+            print("Old Y dif: " + YDif + " - New Y Dif: " + nYDif + " - Dif: " + yChan);
+            print("Old Z dif: " + ZDif + " - New Z Dif: " + nZDif + " - Dif: " + zChan);
+
+            headJoint.transform.position += new Vector3 (xChan, yChan, zChan);
+
+        }
+
         if (!VRSettings.enabled)
         {
             if (!nonVrCam)
