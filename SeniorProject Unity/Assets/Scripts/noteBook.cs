@@ -58,8 +58,22 @@ public class noteBook : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        
+        for (int i = 0; i < 20; i++)
+        {
+            if (Input.GetKeyDown("joystick 1 button " + i) || Input.GetAxis("LLean") > 0 || Input.GetAxis("RLean") < 0)
+            {
+                Debug.Log("joystick 1 button " + i);
+                Debug.Log("joystick used");
+            }
+        }
+        /////////////////////////////////////////////// FIX LATER ///////////////////////////////////////////////////////////////////////////////////////////
+
+
         // If the notes text objects are active then animate the arms to open or close
         anim.SetBool("OpenClosed", bookOpen);
+
+
 
     }
 

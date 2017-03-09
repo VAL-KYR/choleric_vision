@@ -521,7 +521,7 @@ public class MonsterAI : MonoBehaviour {
     public void PlayerAwarenessCheck()
     {
         // The only variables it checks is it's search starting distance[make later] checked against player distance, and then presence vs search starting presence[make later]
-        if (presence > 0.7f && playerManager.distanceAway > 5.0f)
+        if (presence > 0.7f && playerManager.distanceAway < 6.0f)
         {
             if (debug.monsterSpeakStates)
                 Debug.Log("What was that?");

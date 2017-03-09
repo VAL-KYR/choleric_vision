@@ -34,6 +34,8 @@ public class controller : MonoBehaviour
         public float maxLeft = 40.0f;
         public float leanSpeed = 1.0f;
         public float leanReturnSpeed = 3.0f;
+        public float lEase = 0;
+        public float rEase = 0;
     }
     public PlayerLean playerLean = new PlayerLean();
 
@@ -329,20 +331,32 @@ public class controller : MonoBehaviour
         // NON VR LEANING
         if (!VRSettings.enabled)
         {
+            
             if (Input.GetAxis("LLean") > 0)
             {
-                playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), playerLean.leanSpeed * Time.deltaTime);
-                Debug.Log("LLean " + Input.GetAxis("LLean"));
+
+                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), playerLean.leanSpeed * (Time.deltaTime * Input.GetAxis("LLean")));
+                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxLeft), Input.GetAxis("LLean"));
+
+                float newLLeanAngle = Input.GetAxis("LLean") * playerLean.maxLeft;
+                playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newLLeanAngle), playerLean.leanSpeed * Time.deltaTime);
+                playerLean.lEase = playerLean.leanObject.transform.localRotation.eulerAngles.z;
+                //Debug.Log("LLean " + Input.GetAxis("LLean"));
             }
             else if (Input.GetAxis("RLean") < 0)
             {
-                playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), playerLean.leanSpeed * Time.deltaTime);
-                Debug.Log("RLean " + Input.GetAxis("RLean"));
+
+                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), playerLean.leanSpeed * (Time.deltaTime * (-1 * Input.GetAxis("RLean"))));
+                //playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, playerLean.maxRight), -1 * Input.GetAxis("RLean"));
+
+                float newRLeanAngle = Input.GetAxis("RLean") * playerLean.maxRight;
+                playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, -1 * newRLeanAngle), playerLean.leanSpeed * Time.deltaTime);
+                playerLean.rEase = -1 * (playerLean.leanObject.transform.localRotation.eulerAngles.z - 360);
+                //Debug.Log("RLean " + Input.GetAxis("RLean"));
             }
-            else if (Input.GetAxis("RLean") == 0)
+            else if (Input.GetAxis("RLean") == 0 && Input.GetAxis("LLean") == 0)
             {
                 playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0.0f, 0, 0), playerLean.leanReturnSpeed * Time.deltaTime);
-                Debug.Log("Back to center");
             }
         }
 
