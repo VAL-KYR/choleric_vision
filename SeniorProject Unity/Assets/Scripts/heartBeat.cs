@@ -17,7 +17,7 @@ public class heartBeat : MonoBehaviour {
 
     public int avBeatPerMin;
 
-    SerialPort sp = new SerialPort("COM4", 9600);
+    SerialPort sp = new SerialPort("COM7", 9600);
 
     private int BPMavg;
 
@@ -27,7 +27,7 @@ public class heartBeat : MonoBehaviour {
     // 2 = Done
 
 
-    private bool cali;
+    public bool cali;
 
 
     // Use this for initialization
@@ -77,9 +77,21 @@ public class heartBeat : MonoBehaviour {
 
                         curBeatPerMinString = sp.ReadLine();
 
-                        OfHeartAvgCount[numOfHeartAvgDone] = int.Parse(curBeatPerMinString);
 
-                        numOfHeartAvgDone++;
+                        int OfHeartAvgCountTemp = int.Parse(curBeatPerMinString);
+
+
+                        if (OfHeartAvgCountTemp <= 50 || OfHeartAvgCountTemp >= 110)
+                        {
+
+                        }
+                        else
+                        {
+                            OfHeartAvgCount[numOfHeartAvgDone] = OfHeartAvgCountTemp;
+
+                            numOfHeartAvgDone++;
+                        }
+                        
                     }
                     catch (System.Exception)
                     {
@@ -98,6 +110,8 @@ public class heartBeat : MonoBehaviour {
 
 
                 calState = 2;
+                GetComponent<Presence>().BPMBool = true;
+                GetComponent<Presence>().avrBPM = avBeatPerMin;
             }
         }
         else if (calState == 2)
@@ -109,7 +123,15 @@ public class heartBeat : MonoBehaviour {
 
                     curBeatPerMinString = sp.ReadLine();
 
-                    curBeatPerMin = int.Parse(curBeatPerMinString);
+                    int curBeatPerMinTemp = int.Parse(curBeatPerMinString);
+
+
+                    if (curBeatPerMinTemp > 50)
+                    {
+                        curBeatPerMin = curBeatPerMinTemp;
+                        GetComponent<Presence>().curBPM = curBeatPerMin;
+                    }
+                        
 
                     print(curBeatPerMin);
                 }

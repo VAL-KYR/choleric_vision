@@ -131,7 +131,6 @@ public class controller : MonoBehaviour
         playerSpawn.spawns = GameObject.FindGameObjectsWithTag("PlayerSpawns");
         gameObject.transform.position = playerSpawn.spawns[playerSpawn.spawnChoose].transform.position;
 
-
         //Find Gameobjects or componants
         camerasgroup.playerVR = GameObject.FindGameObjectWithTag("VRCam");
         camerasgroup.playerNormal = GameObject.FindGameObjectWithTag("NonVRCam");

@@ -134,11 +134,11 @@ public class Presence : MonoBehaviour {
                     // crouching reduces presence
                     if (playerCrouch)
                     {
-                        curPres = (50.0f + (HBVar) * speedVar) - presence.crouchFactor;
+                        curPres = (0.5f + (HBVar) * speedVar) - presence.crouchFactor;
                     }
                     else
                     {
-                        curPres = 50.0f + (HBVar) * speedVar;
+                        curPres = 0.5f + (HBVar) * speedVar;
                     }
                 }
                     
