@@ -9,8 +9,8 @@ public class Presence : MonoBehaviour {
 
     //HB Variables
     private int hbHighest;
-    public int curBPM;
-    public int avrBPM;
+    private int curBPM;
+    private int avrBPM;
     public bool BPMBool;
     private float HBVar;
     public float hbTimerIni;
@@ -18,6 +18,7 @@ public class Presence : MonoBehaviour {
 
     //Walking Speed Variables
     private float speedVar;
+    public float time;
 
     //Sound Sampling
     private int qSamples = 1024;
@@ -26,18 +27,21 @@ public class Presence : MonoBehaviour {
     private float dbValue;
     private float[] samples;
 
-    public Vector3 velocity;
+    private Vector3 velocity;
     private Vector3 lastPosition;
 
     [System.Serializable]
     public class presenceTweak
     {
+        public float HBVarFactor = 0.6f;
         public float crouchFactor = 0.1f;
+        public bool playerCrouch = false;
+        public bool playerFlashlight = false;
     }
     public presenceTweak presence = new presenceTweak();
 
-    public bool playerCrouch = false;
-    public bool playerFlashlight = false;
+    //public bool playerCrouch = false;
+    //public bool playerFlashlight = false;
 
     public GameObject[] flashLights;
     
@@ -56,12 +60,15 @@ public class Presence : MonoBehaviour {
 		{
 			if (f.activeSelf)
 			{
-				playerFlashlight = f.GetComponent<flashLightOnOff>().flashlight.isActiveAndEnabled;
+                presence.playerFlashlight = f.GetComponent<flashLightOnOff>().flashlight.isActiveAndEnabled;
 			}
 
 		}
 
-        playerCrouch = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().crouch;
+        curBPM = GetComponent<heartBeat>().curBeatPerMin;
+        avrBPM = GetComponent<heartBeat>().avBeatPerMin;
+
+        presence.playerCrouch = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().crouch;
         lastPosition = new Vector3(0.0f, 0.0f, 0.0f);
     }
 
@@ -69,24 +76,27 @@ public class Presence : MonoBehaviour {
     void Update() {
 
         // update player crouch status
-        playerCrouch = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().crouch;
+        presence.playerCrouch = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().crouch;
 
         // update player flashlight status
         foreach (GameObject f in flashLights)
         {
             if (f.activeSelf)
             {
-                playerFlashlight = f.GetComponent<flashLightOnOff>().flashlight.isActiveAndEnabled;
+                presence.playerFlashlight = f.GetComponent<flashLightOnOff>().flashlight.isActiveAndEnabled;
             }
             
         }
-        
+
+        curBPM = GetComponent<heartBeat>().curBeatPerMin;
+        avrBPM = GetComponent<heartBeat>().avBeatPerMin;
+
 
         // velocity and speed calculations
         velocity = (transform.position - lastPosition) / Time.deltaTime;
         lastPosition = transform.position;
         float speed = velocity.magnitude;
-        
+
         /*int i;
         float sum = 0f;
         for (i = 0; i < qSamples; i++)
@@ -99,9 +109,31 @@ public class Presence : MonoBehaviour {
 
         print(dbValue);
         */
+        time += Time.deltaTime;
 
         if (BPMBool)//if player playing with HB sensor
         {
+            HBVar = ((float)curBPM / (float)avrBPM) - 1.0f;  // 0 to 1 factor
+
+            if (time > 0.1f)
+            {
+                if (presence.playerCrouch)
+                {
+                    speedVar = ((speed * 0.069f) - 0.15f) - presence.crouchFactor;
+                    time = 0;
+                }
+                else
+                {
+                    speedVar = (speed * 0.069f) - 0.15f;
+                    time = 0;
+                }
+
+                curPres = (0.5f + speedVar) + (HBVar * presence.HBVarFactor);
+            }
+            
+            
+
+            /*
             if (debug)
             {
                 Debug.Log("Using heartrate for presence");
@@ -110,7 +142,7 @@ public class Presence : MonoBehaviour {
             speedVar = (speed * 0.041f) - 0.15f;
 
 
-            if (curBPM > hbHighest)
+            if (curBPM + 10 > hbHighest)
             {
                 hbHighest = curBPM;
                 hbTimerCur = hbTimerIni;
@@ -134,11 +166,11 @@ public class Presence : MonoBehaviour {
                     // crouching reduces presence
                     if (playerCrouch)
                     {
-                        curPres = (50.0f + (HBVar) * speedVar) - presence.crouchFactor;
+                        curPres = (0.5f + (HBVar) * speedVar) - presence.crouchFactor;
                     }
                     else
                     {
-                        curPres = 50.0f + (HBVar) * speedVar;
+                        curPres = 0.5f + (HBVar) * speedVar;
                     }
                 }
                     
@@ -163,6 +195,7 @@ public class Presence : MonoBehaviour {
             {
                 hbHighest = 0;
             }
+            */
 
         }
         else //if player not playing with HB sensor
@@ -173,7 +206,7 @@ public class Presence : MonoBehaviour {
             }
 
             // crouching reduces presence
-            if (playerCrouch)
+            if (presence.playerCrouch)
             {
                 speedVar = ((speed * 0.069f) - 0.15f) - presence.crouchFactor;
             }

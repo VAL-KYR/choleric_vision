@@ -12,10 +12,12 @@ public class musicTransition : MonoBehaviour
 
 	void OnTriggerEnter(Collider c)
 	{
-        if (musicTrigger == false && c.CompareTag("GameController"))
+        //Debug.Log("Collider Entered " + c);
+        if (!musicTrigger && c.CompareTag("GameController"))
 		{
 			musicTrigger = true;
-			newSnapshot.TransitionTo(transitionTime);
+            Debug.Log("Music changed");
+            newSnapshot.TransitionTo(transitionTime);
 		}
 	}
 }
