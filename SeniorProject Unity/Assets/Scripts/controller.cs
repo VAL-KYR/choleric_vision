@@ -424,14 +424,11 @@ public class controller : MonoBehaviour
 
         }
 
-        
-
         // Heart Beat Listening
         if (Input.GetButton("HBListen"))
         {
             calibrationDone = true;
 
-      
             // Use this variable to access in calibration
             HBListening = true;
             heart.GetComponent<heartBeatThump>().heartListening = true;

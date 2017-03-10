@@ -111,7 +111,6 @@ public class heartBeat : MonoBehaviour {
 
                 calState = 2;
                 GetComponent<Presence>().BPMBool = true;
-                GetComponent<Presence>().avrBPM = avBeatPerMin;
             }
         }
         else if (calState == 2)
@@ -129,7 +128,6 @@ public class heartBeat : MonoBehaviour {
                     if (curBeatPerMinTemp > 50)
                     {
                         curBeatPerMin = curBeatPerMinTemp;
-                        GetComponent<Presence>().curBPM = curBeatPerMin;
                     }
                         
 

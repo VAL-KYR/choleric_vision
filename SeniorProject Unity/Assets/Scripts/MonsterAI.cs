@@ -148,7 +148,7 @@ public class MonsterAI : MonoBehaviour {
 		// states bool startup
 		state = "patrol";
         presence = player.GetComponent<Presence>().curPres;
-        playerManager.flashlight = player.GetComponent<Presence>().playerFlashlight;
+        playerManager.flashlight = player.GetComponent<Presence>().presence.playerFlashlight;
     }
 	
 	// Update is called once per frame
@@ -180,7 +180,7 @@ public class MonsterAI : MonoBehaviour {
         ///
 
         /// CHASE state variables update
-        playerManager.flashlight = player.GetComponent<Presence>().playerFlashlight;
+        playerManager.flashlight = player.GetComponent<Presence>().presence.playerFlashlight;
         presence = player.GetComponent<Presence>().curPres;
         playerManager.distanceAway = Vector3.Distance(gameObject.transform.position, player.transform.position);
         ///
