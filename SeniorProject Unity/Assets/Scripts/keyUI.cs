@@ -38,7 +38,9 @@ public class keyUI : MonoBehaviour {
 	public bool enableOrDisableObject = false;
 	public GameObject activeObject;
 
-
+    // INIT SUCCESS // 
+    public AudioSource success;
+    // INIT SUCCESS // 
 
     // Use this for initialization
     void Start () {
@@ -65,10 +67,13 @@ public class keyUI : MonoBehaviour {
 
         playerC = GameObject.FindGameObjectWithTag("GameController");
 
+        // START SUCCESS //
+        success = GameObject.FindGameObjectWithTag("successSounder").GetComponent<AudioSource>();
+        // START SUCCESS //
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
         
         // Start with key unspawned
         if (startDead)
@@ -97,8 +102,12 @@ public class keyUI : MonoBehaviour {
                 transform.position = new Vector3(100, 100, 100);
                 keyGrabbed = true;
 
-                keySource.clip = pickupSound;
-                keySource.Play();
+                // PLAY GLOBAL SUCCESS SOUND //
+                success.Play();
+                // PLAY GLOBAL SUCCESS SOUND //
+
+                //keySource.clip = pickupSound;
+                //keySource.Play();
 
                 // Flip Active state of despawnObject
                 if (enableOrDisableObject)
@@ -143,6 +152,12 @@ public class keyUI : MonoBehaviour {
                 {
                     keySource.clip = unlockSound;
                     keySource.Play();
+
+                    // PLAY GLOBAL SUCCESS SOUND //
+                    success.Play();
+                    // PLAY GLOBAL SUCCESS SOUND //
+
+                    
                     unlockSounded = true;
                 }
 
