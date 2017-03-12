@@ -65,12 +65,14 @@ public class monsterAnimator : MonoBehaviour {
         anim.SetBool("searching", search);
         anim.SetBool("chasing", chase);
 
-
-        if(gameObject.GetComponent<MonsterAI>().state == "scriptedChase")
+        if (!devAnimTesting)
         {
-            scriptedChase = true;
-            chase = true;
+            if (gameObject.GetComponent<MonsterAI>().state == "scriptedChase")
+            {
+                scriptedChase = true;
+            }
         }
+        
 
         // Developer voice test buttons
         if (devAnimTesting)
@@ -113,13 +115,13 @@ public class monsterAnimator : MonoBehaviour {
         if (idle)
         {
             gameObject.GetComponent<monsterSound>().Voice("ramble", 0.0f, true);
-            idleSnapshot.TransitionTo(transitionTime * 4);
+            idleSnapshot.TransitionTo(transitionTime);
             //monsterAnimState.fullPathHash == idleStateHash
         }
         else if (search)
         {
             gameObject.GetComponent<monsterSound>().Voice("notice", 0.0f, true);
-            idleSnapshot.TransitionTo(transitionTime * 4);
+            idleSnapshot.TransitionTo(transitionTime);
             //monsterAnimState.fullPathHash == searchStateHash
         }
         else if (chase)
@@ -131,7 +133,7 @@ public class monsterAnimator : MonoBehaviour {
         else if (scriptedChase)
         {
             gameObject.GetComponent<monsterSound>().Voice("growl", 0.0f, true);
-            idleSnapshot.TransitionTo(transitionTime * 4);
+            chaseSnapshot.TransitionTo(transitionTime);
             //monsterAnimState.fullPathHash == chaseStateHash
         }
 
