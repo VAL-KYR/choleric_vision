@@ -53,6 +53,8 @@ public class MonsterAI : MonoBehaviour {
     [System.Serializable]
     public class monsterBalance
     {
+        public bool pacify = false;
+
         public float evasionDistance = 12.0f;
         public float attackDistance = 1.0f;
         public float sightDistance = 10.0f;
@@ -231,30 +233,41 @@ public class MonsterAI : MonoBehaviour {
         }
 
         /// Behaviours - chooses appropriate function for state, or instances another instant action function (like attack)
-        if (state == "patrol")
+        if (!monsterBalancer.pacify)
         {
-            Patrol();
+            if (state == "patrol")
+            {
+                Patrol();
+            }
+            else if (state == "search")
+            {
+                Search();
+            }
+            else if (state == "chase")
+            {
+                Chase();
+            }
+            else if (state == "investigate")
+            {
+                Investigate();
+            }
+            else if (state == "investigateSound")
+            {
+                InvestigateSound();
+            }
+            else if (state == "scriptedChase")
+            {
+                ScriptedChase();
+            }
         }
-        else if (state == "search")
+        else
         {
-            Search();
+            if (state == "patrol")
+            {
+                Patrol();
+            }
         }
-        else if (state == "chase")
-        {
-            Chase();
-        }
-        else if (state == "investigate")
-        {
-            Investigate();
-        }
-        else if (state == "investigateSound")
-        {
-            InvestigateSound();
-        }
-        else if (state == "scriptedChase")
-        {
-            ScriptedChase();
-        }
+        
         ///
 
         /// State trigger logic - this has the rules for enabling and disabling behaviours
