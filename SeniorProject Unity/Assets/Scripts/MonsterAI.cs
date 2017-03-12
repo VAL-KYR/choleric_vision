@@ -4,7 +4,7 @@ using System;
 
 public class MonsterAI : MonoBehaviour {
 
-    
+
     // Monster Debug Management
     [System.Serializable]
     public class mDebug
@@ -42,6 +42,10 @@ public class MonsterAI : MonoBehaviour {
         public float acceleration = 8.0f;
         public float stoppingDistance = 0.0f;
         public float stuckDoorOpen = 0.01f;
+        public bool stuckOnOpenDoor = false;
+        public float doorStuckTime = 0.0f;
+        public float doorGhostCooldown = 3.0f;
+        public GameObject stuckDoor;
     }
     public agentManagement agentManager = new agentManagement();
 
@@ -92,16 +96,16 @@ public class MonsterAI : MonoBehaviour {
     private GameObject player;
     private GameObject investigateRecorder;
     private GameObject searchObject;
-	private GameObject patrolObject;
+    private GameObject patrolObject;
 
     // action operation handler
-	public float actionTime = 0.0f;
+    public float actionTime = 0.0f;
     public float searchTime = 0.0f;
 
     // lights
     private GameObject[] unaturalLights;
     float[] unaturalLightIntensity;
-    
+
     // monster details
     public string state = "patrol";
     public float presence;
@@ -111,7 +115,7 @@ public class MonsterAI : MonoBehaviour {
     private Vector3 velocity;
 
     // Use this for initialization
-    void Start () {
+    void Start() {
         // finding player
         player = GameObject.FindGameObjectWithTag("GameController");
         deathRoom = GameObject.FindGameObjectWithTag("DeathPoint");
@@ -126,7 +130,7 @@ public class MonsterAI : MonoBehaviour {
 
         // time must be universal
         time = 0.0f;
-		actionTime = 0.0f;
+        actionTime = 0.0f;
         searchTime = 0.0f;
 
         // search state stuff
@@ -147,14 +151,14 @@ public class MonsterAI : MonoBehaviour {
             unaturalLightIntensity[x] = unaturalLights[x].GetComponent<Light>().intensity;
         }
 
-		// states bool startup
-		state = "patrol";
+        // states bool startup
+        state = "patrol";
         presence = player.GetComponent<Presence>().curPres;
         playerManager.flashlight = player.GetComponent<Presence>().presence.playerFlashlight;
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
 
         // calculate monster velocity for door opening
         velocity = (transform.position - lastPosition) / Time.deltaTime;
@@ -174,7 +178,7 @@ public class MonsterAI : MonoBehaviour {
         {
             Debug.Log("state " + state);
         }
-        
+
 
         /// Player variables Update
         playerManager.health = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
@@ -201,7 +205,7 @@ public class MonsterAI : MonoBehaviour {
         playerManager.distanceAway = Vector3.Distance(gameObject.transform.position, player.transform.position);
         ///
 
-        if(cabinet.GetComponent<documentCabinet>().cabinetOpen == true)
+        if (cabinet.GetComponent<documentCabinet>().cabinetOpen == true)
         {
             state = "scriptedChase";
         }
@@ -219,10 +223,10 @@ public class MonsterAI : MonoBehaviour {
         {
             Chase();
         }
-		else if (state == "investigate")
-		{
-			Investigate();
-		}
+        else if (state == "investigate")
+        {
+            Investigate();
+        }
         else if (state == "investigateSound")
         {
             InvestigateSound();
@@ -236,23 +240,30 @@ public class MonsterAI : MonoBehaviour {
         /// State trigger logic - this has the rules for enabling and disabling behaviours
         foreach (GameObject r in tapeRecorders)
         {
-			if (r.GetComponent<AudioSource>().isPlaying && r != null && searchObject == null)
+            if (r.GetComponent<AudioSource>().isPlaying && r != null && searchObject == null)
             {
-                if(debug.investigate)
-				    Debug.Log("searching for recorder " + r + " is now recorder " + investigateRecorder);
+                if (debug.investigate)
+                    Debug.Log("searching for recorder " + r + " is now recorder " + investigateRecorder);
 
-				investigateRecorder = r;
-				state = "investigate"; // instance to determine source of sound and where to go
+                investigateRecorder = r;
+                state = "investigate"; // instance to determine source of sound and where to go
             }
 
         }
 
         // check for the player if the monster should start a search
-        if(state == "patrol")
+        if (state == "patrol")
         {
             PlayerAwarenessCheck();
         }
         /// 
+
+        // unstuck from door
+        if (agentManager.stuckOnOpenDoor)
+        {
+            RemoveDoorCollider(agentManager.stuckDoor);
+        }
+        //
 
 
         // Generic Monster behaviours
@@ -288,43 +299,43 @@ public class MonsterAI : MonoBehaviour {
         //    
     }
 
-	public void PatrolReturn()
-	{
-		// return to nearest patrol point
-		float[] patrolDistances = new float[patrolDestinations.Length];
+    public void PatrolReturn()
+    {
+        // return to nearest patrol point
+        float[] patrolDistances = new float[patrolDestinations.Length];
 
-		if (debug.investigate)
-			Debug.Log("new distances instanced " + patrolDistances);
+        if (debug.investigate)
+            Debug.Log("new distances instanced " + patrolDistances);
 
-		// create list of distances
-		for (int s = 0; s < patrolDestinations.Length; s++)
-		{
-			patrolDistances[s] = Vector3.Distance(gameObject.transform.position, patrolDestinations[s].transform.position);
-		}
+        // create list of distances
+        for (int s = 0; s < patrolDestinations.Length; s++)
+        {
+            patrolDistances[s] = Vector3.Distance(gameObject.transform.position, patrolDestinations[s].transform.position);
+        }
 
-		if (debug.investigate)
-			Debug.Log("new distances assigned " + patrolDistances);
+        if (debug.investigate)
+            Debug.Log("new distances assigned " + patrolDistances);
 
-		// find the closest one
-		float toDistance = Mathf.Min(patrolDistances);
+        // find the closest one
+        float toDistance = Mathf.Min(patrolDistances);
 
-		if (debug.investigate)
-			Debug.Log("todistance is " + toDistance);
+        if (debug.investigate)
+            Debug.Log("todistance is " + toDistance);
 
-		// remember closest point
-		for (int s = 0; s < patrolDestinations.Length; s++)
-		{
-			if (patrolDistances[s] == toDistance)
-			{
-				//patrolObject = patrolDestinations[s];
-				destinationIterator = s;
-				if (debug.investigate)
-					Debug.Log("now investigating sound at " + patrolObject);
+        // remember closest point
+        for (int s = 0; s < patrolDestinations.Length; s++)
+        {
+            if (patrolDistances[s] == toDistance)
+            {
+                //patrolObject = patrolDestinations[s];
+                destinationIterator = s;
+                if (debug.investigate)
+                    Debug.Log("now investigating sound at " + patrolObject);
 
-				state = "patrol";
-			}
-		}
-	}
+                state = "patrol";
+            }
+        }
+    }
 
 
 
@@ -332,7 +343,7 @@ public class MonsterAI : MonoBehaviour {
     public void Search()
     {
         searchTime += Time.deltaTime;
-        
+
         // just in case
         //MonsterAnimate();
 
@@ -350,7 +361,7 @@ public class MonsterAI : MonoBehaviour {
         //if ((playerManager.distanceAway <= monsterSightDistance && playerSeen) || (presence > 3.8f && playerManager.distanceAway < 4.0f))
         if ((playerSeen && (presence > monsterBalancer.presenceEvasion)) || (presence > monsterBalancer.presenceSearchInterrupt && playerManager.distanceAway < monsterBalancer.hearPlayerDistance))
         {
-            if(debug.monsterSpeakStates)
+            if (debug.monsterSpeakStates)
                 Debug.Log("FOUND YOU!");
 
             if (debug.monsterSpeakStates && playerSeen)
@@ -375,9 +386,9 @@ public class MonsterAI : MonoBehaviour {
 
                 playerSeen = false;
 
-				/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
                 // state = "patrol";
-				PatrolReturn();
+                PatrolReturn();
 
                 searchTime = 0;
             }
@@ -388,7 +399,7 @@ public class MonsterAI : MonoBehaviour {
 
     // This is a chase which is sustained so long as the player is in range or their presence is still high (no visual confirmation so he can chase around corners)
     public void Chase()
-	{
+    {
         // action is a cooldown type so calculate time while in state
         actionTime += Time.deltaTime;
 
@@ -415,13 +426,13 @@ public class MonsterAI : MonoBehaviour {
 
 
             // Attack the player within a certain distance
-            if(playerManager.distanceAway < monsterBalancer.attackDistance && actionTime > monsterBalancer.actionCooldown)
+            if (playerManager.distanceAway < monsterBalancer.attackDistance && actionTime > monsterBalancer.actionCooldown)
             {
                 Attack();
                 actionTime = 0.0f;
             }
         }
-       
+
         // lost the player
         else
         {
@@ -491,7 +502,7 @@ public class MonsterAI : MonoBehaviour {
         }
 
         state = "scriptedChase";
-       
+
     }
 
     // an instance function to look at the tape playing's closest search point
@@ -543,7 +554,7 @@ public class MonsterAI : MonoBehaviour {
             if (debug.investigateSound)
                 Debug.Log("travelling to " + searchObject);
 
-            
+
 
             // if running into a door
             if (velocity.magnitude < agentManager.stuckDoorOpen)
@@ -604,7 +615,7 @@ public class MonsterAI : MonoBehaviour {
     {
         GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth = playerManager.health - 50.0f;
 
-        if(playerManager.health <= 0.0f)
+        if (playerManager.health <= 0.0f)
         {
             PlayerDeath();
         }
@@ -626,13 +637,13 @@ public class MonsterAI : MonoBehaviour {
 
 
         int playerDestination = UnityEngine.Random.Range(0, playerManager.spawns.Length);
-        
+
         player.transform.position = playerManager.spawns[playerDestination].transform.position;
 
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//state = "patrol";
-		PatrolReturn();
-        
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //state = "patrol";
+        PatrolReturn();
+
         // fade to black on controller
         // spawn monster somwhere else
         // spawn player somewhere else (CREATE PLAYER SPAWN POINTS)
@@ -642,12 +653,12 @@ public class MonsterAI : MonoBehaviour {
     // The hit has caused a death this makes the player spawn in the death room, the only way out is to quit
     public void PlayerDeath()
     {
-		/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-		//state = "patrol";
-		PatrolReturn();
-        
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //state = "patrol";
+        PatrolReturn();
 
-        if(debug.monsterSpeakStates)
+
+        if (debug.monsterSpeakStates)
             Debug.Log(" Y O U   D I E D ");
 
         // Change scene to death screen 
@@ -677,43 +688,76 @@ public class MonsterAI : MonoBehaviour {
 
     // Extra actions the monster can do - this one is to prevent getting stuck on a door
     public void OpenNearbyDoor()
-	{
-		actionTime += Time.deltaTime;
+    {
+        actionTime += Time.deltaTime;
 
-		float[] doorDistances = new float[doors.Length];
+        float[] doorDistances = new float[doors.Length];
 
         if (debug.doorAction)
             Debug.Log("new door distances instanced " + doorDistances);
 
-		for (int s = 0; s < doors.Length; s++)
-		{
-			doorDistances[s] = Vector3.Distance(gameObject.transform.position, doors[s].transform.position);
-		}
+        for (int s = 0; s < doors.Length; s++)
+        {
+            doorDistances[s] = Vector3.Distance(gameObject.transform.position, doors[s].transform.position);
+        }
 
         if (debug.doorAction)
             Debug.Log("new door distances assigned " + doorDistances);
 
-		float toDistance = Mathf.Min(doorDistances);
+        float toDistance = Mathf.Min(doorDistances);
 
         if (debug.doorAction)
             Debug.Log("to door distance is " + toDistance);
 
-		for (int s = 0; s < doors.Length; s++)
-		{
-			// open the door but also only do so if sound is not playing
-			if (doorDistances[s] == toDistance && actionTime > monsterBalancer.actionCooldown)
-			{
-				doors[s].GetComponent<doorMaster>().unLock();
-				doors[s].GetComponent<doorMaster>().forceOpen();
+        for (int s = 0; s < doors.Length; s++)
+        {
+            // open the door but also only do so if sound is not playing
+            if (doorDistances[s] == toDistance && actionTime > monsterBalancer.actionCooldown)
+            {
+                // ONLY REMOVE COLLIDER FOR OPEN DOORS AND STUCK DOOR IS NOT ALREADY RUNNING ON ANOTHER DOOR
+                if (doors[s].GetComponent<doorMaster>().doorOpen && !agentManager.stuckOnOpenDoor)
+                {
+                    agentManager.stuckDoor = doors[s];
+                    agentManager.stuckOnOpenDoor = true;
+                }
 
-				actionTime = 0.0f;
-			}
-		}
-	}
+                doors[s].GetComponent<doorMaster>().unLock();
+                doors[s].GetComponent<doorMaster>().forceOpen();
+
+                actionTime = 0.0f;
+            }
+        }
+    }
     ////////// ------ INSTANCE ACTIONS ------ //////////
 
 
     ////////// ------ CONSTANT ACTIONS ------ //////////
+    // Used to fix monster getting stuck on OPEN doors
+    public void RemoveDoorCollider(GameObject door)
+    {
+        agentManager.doorStuckTime += Time.deltaTime;
+
+        if (agentManager.doorStuckTime >= agentManager.doorGhostCooldown)
+        {
+            door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<Collider>().enabled = true;
+            door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<Collider>().enabled = true;
+            door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = true;
+            door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = true;
+            agentManager.stuckDoor = null;
+            agentManager.doorStuckTime = 0.0f;
+            agentManager.stuckOnOpenDoor = false;
+        }
+       else
+        {
+            door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<Collider>().enabled = false;
+            door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<Collider>().enabled = false;
+            door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = false;
+            door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = false;
+        }
+
+    }
+
+
     // later this will be used to calculate state engagement ranges based on player presence and/or flashlight
     public void CalculateRanges()
     {
