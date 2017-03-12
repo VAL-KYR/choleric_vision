@@ -25,12 +25,21 @@ public class triggerTutorial : MonoBehaviour {
     public float multiTripResetTime = 5;
 
     bool soundTrip = false;
+    public bool intrigue = false;
+    private AudioSource intrigueSound;
+
+    // INIT SUCCESS // 
+    public bool progress = false;
+    private AudioSource success;
+    // INIT SUCCESS // 
 
     void Start()
     {
-		//journalWrite = journal.GetComponent<AudioSource>();
+		//journalWrite = gameObject.GetComponent<AudioSource>();
+        intrigueSound = GameObject.FindGameObjectWithTag("intrigueSounder").GetComponent<AudioSource>();
 
-		if(noteText)
+
+        if (noteText)
         	note = noteText.text;
 		else
 			note = null;
@@ -38,6 +47,10 @@ public class triggerTutorial : MonoBehaviour {
 			hint = hintText.text;
 		else
 			hint = null;
+
+        // START SUCCESS //
+        success = GameObject.FindGameObjectWithTag("successSounder").GetComponent<AudioSource>();
+        // START SUCCESS //
     }
 
     void OnTriggerEnter(Collider other)
@@ -59,7 +72,23 @@ public class triggerTutorial : MonoBehaviour {
                     n.GetComponent<noteBook>().AddTutText(note, hint);
                 }
 
+                
+
 				journalWrite.Play();
+
+                if (intrigue)
+                {
+                    intrigueSound.Play();
+                    intrigue = false;
+                }
+
+                if (progress)
+                {
+                    // PLAY GLOBAL SUCCESS SOUND //
+                    success.Play();
+                    progress = false;
+                    // PLAY GLOBAL SUCCESS SOUND //
+                }
 
                 if (multiTrip)
                     StartCoroutine(endSound());
