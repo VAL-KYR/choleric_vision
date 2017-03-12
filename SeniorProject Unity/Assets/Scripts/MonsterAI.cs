@@ -10,6 +10,7 @@ public class MonsterAI : MonoBehaviour {
     public class mDebug
     {
         public bool monsterSpeakStates = false;
+        public bool pureStates = false;
         public bool investigate = false;
         public bool investigateSound = false;
         public bool monsterSight = false;
@@ -159,7 +160,11 @@ public class MonsterAI : MonoBehaviour {
 		time += Time.deltaTime;
         ///
 
-        Debug.Log("state " + state);
+        if (debug.pureStates)
+        {
+            Debug.Log("state " + state);
+        }
+        
 
         /// Player variables Update
         playerManager.health = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
