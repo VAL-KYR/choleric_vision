@@ -17,11 +17,13 @@ public class elevatorMaster : MonoBehaviour {
     public GameObject triggerSeeMonster;
     public GameObject triggerSecondMonsterAppearence;
     public GameObject triggerSecondSeeMonster;
+    public GameObject eleLight;
 
     public bool debug;
 
 	public bool playerInElevator = false;
 	public bool powerOn = false;
+    public float elevatorStopTime = 7.0f;
 
     // Movement Variables
     public int currPos = 0;
@@ -106,7 +108,7 @@ public class elevatorMaster : MonoBehaviour {
         {
             moveEle = true;
         }
-        else if (monsterGone && playerInElevator && !gateState && powerOn && currPos >= 2 && time < 10.0f)
+        else if (monsterGone && playerInElevator && !gateState && powerOn && currPos >= 2 && time < elevatorStopTime)
         {
             moveEle = false;
             time += Time.deltaTime;
@@ -116,15 +118,17 @@ public class elevatorMaster : MonoBehaviour {
                 elevatorSource.clip = eleStop;
                 elevatorSource.Play();
                 elevatorSource.spatialBlend = 0.0f;
+                eleLight.GetComponent<Light>().color = new Color(1, 0, 0, 1);
             }
             
             
         }
-        else if (monsterGone && playerInElevator && !gateState && powerOn && currPos >= 2 && time > 10.0f && !elevatorSource.isPlaying)
+        else if (monsterGone && playerInElevator && !gateState && powerOn && currPos >= 2 && time > elevatorStopTime && !elevatorSource.isPlaying)
         {
             moveEle = true;
             bellSounded = false;
             elevatorSource.spatialBlend = 1.0f;
+            eleLight.GetComponent<Light>().color = new Color(1, 1, 1, 1);
         }
         else
         {

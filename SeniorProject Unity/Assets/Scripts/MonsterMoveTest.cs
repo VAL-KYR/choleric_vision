@@ -12,6 +12,7 @@ public class MonsterMoveTest : MonoBehaviour {
     int i = 0;
     int x = 0;
 
+    public bool affectLights = true;
     public bool monsterGone = false;
 
     private Vector3 lastPosition;
@@ -43,30 +44,41 @@ public class MonsterMoveTest : MonoBehaviour {
             if(debug)
                 Debug.Log("movement end");
 
-            for (int y = 0; y < unaturalLights.Length; y++)
+            if (affectLights)
             {
-                unaturalLights[y].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[y].GetComponent<Light>().intensity, unaturalLightIntensity[y], (20.0f) * Time.deltaTime);
-            }
+                for (int y = 0; y < unaturalLights.Length; y++)
+                {
+                    unaturalLights[y].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[y].GetComponent<Light>().intensity, unaturalLightIntensity[y], (20.0f) * Time.deltaTime);
+                }
 
 
-            int lightsNormal = 0;
+                int lightsNormal = 0;
 
-            for (int y = 0; y < unaturalLights.Length; y++)
-            {
-                if(unaturalLights[y].GetComponent<Light>().intensity == unaturalLightIntensity[y]){
-                    lightsNormal++;
+                for (int y = 0; y < unaturalLights.Length; y++)
+                {
+                    if (unaturalLights[y].GetComponent<Light>().intensity == unaturalLightIntensity[y])
+                    {
+                        lightsNormal++;
+                    }
+                }
+                if (debug)
+                    Debug.Log("lightsnorml " + lightsNormal);
+
+                if (lightsNormal >= unaturalLights.Length)
+                {
+                    gameObject.SetActive(false);
+
+                    if (debug)
+                        Debug.Log("monster poof");
                 }
             }
+
+            
+            gameObject.SetActive(false);
+
             if(debug)
-                Debug.Log("lightsnorml " + lightsNormal);
+                Debug.Log("monster poof");
 
-            if (lightsNormal >= unaturalLights.Length)
-            {
-                gameObject.SetActive(false);
-
-                if(debug)
-                    Debug.Log("monster poof");
-            }
 
             monsterGone = true;
 
@@ -89,20 +101,24 @@ public class MonsterMoveTest : MonoBehaviour {
             }
             //
 
-            for (int j = 0; j < unaturalLights.Length; j++)
+            if (affectLights)
             {
-                float distanceToLight = (unaturalLights[j].transform.position - transform.position).magnitude;
-
-                if (distanceToLight <= 10.0f)
+                for (int j = 0; j < unaturalLights.Length; j++)
                 {
-                    unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 0.0f, (distanceToLight / 10.0f) * Time.deltaTime);
-                }
+                    float distanceToLight = (unaturalLights[j].transform.position - transform.position).magnitude;
 
-                else
-                {
-                    unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, unaturalLightIntensity[j], (distanceToLight / 60.0f) * Time.deltaTime);
+                    if (distanceToLight <= 10.0f)
+                    {
+                        unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 0.0f, (distanceToLight / 10.0f) * Time.deltaTime);
+                    }
+
+                    else
+                    {
+                        unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, unaturalLightIntensity[j], (distanceToLight / 60.0f) * Time.deltaTime);
+                    }
                 }
             }
+            
         }
 
         // Hecka bad turning code

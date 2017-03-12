@@ -84,7 +84,7 @@ public class documentCabinet : MonoBehaviour {
 		{
 			if (Input.GetButtonDown("Action"))
 			{
-				if (!cabinetOpen)
+				if (!cabinetOpen && !cabinetLocked)
 				{
 					// Unlock Emergency Doors
 					doorOpen.GetComponent<doorMaster>().unLock();
