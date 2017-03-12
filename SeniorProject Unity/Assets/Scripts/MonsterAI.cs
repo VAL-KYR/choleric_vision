@@ -73,8 +73,10 @@ public class MonsterAI : MonoBehaviour {
     public class playerManagement
     {
         // Player variables
+        public bool won = false;
         public float health;
         public GameObject[] spawns;
+        public GameObject[] winZones;
 
         // CHASE state calculation variables
         public float distanceAway;
@@ -125,8 +127,11 @@ public class MonsterAI : MonoBehaviour {
         // remmeber to give him doors
         // remmenber to give him flashlights
 
+        playerManager.winZones = GameObject.FindGameObjectsWithTag("winTrigger");
+
         // Player variables
         playerManager.health = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
+        playerManager.won = false;
 
         // time must be universal
         time = 0.0f;
@@ -159,6 +164,21 @@ public class MonsterAI : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+        // Check for player win state
+        foreach(GameObject g in playerManager.winZones)
+        {
+            if (g.GetComponent<triggerWin>().playerWin)
+            {
+                playerManager.won = true;
+            }
+        }
+
+        // if the player has won switch snapshot to quiet [do later]
+        if (playerManager.won)
+        {
+            PatrolReturn();
+        }
 
         // calculate monster velocity for door opening
         velocity = (transform.position - lastPosition) / Time.deltaTime;
@@ -205,7 +225,7 @@ public class MonsterAI : MonoBehaviour {
         playerManager.distanceAway = Vector3.Distance(gameObject.transform.position, player.transform.position);
         ///
 
-        if (cabinet.GetComponent<documentCabinet>().cabinetOpen == true)
+        if (cabinet.GetComponent<documentCabinet>().cabinetOpen && !playerManager.won)
         {
             state = "scriptedChase";
         }
@@ -501,7 +521,10 @@ public class MonsterAI : MonoBehaviour {
             actionTime = 0.0f;
         }
 
-        state = "scriptedChase";
+        if (!playerManager.won)
+        {
+            state = "scriptedChase";
+        }
 
     }
 
@@ -815,6 +838,14 @@ public class MonsterAI : MonoBehaviour {
             // Chase
             gameObject.GetComponent<monsterAnimator>().idle = false;
             gameObject.GetComponent<monsterAnimator>().search = false;
+            gameObject.GetComponent<monsterAnimator>().chase = true;
+        }
+        else if (state == "scriptedChase")
+        {
+            // Chase
+            gameObject.GetComponent<monsterAnimator>().idle = false;
+            gameObject.GetComponent<monsterAnimator>().search = false;
+            gameObject.GetComponent<monsterAnimator>().scriptedChase = true;
             gameObject.GetComponent<monsterAnimator>().chase = true;
         }
         else if (state == "investigate")

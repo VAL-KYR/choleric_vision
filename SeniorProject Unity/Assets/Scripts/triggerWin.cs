@@ -4,6 +4,8 @@ using System.Collections;
 public class triggerWin : MonoBehaviour {
 
     public GameObject winZone;
+    public GameObject tapePlay;
+    public bool playerWin = false;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +22,8 @@ public class triggerWin : MonoBehaviour {
         if (c.CompareTag("GameController"))
         {
             c.gameObject.transform.position = winZone.transform.position;
+            tapePlay.GetComponent<tapeMaster>().remote();
+            playerWin = true;
         }
     }
 }
