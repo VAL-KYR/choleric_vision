@@ -106,8 +106,8 @@ public class keyUI : MonoBehaviour {
                 success.Play();
                 // PLAY GLOBAL SUCCESS SOUND //
 
-                //keySource.clip = pickupSound;
-                //keySource.Play();
+                keySource.clip = pickupSound;
+                keySource.Play();
 
                 // Flip Active state of despawnObject
                 if (enableOrDisableObject)

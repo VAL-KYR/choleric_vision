@@ -238,20 +238,20 @@ public class controller : MonoBehaviour
         else if (playerHealth <= 50)
         {
             if (playerSprint)
-                playerSpeed = playerSpeedGroup.sprintSpeed / 1.5f;
+                playerSpeed = playerSpeedGroup.sprintSpeed / 1.4f;
             else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchSpeed / 1.5f;
+                playerSpeed = playerSpeedGroup.crouchSpeed / 1.4f;
             else
-                playerSpeed = playerSpeedGroup.walkSpeed / 1.5f;
+                playerSpeed = playerSpeedGroup.walkSpeed / 1.4f;
         }
         else if (playerHealth <= 0)
         {
             if (playerSprint)
-                playerSpeed = playerSpeedGroup.sprintSpeed / 2;
+                playerSpeed = playerSpeedGroup.sprintSpeed / 1.7f;
             else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchSpeed / 2;
+                playerSpeed = playerSpeedGroup.crouchSpeed / 1.7f;
             else
-                playerSpeed = playerSpeedGroup.walkSpeed / 2;
+                playerSpeed = playerSpeedGroup.walkSpeed / 1.7f;
         }
 
 

@@ -53,6 +53,8 @@ public class monsterSound : MonoBehaviour {
     public float playTime = 2.0f;
     public float playTimeVariance = 0.0f;
     public float randPlayTime = 0.0f;
+
+    public bool configureVoice = false;
     //
 
 
@@ -102,23 +104,31 @@ public class monsterSound : MonoBehaviour {
         lastMonsterSearchSound = monsterSearchSound;
         //
 
-        // Create or load AudioSource
-        if (!monsterVoiceBox.GetComponent<AudioSource>())
+        if (configureVoice)
         {
-            monsterVoiceBox.AddComponent<AudioSource>();
-        }
-        monsterVoice = monsterVoiceBox.GetComponent<AudioSource>();
-        //
+            // Create or load AudioSource
+            if (!monsterVoiceBox.GetComponent<AudioSource>())
+            {
+                monsterVoiceBox.AddComponent<AudioSource>();
+            }
+            monsterVoice = monsterVoiceBox.GetComponent<AudioSource>();
+            //
 
-        // Configure AudioSource
-        monsterVoice.playOnAwake = false;
-        monsterVoice.dopplerLevel = 0.0f;
-        monsterVoice.spatialBlend = 1.0f;
-        monsterVoice.maxDistance = 30.0f;
-        monsterVoice.minDistance = 1.0f;
-        monsterVoice.rolloffMode = AudioRolloffMode.Linear;
-        monsterVoice.outputAudioMixerGroup = voiceOutput;
-        //
+            // Configure AudioSource
+            monsterVoice.playOnAwake = false;
+            monsterVoice.dopplerLevel = 0.0f;
+            monsterVoice.spatialBlend = 1.0f;
+            monsterVoice.maxDistance = 30.0f;
+            monsterVoice.minDistance = 3.0f;
+            monsterVoice.rolloffMode = AudioRolloffMode.Logarithmic;
+            monsterVoice.outputAudioMixerGroup = voiceOutput;
+            //
+        }
+        else
+        {
+            monsterVoice.outputAudioMixerGroup = voiceOutput;
+        }
+
 
         // Extra Dev options config
         //devVoiceTesting = false;

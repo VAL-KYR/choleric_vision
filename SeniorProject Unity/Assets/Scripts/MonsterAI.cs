@@ -156,6 +156,16 @@ public class MonsterAI : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
+        // calculate monster velocity for door opening
+        velocity = (transform.position - lastPosition) / Time.deltaTime;
+        lastPosition = transform.position;
+
+        if (debug.doorAction)
+        {
+            Debug.Log("velocity of monster" + velocity.magnitude);
+        }
+
+
         /// Universal time to sample
 		time += Time.deltaTime;
         ///
@@ -382,6 +392,12 @@ public class MonsterAI : MonoBehaviour {
         // action is a cooldown type so calculate time while in state
         actionTime += Time.deltaTime;
 
+        // if running into a door
+        if (velocity.magnitude < agentManager.stuckDoorOpen)
+        {
+            OpenNearbyDoor();
+        }
+
         // chasing the player
         // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later], also make it so that if he can still see you then keep chasing
         if ((playerManager.distanceAway < monsterBalancer.evasionDistance) || (presence > monsterBalancer.presenceEvasion))
@@ -454,7 +470,13 @@ public class MonsterAI : MonoBehaviour {
 
         /// chasing the player
         // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later], also make it so that if he can still see you then keep chasing
-       
+
+        // if running into a door
+        if (velocity.magnitude < agentManager.stuckDoorOpen)
+        {
+            OpenNearbyDoor();
+        }
+
         if (debug.monsterSpeakStates)
             Debug.Log("HERE'S JOHNNY!!!");
 
@@ -521,8 +543,7 @@ public class MonsterAI : MonoBehaviour {
             if (debug.investigateSound)
                 Debug.Log("travelling to " + searchObject);
 
-            velocity = (transform.position - lastPosition) / Time.deltaTime;
-            lastPosition = transform.position;
+            
 
             // if running into a door
             if (velocity.magnitude < agentManager.stuckDoorOpen)
