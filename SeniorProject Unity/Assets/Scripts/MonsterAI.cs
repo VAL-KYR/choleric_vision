@@ -40,6 +40,7 @@ public class MonsterAI : MonoBehaviour {
         public float angularSpeed = 120.0f;
         public float acceleration = 8.0f;
         public float stoppingDistance = 0.0f;
+        public float stuckDoorOpen = 0.01f;
     }
     public agentManagement agentManager = new agentManagement();
 
@@ -519,7 +520,7 @@ public class MonsterAI : MonoBehaviour {
             lastPosition = transform.position;
 
             // if running into a door
-            if (velocity.magnitude < 0.01f)
+            if (velocity.magnitude < agentManager.stuckDoorOpen)
             {
                 OpenNearbyDoor();
             }

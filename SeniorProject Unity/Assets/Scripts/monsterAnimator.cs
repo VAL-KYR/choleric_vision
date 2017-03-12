@@ -69,6 +69,7 @@ public class monsterAnimator : MonoBehaviour {
         {
             if (gameObject.GetComponent<MonsterAI>().state == "scriptedChase")
             {
+                chase = true;
                 scriptedChase = true;
             }
         }
@@ -133,7 +134,6 @@ public class monsterAnimator : MonoBehaviour {
         else if (scriptedChase)
         {
             gameObject.GetComponent<monsterSound>().Voice("growl", 0.0f, true);
-            chaseSnapshot.TransitionTo(transitionTime);
             //monsterAnimState.fullPathHash == chaseStateHash
         }
 
