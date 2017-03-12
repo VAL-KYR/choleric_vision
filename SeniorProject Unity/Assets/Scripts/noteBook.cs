@@ -52,6 +52,7 @@ public class noteBook : MonoBehaviour {
         currentHints.Add("Hit (A) to interact with objects.");
         currentHints.Add("Hit (B) to toggle crouch/standing.");
         currentHints.Add("Press in the (left stick) to run");
+        currentHints.Add("(RTrigger/LTrigger) to lean right and left");
         hintsText.text = string.Join("\n", currentHints.ToArray());
     }
 	

@@ -135,8 +135,6 @@ public class monsterAnimator : MonoBehaviour {
             chaseSnapshot.TransitionTo(transitionTime);
             //monsterAnimState.fullPathHash == chaseStateHash
         }
-        
-
         // CHANGE FOR ERICA'S VERSION'
 
         // make this animation driven later for now just trigger on hit

@@ -6,7 +6,7 @@ public class controller : MonoBehaviour
 {
 	CursorLockMode wantedMode;
 
-
+    private float quitTime = 0.0f;
     public bool debug;
     public float playerHealth = 100.0f;
 
@@ -151,7 +151,7 @@ public class controller : MonoBehaviour
         }
         else
         {
-            nonVrCam.GetComponent<Camera>().fieldOfView = 60.0f;
+            nonVrCam.GetComponent<Camera>().fieldOfView = 70.0f;
         }
         
         /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
@@ -208,7 +208,7 @@ public class controller : MonoBehaviour
             if (!nonVrCam)
                 nonVrCam = GameObject.FindGameObjectWithTag("NonVRCam");
 
-            nonVrCam.GetComponent<Camera>().fieldOfView = 60.0f;
+            nonVrCam.GetComponent<Camera>().fieldOfView = 70.0f;
         }
         else
         {
@@ -538,8 +538,26 @@ public class controller : MonoBehaviour
         }
 
 
-        if (Input.GetButtonDown("Cancel"))
-			Application.Quit();
+        if (Input.GetButton("Cancel"))
+        {
+            quitTime += Time.deltaTime;
+
+            if(quitTime > 4.0f)
+            {
+                Application.Quit();
+
+                if (UnityEditor.EditorApplication.isPlaying)
+                {
+                    UnityEditor.EditorApplication.isPlaying = false;
+                }
+            }
+            
+        }
+        else
+        {
+            quitTime = 0.0f;
+        }
+			
 
         
 
