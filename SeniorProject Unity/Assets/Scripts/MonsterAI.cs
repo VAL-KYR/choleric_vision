@@ -67,6 +67,7 @@ public class MonsterAI : MonoBehaviour {
 
         public float actionCooldown = 2.0f;
         public float searchLength = 8.0f;
+        public float speedNerf = 0.22f;
     }
     public monsterBalance monsterBalancer = new monsterBalance();
 
@@ -77,6 +78,7 @@ public class MonsterAI : MonoBehaviour {
         // Player variables
         public bool won = false;
         public float health;
+        public float maxSpeed;
         public GameObject[] spawns;
         public GameObject[] winZones;
 
@@ -134,6 +136,7 @@ public class MonsterAI : MonoBehaviour {
         // Player variables
         playerManager.health = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
         playerManager.won = false;
+        playerManager.maxSpeed = player.GetComponent<controller>().playerMaxSpeed;
 
         // time must be universal
         time = 0.0f;
@@ -166,9 +169,11 @@ public class MonsterAI : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+        // calculate player's maximum possible speed
+        playerManager.maxSpeed = player.GetComponent<controller>().playerMaxSpeed;
 
         // Check for player win state
-        foreach(GameObject g in playerManager.winZones)
+        foreach (GameObject g in playerManager.winZones)
         {
             if (g.GetComponent<triggerWin>().playerWin)
             {
@@ -214,8 +219,15 @@ public class MonsterAI : MonoBehaviour {
         }
         /// 
 
-        /// Updating Agent Parameters
-        agent.speed = agentManager.speed;
+        /// Updating Agent Parameters SPEED THE MONSTER TO PLAYER SPEED IF IN CHASE MODES
+        if (state == "chase" || state == "scriptedChase") {
+            agent.speed = playerManager.maxSpeed - monsterBalancer.speedNerf; // just slightly slower than fastest speed of player
+        }
+        else
+        {
+            agent.speed = agentManager.speed - monsterBalancer.speedNerf; // just slightly slower than fastest speed of player
+        }
+        //agent.speed = agentManager.speed;
         agent.angularSpeed = agentManager.angularSpeed;
         agent.acceleration = agentManager.acceleration;
         agent.stoppingDistance = agentManager.stoppingDistance;
