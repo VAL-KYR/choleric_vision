@@ -247,7 +247,6 @@ public class controller : MonoBehaviour
                 playerSpeed = playerSpeedGroup.sprintSpeed / 1.4f;
                 playerMaxSpeed = playerSpeedGroup.sprintSpeed / 1.4f;
             }
-                
             else if (crouch)
                 playerSpeed = playerSpeedGroup.crouchSpeed / 1.4f;
             else
@@ -260,7 +259,6 @@ public class controller : MonoBehaviour
                 playerSpeed = playerSpeedGroup.sprintSpeed / 1.7f;
                 playerMaxSpeed = playerSpeedGroup.sprintSpeed / 1.7f;
             }
-               
             else if (crouch)
                 playerSpeed = playerSpeedGroup.crouchSpeed / 1.7f;
             else
@@ -312,7 +310,7 @@ public class controller : MonoBehaviour
             moveDirection.z *= playerSpeed;
 
             //crouch state
-            if (Input.GetButtonDown("Crouch") && !crouch)
+            if (Input.GetButton("Crouch") && !crouch)
             {
                 if (playerSprint)
                     playerSprint = false;
@@ -324,7 +322,7 @@ public class controller : MonoBehaviour
                 crouch = true;
             }
 
-            else if (Input.GetButtonDown("Crouch") && crouch)
+            else if (!Input.GetButton("Crouch") && crouch)
             {
                 headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
                 noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
