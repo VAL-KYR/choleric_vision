@@ -79,6 +79,7 @@ public class controller : MonoBehaviour
     public bool playerSprint;
     private float playerHeight;
     private float playerSpeed;
+    public float playerMaxSpeed;
     public float gravity;
     public bool crouch = false;
     private float crouchHeight;
@@ -142,9 +143,10 @@ public class controller : MonoBehaviour
         anim = GameObject.FindGameObjectWithTag("arms").GetComponent<Animator>(); // Initialize animator from placeholder arms
         rb = GetComponent<Rigidbody>();
 
+        playerMaxSpeed = playerSpeedGroup.sprintSpeed;
 
         /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
-        
+
         if (VRSettings.enabled)
         {
             vrBodCal = false;
@@ -229,7 +231,10 @@ public class controller : MonoBehaviour
         if(playerHealth >= 100)
         {
             if (playerSprint)
+            {
                 playerSpeed = playerSpeedGroup.sprintSpeed;
+                playerMaxSpeed = playerSpeedGroup.sprintSpeed;
+            }
             else if (crouch)
                 playerSpeed = playerSpeedGroup.crouchSpeed;
             else
@@ -238,7 +243,11 @@ public class controller : MonoBehaviour
         else if (playerHealth <= 50)
         {
             if (playerSprint)
+            {
                 playerSpeed = playerSpeedGroup.sprintSpeed / 1.4f;
+                playerMaxSpeed = playerSpeedGroup.sprintSpeed / 1.4f;
+            }
+                
             else if (crouch)
                 playerSpeed = playerSpeedGroup.crouchSpeed / 1.4f;
             else
@@ -247,7 +256,11 @@ public class controller : MonoBehaviour
         else if (playerHealth <= 0)
         {
             if (playerSprint)
+            {
                 playerSpeed = playerSpeedGroup.sprintSpeed / 1.7f;
+                playerMaxSpeed = playerSpeedGroup.sprintSpeed / 1.7f;
+            }
+               
             else if (crouch)
                 playerSpeed = playerSpeedGroup.crouchSpeed / 1.7f;
             else
