@@ -54,6 +54,7 @@ public class MonsterAI : MonoBehaviour {
     public class monsterBalance
     {
         public bool pacify = false;
+        public GameObject[] hands;
 
         public float evasionDistance = 12.0f;
         public float attackDistance = 1.0f;
@@ -81,6 +82,14 @@ public class MonsterAI : MonoBehaviour {
         public float maxSpeed;
         public GameObject[] spawns;
         public GameObject[] winZones;
+        public GameObject headJoint;
+
+        public Material fader;
+        public bool KO = false;
+        public bool death = false;
+        public bool fading = false;
+        public float fadeRate = 1.0f;
+        public float fadeColor;
 
         // CHASE state calculation variables
         public float distanceAway;
@@ -125,6 +134,35 @@ public class MonsterAI : MonoBehaviour {
         // finding player
         player = GameObject.FindGameObjectWithTag("GameController");
         deathRoom = GameObject.FindGameObjectWithTag("DeathPoint");
+        monsterBalancer.hands = GameObject.FindGameObjectsWithTag("monsterHands");
+        playerManager.headJoint = GameObject.FindGameObjectWithTag("NeckJoint");
+
+
+        // Find faders
+        if (!playerManager.fader)
+        {
+            playerManager.fader = GameObject.FindGameObjectWithTag("playerViewFader").GetComponent<Renderer>().material;
+        }
+
+        playerManager.fadeColor = 0.0f;
+
+        playerManager.fader.SetColor("_Color", new Color(0, 0, 0, playerManager.fadeColor));
+
+        /*
+        if (playerManager.faders.Length < 1)
+        {
+            GameObject[] tempRend = GameObject.FindGameObjectsWithTag("playerViewFader");
+            Debug.Log("materials find");
+
+            for (int i = 0; i < tempRend.Length; i++)
+            {
+                Debug.Log("materials" + tempRend[i].GetComponent<Renderer>().material);
+                playerManager.faders[i] = tempRend[i].GetComponent<Renderer>().material;
+            }
+        }  
+        */
+        //
+
 
         // objects of interest startup
         // remember to give him tape recorders
@@ -169,6 +207,18 @@ public class MonsterAI : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+        // Find faders and do fade events
+        if (!playerManager.fader)
+        {
+            playerManager.fader = GameObject.FindGameObjectWithTag("playerViewFader").GetComponent<Renderer>().material;
+        }
+        else if(playerManager.fader)
+        {
+            FadeEvent();
+        }
+        
+
         // calculate player's maximum possible speed
         playerManager.maxSpeed = player.GetComponent<controller>().playerMaxSpeed;
 
@@ -297,7 +347,7 @@ public class MonsterAI : MonoBehaviour {
         }
 
         // check for the player if the monster should start a search
-        if (state == "patrol")
+        if (state == "patrol" && !playerManager.death && !playerManager.KO)
         {
             PlayerAwarenessCheck();
         }
@@ -677,6 +727,38 @@ public class MonsterAI : MonoBehaviour {
     // The hit has caused a knock-out this makes the player spawn somewhere else
     public void PlayerKO()
     {
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //state = "patrol";
+        PatrolReturn();
+        playerManager.fading = true;
+        playerManager.KO = true;
+
+        // fade to black on controller
+        // spawn monster somwhere else
+        // spawn player somewhere else (CREATE PLAYER SPAWN POINTS)
+        // once fade done, and player moved fade to normal again
+    }
+
+    // The hit has caused a death this makes the player spawn in the death room, the only way out is to quit
+    public void PlayerDeath()
+    {
+        if (debug.monsterSpeakStates)
+            Debug.Log(" Y O U   D I E D ");
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //state = "patrol";
+        PatrolReturn();
+        playerManager.fading = true;
+        playerManager.death = true;
+
+        // Change scene to death screen 
+        // GAME OVER
+        
+    }
+
+    // KO Teleport
+    public void TPKO()
+    {
         int monsterDestination = UnityEngine.Random.Range(0, patrolDestinations.Length);
 
         gameObject.transform.position = patrolDestinations[monsterDestination].transform.position;
@@ -688,31 +770,91 @@ public class MonsterAI : MonoBehaviour {
 
         player.transform.position = playerManager.spawns[playerDestination].transform.position;
 
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //state = "patrol";
-        PatrolReturn();
-
-        // fade to black on controller
-        // spawn monster somwhere else
-        // spawn player somewhere else (CREATE PLAYER SPAWN POINTS)
-        // once fade done, and player moved fade to normal again
+        /// re-enable colliders of monster hands
+        foreach (GameObject g in monsterBalancer.hands)
+        {
+            g.GetComponent<Collider>().enabled = true;
+        }
     }
 
-    // The hit has caused a death this makes the player spawn in the death room, the only way out is to quit
-    public void PlayerDeath()
+    // Death Teleport
+    public void TPDeath()
     {
-        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        //state = "patrol";
-        PatrolReturn();
-
-
-        if (debug.monsterSpeakStates)
-            Debug.Log(" Y O U   D I E D ");
-
-        // Change scene to death screen 
         // GAME OVER
 
         player.transform.position = deathRoom.transform.position;
+
+        /// re-enable colliders of monster hands
+        foreach (GameObject g in monsterBalancer.hands)
+        {
+            g.GetComponent<Collider>().enabled = true;
+        }
+    }
+    //
+
+    // FADEING
+    public void FadeEvent()
+    {
+        if (playerManager.fading)
+        {
+            // if player died
+            if (playerManager.death)
+            {
+                Debug.Log("player death fade");
+
+                if (playerManager.fadeColor > 0.99f)
+                {
+                    TPDeath();
+                    // fading out done
+                    playerManager.fading = false;
+                    playerManager.death = false;
+                }
+                else
+                {
+                    FadeOut();
+                }
+            }
+
+            // if player was knocked out
+            else if (playerManager.KO)
+            {
+                Debug.Log("player KO fade");
+
+                if (playerManager.fadeColor > 0.99f && playerManager.KO)
+                {
+                    TPKO();
+                    // fading out done
+                    playerManager.fading = false;
+                    playerManager.KO = false;
+                }
+                else
+                {
+                    FadeOut();
+                }
+            }
+        }
+        // fading back if there is no death
+        else
+        {
+            Debug.Log("player normal fade");
+
+            FadeIn();
+        }
+
+        // adding effect
+        playerManager.fader.SetColor("_Color", new Color(0, 0, 0, playerManager.fadeColor));
+    }
+
+    public void FadeIn()
+    {
+        playerManager.fadeColor = Mathf.Lerp(playerManager.fadeColor, 0.0f, playerManager.fadeRate * Time.deltaTime);
+        //playerManager.headJoint.transform.localPosition = Vector3.Lerp(playerManager.headJoint.transform.position, new Vector3(playerManager.headJoint.transform.position.x, 1.2f, playerManager.headJoint.transform.position.z), playerManager.fadeRate * Time.deltaTime);
+    }
+
+    public void FadeOut()
+    {
+        playerManager.fadeColor = Mathf.Lerp(playerManager.fadeColor, 1.0f, playerManager.fadeRate * Time.deltaTime);
+        //playerManager.headJoint.transform.localPosition = Vector3.Lerp(playerManager.headJoint.transform.position, new Vector3(playerManager.headJoint.transform.position.x, 0.0f, playerManager.headJoint.transform.position.z), playerManager.fadeRate * Time.deltaTime);
     }
     ////////// ------ PLAYER MANAGEMENT ------ //////////
 
@@ -731,7 +873,22 @@ public class MonsterAI : MonoBehaviour {
         gameObject.GetComponent<monsterAnimator>().attack = true;
 
         // for damage to hit arm must pass through player ???
-        DamagePlayer();
+        foreach (GameObject g in monsterBalancer.hands)
+        {
+            if (g.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))
+            {
+                g.GetComponent<Collider>().enabled = false;
+                DamagePlayer();
+
+                if (debug.monsterSpeakStates)
+                    Debug.Log("Hit you!");
+                //
+                return;
+            }
+                
+        }
+
+        
     }
 
     // Extra actions the monster can do - this one is to prevent getting stuck on a door
