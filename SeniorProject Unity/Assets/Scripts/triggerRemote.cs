@@ -6,14 +6,19 @@ public class triggerRemote : MonoBehaviour {
 	public string triggerTag;
 	public GameObject activateObject;
     public bool triggered = false;
+    public bool activeGo = true;
 
 	void OnTriggerEnter()
 	{
-		var go = GameObject.FindWithTag(triggerTag);
-		if (go.GetComponent<soundTrigger>())
-		{
-			go.GetComponent<soundTrigger>().arm();
-		}
+
+        if (activeGo)
+        {
+            var go = GameObject.FindWithTag(triggerTag);
+            if (go.GetComponent<soundTrigger>())
+            {
+                go.GetComponent<soundTrigger>().arm();
+            }
+        }
 
         // activate the activate object
         if (!activateObject.activeSelf && !triggered)

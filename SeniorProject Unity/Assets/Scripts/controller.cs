@@ -246,6 +246,7 @@ public class controller : MonoBehaviour
         }
 
         /// If player is sprinting set to sprintspeed
+        /*
         if(playerHealth >= 100)
         {
             if (playerSprint)
@@ -259,7 +260,7 @@ public class controller : MonoBehaviour
                 playerSpeed = playerSpeedGroup.walkMoveSpeed;
 
             /// BLEED
-            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.0f;
+            //nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.0f;
         }
         else if (playerHealth <= 50)
         {
@@ -274,7 +275,7 @@ public class controller : MonoBehaviour
                 playerSpeed = playerSpeedGroup.walkMoveSpeed / 1.4f;
 
             /// BLEED
-            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.25f;
+            //nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.25f;
         }
         else if (playerHealth <= 0)
         {
@@ -289,8 +290,9 @@ public class controller : MonoBehaviour
                 playerSpeed = playerSpeedGroup.walkMoveSpeed / 1.7f;
 
             /// BLEED
-            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.5f;
+            //nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.7f;
         }
+        */
         ///
 
         if (!holdObj)
@@ -650,17 +652,35 @@ public class controller : MonoBehaviour
 
     public void Effects()
     {
+
+        // set to edit viewable thing later 
         float playerEffectScale = -1.0f * ((playerHealth / 100) - 1.0f);
 
+        
+        // Screen Effects
         if (!VRSettings.enabled)
         {
             nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
+            // bleed scale set to editable thing later
+            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = playerEffectScale / 2.1f;
         }
         else
         {
             vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
-
+            // bleed scale set to editable thing later
+            vrCam.GetComponent<BleedBehavior>().minBloodAmount = playerEffectScale / 2.1f;
         }
+
+        // Movement
+        if (playerSprint)
+        {
+            playerSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + playerEffectScale);
+            playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + playerEffectScale);
+        }
+        else if (crouch)
+            playerSpeed = playerSpeedGroup.crouchMoveSpeed / (1 + playerEffectScale);
+        else
+            playerSpeed = playerSpeedGroup.walkMoveSpeed / (1 + playerEffectScale);
     }
 
     public void KOVoice()
