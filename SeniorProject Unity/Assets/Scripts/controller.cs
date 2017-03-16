@@ -244,7 +244,7 @@ public class controller : MonoBehaviour
             playerPos = transform.position;
         }
 
-        // If player is sprinting set to sprintspeed
+        /// If player is sprinting set to sprintspeed
         if(playerHealth >= 100)
         {
             if (playerSprint)
@@ -281,7 +281,7 @@ public class controller : MonoBehaviour
             else
                 playerSpeed = playerSpeedGroup.walkSpeed / 1.7f;
         }
-
+        ///
 
         if (!holdObj)
         {
