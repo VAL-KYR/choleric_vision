@@ -21,9 +21,10 @@ public class controller : MonoBehaviour
     [System.Serializable]
     public class PlayerSpeedGroup
     {
-        public float walkSpeed;
-        public float sprintSpeed;
-        public float crouchSpeed;
+        public float walkMoveSpeed;
+        public float sprintMoveSpeed;
+        public float crouchMoveSpeed;
+        public float crouchSpeed = 5.0f;
         public float speedH = 2.0f;
         public float speedV = 2.0f;
     }
@@ -160,7 +161,7 @@ public class controller : MonoBehaviour
         playerSpeech.deathSounds = Resources.LoadAll<AudioClip>("Player/DeathSounds");
         //playerSpeech.hitSound
 
-        playerMaxSpeed = playerSpeedGroup.sprintSpeed;
+        playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed;
 
         /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
 
@@ -185,7 +186,7 @@ public class controller : MonoBehaviour
 
         //Set variablets
         calibrationDone = false;
-        playerSpeed = playerSpeedGroup.walkSpeed;// Grab gController and it's speed states
+        playerSpeed = playerSpeedGroup.walkMoveSpeed;// Grab gController and it's speed states
         playerSprint = false;// Grab gController and it's speed states
         oriPlayerScale = transform.localScale;
         playerHeight = oriPlayerScale[1];
@@ -249,13 +250,13 @@ public class controller : MonoBehaviour
         {
             if (playerSprint)
             {
-                playerSpeed = playerSpeedGroup.sprintSpeed;
-                playerMaxSpeed = playerSpeedGroup.sprintSpeed;
+                playerSpeed = playerSpeedGroup.sprintMoveSpeed;
+                playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed;
             }
             else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchSpeed;
+                playerSpeed = playerSpeedGroup.crouchMoveSpeed;
             else
-                playerSpeed = playerSpeedGroup.walkSpeed;
+                playerSpeed = playerSpeedGroup.walkMoveSpeed;
 
             /// BLEED
             nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.0f;
@@ -264,13 +265,13 @@ public class controller : MonoBehaviour
         {
             if (playerSprint)
             {
-                playerSpeed = playerSpeedGroup.sprintSpeed / 1.4f;
-                playerMaxSpeed = playerSpeedGroup.sprintSpeed / 1.4f;
+                playerSpeed = playerSpeedGroup.sprintMoveSpeed / 1.4f;
+                playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / 1.4f;
             }
             else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchSpeed / 1.4f;
+                playerSpeed = playerSpeedGroup.crouchMoveSpeed / 1.4f;
             else
-                playerSpeed = playerSpeedGroup.walkSpeed / 1.4f;
+                playerSpeed = playerSpeedGroup.walkMoveSpeed / 1.4f;
 
             /// BLEED
             nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.25f;
@@ -279,13 +280,13 @@ public class controller : MonoBehaviour
         {
             if (playerSprint)
             {
-                playerSpeed = playerSpeedGroup.sprintSpeed / 1.7f;
-                playerMaxSpeed = playerSpeedGroup.sprintSpeed / 1.7f;
+                playerSpeed = playerSpeedGroup.sprintMoveSpeed / 1.7f;
+                playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / 1.7f;
             }
             else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchSpeed / 1.7f;
+                playerSpeed = playerSpeedGroup.crouchMoveSpeed / 1.7f;
             else
-                playerSpeed = playerSpeedGroup.walkSpeed / 1.7f;
+                playerSpeed = playerSpeedGroup.walkMoveSpeed / 1.7f;
 
             /// BLEED
             nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.5f;
@@ -336,6 +337,7 @@ public class controller : MonoBehaviour
             moveDirection.z *= playerSpeed;
 
             //crouch state
+            /*
             if (Input.GetButton("Crouch") && !crouch)
             {
                 if (playerSprint)
@@ -345,7 +347,11 @@ public class controller : MonoBehaviour
                 headJoint.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
                 noteBookGO.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
 
+                //  character scale capsule collider scale
+
                 crouch = true;
+                GetComponent<CapsuleCollider>().height = 2.0f;
+                GetComponent<CharacterController>().height = 2.0f;
             }
 
             else if (!Input.GetButton("Crouch") && crouch)
@@ -353,8 +359,33 @@ public class controller : MonoBehaviour
                 headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
                 noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
 
+                // character scale capsule collider scale
+                GetComponent<CapsuleCollider>().height = 1.0f;
+                GetComponent<CharacterController>().height = 1.0f;
+
                 crouch = false;
             }
+            */
+
+            if (Input.GetButton("Crouch"))
+            {
+                crouch = true;
+
+                if (playerSprint)
+                    playerSprint = false;
+
+                // character scale capsule collider scale
+                GetComponent<CapsuleCollider>().height = Mathf.Lerp(GetComponent<CapsuleCollider>().height, 0.5f, playerSpeedGroup.crouchSpeed * Time.deltaTime);
+                GetComponent<CharacterController>().height = Mathf.Lerp(GetComponent<CharacterController>().height, 0.5f, playerSpeedGroup.crouchSpeed * Time.deltaTime);
+            }
+            else
+            {
+                crouch = false;
+
+                GetComponent<CapsuleCollider>().height = Mathf.Lerp(GetComponent<CapsuleCollider>().height, 2.0f, 5.0f * Time.deltaTime);
+                GetComponent<CharacterController>().height = Mathf.Lerp(GetComponent<CharacterController>().height, 2.0f, 5.0f * Time.deltaTime);
+            }
+
         }
         else
         {
