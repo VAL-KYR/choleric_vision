@@ -273,7 +273,7 @@ public class controller : MonoBehaviour
                 playerSpeed = playerSpeedGroup.walkSpeed / 1.4f;
 
             /// BLEED
-            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.3f;
+            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.25f;
         }
         else if (playerHealth <= 0)
         {

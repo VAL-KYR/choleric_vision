@@ -8,13 +8,14 @@ public class MonsterAI : MonoBehaviour {
     // Monster Debug Management
     [System.Serializable]
     public class mDebug
-    {
+    { 
         public bool monsterSpeakStates = false;
         public bool pureStates = false;
         public bool investigate = false;
         public bool investigateSound = false;
         public bool monsterSight = false;
         public bool doorAction = false;
+        public bool fade = false;
     }
     public mDebug debug = new mDebug();
 
@@ -804,7 +805,8 @@ public class MonsterAI : MonoBehaviour {
             // if player died
             if (playerManager.death)
             {
-                Debug.Log("player death fade");
+                if(debug.fade)
+                    Debug.Log("player death fade");
 
                 if (playerManager.fadeColor > 0.99f)
                 {
@@ -822,7 +824,8 @@ public class MonsterAI : MonoBehaviour {
             // if player was knocked out
             else if (playerManager.KO)
             {
-                Debug.Log("player KO fade");
+                if (debug.fade)
+                    Debug.Log("player KO fade");
 
                 if (playerManager.fadeColor > 0.99f && playerManager.KO)
                 {
@@ -840,7 +843,8 @@ public class MonsterAI : MonoBehaviour {
         // fading back if there is no death
         else
         {
-            Debug.Log("player normal fade");
+            if (debug.fade)
+                Debug.Log("player normal fade");
 
             FadeIn();
         }
