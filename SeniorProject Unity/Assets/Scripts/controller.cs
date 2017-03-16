@@ -256,6 +256,9 @@ public class controller : MonoBehaviour
                 playerSpeed = playerSpeedGroup.crouchSpeed;
             else
                 playerSpeed = playerSpeedGroup.walkSpeed;
+
+            /// BLEED
+            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.0f;
         }
         else if (playerHealth <= 50)
         {
@@ -268,6 +271,9 @@ public class controller : MonoBehaviour
                 playerSpeed = playerSpeedGroup.crouchSpeed / 1.4f;
             else
                 playerSpeed = playerSpeedGroup.walkSpeed / 1.4f;
+
+            /// BLEED
+            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.3f;
         }
         else if (playerHealth <= 0)
         {
@@ -280,6 +286,9 @@ public class controller : MonoBehaviour
                 playerSpeed = playerSpeedGroup.crouchSpeed / 1.7f;
             else
                 playerSpeed = playerSpeedGroup.walkSpeed / 1.7f;
+
+            /// BLEED
+            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.5f;
         }
         ///
 
