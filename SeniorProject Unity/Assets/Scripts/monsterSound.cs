@@ -219,42 +219,42 @@ public class monsterSound : MonoBehaviour {
             if(alertSoundsChoice <= monsterAlertSounds.Length && alertSoundsChoice > 0)
                 monsterAlertSound = monsterAlertSounds[alertSoundsChoice - 1];
             else if (alertSoundsChoice == 0)
-                monsterAlertSound = monsterAlertSounds[monsterAlertSounds.Length];
+                monsterAlertSound = monsterAlertSounds[monsterAlertSounds.Length - 1];
         }
         if (lastMonsterAttackSound == monsterAttackSound)
         {
             if (attackSoundsChoice <= monsterAttackSounds.Length && attackSoundsChoice > 0)
                 monsterAttackSound = monsterAttackSounds[attackSoundsChoice - 1];
             else if (attackSoundsChoice == 0)
-                monsterAttackSound = monsterAttackSounds[monsterAttackSounds.Length];
+                monsterAttackSound = monsterAttackSounds[monsterAttackSounds.Length - 1];
         }
         if (lastMonsterGrowlSound == monsterGrowlSound)
         {
             if (growlSoundsChoice <= monsterGrowlSounds.Length && growlSoundsChoice > 0)
                 monsterGrowlSound = monsterGrowlSounds[growlSoundsChoice - 1];
             else if (growlSoundsChoice == 0)
-                monsterGrowlSound = monsterGrowlSounds[monsterGrowlSounds.Length];
+                monsterGrowlSound = monsterGrowlSounds[monsterGrowlSounds.Length - 1];
         }
         if (lastMonsterNoticeSound == monsterNoticeSound)
         {
             if (noticeSoundsChoice <= monsterNoticeSounds.Length && noticeSoundsChoice > 0)
                 monsterNoticeSound = monsterNoticeSounds[noticeSoundsChoice - 1];
             else if (noticeSoundsChoice == 0)
-                monsterNoticeSound = monsterNoticeSounds[monsterNoticeSounds.Length];
+                monsterNoticeSound = monsterNoticeSounds[monsterNoticeSounds.Length - 1];
         }
         if (lastMonsterRambleSound == monsterRambleSound)
         {
             if (rambleSoundsChoice <= monsterRambleSounds.Length && rambleSoundsChoice > 0)
                 monsterRambleSound = monsterRambleSounds[rambleSoundsChoice - 1];
             else if (rambleSoundsChoice == 0)
-                monsterRambleSound = monsterRambleSounds[monsterRambleSounds.Length];
+                monsterRambleSound = monsterRambleSounds[monsterRambleSounds.Length - 1];
         }
         if (lastMonsterSearchSound == monsterSearchSound)
         {
             if (searchSoundsChoice <= monsterSearchSounds.Length && searchSoundsChoice > 0)
                 monsterSearchSound = monsterSearchSounds[searchSoundsChoice - 1];
             else if (searchSoundsChoice == 0)
-                monsterSearchSound = monsterSearchSounds[monsterSearchSounds.Length];
+                monsterSearchSound = monsterSearchSounds[monsterSearchSounds.Length - 1];
         }
         
     }

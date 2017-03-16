@@ -45,6 +45,16 @@ public class controller : MonoBehaviour
     public PlayerLean playerLean = new PlayerLean();
 
     [System.Serializable]
+    public class PlayerSpeech
+    {
+        public AudioSource voice;
+        public AudioClip[] hitSounds;
+        public AudioClip[] deathSounds;
+        //public AudioClip hitSound;
+    }
+    public PlayerSpeech playerSpeech = new PlayerSpeech();
+
+    [System.Serializable]
     public class CamerasGroup
     {
         //Cameras and joint
@@ -142,6 +152,13 @@ public class controller : MonoBehaviour
         noteBooks = GameObject.FindGameObjectsWithTag("noteBook"); // The controller identifies any notebooks in use either in VR or non-VR
         anim = GameObject.FindGameObjectWithTag("arms").GetComponent<Animator>(); // Initialize animator from placeholder arms
         rb = GetComponent<Rigidbody>();
+        playerSpeech.voice = GetComponent<AudioSource>();
+
+
+        /// loading sounds for player
+        playerSpeech.hitSounds = Resources.LoadAll<AudioClip>("Player/HitSounds");
+        playerSpeech.deathSounds = Resources.LoadAll<AudioClip>("Player/DeathSounds");
+        //playerSpeech.hitSound
 
         playerMaxSpeed = playerSpeedGroup.sprintSpeed;
 
@@ -606,5 +623,16 @@ public class controller : MonoBehaviour
         }
     }
 
+    public void KOVoice()
+    {
+        playerSpeech.voice.clip = playerSpeech.hitSounds[Random.Range(0, playerSpeech.hitSounds.Length)];
+        playerSpeech.voice.Play();
+    }
+
+    public void DeathVoice()
+    {
+        playerSpeech.voice.clip = playerSpeech.deathSounds[Random.Range(0, playerSpeech.deathSounds.Length)];
+        playerSpeech.voice.Play();
+    }
 
 }
