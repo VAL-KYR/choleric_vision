@@ -8,13 +8,14 @@ public class MonsterAI : MonoBehaviour {
     // Monster Debug Management
     [System.Serializable]
     public class mDebug
-    {
+    { 
         public bool monsterSpeakStates = false;
         public bool pureStates = false;
         public bool investigate = false;
         public bool investigateSound = false;
         public bool monsterSight = false;
         public bool doorAction = false;
+        public bool fade = false;
     }
     public mDebug debug = new mDebug();
 
@@ -82,7 +83,7 @@ public class MonsterAI : MonoBehaviour {
         public float maxSpeed;
         public GameObject[] spawns;
         public GameObject[] winZones;
-        public GameObject headJoint;
+        public GameObject headMaster;
 
         public Material fader;
         public bool KO = false;
@@ -135,7 +136,7 @@ public class MonsterAI : MonoBehaviour {
         player = GameObject.FindGameObjectWithTag("GameController");
         deathRoom = GameObject.FindGameObjectWithTag("DeathPoint");
         monsterBalancer.hands = GameObject.FindGameObjectsWithTag("monsterHands");
-        playerManager.headJoint = GameObject.FindGameObjectWithTag("NeckJoint");
+        playerManager.headMaster = GameObject.FindGameObjectWithTag("headMaster");
 
 
         // Find faders
@@ -733,6 +734,8 @@ public class MonsterAI : MonoBehaviour {
         playerManager.fading = true;
         playerManager.KO = true;
 
+        player.GetComponent<controller>().KOVoice();
+
         // fade to black on controller
         // spawn monster somwhere else
         // spawn player somewhere else (CREATE PLAYER SPAWN POINTS)
@@ -751,9 +754,11 @@ public class MonsterAI : MonoBehaviour {
         playerManager.fading = true;
         playerManager.death = true;
 
+        player.GetComponent<controller>().DeathVoice();
+
         // Change scene to death screen 
         // GAME OVER
-        
+
     }
 
     // KO Teleport
@@ -792,7 +797,17 @@ public class MonsterAI : MonoBehaviour {
     }
     //
 
-    // FADEING
+    // Death Teleport
+    public void TPWon()
+    {
+        // GAME WON
+
+        player.transform.position = GameObject.FindGameObjectWithTag("winPoint").transform.position;
+
+    }
+    //
+
+    // FADEING AND TELEPORTING
     public void FadeEvent()
     {
         if (playerManager.fading)
@@ -800,7 +815,8 @@ public class MonsterAI : MonoBehaviour {
             // if player died
             if (playerManager.death)
             {
-                Debug.Log("player death fade");
+                if(debug.fade)
+                    Debug.Log("player death fade");
 
                 if (playerManager.fadeColor > 0.99f)
                 {
@@ -818,11 +834,20 @@ public class MonsterAI : MonoBehaviour {
             // if player was knocked out
             else if (playerManager.KO)
             {
-                Debug.Log("player KO fade");
+                if (debug.fade)
+                    Debug.Log("player KO fade");
 
                 if (playerManager.fadeColor > 0.99f && playerManager.KO)
                 {
-                    TPKO();
+                    if (!playerManager.won)
+                    {
+                        TPKO();
+                    }
+                    else
+                    {
+                        TPWon();
+                    }
+                    
                     // fading out done
                     playerManager.fading = false;
                     playerManager.KO = false;
@@ -836,7 +861,8 @@ public class MonsterAI : MonoBehaviour {
         // fading back if there is no death
         else
         {
-            Debug.Log("player normal fade");
+            if (debug.fade)
+                Debug.Log("player normal fade");
 
             FadeIn();
         }
@@ -848,13 +874,13 @@ public class MonsterAI : MonoBehaviour {
     public void FadeIn()
     {
         playerManager.fadeColor = Mathf.Lerp(playerManager.fadeColor, 0.0f, playerManager.fadeRate * Time.deltaTime);
-        //playerManager.headJoint.transform.localPosition = Vector3.Lerp(playerManager.headJoint.transform.position, new Vector3(playerManager.headJoint.transform.position.x, 1.2f, playerManager.headJoint.transform.position.z), playerManager.fadeRate * Time.deltaTime);
+        playerManager.headMaster.transform.localPosition = Vector3.Lerp(playerManager.headMaster.transform.localPosition, new Vector3(playerManager.headMaster.transform.localPosition.x, 0.0f, playerManager.headMaster.transform.localPosition.z), playerManager.fadeRate * Time.deltaTime);
     }
 
     public void FadeOut()
     {
         playerManager.fadeColor = Mathf.Lerp(playerManager.fadeColor, 1.0f, playerManager.fadeRate * Time.deltaTime);
-        //playerManager.headJoint.transform.localPosition = Vector3.Lerp(playerManager.headJoint.transform.position, new Vector3(playerManager.headJoint.transform.position.x, 0.0f, playerManager.headJoint.transform.position.z), playerManager.fadeRate * Time.deltaTime);
+        playerManager.headMaster.transform.localPosition = Vector3.Lerp(playerManager.headMaster.transform.localPosition, new Vector3(playerManager.headMaster.transform.localPosition.x, -1.5f, playerManager.headMaster.transform.localPosition.z), playerManager.fadeRate * Time.deltaTime);
     }
     ////////// ------ PLAYER MANAGEMENT ------ //////////
 
@@ -944,20 +970,28 @@ public class MonsterAI : MonoBehaviour {
 
         if (agentManager.doorStuckTime >= agentManager.doorGhostCooldown)
         {
-            door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<Collider>().enabled = true;
-            door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<Collider>().enabled = true;
-            door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = true;
-            door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = true;
+            if (door.GetComponent<doorMaster>().rDoorSound)
+                door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<Collider>().enabled = true;
+            if (door.GetComponent<doorMaster>().lDoorSound)
+                door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<Collider>().enabled = true;
+            if(door.GetComponent<doorMaster>().rDoorSound)
+                door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = true;
+            if (door.GetComponent<doorMaster>().lDoorSound)
+                door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = true;
             agentManager.stuckDoor = null;
             agentManager.doorStuckTime = 0.0f;
             agentManager.stuckOnOpenDoor = false;
         }
        else
         {
-            door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<Collider>().enabled = false;
-            door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<Collider>().enabled = false;
-            door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = false;
-            door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = false;
+            if (door.GetComponent<doorMaster>().rDoorSound)
+                door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<Collider>().enabled = false;
+            if (door.GetComponent<doorMaster>().lDoorSound)
+                door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<Collider>().enabled = false;
+            if (door.GetComponent<doorMaster>().rDoorSound)
+                door.GetComponent<doorMaster>().rDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = false;
+            if (door.GetComponent<doorMaster>().lDoorSound)
+                door.GetComponent<doorMaster>().lDoorSound.GetComponentInParent<NavMeshObstacle>().enabled = false;
         }
 
     }

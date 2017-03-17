@@ -53,7 +53,11 @@ public class noteBook : MonoBehaviour {
         currentHints.Add("Hit (B) to toggle crouch/standing.");
         currentHints.Add("Press in the (left stick) to run");
         currentHints.Add("(RTrigger/LTrigger) to lean right and left");
-        hintsText.text = string.Join("\n", currentHints.ToArray());
+        if (hintsText)
+        {
+            hintsText.text = string.Join("\n", currentHints.ToArray());
+        }
+       
     }
 	
 	// Update is called once per frame
@@ -74,8 +78,12 @@ public class noteBook : MonoBehaviour {
 
         // If the notes text objects are active then animate the arms to open or close
         anim.SetBool("OpenClosed", bookOpen);
-        
 
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Opened")  && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
+        {
+            notes.SetActive(true);
+            hints.SetActive(true);
+        }
 
     }
 
@@ -146,8 +154,8 @@ public class noteBook : MonoBehaviour {
     public void Open()
     {
         bookOpen = true;
-        notes.SetActive(true);
-        hints.SetActive(true);
+       
+        
     }
 
     public void Close()

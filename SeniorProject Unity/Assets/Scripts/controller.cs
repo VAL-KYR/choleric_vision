@@ -21,9 +21,10 @@ public class controller : MonoBehaviour
     [System.Serializable]
     public class PlayerSpeedGroup
     {
-        public float walkSpeed;
-        public float sprintSpeed;
-        public float crouchSpeed;
+        public float walkMoveSpeed;
+        public float sprintMoveSpeed;
+        public float crouchMoveSpeed;
+        public float crouchSpeed = 5.0f;
         public float speedH = 2.0f;
         public float speedV = 2.0f;
     }
@@ -45,6 +46,16 @@ public class controller : MonoBehaviour
     public PlayerLean playerLean = new PlayerLean();
 
     [System.Serializable]
+    public class PlayerSpeech
+    {
+        public AudioSource voice;
+        public AudioClip[] hitSounds;
+        public AudioClip[] deathSounds;
+        //public AudioClip hitSound;
+    }
+    public PlayerSpeech playerSpeech = new PlayerSpeech();
+
+    [System.Serializable]
     public class CamerasGroup
     {
         //Cameras and joint
@@ -55,6 +66,7 @@ public class controller : MonoBehaviour
     public CamerasGroup camerasgroup = new CamerasGroup();
 
     private GameObject headJoint;
+    public bool playerWin = false;
 
     // Player Death Effects
     GameObject vrCam;
@@ -74,6 +86,9 @@ public class controller : MonoBehaviour
     private float crouchDiffeance;
     private float rotSpeed;
     private Rigidbody rb;
+
+    // Monster
+    public GameObject activeMonster;
 
     //Player Controls
     public bool playerSprint;
@@ -142,8 +157,15 @@ public class controller : MonoBehaviour
         noteBooks = GameObject.FindGameObjectsWithTag("noteBook"); // The controller identifies any notebooks in use either in VR or non-VR
         anim = GameObject.FindGameObjectWithTag("arms").GetComponent<Animator>(); // Initialize animator from placeholder arms
         rb = GetComponent<Rigidbody>();
+        playerSpeech.voice = GetComponent<AudioSource>();
 
-        playerMaxSpeed = playerSpeedGroup.sprintSpeed;
+
+        /// loading sounds for player
+        playerSpeech.hitSounds = Resources.LoadAll<AudioClip>("Player/HitSounds");
+        playerSpeech.deathSounds = Resources.LoadAll<AudioClip>("Player/DeathSounds");
+        //playerSpeech.hitSound
+
+        playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed;
 
         /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
 
@@ -168,7 +190,7 @@ public class controller : MonoBehaviour
 
         //Set variablets
         calibrationDone = false;
-        playerSpeed = playerSpeedGroup.walkSpeed;// Grab gController and it's speed states
+        playerSpeed = playerSpeedGroup.walkMoveSpeed;// Grab gController and it's speed states
         playerSprint = false;// Grab gController and it's speed states
         oriPlayerScale = transform.localScale;
         playerHeight = oriPlayerScale[1];
@@ -221,50 +243,24 @@ public class controller : MonoBehaviour
         // Player Damage Effects
         Effects();
 
+        // FInd monster
+        if (GameObject.FindGameObjectWithTag("Monster"))
+        {
+            activeMonster = GameObject.FindGameObjectWithTag("Monster");
+        }
+
+        // WIN RESULT
+        if (playerWin)
+        {
+            End();
+        }
+       
+
         // Update Standing Position if Player is not crouched
         if (!crouch)
         {
             playerPos = transform.position;
         }
-
-        // If player is sprinting set to sprintspeed
-        if(playerHealth >= 100)
-        {
-            if (playerSprint)
-            {
-                playerSpeed = playerSpeedGroup.sprintSpeed;
-                playerMaxSpeed = playerSpeedGroup.sprintSpeed;
-            }
-            else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchSpeed;
-            else
-                playerSpeed = playerSpeedGroup.walkSpeed;
-        }
-        else if (playerHealth <= 50)
-        {
-            if (playerSprint)
-            {
-                playerSpeed = playerSpeedGroup.sprintSpeed / 1.4f;
-                playerMaxSpeed = playerSpeedGroup.sprintSpeed / 1.4f;
-            }
-            else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchSpeed / 1.4f;
-            else
-                playerSpeed = playerSpeedGroup.walkSpeed / 1.4f;
-        }
-        else if (playerHealth <= 0)
-        {
-            if (playerSprint)
-            {
-                playerSpeed = playerSpeedGroup.sprintSpeed / 1.7f;
-                playerMaxSpeed = playerSpeedGroup.sprintSpeed / 1.7f;
-            }
-            else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchSpeed / 1.7f;
-            else
-                playerSpeed = playerSpeedGroup.walkSpeed / 1.7f;
-        }
-
 
         if (!holdObj)
         {
@@ -310,6 +306,7 @@ public class controller : MonoBehaviour
             moveDirection.z *= playerSpeed;
 
             //crouch state
+            /*
             if (Input.GetButton("Crouch") && !crouch)
             {
                 if (playerSprint)
@@ -319,7 +316,11 @@ public class controller : MonoBehaviour
                 headJoint.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
                 noteBookGO.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
 
+                //  character scale capsule collider scale
+
                 crouch = true;
+                GetComponent<CapsuleCollider>().height = 2.0f;
+                GetComponent<CharacterController>().height = 2.0f;
             }
 
             else if (!Input.GetButton("Crouch") && crouch)
@@ -327,8 +328,33 @@ public class controller : MonoBehaviour
                 headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
                 noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
 
+                // character scale capsule collider scale
+                GetComponent<CapsuleCollider>().height = 1.0f;
+                GetComponent<CharacterController>().height = 1.0f;
+
                 crouch = false;
             }
+            */
+
+            if (Input.GetButton("Crouch"))
+            {
+                crouch = true;
+
+                if (playerSprint)
+                    playerSprint = false;
+
+                // character scale capsule collider scale
+                GetComponent<CapsuleCollider>().height = Mathf.Lerp(GetComponent<CapsuleCollider>().height, 0.5f, playerSpeedGroup.crouchSpeed * Time.deltaTime);
+                GetComponent<CharacterController>().height = Mathf.Lerp(GetComponent<CharacterController>().height, 0.5f, playerSpeedGroup.crouchSpeed * Time.deltaTime);
+            }
+            else
+            {
+                crouch = false;
+
+                GetComponent<CapsuleCollider>().height = Mathf.Lerp(GetComponent<CapsuleCollider>().height, 2.0f, 5.0f * Time.deltaTime);
+                GetComponent<CharacterController>().height = Mathf.Lerp(GetComponent<CharacterController>().height, 2.0f, 5.0f * Time.deltaTime);
+            }
+
         }
         else
         {
@@ -593,18 +619,55 @@ public class controller : MonoBehaviour
 
     public void Effects()
     {
+
+        // set to edit viewable thing later 
         float playerEffectScale = -1.0f * ((playerHealth / 100) - 1.0f);
 
+        
+        // Screen Effects
         if (!VRSettings.enabled)
         {
             nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
+            // bleed scale set to editable thing later
+            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = playerEffectScale / 2.1f;
         }
         else
         {
             vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
-
+            // bleed scale set to editable thing later
+            vrCam.GetComponent<BleedBehavior>().minBloodAmount = playerEffectScale / 2.1f;
         }
+
+        // Movement
+        if (playerSprint)
+        {
+            playerSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + playerEffectScale);
+            playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + playerEffectScale);
+        }
+        else if (crouch)
+            playerSpeed = playerSpeedGroup.crouchMoveSpeed / (1 + playerEffectScale);
+        else
+            playerSpeed = playerSpeedGroup.walkMoveSpeed / (1 + playerEffectScale);
     }
 
+    public void KOVoice()
+    {
+        playerSpeech.voice.clip = playerSpeech.hitSounds[Random.Range(0, playerSpeech.hitSounds.Length)];
+        playerSpeech.voice.Play();
+    }
+
+    public void DeathVoice()
+    {
+        playerSpeech.voice.clip = playerSpeech.deathSounds[Random.Range(0, playerSpeech.deathSounds.Length)];
+        playerSpeech.voice.Play();
+    }
+
+    public void End()
+    {
+        activeMonster.GetComponent<MonsterAI>().playerManager.won = true;
+        activeMonster.GetComponent<MonsterAI>().PlayerKO();
+        playerHealth = 100.0f;
+        playerWin = false;
+    }
 
 }
