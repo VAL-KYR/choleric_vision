@@ -61,9 +61,9 @@ public class controller : MonoBehaviour
         //Cameras and joint
         public GameObject playerVR;
         public GameObject playerNormal;
-        
+        public float effectScale;
     }
-    public CamerasGroup camerasgroup = new CamerasGroup();
+    public CamerasGroup camerasGroup = new CamerasGroup();
 
     private GameObject headJoint;
     public bool playerWin = false;
@@ -148,8 +148,8 @@ public class controller : MonoBehaviour
         gameObject.transform.position = playerSpawn.spawns[playerSpawn.spawnChoose].transform.position;
 
         //Find Gameobjects or componants
-        camerasgroup.playerVR = GameObject.FindGameObjectWithTag("VRCam");
-        camerasgroup.playerNormal = GameObject.FindGameObjectWithTag("NonVRCam");
+        camerasGroup.playerVR = GameObject.FindGameObjectWithTag("VRCam");
+        camerasGroup.playerNormal = GameObject.FindGameObjectWithTag("NonVRCam");
         headJoint = GameObject.FindGameObjectWithTag("NeckJoint");
         ground = GameObject.FindGameObjectWithTag("playerBottom");
         contCollider = GetComponent<CapsuleCollider>();
@@ -202,13 +202,13 @@ public class controller : MonoBehaviour
         // Setting up camera to use (VR or no VR)
         if (VRSettings.enabled)
         {
-            camerasgroup.playerVR.SetActive(true);
-            camerasgroup.playerNormal.SetActive(false);
+            camerasGroup.playerVR.SetActive(true);
+            camerasGroup.playerNormal.SetActive(false);
         }
         else
         {
-            camerasgroup.playerVR.SetActive(false);
-            camerasgroup.playerNormal.SetActive(true);
+            camerasGroup.playerVR.SetActive(false);
+            camerasGroup.playerNormal.SetActive(true);
         }
     }
 
@@ -286,7 +286,7 @@ public class controller : MonoBehaviour
             if (!VRSettings.enabled)
             {
                 transform.eulerAngles = new Vector3(0.0f, mYaw, 0.0f);
-                camerasgroup.playerNormal.transform.eulerAngles = new Vector3(mPitch, mYaw, 0.0f);
+                camerasGroup.playerNormal.transform.eulerAngles = new Vector3(mPitch, mYaw, 0.0f);
             }
 
             if (debug)
@@ -554,8 +554,8 @@ public class controller : MonoBehaviour
             if (debug)
             {
                 Debug.Log("VR is " + VRSettings.enabled);
-                Debug.Log("VR Camera is " + camerasgroup.playerVR.activeSelf);
-                Debug.Log("Normal Camera is " + camerasgroup.playerNormal.activeSelf);
+                Debug.Log("VR Camera is " + camerasGroup.playerVR.activeSelf);
+                Debug.Log("Normal Camera is " + camerasGroup.playerNormal.activeSelf);
             }
         }
 
@@ -565,13 +565,13 @@ public class controller : MonoBehaviour
         // Toggle VR Controller Camera
         if (VRSettings.enabled)
         {
-            camerasgroup.playerVR.SetActive(true);
-            camerasgroup.playerNormal.SetActive(false);
+            camerasGroup.playerVR.SetActive(true);
+            camerasGroup.playerNormal.SetActive(false);
         }
         else
         {
-            camerasgroup.playerVR.SetActive(false);
-            camerasgroup.playerNormal.SetActive(true);
+            camerasGroup.playerVR.SetActive(false);
+            camerasGroup.playerNormal.SetActive(true);
         }
 
 
@@ -602,7 +602,7 @@ public class controller : MonoBehaviour
         if (VRSettings.enabled)
         {
 
-            float camY = camerasgroup.playerVR.transform.rotation.eulerAngles.y;
+            float camY = camerasGroup.playerVR.transform.rotation.eulerAngles.y;
 
             if (Input.GetButtonDown("VRLookReset"))
             {                
@@ -621,47 +621,51 @@ public class controller : MonoBehaviour
     {
 
         // set to edit viewable thing later 
-        float playerEffectScale = -1.0f * ((playerHealth / 100) - 1.0f);
+        camerasGroup.effectScale = -1.0f * ((playerHealth / 100) - 1.0f);
 
         
         // Screen Effects
         if (!VRSettings.enabled)
         {
-            nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
+            nonVrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, camerasGroup.effectScale);
             // bleed scale set to editable thing later
-            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = playerEffectScale / 2.1f;
+            nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = Mathf.Lerp(nonVrCam.GetComponent<BleedBehavior>().minBloodAmount, Mathf.Sqrt(camerasGroup.effectScale) / 2.4f, Time.deltaTime);
         }
         else
         {
-            vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, playerEffectScale);
-            // bleed scale set to editable thing later
-            vrCam.GetComponent<BleedBehavior>().minBloodAmount = playerEffectScale / 2.1f;
+            vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, camerasGroup.effectScale);
+            // bleed scale set to editable thing later        nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = playerEffectScale / 2.1f
+            vrCam.GetComponent<BleedBehavior>().minBloodAmount = Mathf.Lerp(vrCam.GetComponent<BleedBehavior>().minBloodAmount, Mathf.Sqrt(camerasGroup.effectScale) / 2.4f, Time.deltaTime);
         }
 
         // Movement
         if (playerSprint)
         {
-            playerSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + playerEffectScale);
-            playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + playerEffectScale);
+            playerSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + camerasGroup.effectScale);
+            playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + camerasGroup.effectScale);
         }
         else if (crouch)
-            playerSpeed = playerSpeedGroup.crouchMoveSpeed / (1 + playerEffectScale);
+            playerSpeed = playerSpeedGroup.crouchMoveSpeed / (1 + camerasGroup.effectScale);
         else
-            playerSpeed = playerSpeedGroup.walkMoveSpeed / (1 + playerEffectScale);
+            playerSpeed = playerSpeedGroup.walkMoveSpeed / (1 + camerasGroup.effectScale);
     }
 
+    // knockout
     public void KOVoice()
     {
         playerSpeech.voice.clip = playerSpeech.hitSounds[Random.Range(0, playerSpeech.hitSounds.Length)];
         playerSpeech.voice.Play();
     }
 
+    // losing
     public void DeathVoice()
     {
         playerSpeech.voice.clip = playerSpeech.deathSounds[Random.Range(0, playerSpeech.deathSounds.Length)];
         playerSpeech.voice.Play();
+        //playerHealth = 100.0f;
     }
 
+    // winning
     public void End()
     {
         activeMonster.GetComponent<MonsterAI>().playerManager.won = true;

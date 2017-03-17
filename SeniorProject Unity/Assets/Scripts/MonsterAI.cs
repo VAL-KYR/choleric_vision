@@ -84,6 +84,7 @@ public class MonsterAI : MonoBehaviour {
         public GameObject[] spawns;
         public GameObject[] winZones;
         public GameObject headMaster;
+        public GameObject clothes;
 
         public Material fader;
         public bool KO = false;
@@ -137,6 +138,7 @@ public class MonsterAI : MonoBehaviour {
         deathRoom = GameObject.FindGameObjectWithTag("DeathPoint");
         monsterBalancer.hands = GameObject.FindGameObjectsWithTag("monsterHands");
         playerManager.headMaster = GameObject.FindGameObjectWithTag("headMaster");
+        playerManager.clothes = GameObject.FindGameObjectWithTag("Clothes");
 
 
         // Find faders
@@ -499,8 +501,8 @@ public class MonsterAI : MonoBehaviour {
         // action is a cooldown type so calculate time while in state
         actionTime += Time.deltaTime;
 
-        // if running into a door
-        if (velocity.magnitude < agentManager.stuckDoorOpen)
+        // if running into a door // AND the player isn't within the attack distance
+        if (velocity.magnitude < agentManager.stuckDoorOpen && playerManager.distanceAway > monsterBalancer.attackDistance / 2)
         {
             OpenNearbyDoor();
         }
@@ -579,7 +581,7 @@ public class MonsterAI : MonoBehaviour {
         // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later], also make it so that if he can still see you then keep chasing
 
         // if running into a door
-        if (velocity.magnitude < agentManager.stuckDoorOpen)
+        if (velocity.magnitude < agentManager.stuckDoorOpen && playerManager.distanceAway > monsterBalancer.attackDistance / 2)
         {
             OpenNearbyDoor();
         }
@@ -714,6 +716,9 @@ public class MonsterAI : MonoBehaviour {
     {
         GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth = playerManager.health - 50.0f;
 
+        // PLAYER FALLING DOWN SOUND
+        playerManager.clothes.GetComponent<clothSounds>().Fall();
+
         if (playerManager.health <= 0.0f)
         {
             PlayerDeath();
@@ -820,7 +825,10 @@ public class MonsterAI : MonoBehaviour {
 
                 if (playerManager.fadeColor > 0.99f)
                 {
+                    // PLAYER GETTING UP SOUND
+                    playerManager.clothes.GetComponent<clothSounds>().Rise();
                     TPDeath();
+
                     // fading out done
                     playerManager.fading = false;
                     playerManager.death = false;
@@ -841,10 +849,14 @@ public class MonsterAI : MonoBehaviour {
                 {
                     if (!playerManager.won)
                     {
+                        // PLAYER GETTING UP SOUND
+                        playerManager.clothes.GetComponent<clothSounds>().Rise();
                         TPKO();
                     }
                     else
                     {
+                        // PLAYER GETTING UP SOUND
+                        playerManager.clothes.GetComponent<clothSounds>().Rise();
                         TPWon();
                     }
                     
