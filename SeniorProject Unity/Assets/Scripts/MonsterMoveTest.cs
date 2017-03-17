@@ -109,7 +109,17 @@ public class MonsterMoveTest : MonoBehaviour {
 
                     if (distanceToLight <= 10.0f)
                     {
-                        unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 0.0f, (distanceToLight / 10.0f) * Time.deltaTime);
+                        if (unaturalLights[j].GetComponent<flashLightOnOff>() != null)
+                        {
+                            unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 0.8f, (distanceToLight / 10.0f) * Time.deltaTime);
+                            unaturalLights[j].GetComponent<flashLightOnOff>().flashPeriod = 2.0f;
+                            unaturalLights[j].GetComponent<flashLightOnOff>().flashing = true;
+                        }
+                        else
+                        {
+                            unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 0.0f, (distanceToLight / 10.0f) * Time.deltaTime);
+                        }
+                        
                     }
 
                     else

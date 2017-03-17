@@ -1108,6 +1108,8 @@ public class MonsterAI : MonoBehaviour {
                 if (unaturalLights[j].GetComponent<flashLightOnOff>() != null)
                 {
                     unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 1.0f, (distanceToLight / 10.0f) * Time.deltaTime);
+                    unaturalLights[j].GetComponent<flashLightOnOff>().flashPeriod = 2.0f;
+                    unaturalLights[j].GetComponent<flashLightOnOff>().flashing = true;
                 }
                 // dim normal
                 else

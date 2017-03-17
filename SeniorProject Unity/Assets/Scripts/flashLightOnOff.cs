@@ -13,7 +13,6 @@ public class flashLightOnOff : MonoBehaviour
 
     public float flashTime = 0.0f;
     public float flashPeriod = 2.0f;
-    public float startingIntensity = -1.0f;
     public bool flashing = false;
     public bool flashStartSet = false;
     public bool fixFlashLight = false;
@@ -52,12 +51,16 @@ public class flashLightOnOff : MonoBehaviour
             else
                 flashlight.enabled = true;
         }
-
-        if (Input.GetButtonDown("DevVoice1")){
-            flashing = true;
+        if (debug)
+        {
+            if (Input.GetButtonDown("DevVoice1"))
+            {
+                flashing = true;
+            }
         }
+       
 
-        if (heart.GetComponent<heartBeatThump>().restDifference > 1.4)
+        if (heart.GetComponent<heartBeatThump>().restDifference > 1.5)
         {
             flashing = true;
         }
@@ -111,7 +114,7 @@ public class flashLightOnOff : MonoBehaviour
         }
         else
         {
-            flashlight.color = Color.Lerp(flashlight.color, startCol, 3 * Time.deltaTime);
+            flashlight.color = Color.Lerp(flashlight.color, startCol, 10.0f * Time.deltaTime);
         }
     }
 
