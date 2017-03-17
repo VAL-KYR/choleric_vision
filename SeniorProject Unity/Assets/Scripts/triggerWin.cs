@@ -4,7 +4,8 @@ using System.Collections;
 public class triggerWin : MonoBehaviour {
 
     public GameObject winZone;
-    public GameObject tapePlay;
+    public GameObject tapePlayMusic;
+    public GameObject tapePlayStory;
     public bool playerWin = false;
 
 	// Use this for initialization
@@ -19,10 +20,11 @@ public class triggerWin : MonoBehaviour {
 
     public void OnTriggerEnter(Collider c)
     {
-        if (c.CompareTag("GameController"))
+        if (c.CompareTag("GameController") && !playerWin)
         {
-            c.gameObject.transform.position = winZone.transform.position;
-            tapePlay.GetComponent<tapeMaster>().remote();
+            c.gameObject.GetComponent<controller>().playerWin = true;
+            tapePlayMusic.GetComponent<tapeMaster>().remote();
+            tapePlayStory.GetComponent<tapeMaster>().remote();
             playerWin = true;
         }
     }

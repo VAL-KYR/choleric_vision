@@ -797,7 +797,17 @@ public class MonsterAI : MonoBehaviour {
     }
     //
 
-    // FADEING
+    // Death Teleport
+    public void TPWon()
+    {
+        // GAME WON
+
+        player.transform.position = GameObject.FindGameObjectWithTag("winPoint").transform.position;
+
+    }
+    //
+
+    // FADEING AND TELEPORTING
     public void FadeEvent()
     {
         if (playerManager.fading)
@@ -829,7 +839,15 @@ public class MonsterAI : MonoBehaviour {
 
                 if (playerManager.fadeColor > 0.99f && playerManager.KO)
                 {
-                    TPKO();
+                    if (!playerManager.won)
+                    {
+                        TPKO();
+                    }
+                    else
+                    {
+                        TPWon();
+                    }
+                    
                     // fading out done
                     playerManager.fading = false;
                     playerManager.KO = false;

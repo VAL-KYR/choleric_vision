@@ -66,6 +66,7 @@ public class controller : MonoBehaviour
     public CamerasGroup camerasgroup = new CamerasGroup();
 
     private GameObject headJoint;
+    public bool playerWin = false;
 
     // Player Death Effects
     GameObject vrCam;
@@ -85,6 +86,9 @@ public class controller : MonoBehaviour
     private float crouchDiffeance;
     private float rotSpeed;
     private Rigidbody rb;
+
+    // Monster
+    public GameObject activeMonster;
 
     //Player Controls
     public bool playerSprint;
@@ -239,61 +243,24 @@ public class controller : MonoBehaviour
         // Player Damage Effects
         Effects();
 
+        // FInd monster
+        if (GameObject.FindGameObjectWithTag("Monster"))
+        {
+            activeMonster = GameObject.FindGameObjectWithTag("Monster");
+        }
+
+        // WIN RESULT
+        if (playerWin)
+        {
+            End();
+        }
+       
+
         // Update Standing Position if Player is not crouched
         if (!crouch)
         {
             playerPos = transform.position;
         }
-
-        /// If player is sprinting set to sprintspeed
-        /*
-        if(playerHealth >= 100)
-        {
-            if (playerSprint)
-            {
-                playerSpeed = playerSpeedGroup.sprintMoveSpeed;
-                playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed;
-            }
-            else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchMoveSpeed;
-            else
-                playerSpeed = playerSpeedGroup.walkMoveSpeed;
-
-            /// BLEED
-            //nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.0f;
-        }
-        else if (playerHealth <= 50)
-        {
-            if (playerSprint)
-            {
-                playerSpeed = playerSpeedGroup.sprintMoveSpeed / 1.4f;
-                playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / 1.4f;
-            }
-            else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchMoveSpeed / 1.4f;
-            else
-                playerSpeed = playerSpeedGroup.walkMoveSpeed / 1.4f;
-
-            /// BLEED
-            //nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.25f;
-        }
-        else if (playerHealth <= 0)
-        {
-            if (playerSprint)
-            {
-                playerSpeed = playerSpeedGroup.sprintMoveSpeed / 1.7f;
-                playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / 1.7f;
-            }
-            else if (crouch)
-                playerSpeed = playerSpeedGroup.crouchMoveSpeed / 1.7f;
-            else
-                playerSpeed = playerSpeedGroup.walkMoveSpeed / 1.7f;
-
-            /// BLEED
-            //nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = 0.7f;
-        }
-        */
-        ///
 
         if (!holdObj)
         {
@@ -693,6 +660,14 @@ public class controller : MonoBehaviour
     {
         playerSpeech.voice.clip = playerSpeech.deathSounds[Random.Range(0, playerSpeech.deathSounds.Length)];
         playerSpeech.voice.Play();
+    }
+
+    public void End()
+    {
+        activeMonster.GetComponent<MonsterAI>().playerManager.won = true;
+        activeMonster.GetComponent<MonsterAI>().PlayerKO();
+        playerHealth = 100.0f;
+        playerWin = false;
     }
 
 }

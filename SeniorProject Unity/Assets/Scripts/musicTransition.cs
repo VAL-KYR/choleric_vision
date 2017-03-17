@@ -4,7 +4,8 @@ using System.Collections;
 
 public class musicTransition : MonoBehaviour
 {
-	//public AudioMixerSnapshot currentSnapshot;
+    //public AudioMixerSnapshot currentSnapshot;
+    public bool debug = false;
 	public AudioMixerSnapshot newSnapshot;
 	public float transitionTime = 13.0f;
 
@@ -16,7 +17,10 @@ public class musicTransition : MonoBehaviour
         if (!musicTrigger && c.CompareTag("GameController"))
 		{
 			musicTrigger = true;
-            Debug.Log("Music changed");
+
+            if (debug)
+                Debug.Log("Music changed");
+
             newSnapshot.TransitionTo(transitionTime);
 		}
 	}
