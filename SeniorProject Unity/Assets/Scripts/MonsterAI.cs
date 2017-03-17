@@ -1107,7 +1107,7 @@ public class MonsterAI : MonoBehaviour {
                 // if it's a flashlight don't completely dim
                 if (unaturalLights[j].GetComponent<flashLightOnOff>() != null)
                 {
-                    unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 0.6f, (distanceToLight / 10.0f) * Time.deltaTime);
+                    unaturalLights[j].GetComponent<Light>().intensity = Mathf.Lerp(unaturalLights[j].GetComponent<Light>().intensity, 1.0f, (distanceToLight / 10.0f) * Time.deltaTime);
                 }
                 // dim normal
                 else

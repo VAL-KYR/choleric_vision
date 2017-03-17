@@ -83,7 +83,7 @@ public class footsteps : MonoBehaviour {
 				sprintStep = sprintSteps[Random.Range(0, sprintSteps.Length)];
 
                 // scales with player damage effects from controller script
-				stepDelay = currentStepDelay * (Mathf.Exp(player.GetComponent<controller>().camerasGroup.effectScale) * 1.1f);
+				stepDelay = currentStepDelay * (Mathf.Exp(player.GetComponent<controller>().camerasGroup.effectScale) * 1.15f);
 			}
 			//stepper.clip = walkSteps[Random.Range(0, walkSteps.Length)];
 			//StartCoroutine(Example());
