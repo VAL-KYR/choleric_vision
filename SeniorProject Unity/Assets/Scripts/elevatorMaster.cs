@@ -134,9 +134,12 @@ public class elevatorMaster : MonoBehaviour {
         {
             moveEle = false;
         }
-			
 
-		if (currPos == 0 && powerOn && !playerInElevator)
+
+        //unaturalLights[j].GetComponent<flashLightOnOff>().flashPeriod = 2.0f;
+        //unaturalLights[j].GetComponent<flashLightOnOff>().flashing = true;
+
+        if (currPos == 0 && powerOn && !playerInElevator)
 		{
 			uGateMoveBack = false;
 			uGateMove = true;
@@ -187,7 +190,10 @@ public class elevatorMaster : MonoBehaviour {
             {
                 elevatorSource.clip = bellSound;
                 elevatorSource.Play();
-                bellSounded = true;
+                elevatorSource.pitch = 0.9f;
+
+                bellSounded = true; 
+                eleLight.GetComponent<Light>().color = new Color(1, 0, 0, 1);
             }
         }
         else

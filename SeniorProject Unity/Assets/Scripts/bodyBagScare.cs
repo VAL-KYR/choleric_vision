@@ -13,7 +13,6 @@ public class bodyBagScare : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		sound = gameObject.GetComponent<AudioSource>();
-		flagsTripped = false;
 		flagsReady = 0;
 		tripped = false;
 	}
@@ -31,11 +30,16 @@ public class bodyBagScare : MonoBehaviour {
 			}
 		}
 
+        if(flagsReady >= flags.Length - 1)
+        {
+            flagsTripped = true;
+        }
+
 	}
 
 	public void OnTriggerEnter(Collider c)
 	{
-		if (c.CompareTag("GameController") && flagsReady >= flags.Length - 1 && !tripped)
+		if (c.CompareTag("GameController") && flagsTripped && !tripped)
 		{
 			if (!activate.activeSelf)
 			{
