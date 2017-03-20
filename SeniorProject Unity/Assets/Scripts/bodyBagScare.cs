@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
+using UnityEngine.VR;
 using System.Collections;
 
 public class bodyBagScare : MonoBehaviour {
 
-	public bool flagsTripped;
+    private GameObject activeFlashLight;
+    public GameObject flashLight;
+    public GameObject VRFlashLight;
+    public bool flagsTripped;
 	public GameObject[] flags;
 	public GameObject activate;
 	public int flagsReady;
@@ -15,12 +19,32 @@ public class bodyBagScare : MonoBehaviour {
 		sound = gameObject.GetComponent<AudioSource>();
 		flagsReady = 0;
 		tripped = false;
+
+        if (VRSettings.enabled)
+        {
+            activeFlashLight = VRFlashLight;
+        }
+        else
+        {
+            activeFlashLight = flashLight;
+        }
+        
+
 	}
 	
 	// Update is called once per frame
 	void Update () {
 
-		flagsReady = 0;
+        if (VRSettings.enabled)
+        {
+            activeFlashLight = VRFlashLight;
+        }
+        else
+        {
+            activeFlashLight = flashLight;
+        }
+
+        flagsReady = 0;
 
 		foreach (GameObject g in flags) 
 		{
@@ -44,7 +68,11 @@ public class bodyBagScare : MonoBehaviour {
 			if (!activate.activeSelf)
 			{
 				activate.SetActive(true);
-				tripped = true;
+
+                activeFlashLight.GetComponent<flashLightOnOff>().flashPeriod = 2.0f;
+                activeFlashLight.GetComponent<flashLightOnOff>().flashing = true;
+
+                tripped = true;
 			}
 
 		}

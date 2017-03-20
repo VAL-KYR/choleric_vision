@@ -144,7 +144,8 @@ public class controller : MonoBehaviour
         }
 
         /// Place the player at a spawn of choice ///
-        playerSpawn.spawns = GameObject.FindGameObjectsWithTag("PlayerSpawns");
+        /// this automatically finds spawns but it's not great for telling where they are in the editor
+        //playerSpawn.spawns = GameObject.FindGameObjectsWithTag("PlayerSpawns");
         gameObject.transform.position = playerSpawn.spawns[playerSpawn.spawnChoose].transform.position;
 
         //Find Gameobjects or componants
