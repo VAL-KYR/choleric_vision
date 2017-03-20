@@ -37,7 +37,7 @@ public class FliesSystem : MonoBehaviour
 	public ORIENTATION 	orientation	= ORIENTATION.UpDown;
 
 	[MinMaxSliderAttribute(1f,10f)] public Vector2 randomForward = new Vector2(1f,2f);
-	[MinMaxSliderAttribute(1f,10f)] public Vector2 randomAngular = new Vector2(1f,2f);
+	[MinMaxSliderAttribute(01f,10f)] public Vector2 randomAngular = new Vector2(1f,2f);
 
 	private List<Fly> 	list;
 	private Transform 	thisTransform;
@@ -120,8 +120,9 @@ public class FliesSystem : MonoBehaviour
 
 				foreach(Fly i in list)
 				{
-					p = thisTransform.position + RandomInsideSphere();
-					if(orientation != ORIENTATION.UpDown)
+					//p = thisTransform.position + RandomInsideSphere();
+                    p = thisTransform.position + RandomInsideSphere();
+                    if (orientation != ORIENTATION.UpDown)
 					{
 						offset	= p - thisTransform.position;
 						p.y	= (orientation == ORIENTATION.Up) ? thisTransform.position.y + Mathf.Abs(offset.y) : thisTransform.position.y - Mathf.Abs(offset.y);
