@@ -112,13 +112,13 @@ public class monsterAnimator : MonoBehaviour {
         if (idle)
         {
             gameObject.GetComponent<monsterSound>().Voice("ramble", 0.0f, true);
-            idleSnapshot.TransitionTo(transitionTime);
+            idleSnapshot.TransitionTo(transitionTime * 2.0f);
             //monsterAnimState.fullPathHash == idleStateHash
         }
         else if (search)
         {
             gameObject.GetComponent<monsterSound>().Voice("notice", 0.0f, true);
-            idleSnapshot.TransitionTo(transitionTime);
+            idleSnapshot.TransitionTo(transitionTime * 2.0f);
             //monsterAnimState.fullPathHash == searchStateHash
         }
         else if (chase)
@@ -132,7 +132,7 @@ public class monsterAnimator : MonoBehaviour {
                 gameObject.GetComponent<monsterSound>().Voice("alert", 0.0f, true);
             }
 
-            chaseSnapshot.TransitionTo(transitionTime);
+            chaseSnapshot.TransitionTo(transitionTime * 0.5f);
             //monsterAnimState.fullPathHash == chaseStateHash
         }
         // CHANGE FOR ERICA'S VERSION'

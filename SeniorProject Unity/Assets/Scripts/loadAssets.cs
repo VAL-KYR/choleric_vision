@@ -4,13 +4,13 @@ using System.Collections;
 public class loadAssets : MonoBehaviour {
 
     public bool startDead = false;
-    public GameObject[] unloadThese;
+    public GameObject[] loadThese;
 
 	// Use this for initialization
 	void Start () {
         if (startDead)
         {
-            foreach (GameObject g in unloadThese)
+            foreach (GameObject g in loadThese)
             {
                 if (g.activeSelf)
                     g.SetActive(false);
@@ -28,7 +28,7 @@ public class loadAssets : MonoBehaviour {
     {
         if (c.CompareTag("GameController"))
         {
-            foreach (GameObject g in unloadThese)
+            foreach (GameObject g in loadThese)
             {
                 if(!g.activeSelf)
                     g.SetActive(true);
