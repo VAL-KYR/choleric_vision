@@ -101,13 +101,6 @@ public class interactUI : MonoBehaviour {
                         ui.sprite = doorLocked;
                         uiQueue();
                     }
-                    /*
-                    else if(!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
-                    {
-                        ui.sprite = doorBroken;
-                        uiQueue();
-                    }
-                    */
                 }
 
                 // Not locked door
@@ -125,11 +118,36 @@ public class interactUI : MonoBehaviour {
                     }
                 }
             }
+
+            /// METAL DOOR CODE
+            
+            if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<metalDoorMaster>())
+            {
+                // Locked door
+                if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<metalDoorMaster>().doorLocked)
+                {
+                    if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<metalDoorMaster>().doorHasKey)
+                    {
+                        ui.sprite = doorLocked;
+                        uiQueue();
+                    }
+                }
+
+                // Not locked door
+                else
+                {
+                    ui.sprite = doorOpen;
+                    uiQueue();
+                }
+            }
+
+            // document cabinet
             else if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<documentCabinet>())
             {
                 ui.sprite = hand;
                 uiQueue();
             }
+            
             
         }
 
