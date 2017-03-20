@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.VR;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -50,7 +51,18 @@ public class FliesSystem : MonoBehaviour
 	{
 		list 			= new List<Fly>();
 		thisTransform 	= transform;
-		cameraTransform = Camera.main.transform;
+
+        // VR Switching Fix
+        if (VRSettings.enabled)
+        {
+            cameraTransform = GameObject.FindGameObjectWithTag("VRCam").transform;
+        }
+        else
+        {
+            cameraTransform = GameObject.FindGameObjectWithTag("NonVRCam").transform;
+        }
+
+		
 		Create ();
 	}
 	public void Create()
@@ -87,7 +99,17 @@ public class FliesSystem : MonoBehaviour
 	}
 	void Update()
 	{
-		if (run)
+        // VR Switching Fix
+        if (VRSettings.enabled)
+        {
+            cameraTransform = GameObject.FindGameObjectWithTag("VRCam").transform;
+        }
+        else
+        {
+            cameraTransform = GameObject.FindGameObjectWithTag("NonVRCam").transform;
+        }
+
+        if (run)
 		{
 			//retargeting (skip after first pass)
 			if(retarget)
