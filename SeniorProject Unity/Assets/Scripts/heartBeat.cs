@@ -33,12 +33,13 @@ public class heartBeat : MonoBehaviour {
     // Use this for initialization
     void Start () {
 
-        calState = 0;
+        calState = 2;
 
-        numOfHeartAvgDone = 0; 
+
+        avBeatPerMin = HBDataScript.HBAvg;
+
+        calState = 2;
         
-
-        avBeatPerMin = 0;
 
         sp.Open();
         sp.ReadTimeout = 1;

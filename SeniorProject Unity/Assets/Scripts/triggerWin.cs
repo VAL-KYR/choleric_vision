@@ -23,7 +23,10 @@ public class triggerWin : MonoBehaviour {
         if (c.CompareTag("GameController") && !playerWin)
         {
             c.gameObject.GetComponent<controller>().playerWin = true;
-            tapePlayMusic.GetComponent<tapeMaster>().remote();
+            if (tapePlayMusic)
+            {
+                tapePlayMusic.GetComponent<tapeMaster>().remote();
+            }
             tapePlayStory.GetComponent<tapeMaster>().remote();
             playerWin = true;
         }
