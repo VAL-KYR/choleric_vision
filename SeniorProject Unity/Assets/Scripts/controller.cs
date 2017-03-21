@@ -10,6 +10,8 @@ public class controller : MonoBehaviour
     public bool debug;
     public float playerHealth = 100.0f;
 
+    public bool withHeartBeat;
+
     [System.Serializable]
     public class PlayerSpawns
     {
@@ -129,8 +131,10 @@ public class controller : MonoBehaviour
     void Start()
 	{
 
-		// lcok cursor
-		Cursor.lockState = CursorLockMode.Locked;
+        withHeartBeat = HBDataScript.hbBool;
+
+        // lcok cursor
+        Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = (CursorLockMode.Locked != wantedMode);
 
         // Player Death Effects
@@ -211,6 +215,9 @@ public class controller : MonoBehaviour
             camerasGroup.playerVR.SetActive(false);
             camerasGroup.playerNormal.SetActive(true);
         }
+
+        if (!withHeartBeat)
+            GetComponent<heartBeat>().enabled = false;
     }
 
 	// Update is called once per frame
@@ -463,68 +470,71 @@ public class controller : MonoBehaviour
         }
 
         // Heart Beat Listening
-        if (Input.GetButton("HBListen"))
+        if (withHeartBeat)
         {
-            calibrationDone = true;
-
-            // Use this variable to access in calibration
-            HBListening = true;
-            heart.GetComponent<heartBeatThump>().heartListening = true;
-
-            // Remove the notes for HBListening
-            //notesPage.SetActive(false);
-            //hintsPage.SetActive(false);
-
-            
-            noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
-
-            foreach (GameObject n in noteBooks)
+            // Heart Beat Listening
+            if (Input.GetButton("HBListen"))
             {
-                if (n.GetComponent<noteBook>().bookOpen)
+                calibrationDone = true;
+
+                // Use this variable to access in calibration
+                HBListening = true;
+                heart.GetComponent<heartBeatThump>().heartListening = true;
+
+                // Remove the notes for HBListening
+                //notesPage.SetActive(false);
+                //hintsPage.SetActive(false);
+
+
+                noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
+
+                foreach (GameObject n in noteBooks)
                 {
-                    n.GetComponent<noteBook>().Close();
+                    if (n.GetComponent<noteBook>().bookOpen)
+                    {
+                        n.GetComponent<noteBook>().Close();
+                    }
                 }
+
+                // If the player is holding the HBListen key the animation is triggered
+                anim.SetBool("HBListen", true);
+
             }
 
-            // If the player is holding the HBListen key the animation is triggered
-            anim.SetBool("HBListen", true);
-            
-        }
-
-        // NOT Heart Beat Listening
-        else
-        {
-            // Use this variable to access in calibration
-            HBListening = false;
-            heart.GetComponent<heartBeatThump>().heartListening = false;
-
-            // Remove the hints for HBListening
-            //notesPage.SetActive(true);
-            //hintsPage.SetActive(true);
-
-            
-            noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
-
-            foreach (GameObject n in noteBooks)
+            // NOT Heart Beat Listening
+            else
             {
-                if (n.GetComponent<noteBook>().bookOpen)
-                {
-                    n.GetComponent<noteBook>().Open();
-                }
-                else
-                {
-                    n.GetComponent<noteBook>().Close();
-                }
-                
-            }
-            
+                // Use this variable to access in calibration
+                HBListening = false;
+                heart.GetComponent<heartBeatThump>().heartListening = false;
 
-            // If the player is holding the HBListen key the animation is triggered
-            anim.SetBool("HBListen", false);
+                // Remove the hints for HBListening
+                //notesPage.SetActive(true);
+                //hintsPage.SetActive(true);
+
+
+                noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
+
+                foreach (GameObject n in noteBooks)
+                {
+                    if (n.GetComponent<noteBook>().bookOpen)
+                    {
+                        n.GetComponent<noteBook>().Open();
+                    }
+                    else
+                    {
+                        n.GetComponent<noteBook>().Close();
+                    }
+
+                }
+
+
+                // If the player is holding the HBListen key the animation is triggered
+                anim.SetBool("HBListen", false);
+            }
         }
 
 
-        
 
         // Toggle Journal (Alpha)
         if (Input.GetButtonDown("NoteBook"))
