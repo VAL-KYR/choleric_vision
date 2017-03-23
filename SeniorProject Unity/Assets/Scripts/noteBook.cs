@@ -79,7 +79,7 @@ public class noteBook : MonoBehaviour {
         // If the notes text objects are active then animate the arms to open or close
         anim.SetBool("OpenClosed", bookOpen);
 
-        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Opened")  && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 1 && !anim.IsInTransition(0))
+        if (anim.GetCurrentAnimatorStateInfo(0).IsName("Opened")  && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.99f && !anim.IsInTransition(0) && bookOpen)
         {
             notes.SetActive(true);
             hints.SetActive(true);

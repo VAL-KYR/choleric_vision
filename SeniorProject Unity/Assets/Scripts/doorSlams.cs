@@ -11,6 +11,7 @@ public class doorSlams : MonoBehaviour {
 
     public GameObject[] doors;
     public bool triggerDoors = false;
+    public bool reTrigger = false;
 
    
     public float slamTime = 10.0f;
@@ -86,7 +87,7 @@ public class doorSlams : MonoBehaviour {
 
     public void OnTriggerEnter(Collider c)
     {
-        if (c.CompareTag("GameController") && !triggerDoors)
+        if (c.CompareTag("GameController") && !triggerDoors && reTrigger)
         {
             triggerDoors = true;
 

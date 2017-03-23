@@ -8,7 +8,7 @@ public class ending : MonoBehaviour {
     private GameObject deathRoom;
     private GameObject player;
 
-    public float timer = 0.0f;
+    private float timer = 0.0f;
 
     private bool triggerDeath = false;
     public float deathTime = 3.0f;
@@ -30,14 +30,18 @@ public class ending : MonoBehaviour {
 	void Update () {
 
         // CHECKING FOR PLAYER TP
-        if (winRoom.GetComponent<Collider>().bounds.Contains(player.transform.position))
-        {
-            triggerWin = true;
-        }
-        else if (deathRoom.GetComponent<Collider>().bounds.Contains(player.transform.position))
-        {
-            triggerDeath = true;
-        }
+        //if ()
+        //{
+            if (winRoom.GetComponent<Collider>().bounds.Contains(player.transform.position))
+            {
+                triggerWin = true;
+            }
+            else if (deathRoom.GetComponent<Collider>().bounds.Contains(player.transform.position))
+            {
+                triggerDeath = true;
+            }
+        //}
+        
 
         // ENDING TIMER
         if (triggerDeath || triggerWin)

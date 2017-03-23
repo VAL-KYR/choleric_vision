@@ -1,0 +1,957 @@
+fileFormatVersion: 2
+guid: d65f08dfde7bc1c469bae178ffbbb259
+timeCreated: 1490138004
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: arm_L_Ctrl
+    100002: book2
+    100004: checkPulse:arm_R_Ctrl
+    100006: checkPulse:elbow_R_jnt
+    100008: checkPulse:foreArm_R_jnt
+    100010: checkPulse:middle1_R_jnt
+    100012: checkPulse:middle2_R_jnt
+    100014: checkPulse:middle3_R_jnt
+    100016: checkPulse:middle4_R_jnt
+    100018: checkPulse:nurbsCircle1
+    100020: checkPulse:pinky1_R_jnt
+    100022: checkPulse:pinky2_R_jnt
+    100024: checkPulse:pinky3_R_jnt
+    100026: checkPulse:pinky4_R_jnt
+    100028: checkPulse:pointer1_R_jnt
+    100030: checkPulse:pointer2_R_jnt
+    100032: checkPulse:pointer3_R_jnt
+    100034: checkPulse:pointer4_R_jnt
+    100036: checkPulse:rightHand
+    100038: checkPulse:ring1_R_jnt
+    100040: checkPulse:ring2_R_jnt
+    100042: checkPulse:ring3_R_jnt
+    100044: checkPulse:ring4_R_jnt
+    100046: checkPulse:thumb1_R_jnt
+    100048: checkPulse:thumb2_R_jnt
+    100050: checkPulse:thumb3_R_jnt
+    100052: checkPulse:thumb4_R_jnt
+    100054: checkPulse:wrist_R_jnt
+    100056: elbow_R_jnt
+    100058: foreArm_R_jnt
+    100060: //RootNode
+    100062: joint1
+    100064: joint2
+    100066: joint3
+    100068: joint4
+    100070: joint5
+    100072: joint6
+    100074: leftHand
+    100076: middle1_R_jnt
+    100078: middle2_R_jnt
+    100080: middle3_R_jnt
+    100082: middle4_R_jnt
+    100084: nurbsCircle1
+    100086: pinky1_R_jnt
+    100088: pinky2_R_jnt
+    100090: pinky3_R_jnt
+    100092: pinky4_R_jnt
+    100094: pointer1_R_jnt
+    100096: pointer2_R_jnt
+    100098: pointer3_R_jnt
+    100100: pointer4_R_jnt
+    100102: ring1_R_jnt
+    100104: ring2_R_jnt
+    100106: ring3_R_jnt
+    100108: ring4_R_jnt
+    100110: thumb1_R_jnt
+    100112: thumb2_R_jnt
+    100114: thumb3_R_jnt
+    100116: thumb4_R_jnt
+    100118: wrist_R_jnt
+    400000: arm_L_Ctrl
+    400002: book2
+    400004: checkPulse:arm_R_Ctrl
+    400006: checkPulse:elbow_R_jnt
+    400008: checkPulse:foreArm_R_jnt
+    400010: checkPulse:middle1_R_jnt
+    400012: checkPulse:middle2_R_jnt
+    400014: checkPulse:middle3_R_jnt
+    400016: checkPulse:middle4_R_jnt
+    400018: checkPulse:nurbsCircle1
+    400020: checkPulse:pinky1_R_jnt
+    400022: checkPulse:pinky2_R_jnt
+    400024: checkPulse:pinky3_R_jnt
+    400026: checkPulse:pinky4_R_jnt
+    400028: checkPulse:pointer1_R_jnt
+    400030: checkPulse:pointer2_R_jnt
+    400032: checkPulse:pointer3_R_jnt
+    400034: checkPulse:pointer4_R_jnt
+    400036: checkPulse:rightHand
+    400038: checkPulse:ring1_R_jnt
+    400040: checkPulse:ring2_R_jnt
+    400042: checkPulse:ring3_R_jnt
+    400044: checkPulse:ring4_R_jnt
+    400046: checkPulse:thumb1_R_jnt
+    400048: checkPulse:thumb2_R_jnt
+    400050: checkPulse:thumb3_R_jnt
+    400052: checkPulse:thumb4_R_jnt
+    400054: checkPulse:wrist_R_jnt
+    400056: elbow_R_jnt
+    400058: foreArm_R_jnt
+    400060: //RootNode
+    400062: joint1
+    400064: joint2
+    400066: joint3
+    400068: joint4
+    400070: joint5
+    400072: joint6
+    400074: leftHand
+    400076: middle1_R_jnt
+    400078: middle2_R_jnt
+    400080: middle3_R_jnt
+    400082: middle4_R_jnt
+    400084: nurbsCircle1
+    400086: pinky1_R_jnt
+    400088: pinky2_R_jnt
+    400090: pinky3_R_jnt
+    400092: pinky4_R_jnt
+    400094: pointer1_R_jnt
+    400096: pointer2_R_jnt
+    400098: pointer3_R_jnt
+    400100: pointer4_R_jnt
+    400102: ring1_R_jnt
+    400104: ring2_R_jnt
+    400106: ring3_R_jnt
+    400108: ring4_R_jnt
+    400110: thumb1_R_jnt
+    400112: thumb2_R_jnt
+    400114: thumb3_R_jnt
+    400116: thumb4_R_jnt
+    400118: wrist_R_jnt
+    2300000: leftHand
+    2300002: checkPulse:rightHand
+    2300004: book2
+    3300000: onHBL_FINAL
+    3300002: noteBookClose_FINAL
+    3300004: noteBookOpen_FINAL
+    4300000: exitHBL_FINAL
+    4300002: holdHBL_FINAL
+    4300004: //RootNode
+    4300006: leftHand
+    4300008: checkPulse:rightHand
+    4300010: book2
+    7400000: //RootNode
+    7400002: book2
+    7400004: checkPulse:rightHand
+    7400006: leftHand
+    7400008: onHBL_FINAL
+    7400010: noteBookClose_FINAL
+    7400012: noteBookOpen_FINAL
+    7400014: exitHBL_FINAL
+    7400016: holdHBL_FINAL
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: book2
+    13700002: checkPulse:rightHand
+    13700004: leftHand
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: <Root Transform>
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: onHBL_FINAL
+      takeName: Take 001
+      firstFrame: 141
+      lastFrame: 210
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm_L_Ctrl
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt/middle1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt/pinky1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt/pointer1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt/ring1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt/thumb1_R_jnt
+        weight: 1
+      - path: book2
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt/checkPulse:middle1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt/checkPulse:pinky1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt/checkPulse:pointer1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt/checkPulse:ring1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt/checkPulse:thumb1_R_jnt
+        weight: 1
+      - path: checkPulse:rightHand
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint4
+        weight: 1
+      - path: joint1/joint4/joint3
+        weight: 1
+      - path: joint1/joint6
+        weight: 1
+      - path: joint1/joint6/joint5
+        weight: 1
+      - path: leftHand
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: noteBookClose_FINAL
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 62
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm_L_Ctrl
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt/middle1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt/pinky1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt/pointer1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt/ring1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt/thumb1_R_jnt
+        weight: 1
+      - path: book2
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt/checkPulse:middle1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt/checkPulse:pinky1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt/checkPulse:pointer1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt/checkPulse:ring1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt/checkPulse:thumb1_R_jnt
+        weight: 1
+      - path: checkPulse:rightHand
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint4
+        weight: 1
+      - path: joint1/joint4/joint3
+        weight: 1
+      - path: joint1/joint6
+        weight: 1
+      - path: joint1/joint6/joint5
+        weight: 1
+      - path: leftHand
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: noteBookOpen_FINAL
+      takeName: Take 001
+      firstFrame: 70
+      lastFrame: 130
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm_L_Ctrl
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt/middle1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt/pinky1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt/pointer1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt/ring1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt/thumb1_R_jnt
+        weight: 1
+      - path: book2
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt/checkPulse:middle1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt/checkPulse:pinky1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt/checkPulse:pointer1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt/checkPulse:ring1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt/checkPulse:thumb1_R_jnt
+        weight: 1
+      - path: checkPulse:rightHand
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint4
+        weight: 1
+      - path: joint1/joint4/joint3
+        weight: 1
+      - path: joint1/joint6
+        weight: 1
+      - path: joint1/joint6/joint5
+        weight: 1
+      - path: leftHand
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: exitHBL_FINAL
+      takeName: Take 001
+      firstFrame: 210
+      lastFrame: 269
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm_L_Ctrl
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt/middle1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt/pinky1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt/pointer1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt/ring1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt/thumb1_R_jnt
+        weight: 1
+      - path: book2
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt/checkPulse:middle1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt/checkPulse:pinky1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt/checkPulse:pointer1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt/checkPulse:ring1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt/checkPulse:thumb1_R_jnt
+        weight: 1
+      - path: checkPulse:rightHand
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint4
+        weight: 1
+      - path: joint1/joint4/joint3
+        weight: 1
+      - path: joint1/joint6
+        weight: 1
+      - path: joint1/joint6/joint5
+        weight: 1
+      - path: leftHand
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    - serializedVersion: 16
+      name: holdHBL_FINAL
+      takeName: Take 001
+      firstFrame: 200
+      lastFrame: 210
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: arm_L_Ctrl
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/middle4_R_jnt/middle3_R_jnt/middle2_R_jnt/middle1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pinky4_R_jnt/pinky3_R_jnt/pinky2_R_jnt/pinky1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/pointer4_R_jnt/pointer3_R_jnt/pointer2_R_jnt/pointer1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/ring4_R_jnt/ring3_R_jnt/ring2_R_jnt/ring1_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt
+        weight: 1
+      - path: arm_L_Ctrl/elbow_R_jnt/foreArm_R_jnt/nurbsCircle1/wrist_R_jnt/thumb4_R_jnt/thumb3_R_jnt/thumb2_R_jnt/thumb1_R_jnt
+        weight: 1
+      - path: book2
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:middle4_R_jnt/checkPulse:middle3_R_jnt/checkPulse:middle2_R_jnt/checkPulse:middle1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pinky4_R_jnt/checkPulse:pinky3_R_jnt/checkPulse:pinky2_R_jnt/checkPulse:pinky1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:pointer4_R_jnt/checkPulse:pointer3_R_jnt/checkPulse:pointer2_R_jnt/checkPulse:pointer1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:ring4_R_jnt/checkPulse:ring3_R_jnt/checkPulse:ring2_R_jnt/checkPulse:ring1_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt
+        weight: 1
+      - path: checkPulse:arm_R_Ctrl/checkPulse:elbow_R_jnt/checkPulse:foreArm_R_jnt/checkPulse:nurbsCircle1/checkPulse:wrist_R_jnt/checkPulse:thumb4_R_jnt/checkPulse:thumb3_R_jnt/checkPulse:thumb2_R_jnt/checkPulse:thumb1_R_jnt
+        weight: 1
+      - path: checkPulse:rightHand
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint4
+        weight: 1
+      - path: joint1/joint4/joint3
+        weight: 1
+      - path: joint1/joint6
+        weight: 1
+      - path: joint1/joint6/joint5
+        weight: 1
+      - path: leftHand
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 1
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -7,6 +7,7 @@ public class startUp : MonoBehaviour
 
     //Check this option to export game with the heartbeat option available. Uncheck will start the game without
     public bool withHeartBeat;
+    public bool OriginalWithHeartBeat;
 
     [System.Serializable]
     public class ss
@@ -114,6 +115,23 @@ public class startUp : MonoBehaviour
         audioNarration.SetActive(false);
 
         calibrationStart = false;
+
+        HBDataScript.orHBBool = OriginalWithHeartBeat;
+
+        withHeartBeat = OriginalWithHeartBeat;
+
+        if (!OriginalWithHeartBeat)
+        {
+            for (int i = 0; i < GetComponent<startHBCal>().hbObjNum; i++)
+                GetComponent<startHBCal>().hbObj[i].SetActive(false);
+            for (int i = 0; i < 4; i++)
+                GetComponent<startHBCal>().hbState[i].SetActive(false);
+            for (int i = 0; i < GetComponent<startHBCal>().askCalOBNum; i++)
+                GetComponent<startHBCal>().askCalOB[i].SetActive(false);
+            for (int i = 0; i < GetComponent<startHBCal>().yesNoNum; i++)
+                GetComponent<startHBCal>().yesNo[i].SetActive(false);
+            GetComponent<startHBCal>().enabled = false;
+        }
     }
 
     // Update is called once per frame
@@ -234,7 +252,7 @@ public class startUp : MonoBehaviour
                     curSelOpt = 0;
             }
 
-            if (Input.GetButtonDown("Action"))
+            if (Input.GetButtonDown("Action") || Input.GetButtonDown("Submit"))
                 {
                     if (curSelOpt == 0)
                     {
@@ -300,7 +318,7 @@ public class startUp : MonoBehaviour
                     curSelOpt = 0;
             }
 
-            if (Input.GetButtonDown("Action"))
+            if (Input.GetButtonDown("Action") || Input.GetButtonDown("Submit"))
             {
                 if (curSelOpt == 0 && !withHeartBeat)
                 {

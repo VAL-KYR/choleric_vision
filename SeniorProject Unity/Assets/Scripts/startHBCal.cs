@@ -24,7 +24,11 @@ public class startHBCal : MonoBehaviour {
     private int q1Num;
     private int q3Num;
 
-    SerialPort sp = new SerialPort("COM4", 9600);
+
+	public bool readyCom = false;
+	public GameObject comEntry;
+
+    SerialPort sp;
 
     private int BPMavg;
 
@@ -60,10 +64,9 @@ public class startHBCal : MonoBehaviour {
     public GameObject[] yesNo;
     public int yesNoNum;
 
+
     // Use this for initialization
     void Start () {
-
-        
 
         calState = 0;
 
@@ -72,8 +75,10 @@ public class startHBCal : MonoBehaviour {
 
         avBeatPerMin = 0;
 
-        sp.Open();
-        sp.ReadTimeout = 1;
+		// returns null because duh startup order
+		//sp = new SerialPort(HBDataScript.comNum, 9600);
+        //sp.Open();
+        //sp.ReadTimeout = 1;
 
         cali = false;
 
@@ -96,22 +101,46 @@ public class startHBCal : MonoBehaviour {
         askCal = false;
         sel = 0;
     }
-	
+
 	// Update is called once per frame
 	void Update () {
+
+		//sp = new SerialPort(HBDataScript.comNum, 9600);
+		//Debug.Log("Serial # " + sp.PortName);
+		//Debug.Log("Serial Reading " + sp.ReadLine());
 
         if (calState == 0)
         {
             cali = GetComponent<startUp>().calibrationStart;
 
+
             if (cali == false)
             {
 
             }
+
             else if (cali == true)
             {
-                calState = 1;
-            }
+
+				if (readyCom)
+				{
+					sp = new SerialPort(HBDataScript.comNum, 9600);
+
+					if (!sp.IsOpen)
+					{
+						sp.Open();
+						sp.ReadTimeout = 1;
+
+						//Debug.Log("Serial # " + sp.PortName);
+						//Debug.Log("Serial Reading " + sp.ReadLine());
+
+						calState = 1;
+					}
+
+				}
+
+			}
+            
         }
         else if (calState == 1)
         {
@@ -193,7 +222,8 @@ public class startHBCal : MonoBehaviour {
         }
         else if (calState == 3)
         {
-
+			// Turn off ComEntry UI
+			comEntry.SetActive(false);
         }
 
         if (askCal)
@@ -219,7 +249,7 @@ public class startHBCal : MonoBehaviour {
                     sel = 0;
             }
 
-            if (Input.GetButtonDown("Action"))
+            if (Input.GetButtonDown("Action") || Input.GetButtonDown("Submit"))
             {
                 if (sel == 0)
                 {
