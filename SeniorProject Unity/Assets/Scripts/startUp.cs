@@ -234,7 +234,7 @@ public class startUp : MonoBehaviour
                     curSelOpt = 0;
             }
 
-            if (Input.GetButtonDown("Action"))
+            if (Input.GetButtonDown("Action") || Input.GetButtonDown("Submit"))
                 {
                     if (curSelOpt == 0)
                     {
@@ -300,7 +300,7 @@ public class startUp : MonoBehaviour
                     curSelOpt = 0;
             }
 
-            if (Input.GetButtonDown("Action"))
+            if (Input.GetButtonDown("Action") || Input.GetButtonDown("Submit"))
             {
                 if (curSelOpt == 0 && !withHeartBeat)
                 {

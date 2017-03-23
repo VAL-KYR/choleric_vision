@@ -17,7 +17,7 @@ public class heartBeat : MonoBehaviour {
 
     public int avBeatPerMin;
 
-    SerialPort sp = new SerialPort("COM4", 9600);
+    SerialPort sp;
 
     private int BPMavg;
 
@@ -32,6 +32,9 @@ public class heartBeat : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
+
+
+		sp = new SerialPort(HBDataScript.comNum, 9600);
 
         calState = 2;
 
