@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
+using System;
 
 public class startUp : MonoBehaviour
 {
@@ -67,6 +68,7 @@ public class startUp : MonoBehaviour
     private int fadeState;
 
     public Camera cam;
+    private float camColor;
 
     private int curSelOpt;
 
@@ -77,6 +79,16 @@ public class startUp : MonoBehaviour
     public bool calibrationStart;
 
     private GameObject HBData;
+
+    private float tempVal;
+    private SpriteRenderer sred;
+    private Color sredCol;
+    private float fadeScale;
+
+    private float musicVol;
+
+    private float curScale;
+    private float curPos;
 
     // Use this for initialization
     void Start()
@@ -132,6 +144,17 @@ public class startUp : MonoBehaviour
                 GetComponent<startHBCal>().yesNo[i].SetActive(false);
             GetComponent<startHBCal>().enabled = false;
         }
+
+        camColor = 1.0f;
+
+        sred = splashScreen.logo.GetComponent<SpriteRenderer>();
+        sredCol = sred.color;
+
+        sredCol.a = 0.0f;
+
+        musicVol = 0.7f;
+        curScale = startScreen.gameLogoStartSca;
+        curPos = startScreen.gameLogoStartPos.y;
     }
 
     // Update is called once per frame
@@ -145,9 +168,14 @@ public class startUp : MonoBehaviour
 
             if (timer < splashScreen.StartDjTimerFade && !fadeIn)
             {
-                float t = Mathf.PingPong(Time.time, splashScreen.StartDjTimerFade) / splashScreen.StartDjTimerFade;
+                //float t = Mathf.PingPong(Time.time, splashScreen.StartDjTimerFade) / splashScreen.StartDjTimerFade;
 
-                splashScreen.logo.GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(1f, 1f, 1f, 0.0f), new Color(1f, 1f, 1f, 1.0f), t);
+                fadeScale = Time.deltaTime / splashScreen.StartDjTimerFade;
+
+                sredCol.a += fadeScale;
+                splashScreen.logo.GetComponent<SpriteRenderer>().color = sredCol;
+
+                //splashScreen.logo.GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(1f, 1f, 1f, 0.0f), new Color(1f, 1f, 1f, 1.0f), t);
             }
             else if (timer > splashScreen.StartDjTimerFade && !fadeIn)
             {
@@ -155,9 +183,14 @@ public class startUp : MonoBehaviour
             }
             else if (timer >= startFade)
             {
-                float t = Mathf.PingPong(Time.time, splashScreen.djTimerFade) / splashScreen.djTimerFade;
+                //float t = Mathf.PingPong(Time.time, splashScreen.djTimerFade) / splashScreen.djTimerFade;
 
-                splashScreen.logo.GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(1f, 1f, 1f, 1.0f), new Color(1f, 1f, 1f, 0.0f), t);
+                fadeScale = Time.deltaTime / splashScreen.djTimerFade;
+
+                sredCol.a -= fadeScale;
+                splashScreen.logo.GetComponent<SpriteRenderer>().color = sredCol;
+
+                //splashScreen.logo.GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(1f, 1f, 1f, 1.0f), new Color(1f, 1f, 1f, 0.0f), t);
             }
 
 
@@ -177,32 +210,54 @@ public class startUp : MonoBehaviour
 
             if (startTrans)
             {
-                float t = Mathf.PingPong(Time.time, startScreen.gameLogofade) / startScreen.gameLogofade;
+                //float t = Mathf.PingPong(Time.time, startScreen.gameLogofade) / startScreen.gameLogofade;
+
+                fadeScale = Time.deltaTime / startScreen.gameLogofade;
 
                 splashScreen.logo.SetActive(false);
 
+                camColor -= fadeScale;
+
                 startScreen.gameLogoOBJ.SetActive(true);
-                cam.backgroundColor = Color.Lerp(new Color(1.000f, 1.000f, 1.000f, 1.000f), new Color(0.000f, 0.000f, 0.000f, 1.000f), t);
+                cam.backgroundColor = new Color(camColor, camColor, camColor, 1.0f);
 
 
 
                 if (timer > startScreen.gameLogofade)
                     startTrans = false;
 
-                startScreen.gameLogoOBJ.GetComponent<AudioSource>().volume = 0.7f;
+                startScreen.gameLogoOBJ.GetComponent<AudioSource>().volume = musicVol;
             }
 
             else if (timer >= startFade2 && !startTrans)
             {
-                float t = Mathf.PingPong(Time.time, startScreen.gameFadeOutTimer) / startScreen.gameFadeOutTimer;
+                //float t = Mathf.PingPong(Time.time, startScreen.gameFadeOutTimer) / startScreen.gameFadeOutTimer;
 
                 Vector3 newScale = new Vector3(startScreen.gameLogoEndSca, startScreen.gameLogoEndSca, startScreen.gameLogoEndSca);
                 Vector3 newScale2 = new Vector3(startScreen.gameLogoEndSca, startScreen.gameLogoEndSca, startScreen.gameLogoEndSca);
 
-                startScreen.gameLogoOBJ.GetComponent<AudioSource>().volume = Mathf.Lerp(1f, 0.7f, t);
+                float scaleFac = Math.Abs(startScreen.gameLogoEndSca - startScreen.gameLogoStartSca);
 
-                startScreen.gameLogoOBJ.transform.position = Vector3.Lerp(startScreen.gameLogoEndPos, startScreen.gameLogoStartPos, t);
-                startScreen.gameLogoOBJ.transform.localScale = Vector3.Lerp(new Vector3(startScreen.gameLogoStartSca, startScreen.gameLogoStartSca, startScreen.gameLogoStartSca), new Vector3(startScreen.gameLogoEndSca, startScreen.gameLogoEndSca, startScreen.gameLogoEndSca), t);
+                float musicScale = 1.0f - 0.7f;
+                fadeScale = Time.deltaTime / startScreen.gameFadeOutTimer * musicScale;
+
+                musicVol += fadeScale;
+
+                startScreen.gameLogoOBJ.GetComponent<AudioSource>().volume += musicVol;
+
+                fadeScale = Time.deltaTime / startScreen.gameFadeOutTimer * scaleFac;
+
+                curScale += fadeScale;
+
+                startScreen.gameLogoOBJ.transform.localScale = new Vector3(curScale, curScale, curScale);
+
+                float PosFac = Math.Abs(startScreen.gameLogoEndPos.y - startScreen.gameLogoStartPos.y);
+                fadeScale = Time.deltaTime / startScreen.gameFadeOutTimer * PosFac;
+
+                //curPos += fadeScale;
+
+                startScreen.gameLogoOBJ.transform.position += new Vector3(0.0f, fadeScale, 0.0f);
+
 
                 startScreen.startScreenOBJ.SetActive(true);
 
@@ -211,7 +266,7 @@ public class startUp : MonoBehaviour
 
                 for (int i = 0; i < selObjNum; i++)
                 {
-                    selObj[i].GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(1f, 1f, 1f, 1.0f), new Color(1f, 1f, 1f, 0.0f), t);
+                    //selObj[i].GetComponent<SpriteRenderer>().color = Color.Lerp(new Color(1f, 1f, 1f, 1.0f), new Color(1f, 1f, 1f, 0.0f), t);
                 }
             }
 
@@ -358,6 +413,10 @@ public class startUp : MonoBehaviour
                 if (curSelOpt == 1)
                 {
                     Application.Quit();
+                }
+                if (curSelOpt == 2)
+                {
+                    SceneManager.LoadScene("credits", LoadSceneMode.Single);
                 }
             }
         }
