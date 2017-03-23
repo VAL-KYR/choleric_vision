@@ -8,7 +8,7 @@ public class ending : MonoBehaviour {
     private GameObject deathRoom;
     private GameObject player;
 
-    public float timer = 0.0f;
+    private float timer = 0.0f;
 
     private bool triggerDeath = false;
     public float deathTime = 3.0f;
