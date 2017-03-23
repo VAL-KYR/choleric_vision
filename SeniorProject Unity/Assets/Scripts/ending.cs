@@ -30,14 +30,18 @@ public class ending : MonoBehaviour {
 	void Update () {
 
         // CHECKING FOR PLAYER TP
-        if (winRoom.GetComponent<Collider>().bounds.Contains(player.transform.position))
-        {
-            triggerWin = true;
-        }
-        else if (deathRoom.GetComponent<Collider>().bounds.Contains(player.transform.position))
-        {
-            triggerDeath = true;
-        }
+        //if ()
+        //{
+            if (winRoom.GetComponent<Collider>().bounds.Contains(player.transform.position))
+            {
+                triggerWin = true;
+            }
+            else if (deathRoom.GetComponent<Collider>().bounds.Contains(player.transform.position))
+            {
+                triggerDeath = true;
+            }
+        //}
+        
 
         // ENDING TIMER
         if (triggerDeath || triggerWin)

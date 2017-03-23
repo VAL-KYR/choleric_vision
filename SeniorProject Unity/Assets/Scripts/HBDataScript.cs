@@ -8,6 +8,8 @@ public class HBDataScript : MonoBehaviour {
     public static bool hbBool;
 	public static string comNum;
 
+    public static bool orHBBool;
+
     // Use this for initialization
     void Start () {
 	

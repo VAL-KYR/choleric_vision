@@ -36,8 +36,11 @@ public class FliesSystem : MonoBehaviour
 
 	public ORIENTATION 	orientation	= ORIENTATION.UpDown;
 
-	[MinMaxSliderAttribute(1f,10f)] public Vector2 randomForward = new Vector2(1f,2f);
-	[MinMaxSliderAttribute(01f,10f)] public Vector2 randomAngular = new Vector2(1f,2f);
+    /// <summary>
+    ///  COMMENT OUR FOR BUILD ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    /// </summary>
+	//[MinMaxSliderAttribute(1f,10f)] public Vector2 randomForward = new Vector2(1f,2f);
+	//[MinMaxSliderAttribute(01f,10f)] public Vector2 randomAngular = new Vector2(1f,2f);
 
 	private List<Fly> 	list;
 	private Transform 	thisTransform;
@@ -81,8 +84,11 @@ public class FliesSystem : MonoBehaviour
 
 			//setting up the fly component
 			Fly f = prefab.GetComponent<Fly>();
-			f.forwardSpeed		= (useRandom) ? Random.Range(randomForward.x,randomForward.y) : forwardSpeed;
-			f.angularSpeed		= (useRandom) ? Random.Range(randomAngular.x,randomAngular.y) : angularSpeed;
+            /// <summary>
+            ///  COMMENT OUR FOR BUILD ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            /// </summary>
+            f.forwardSpeed		= forwardSpeed;
+			f.angularSpeed		= angularSpeed;
 			f.targetPosition 	= thisTransform.position + RandomInsideSphere();
 			f.transform.parent 	= thisTransform;
 			f.debug				= debug;

@@ -594,10 +594,16 @@ public class controller : MonoBehaviour
             {
                 Application.Quit();
 
+                /// <summary>
+                ///  COMMENT OUR FOR BUILD ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                /// </summary>
+
+                /*
                 if (UnityEditor.EditorApplication.isPlaying)
                 {
                     UnityEditor.EditorApplication.isPlaying = false;
                 }
+                */
             }
             
         }
