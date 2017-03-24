@@ -230,7 +230,7 @@ public class controller : MonoBehaviour
 
         if (!withHeartBeat)
             GetComponent<heartBeat>().enabled = false;
-        YOffset = mouseDiff = mouseOld = 0.0f;
+        //YOffset = mouseDiff = mouseOld = 0.0f;
     }
 
 	// Update is called once per frame
@@ -301,7 +301,7 @@ public class controller : MonoBehaviour
 
             if (VRSettings.enabled)
             {
-                transform.eulerAngles = new Vector3(0.0f, mYaw, 0.0f);
+                transform.eulerAngles = new Vector3(0.0f, (mYaw + YOffset), 0.0f);
 
                 
             }
@@ -632,32 +632,40 @@ public class controller : MonoBehaviour
 
         if (VRSettings.enabled)
         {
+            float camY = camerasGroup.playerVR.transform.localEulerAngles.y;
 
-            
+            print("CamY: " + camY);
+
 
             if (Input.GetButtonDown("VRLookReset"))
             {
-                float camY = camerasGroup.playerVR.transform.rotation.eulerAngles.y;
+                
 
                 mouseOld = mouseNew;
                 mouseNew = Input.GetAxis("Mouse Y");
 
-                YOffset = mouseOld - mouseNew;
 
-                mYaw += (playerSpeedGroup.speedH * (Input.GetAxis("Mouse X") + YOffset));
-                print("X: " + Input.GetAxis("Mouse X") + " Outset: " + YOffset + " Total: " + (Input.GetAxis("Mouse X") + YOffset));
+                
+
+                YOffset = camY;
+
+                print("Reset CamY: " + YOffset);
+
+                               
                 
 
                 camerasGroup.playerVR.transform.parent = headJoint.transform;
 
                 UnityEngine.VR.InputTracking.Recenter();
 
-                transform.eulerAngles += new Vector3(0, camY, 0);
+                transform.eulerAngles = new Vector3(0, YOffset , 0);
 
-                YOffset = transform.eulerAngles.y;
+                //YOffset = transform.eulerAngles.y;
 
             }
+            print("Reset CamY Out: " + YOffset);
         }
+        print("Reset CamY OutOUt: " + YOffset);
 
 
     }
