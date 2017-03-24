@@ -64,6 +64,13 @@ public class startHBCal : MonoBehaviour {
     public GameObject[] yesNo;
     public int yesNoNum;
 
+    private bool prevPressed;
+
+    public AudioClip selectS;
+    public AudioClip UpDownS;
+
+    private AudioSource audioMenu;
+
 
     // Use this for initialization
     void Start () {
@@ -100,6 +107,10 @@ public class startHBCal : MonoBehaviour {
 
         askCal = false;
         sel = 0;
+
+        prevPressed = false;
+
+        audioMenu = GetComponent<AudioSource>();
     }
 
 	// Update is called once per frame
@@ -236,21 +247,37 @@ public class startHBCal : MonoBehaviour {
                     yesNo[i].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
             }
 
-            if (Input.GetButtonDown("Vertical"))
+            if (Input.GetAxis("Vertical") < 0.0f && !prevPressed)
             {
-                if (Input.GetAxis("Vertical") < 0.0f)
-                    sel += 1;
-                if (Input.GetAxis("Vertical") > 0.0f)
-                    sel -= 1;
-
-                if (sel < 0)
-                    sel = yesNoNum - 1;
-                if (sel > yesNoNum - 1)
-                    sel = 0;
+                prevPressed = true;
+                sel += 1;
+                audioMenu.clip = UpDownS;
+                audioMenu.Play();
             }
+
+            if (Input.GetAxis("Vertical") > 0.0f && !prevPressed)
+            {
+                prevPressed = true;
+                sel -= 1;
+                audioMenu.clip = UpDownS;
+                audioMenu.Play();
+            }
+            if (Input.GetAxis("Vertical") == 0.0)
+            {
+                prevPressed = false;
+            }
+
+
+            if (sel < 0)
+                sel = yesNoNum - 1;
+            if (sel > yesNoNum - 1)
+                sel = 0;
 
             if (Input.GetButtonDown("Action") || Input.GetButtonDown("Submit"))
             {
+                audioMenu.clip = selectS;
+                audioMenu.Play();
+
                 if (sel == 0)
                 {
                     GetComponent<startUp>().startGame = true;
