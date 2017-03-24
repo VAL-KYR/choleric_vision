@@ -633,8 +633,8 @@ public class controller : MonoBehaviour
         if (VRSettings.enabled)
         {
             float camY = camerasGroup.playerVR.transform.localEulerAngles.y;
-
-            print("CamY: " + camY);
+            if (debug)
+                print("CamY: " + camY);
 
 
             if (Input.GetButtonDown("VRLookReset"))
@@ -648,8 +648,8 @@ public class controller : MonoBehaviour
                 
 
                 YOffset = camY;
-
-                print("Reset CamY: " + YOffset);
+                if (debug)
+                    print("Reset CamY: " + YOffset);
 
                                
                 
@@ -663,9 +663,11 @@ public class controller : MonoBehaviour
                 //YOffset = transform.eulerAngles.y;
 
             }
-            print("Reset CamY Out: " + YOffset);
+            if (debug)
+                print("Reset CamY Out: " + YOffset);
         }
-        print("Reset CamY OutOUt: " + YOffset);
+        if (debug)
+            print("Reset CamY OutOUt: " + YOffset);
 
 
     }
