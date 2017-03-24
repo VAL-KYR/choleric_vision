@@ -90,6 +90,13 @@ public class startUp : MonoBehaviour
     private float curScale;
     private float curPos;
 
+    private bool prevPressed;
+
+    public AudioClip selectS;
+    public AudioClip UpDownS;
+
+    private AudioSource audioMenu;
+
     // Use this for initialization
     void Start()
     {
@@ -155,6 +162,10 @@ public class startUp : MonoBehaviour
         musicVol = 0.7f;
         curScale = startScreen.gameLogoStartSca;
         curPos = startScreen.gameLogoStartPos.y;
+
+        prevPressed = false;
+
+        audioMenu = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -294,22 +305,37 @@ public class startUp : MonoBehaviour
                     selHbOptions[i].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
             }
 
-            if (Input.GetButtonDown("Vertical"))
+            if (Input.GetAxis("Vertical") < 0.0f && !prevPressed)
             {
-                if (Input.GetAxis("Vertical") < 0.0f)
-                    curSelOpt += 1;
-                if (Input.GetAxis("Vertical") > 0.0f)
-                    curSelOpt -= 1;
-
-                if (curSelOpt < 0)
-                    curSelOpt = selBhOptNum - 1;
-                if (curSelOpt > selBhOptNum - 1)
-                    curSelOpt = 0;
+                prevPressed = true;
+                curSelOpt += 1;
+                audioMenu.clip = UpDownS;
+                audioMenu.Play();
             }
+            if (Input.GetAxis("Vertical") > 0.0f && !prevPressed)
+            {
+                curSelOpt -= 1;
+                prevPressed = true;
+                audioMenu.clip = UpDownS;
+                audioMenu.Play();
+            }
+            if (Input.GetAxis("Vertical") == 0.0)
+            {
+                prevPressed = false;
+            }
+
+
+            if (curSelOpt < 0)
+                curSelOpt = selBhOptNum - 1;
+            if (curSelOpt > selBhOptNum - 1)
+                curSelOpt = 0;
 
             if (Input.GetButtonDown("Action") || Input.GetButtonDown("Submit"))
                 {
-                    if (curSelOpt == 0)
+                audioMenu.clip = selectS;
+                audioMenu.Play();
+
+                if (curSelOpt == 0)
                     {
 
                         withHeartBeat = true;
@@ -344,7 +370,22 @@ public class startUp : MonoBehaviour
                             timer = 0.0f;
                         }
                 }
-            
+            if (Input.GetButtonDown("Back"))
+            {
+                audioMenu.clip = selectS;
+                audioMenu.Play();
+
+                selHB = false;
+
+                sel = true;
+
+                for (int i = 0; i < selObjNum; i++)
+                    selObj[i].SetActive(true);
+
+                for (int i = 0; i < hbObjNum; i++)
+                    hbObj[i].SetActive(false);
+            }
+
 
         }
 
@@ -360,21 +401,36 @@ public class startUp : MonoBehaviour
                     selOptions[i].GetComponent<SpriteRenderer>().color = new Color(1f, 1f, 1f, 0.5f);
             }
 
-            if (Input.GetButtonDown("Vertical"))
+            if (Input.GetAxis("Vertical") < 0.0f && !prevPressed)
             {
-                if (Input.GetAxis("Vertical") < 0.0f)
-                    curSelOpt += 1;
-                if (Input.GetAxis("Vertical") > 0.0f)
-                    curSelOpt -= 1;
-
-                if (curSelOpt < 0)
-                    curSelOpt = selOptNum - 1;
-                if (curSelOpt > selOptNum - 1)
-                    curSelOpt = 0;
+                curSelOpt += 1;
+                prevPressed = true;
+                audioMenu.clip = UpDownS;
+                audioMenu.Play();
             }
+            if (Input.GetAxis("Vertical") > 0.0f && !prevPressed)
+            {
+                curSelOpt -= 1;
+                prevPressed = true;
+                audioMenu.clip = UpDownS;
+                audioMenu.Play();
+            }
+            if (Input.GetAxis("Vertical") == 0.0)
+            {
+                prevPressed = false;
+            }
+
+
+            if (curSelOpt < 0)
+                curSelOpt = selOptNum - 1;
+            if (curSelOpt > selOptNum - 1)
+                curSelOpt = 0;
 
             if (Input.GetButtonDown("Action") || Input.GetButtonDown("Submit"))
             {
+                audioMenu.clip = selectS;
+                audioMenu.Play();
+
                 if (curSelOpt == 0 && !withHeartBeat)
                 {
                     sel = false;
