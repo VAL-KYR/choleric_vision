@@ -125,6 +125,15 @@ public class controller : MonoBehaviour
 
     /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
     private bool vrBodCal;
+
+    private GameObject offSet;
+
+    private float YOffset;
+
+    private float mouseDiff;
+    private float mouseNew;
+    private float mouseOld;
+
     /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)
 
     // Use this for initialization
@@ -136,6 +145,8 @@ public class controller : MonoBehaviour
         // lcok cursor
         Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = (CursorLockMode.Locked != wantedMode);
+
+        //Cursor.visible = true;
 
         // Player Death Effects
         if (!VRSettings.enabled)
@@ -163,7 +174,7 @@ public class controller : MonoBehaviour
         anim = GameObject.FindGameObjectWithTag("arms").GetComponent<Animator>(); // Initialize animator from placeholder arms
         rb = GetComponent<Rigidbody>();
         playerSpeech.voice = GetComponent<AudioSource>();
-
+        offSet = GameObject.FindGameObjectWithTag("offSet");
 
         /// loading sounds for player
         playerSpeech.hitSounds = Resources.LoadAll<AudioClip>("Player/HitSounds");
@@ -203,6 +214,7 @@ public class controller : MonoBehaviour
         crouchHeight = (oriPlayerScale[1] * 0.6f);
         crouchDiffeance = headDistance - crouchHeight;
         rotSpeed = 0.0f;
+        YOffset = mouseNew =  0.0f;
 
         // Setting up camera to use (VR or no VR)
         if (VRSettings.enabled)
@@ -218,6 +230,7 @@ public class controller : MonoBehaviour
 
         if (!withHeartBeat)
             GetComponent<heartBeat>().enabled = false;
+        YOffset = mouseDiff = mouseOld = 0.0f;
     }
 
 	// Update is called once per frame
@@ -247,7 +260,6 @@ public class controller : MonoBehaviour
             if (!vrCam)
                 vrCam = GameObject.FindGameObjectWithTag("VRCam");
         }
-
         // Player Damage Effects
         Effects();
 
@@ -290,6 +302,8 @@ public class controller : MonoBehaviour
             if (VRSettings.enabled)
             {
                 transform.eulerAngles = new Vector3(0.0f, mYaw, 0.0f);
+
+                
             }
             if (!VRSettings.enabled)
             {
@@ -619,15 +633,29 @@ public class controller : MonoBehaviour
         if (VRSettings.enabled)
         {
 
-            float camY = camerasGroup.playerVR.transform.rotation.eulerAngles.y;
+            
 
             if (Input.GetButtonDown("VRLookReset"))
-            {                
+            {
+                float camY = camerasGroup.playerVR.transform.rotation.eulerAngles.y;
 
-                    transform.eulerAngles += new Vector3(transform.eulerAngles.x, camY, transform.eulerAngles.z);
+                mouseOld = mouseNew;
+                mouseNew = Input.GetAxis("Mouse Y");
 
-                    UnityEngine.VR.InputTracking.Recenter();
+                YOffset = mouseOld - mouseNew;
+
+                mYaw += (playerSpeedGroup.speedH * (Input.GetAxis("Mouse X") + YOffset));
+                print("X: " + Input.GetAxis("Mouse X") + " Outset: " + YOffset + " Total: " + (Input.GetAxis("Mouse X") + YOffset));
                 
+
+                camerasGroup.playerVR.transform.parent = headJoint.transform;
+
+                UnityEngine.VR.InputTracking.Recenter();
+
+                transform.eulerAngles += new Vector3(0, camY, 0);
+
+                YOffset = transform.eulerAngles.y;
+
             }
         }
 
