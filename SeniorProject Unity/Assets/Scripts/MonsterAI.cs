@@ -350,7 +350,7 @@ public class MonsterAI : MonoBehaviour {
         }
 
         // check for the player if the monster should start a search
-        if (state == "patrol" && !playerManager.death && !playerManager.KO)
+        if ((state == "patrol" || state == "search" || state == "investigate" || state == "investigateSound") && (!playerManager.death && !playerManager.KO))
         {
             PlayerAwarenessCheck();
         }
