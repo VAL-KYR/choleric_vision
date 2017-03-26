@@ -81,8 +81,8 @@ public class noteBook : MonoBehaviour {
 
         if (anim.GetCurrentAnimatorStateInfo(0).IsName("Opened")  && anim.GetCurrentAnimatorStateInfo(0).normalizedTime > 0.99f && !anim.IsInTransition(0) && bookOpen)
         {
-            notes.SetActive(true);
-            hints.SetActive(true);
+            notes.GetComponent<Canvas>().enabled = true;
+            hints.GetComponent<Canvas>().enabled = true;
         }
 
     }
@@ -154,14 +154,12 @@ public class noteBook : MonoBehaviour {
     public void Open()
     {
         bookOpen = true;
-       
-        
     }
 
     public void Close()
     {
         bookOpen = false;
-        notes.SetActive(false);
-        hints.SetActive(false);
+        notes.GetComponent<Canvas>().enabled = false;
+        hints.GetComponent<Canvas>().enabled = false;
     }
 }

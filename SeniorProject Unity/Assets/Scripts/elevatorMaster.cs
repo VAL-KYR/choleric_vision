@@ -29,7 +29,10 @@ public class elevatorMaster : MonoBehaviour {
     public int currPos = 0;
     public float time = 0.0f;
     public GameObject[] positions;
+    //
 
+    // Tape Variables
+    public GameObject[] silenceTapes;
     //
 
     public GameObject rUpperGate;
@@ -153,6 +156,8 @@ public class elevatorMaster : MonoBehaviour {
         {
             lGateMove = true;
             lGateMoveBack = false;
+            uGateMove = true;
+            uGateMoveBack = false;
         }
 
         if (lGateMove)
@@ -219,8 +224,14 @@ public class elevatorMaster : MonoBehaviour {
 
 	void OnTriggerEnter(Collider other)
 	{
-		if(other.gameObject.CompareTag("GameController"))
-			playerInElevator = true;
+        if (other.gameObject.CompareTag("GameController"))
+        {
+            playerInElevator = true;
+
+            // SILENCE PLAYING TAPE RECORDERS
+            SilenceTapes();
+        }
+			
 	}
 
 	void OnTriggerExit(Collider other)
@@ -228,6 +239,22 @@ public class elevatorMaster : MonoBehaviour {
 		if (other.gameObject.CompareTag("GameController"))
 			playerInElevator = false;
 	}
+
+    // silences any tapes playing in the array so long as array is larger than 0
+    public void SilenceTapes()
+    {
+        if (silenceTapes.Length > 0)
+        {
+            foreach (GameObject t in silenceTapes)
+            {
+                if (t.GetComponent<tapeMaster>().GetComponent<AudioSource>().isPlaying)
+                {
+                    t.GetComponent<tapeMaster>().forceStop();
+                }
+            }
+        }
+        
+    }
 
 	public void PowerSupplied()
 	{

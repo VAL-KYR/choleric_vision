@@ -4,6 +4,7 @@ using System.Collections;
 public class triggerMonsterAppearence : MonoBehaviour {
 
     public GameObject monster;
+    public GameObject[] blockingDoors;
     private bool isTripped;
 
     // Use this for initialization
@@ -19,11 +20,28 @@ public class triggerMonsterAppearence : MonoBehaviour {
 
     void OnTriggerEnter(Collider c)
     {
-        if(c.CompareTag("GameController") && !monster.activeSelf && !isTripped)
+        if (c.CompareTag("GameController") && !monster.activeSelf && !isTripped)
         {
-
             monster.SetActive(true);
+
+            // if there are blocking doors open them
+            if (blockingDoors.Length > 0)
+            {
+                OpenBlockingDoors();
+            }
+
             isTripped = true;
+        }
+    }
+
+    // this will open any doors that could block the encounter
+    // MAYBE include dooropen check?
+    void OpenBlockingDoors()
+    {
+        foreach (GameObject d in blockingDoors)
+        {
+            d.GetComponent<doorMaster>().unLock();
+            d.GetComponent<doorMaster>().forceOpen();
         }
     }
 }
