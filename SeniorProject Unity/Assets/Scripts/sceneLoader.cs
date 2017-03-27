@@ -27,7 +27,7 @@ public class sceneLoader : MonoBehaviour {
         {
             GUI.DrawTexture(new Rect(Screen.width/2 - 400/2, Screen.height/2, 400, 26), emptyProgressBar);
             GUI.DrawTexture(new Rect(Screen.width/2 - 390/2, Screen.height/2 + 3, 390 * async.progress, 20), fullProgressBar);
-            GUI.TextArea(new Rect(Screen.width/2 - 400/2, Screen.height/2 + 40, 400, 20), "Loading...");
+            GUI.TextField(new Rect(Screen.width/2 - 400/2, Screen.height/2 + 40, 400, 20), "Loading...");
             
         }
     }
