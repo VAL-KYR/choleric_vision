@@ -16,6 +16,7 @@ public class MonsterAI : MonoBehaviour {
         public bool monsterSight = false;
         public bool doorAction = false;
         public bool fade = false;
+        public bool gizmos = false;
     }
     public mDebug debug = new mDebug();
 
@@ -1135,9 +1136,42 @@ public class MonsterAI : MonoBehaviour {
     /// Debug Vision Gizmos
     public void OnDrawGizmos()
     {
-        // Draws a blue line from this transform to the target
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(cameraCenter, hit.point);
+
+        // Draws a blue line from monster eyes to the target
+        if (debug.gizmos)
+        {
+            // Eyesight
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawLine(cameraCenter, hit.point);
+
+            // eyesight distance
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.sightDistance);
+
+            // attack distance
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.attackDistance);
+
+            // evasion distance
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.evasionDistance);
+
+            // Search for player distance
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.distanceAwareToSearch);
+
+            // Hear player distance
+            Gizmos.color = Color.Lerp(Color.yellow, Color.red, presence / 1.0f);
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.hearPlayerDistance);
+
+            // player distance
+            Gizmos.color = Color.white;
+            Gizmos.DrawLine(gameObject.transform.position, player.transform.position);
+            Gizmos.color = Color.Lerp(Color.white, Color.red, presence/1.0f);
+            Gizmos.DrawWireSphere(player.transform.position, presence * monsterBalancer.distanceAwareToSearch);
+
+        }
+        
     }
     ////////// ------ DEBUG EXTRAS ------ //////////
 
