@@ -16,6 +16,7 @@ public class MonsterAI : MonoBehaviour {
         public bool monsterSight = false;
         public bool doorAction = false;
         public bool fade = false;
+        public bool gizmos = false;
     }
     public mDebug debug = new mDebug();
 
@@ -46,6 +47,7 @@ public class MonsterAI : MonoBehaviour {
         public bool stuckOnOpenDoor = false;
         public float doorStuckTime = 0.0f;
         public float doorGhostCooldown = 3.0f;
+        public float doorReachDistance = 1.0f;
         public GameObject stuckDoor;
     }
     public agentManagement agentManager = new agentManagement();
@@ -107,10 +109,10 @@ public class MonsterAI : MonoBehaviour {
     private GameObject monsterEyes;
     private GameObject seen;
     private RaycastHit hit;
-    private Vector3 cameraCenter;
+    private Vector3 rayStart;
     public GameObject cabinet;
 
-    private GameObject player;
+    public GameObject player;
     private GameObject investigateRecorder;
     private GameObject searchObject;
     private GameObject patrolObject;
@@ -954,8 +956,8 @@ public class MonsterAI : MonoBehaviour {
 
         for (int s = 0; s < doors.Length; s++)
         {
-            // open the door but also only do so if sound is not playing
-            if (doorDistances[s] == toDistance && actionTime > monsterBalancer.actionCooldown)
+            // open the door but also only do so if sound is not playing, action cooldown is ready, and the door is within reaching distance
+            if (doorDistances[s] == toDistance && actionTime > monsterBalancer.actionCooldown && toDistance < agentManager.doorReachDistance)
             {
                 // ONLY REMOVE COLLIDER FOR OPEN DOORS AND STUCK DOOR IS NOT ALREADY RUNNING ON ANOTHER DOOR
                 if (doors[s].GetComponent<doorMaster>().doorOpen && !agentManager.stuckOnOpenDoor)
@@ -1018,11 +1020,12 @@ public class MonsterAI : MonoBehaviour {
     // The function looks for the player and trips a boolean that the player has been seen
     public void Looking()
     {
-        cameraCenter = monsterEyes.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, monsterEyes.GetComponent<Camera>().nearClipPlane));
 
-
+        // Change raycast to use or not use camera
+        rayStart = monsterEyes.transform.position;
+      
         // raycast from camera
-        if (Physics.Raycast(cameraCenter, monsterEyes.transform.forward, out hit, 1000))
+        if (Physics.Raycast(rayStart, monsterEyes.transform.forward, out hit, 1000))
         {
             // the object seen is what the raycast hit
             seen = hit.transform.gameObject;
@@ -1135,9 +1138,42 @@ public class MonsterAI : MonoBehaviour {
     /// Debug Vision Gizmos
     public void OnDrawGizmos()
     {
-        // Draws a blue line from this transform to the target
-        Gizmos.color = Color.blue;
-        Gizmos.DrawLine(cameraCenter, hit.point);
+
+        // Draws a blue line from monster eyes to the target
+        if (debug.gizmos)
+        {
+            // Eyesight
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawLine(rayStart, hit.point);
+
+            // eyesight distance
+            Gizmos.color = Color.white;
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.sightDistance);
+
+            // attack distance
+            Gizmos.color = Color.magenta;
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.attackDistance);
+
+            // evasion distance
+            Gizmos.color = Color.green;
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.evasionDistance);
+
+            // Search for player distance
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.distanceAwareToSearch);
+
+            // Hear player distance
+            Gizmos.color = Color.Lerp(Color.yellow, Color.red, presence / 1.0f);
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.hearPlayerDistance);
+
+            // player distance
+            Gizmos.color = Color.white;
+            Gizmos.DrawLine(gameObject.transform.position, player.transform.position);
+            Gizmos.color = Color.Lerp(Color.white, Color.red, presence/1.0f);
+            Gizmos.DrawWireSphere(player.transform.position, presence * monsterBalancer.distanceAwareToSearch);
+
+        }
+        
     }
     ////////// ------ DEBUG EXTRAS ------ //////////
 
