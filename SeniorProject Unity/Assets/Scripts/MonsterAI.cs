@@ -47,6 +47,7 @@ public class MonsterAI : MonoBehaviour {
         public bool stuckOnOpenDoor = false;
         public float doorStuckTime = 0.0f;
         public float doorGhostCooldown = 3.0f;
+        public float doorReachDistance = 1.0f;
         public GameObject stuckDoor;
     }
     public agentManagement agentManager = new agentManagement();
@@ -56,7 +57,6 @@ public class MonsterAI : MonoBehaviour {
     public class monsterBalance
     {
         public bool pacify = false;
-        public bool raycastNonCam = false;
         public GameObject[] hands;
 
         public float evasionDistance = 12.0f;
@@ -956,8 +956,8 @@ public class MonsterAI : MonoBehaviour {
 
         for (int s = 0; s < doors.Length; s++)
         {
-            // open the door but also only do so if sound is not playing
-            if (doorDistances[s] == toDistance && actionTime > monsterBalancer.actionCooldown)
+            // open the door but also only do so if sound is not playing, action cooldown is ready, and the door is within reaching distance
+            if (doorDistances[s] == toDistance && actionTime > monsterBalancer.actionCooldown && toDistance < agentManager.doorReachDistance)
             {
                 // ONLY REMOVE COLLIDER FOR OPEN DOORS AND STUCK DOOR IS NOT ALREADY RUNNING ON ANOTHER DOOR
                 if (doors[s].GetComponent<doorMaster>().doorOpen && !agentManager.stuckOnOpenDoor)
