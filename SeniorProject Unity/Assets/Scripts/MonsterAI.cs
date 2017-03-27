@@ -56,6 +56,7 @@ public class MonsterAI : MonoBehaviour {
     public class monsterBalance
     {
         public bool pacify = false;
+        public bool raycastNonCam = false;
         public GameObject[] hands;
 
         public float evasionDistance = 12.0f;
@@ -108,10 +109,10 @@ public class MonsterAI : MonoBehaviour {
     private GameObject monsterEyes;
     private GameObject seen;
     private RaycastHit hit;
-    private Vector3 cameraCenter;
+    private Vector3 rayStart;
     public GameObject cabinet;
 
-    private GameObject player;
+    public GameObject player;
     private GameObject investigateRecorder;
     private GameObject searchObject;
     private GameObject patrolObject;
@@ -1019,11 +1020,12 @@ public class MonsterAI : MonoBehaviour {
     // The function looks for the player and trips a boolean that the player has been seen
     public void Looking()
     {
-        cameraCenter = monsterEyes.GetComponent<Camera>().ScreenToWorldPoint(new Vector3(Screen.width / 2f, Screen.height / 2f, monsterEyes.GetComponent<Camera>().nearClipPlane));
 
-
+        // Change raycast to use or not use camera
+        rayStart = monsterEyes.transform.position;
+      
         // raycast from camera
-        if (Physics.Raycast(cameraCenter, monsterEyes.transform.forward, out hit, 1000))
+        if (Physics.Raycast(rayStart, monsterEyes.transform.forward, out hit, 1000))
         {
             // the object seen is what the raycast hit
             seen = hit.transform.gameObject;
@@ -1142,7 +1144,7 @@ public class MonsterAI : MonoBehaviour {
         {
             // Eyesight
             Gizmos.color = Color.magenta;
-            Gizmos.DrawLine(cameraCenter, hit.point);
+            Gizmos.DrawLine(rayStart, hit.point);
 
             // eyesight distance
             Gizmos.color = Color.white;
