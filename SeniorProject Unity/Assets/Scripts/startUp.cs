@@ -7,6 +7,7 @@ public class startUp : MonoBehaviour
 {
 
     //Check this option to export game with the heartbeat option available. Uncheck will start the game without
+    public GameObject sceneLoader;
     public bool withHeartBeat;
     public bool OriginalWithHeartBeat;
 
@@ -100,6 +101,11 @@ public class startUp : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        if (sceneLoader.activeSelf)
+        {
+            sceneLoader.SetActive(false);
+        }
+        
         
         HBData = GameObject.FindGameObjectWithTag("hbData");
 
@@ -488,7 +494,19 @@ public class startUp : MonoBehaviour
             timer += Time.deltaTime;
 
             if(timer > narrationTimer)
-                SceneManager.LoadScene("Beta_1.2.8", LoadSceneMode.Single);
+            {
+                // remove later
+                //SceneManager.LoadScene("Beta_1.2.8", LoadSceneMode.Single);
+
+                // trigger Async load
+                
+                if (!sceneLoader.activeSelf)
+                {
+                    sceneLoader.SetActive(true);
+                }
+                
+            }
+                
 
             //yield return new WaitForSeconds(5.0f);
         }
