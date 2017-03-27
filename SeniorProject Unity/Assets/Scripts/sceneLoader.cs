@@ -18,9 +18,9 @@ public class sceneLoader : MonoBehaviour {
     private IEnumerator LoadALevel()
     {
         async = SceneManager.LoadSceneAsync(levelName);
-        Debug.Log("progress " + async.progress);
         yield return async;
     }
+
     void OnGUI()
     {
         if (async != null)
@@ -28,7 +28,7 @@ public class sceneLoader : MonoBehaviour {
             GUI.DrawTexture(new Rect(Screen.width/2 - 400/2, Screen.height/2, 400, 26), emptyProgressBar);
             GUI.DrawTexture(new Rect(Screen.width/2 - 390/2, Screen.height/2 + 3, 390 * async.progress, 20), fullProgressBar);
             GUI.TextField(new Rect(Screen.width/2 - 400/2, Screen.height/2 + 40, 400, 20), "Loading...");
-            
+            Debug.Log("progress " + async.progress);
         }
     }
 }
