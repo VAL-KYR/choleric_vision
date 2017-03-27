@@ -696,13 +696,22 @@ public class controller : MonoBehaviour
         // Movement
         if (playerSprint)
         {
-            playerSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + camerasGroup.effectScale);
+            //playerSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + camerasGroup.effectScale);
+            playerSpeed = Mathf.Lerp(playerSpeed, playerSpeedGroup.sprintMoveSpeed / (1 + camerasGroup.effectScale), Time.deltaTime);
             playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + camerasGroup.effectScale);
         }
         else if (crouch)
-            playerSpeed = playerSpeedGroup.crouchMoveSpeed / (1 + camerasGroup.effectScale);
+        {
+            //playerSpeed = playerSpeedGroup.crouchMoveSpeed / (1 + camerasGroup.effectScale);
+            playerSpeed = Mathf.Lerp(playerSpeed, playerSpeedGroup.crouchMoveSpeed / (1 + camerasGroup.effectScale), Time.deltaTime * 2.0f);
+        }
+
         else
-            playerSpeed = playerSpeedGroup.walkMoveSpeed / (1 + camerasGroup.effectScale);
+        {
+            //playerSpeed = playerSpeedGroup.walkMoveSpeed / (1 + camerasGroup.effectScale);
+            playerSpeed = Mathf.Lerp(playerSpeed, playerSpeedGroup.walkMoveSpeed / (1 + camerasGroup.effectScale), Time.deltaTime);
+        }
+            
     }
 
     // knockout
