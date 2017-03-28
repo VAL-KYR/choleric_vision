@@ -438,7 +438,6 @@ public class controller : MonoBehaviour
                 float newLLeanAngle = Input.GetAxis("LLean") * playerLean.maxLeft;
                 playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newLLeanAngle), playerLean.leanSpeed * Time.deltaTime);
                 playerLean.lEase = playerLean.leanObject.transform.localRotation.eulerAngles.z;
-                //Debug.Log("LLean " + Input.GetAxis("LLean"));
             }
             else if (Input.GetAxis("RLean") < 0)
             {
@@ -448,7 +447,6 @@ public class controller : MonoBehaviour
                 float newRLeanAngle = Input.GetAxis("RLean") * playerLean.maxRight;
                 playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, -1 * newRLeanAngle), playerLean.leanSpeed * Time.deltaTime);
                 playerLean.rEase = -1 * (playerLean.leanObject.transform.localRotation.eulerAngles.z - 360);
-                //Debug.Log("RLean " + Input.GetAxis("RLean"));
             }
 			else if (playerLean.controller && Input.GetAxis("RLean") == 0 && Input.GetAxis("LLean") == 0)
 			{
@@ -464,7 +462,6 @@ public class controller : MonoBehaviour
 				float newLLeanAngle = Input.GetAxis("MKLLean") * playerLean.maxLeft;
 				playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newLLeanAngle), playerLean.leanSpeed * Time.deltaTime);
 				playerLean.lEase = playerLean.leanObject.transform.localRotation.eulerAngles.z;
-				//Debug.Log("LLean " + Input.GetAxis("LLean"));
 			}
 			else if (Input.GetButton("MKRLean"))
 			{
@@ -474,7 +471,6 @@ public class controller : MonoBehaviour
 				float newRLeanAngle = Input.GetAxis("MKRLean") * playerLean.maxRight;
 				playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newRLeanAngle), playerLean.leanSpeed * Time.deltaTime);
 				playerLean.rEase = -1 * (playerLean.leanObject.transform.localRotation.eulerAngles.z - 360);
-				//Debug.Log("RLean " + Input.GetAxis("RLean"));
 			}
 			else if (playerLean.keyboard && !Input.GetButtonDown("MKRLean") && !Input.GetButtonDown("MKLLean"))
 			{
@@ -494,10 +490,6 @@ public class controller : MonoBehaviour
                 // Use this variable to access in calibration
                 HBListening = true;
                 heart.GetComponent<heartBeatThump>().heartListening = true;
-
-                // Remove the notes for HBListening
-                //notesPage.SetActive(false);
-                //hintsPage.SetActive(false);
 
 
                 noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
@@ -521,10 +513,6 @@ public class controller : MonoBehaviour
                 // Use this variable to access in calibration
                 HBListening = false;
                 heart.GetComponent<heartBeatThump>().heartListening = false;
-
-                // Remove the hints for HBListening
-                //notesPage.SetActive(true);
-                //hintsPage.SetActive(true);
 
 
                 noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
@@ -607,17 +595,6 @@ public class controller : MonoBehaviour
             if(quitTime > 4.0f)
             {
                 Application.Quit();
-
-                /// <summary>
-                ///  COMMENT OUR FOR BUILD ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-                /// </summary>
-
-                /*
-                if (UnityEditor.EditorApplication.isPlaying)
-                {
-                    UnityEditor.EditorApplication.isPlaying = false;
-                }
-                */
             }
             
         }
@@ -689,20 +666,26 @@ public class controller : MonoBehaviour
         else
         {
             vrCam.GetComponent<ColorCurvesManager>().Factor = Mathf.Lerp(0.0f, 1.0f, camerasGroup.effectScale);
-            // bleed scale set to editable thing later        nonVrCam.GetComponent<BleedBehavior>().minBloodAmount = playerEffectScale / 2.1f
+            // bleed scale set to editable thing later
             vrCam.GetComponent<BleedBehavior>().minBloodAmount = Mathf.Lerp(vrCam.GetComponent<BleedBehavior>().minBloodAmount, Mathf.Sqrt(camerasGroup.effectScale) / 2.4f, Time.deltaTime);
         }
 
         // Movement
         if (playerSprint)
         {
-            playerSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + camerasGroup.effectScale);
+            playerSpeed = Mathf.Lerp(playerSpeed, playerSpeedGroup.sprintMoveSpeed / (1 + camerasGroup.effectScale), Time.deltaTime);
             playerMaxSpeed = playerSpeedGroup.sprintMoveSpeed / (1 + camerasGroup.effectScale);
         }
         else if (crouch)
-            playerSpeed = playerSpeedGroup.crouchMoveSpeed / (1 + camerasGroup.effectScale);
+        {
+            playerSpeed = Mathf.Lerp(playerSpeed, playerSpeedGroup.crouchMoveSpeed / (1 + camerasGroup.effectScale), Time.deltaTime * 2.0f);
+        }
+
         else
-            playerSpeed = playerSpeedGroup.walkMoveSpeed / (1 + camerasGroup.effectScale);
+        {
+            playerSpeed = Mathf.Lerp(playerSpeed, playerSpeedGroup.walkMoveSpeed / (1 + camerasGroup.effectScale), Time.deltaTime);
+        }
+            
     }
 
     // knockout
