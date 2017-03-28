@@ -110,6 +110,7 @@ public class MonsterAI : MonoBehaviour {
     private GameObject seen;
     private RaycastHit hit;
     private Vector3 rayStart;
+    private Vector3 rayMove;
     public GameObject cabinet;
 
     public GameObject player;
@@ -141,6 +142,8 @@ public class MonsterAI : MonoBehaviour {
         monsterBalancer.hands = GameObject.FindGameObjectsWithTag("monsterHands");
         playerManager.headMaster = GameObject.FindGameObjectWithTag("headMaster");
         playerManager.clothes = GameObject.FindGameObjectWithTag("Clothes");
+
+        
 
 
         // Find faders
@@ -190,6 +193,7 @@ public class MonsterAI : MonoBehaviour {
         monsterEyes = GameObject.FindGameObjectWithTag("MonsterEyes");
         playerSeen = false;
         monsterSightDistance = monsterBalancer.sightDistance;
+        rayMove = monsterEyes.transform.forward;
 
         agent = GetComponent<NavMeshAgent>();
         lastPosition = new Vector3(0, 0, 0);
@@ -443,9 +447,6 @@ public class MonsterAI : MonoBehaviour {
     public void Search()
     {
         searchTime += Time.deltaTime;
-
-        // just in case
-        //MonsterAnimate();
 
         // later this will be changed to a visual confirmation, distance check, and presence check if statement maybe
         // those parameters will make a chageEngage local bool
@@ -1023,9 +1024,11 @@ public class MonsterAI : MonoBehaviour {
 
         // Change raycast to use or not use camera
         rayStart = monsterEyes.transform.position;
-      
+
+        rayMove = Vector3.Lerp(rayMove, monsterEyes.transform.forward, Time.deltaTime * 2.0f); 
+
         // raycast from camera
-        if (Physics.Raycast(rayStart, monsterEyes.transform.forward, out hit, 1000))
+        if (Physics.Raycast(rayStart, rayMove, out hit, 1000))
         {
             // the object seen is what the raycast hit
             seen = hit.transform.gameObject;

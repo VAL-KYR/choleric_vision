@@ -438,7 +438,6 @@ public class controller : MonoBehaviour
                 float newLLeanAngle = Input.GetAxis("LLean") * playerLean.maxLeft;
                 playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, newLLeanAngle), playerLean.leanSpeed * Time.deltaTime);
                 playerLean.lEase = playerLean.leanObject.transform.localRotation.eulerAngles.z;
-                //Debug.Log("LLean " + Input.GetAxis("LLean"));
             }
             else if (Input.GetAxis("RLean") < 0)
             {
@@ -448,7 +447,6 @@ public class controller : MonoBehaviour
                 float newRLeanAngle = Input.GetAxis("RLean") * playerLean.maxRight;
                 playerLean.leanObject.transform.localRotation = Quaternion.Lerp(playerLean.leanObject.transform.localRotation, Quaternion.Euler(0, 0, -1 * newRLeanAngle), playerLean.leanSpeed * Time.deltaTime);
                 playerLean.rEase = -1 * (playerLean.leanObject.transform.localRotation.eulerAngles.z - 360);
-                //Debug.Log("RLean " + Input.GetAxis("RLean"));
             }
 			else if (playerLean.controller && Input.GetAxis("RLean") == 0 && Input.GetAxis("LLean") == 0)
 			{
