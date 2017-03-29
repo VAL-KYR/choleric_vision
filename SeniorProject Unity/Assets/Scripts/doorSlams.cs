@@ -46,7 +46,7 @@ public class doorSlams : MonoBehaviour {
         }
 
 
-        if (triggerDoors && time <= (scareSound.length - slamTime))
+        if (triggerDoors && gameObject.GetComponent<AudioSource>().isPlaying)
         {
             time += Time.deltaTime;
 
@@ -82,9 +82,10 @@ public class doorSlams : MonoBehaviour {
             if (reTrigger)
             {
                 triggerDoors = false;
+                time = 0.0f;
             }
 
-            time = 0.0f;
+            
         }
         
 	}
