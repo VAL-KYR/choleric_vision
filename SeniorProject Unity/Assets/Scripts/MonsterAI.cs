@@ -61,7 +61,7 @@ public class MonsterAI : MonoBehaviour {
 
         public float evasionDistance = 12.0f;
         public float attackDistance = 1.0f;
-        public float sightDistance = 10.0f;
+        public float sightDistance = 11.0f;
         public float hearPlayerDistance = 4.0f;
 
         public float presenceEvasion = 3.5f;
@@ -101,12 +101,14 @@ public class MonsterAI : MonoBehaviour {
     }
     public playerManagement playerManager = new playerManagement();
 
-    // SEARCH state variables
+    // Changing Runtime variables (Search & other states affect them)
     public float monsterSightDistance;
+    public float monsterEvasionDistance;
     public bool playerSeen = false;
 
     // Objects of interest
-    private GameObject monsterEyes;
+    private GameObject[] monsterEyes;
+
     private GameObject seen;
     private RaycastHit hit;
     private Vector3 rayStart;
@@ -190,10 +192,10 @@ public class MonsterAI : MonoBehaviour {
         searchTime = 0.0f;
 
         // search state stuff
-        monsterEyes = GameObject.FindGameObjectWithTag("MonsterEyes");
+        monsterEyes = GameObject.FindGameObjectsWithTag("MonsterEyes");
         playerSeen = false;
         monsterSightDistance = monsterBalancer.sightDistance;
-        rayMove = monsterEyes.transform.forward;
+        monsterEvasionDistance = monsterBalancer.evasionDistance;
 
         agent = GetComponent<NavMeshAgent>();
         lastPosition = new Vector3(0, 0, 0);
@@ -268,13 +270,16 @@ public class MonsterAI : MonoBehaviour {
 
         /// Player variables Update
         playerManager.health = GameObject.FindGameObjectWithTag("GameController").GetComponent<controller>().playerHealth;
+
         if (playerManager.flashlight)
         {
             monsterSightDistance = monsterBalancer.sightDistance;
+            monsterEvasionDistance = monsterBalancer.evasionDistance;
         }
         else
         {
             monsterSightDistance = monsterBalancer.sightDistance / 2;
+            monsterEvasionDistance = monsterBalancer.evasionDistance / 2.2f;
         }
         /// 
 
@@ -448,6 +453,9 @@ public class MonsterAI : MonoBehaviour {
     {
         searchTime += Time.deltaTime;
 
+        // Slow monster while searching
+        agent.speed = 1.0f;
+
         // later this will be changed to a visual confirmation, distance check, and presence check if statement maybe
         // those parameters will make a chageEngage local bool
 
@@ -512,7 +520,7 @@ public class MonsterAI : MonoBehaviour {
 
         // chasing the player
         // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later], also make it so that if he can still see you then keep chasing
-        if ((playerManager.distanceAway < monsterBalancer.evasionDistance) || (presence > monsterBalancer.presenceEvasion))
+        if ((playerManager.distanceAway < monsterEvasionDistance) || (presence > monsterBalancer.presenceEvasion))
         {
             if (debug.monsterSpeakStates)
             {
@@ -547,7 +555,7 @@ public class MonsterAI : MonoBehaviour {
         }
 
         // LOST PLAYER DUE TO DISTANCE // DEACTIVATE PLAYER SEEB
-        if (playerManager.distanceAway > monsterBalancer.evasionDistance)
+        if (playerManager.distanceAway > monsterEvasionDistance)
         {
             if (debug.monsterSpeakStates)
             {
@@ -1021,32 +1029,34 @@ public class MonsterAI : MonoBehaviour {
     // The function looks for the player and trips a boolean that the player has been seen
     public void Looking()
     {
-
-        // Change raycast to use or not use camera
-        rayStart = monsterEyes.transform.position;
-
-        rayMove = Vector3.Lerp(rayMove, monsterEyes.transform.forward, Time.deltaTime * 2.0f); 
-
-        // raycast from camera
-        if (Physics.Raycast(rayStart, monsterEyes.transform.forward, out hit, 1000))
+        foreach (GameObject eye in monsterEyes)
         {
-            // the object seen is what the raycast hit
-            seen = hit.transform.gameObject;
+            // Change raycast to use or not use camera
+            rayStart = eye.transform.position;
 
-            if (debug.monsterSight)
+            // raycast from camera
+            if (Physics.Raycast(rayStart, eye.transform.forward, out hit, 1000))
             {
-                Debug.Log("I see the " + seen);
-            }
-            
-            // see if the seen object is the player
-            if (seen.CompareTag("GameController") && state == "search")
-            {
-                if (Vector3.Distance(hit.point, gameObject.transform.position) <= monsterSightDistance)
+                // the object seen is what the raycast hit
+                seen = hit.transform.gameObject;
+
+                if (debug.monsterSight)
                 {
-                    playerSeen = true;
+                    Debug.Log("I see the " + seen);
+                }
+
+                // see if the seen object is the player
+                if (seen.CompareTag("GameController") && state == "search")
+                {
+                    if (Vector3.Distance(hit.point, gameObject.transform.position) <= monsterSightDistance)
+                    {
+                        playerSeen = true;
+                    }
                 }
             }
+
         }
+        
 
     }
 
@@ -1147,11 +1157,14 @@ public class MonsterAI : MonoBehaviour {
         {
             // Eyesight
             Gizmos.color = Color.magenta;
-            Gizmos.DrawLine(monsterEyes.transform.position, hit.point);
+            foreach (GameObject eye in monsterEyes)
+            {
+                Gizmos.DrawLine(eye.transform.position, hit.point);
+            }
 
             // eyesight distance
             Gizmos.color = Color.white;
-            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.sightDistance);
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterSightDistance);
 
             // attack distance
             Gizmos.color = Color.magenta;
@@ -1159,7 +1172,7 @@ public class MonsterAI : MonoBehaviour {
 
             // evasion distance
             Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(gameObject.transform.position, monsterBalancer.evasionDistance);
+            Gizmos.DrawWireSphere(gameObject.transform.position, monsterEvasionDistance);
 
             // Search for player distance
             Gizmos.color = Color.yellow;
