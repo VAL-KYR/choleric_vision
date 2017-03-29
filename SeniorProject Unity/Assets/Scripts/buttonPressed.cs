@@ -9,20 +9,46 @@ public class buttonPressed : MonoBehaviour {
     public Sprite xbox;
     public Sprite keys;
     public bool xboxPressed;
+    public bool UIReady;
 
 
     // Use this for initialization
     void Start () {
+
         xboxPress = false;
-        hintsPage = GameObject.FindGameObjectWithTag("hints");
+
+        if (GameObject.FindGameObjectWithTag("hints"))
+        {
+            hintsPage = GameObject.FindGameObjectWithTag("hints");
+            UIReady = true;
+        }
+        else
+        {
+            UIReady = false;
+        }
+        
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update() {
+
+        // searching for page at runtime
+        if (!hintsPage)
+        {
+            if (GameObject.FindGameObjectWithTag("hints"))
+            {
+                hintsPage = GameObject.FindGameObjectWithTag("hints");
+                UIReady = true;
+            }
+            else if (!GameObject.FindGameObjectWithTag("hints"))
+            {
+                UIReady = false;
+            }
+        }
 
         xboxPressed = xboxPress;
 
-        if(Input.anyKeyDown)
+        if (Input.anyKeyDown)
         {
             for (int i = 0; i < 20; i++)
             {
@@ -30,27 +56,35 @@ public class buttonPressed : MonoBehaviour {
 
                 if (Input.GetKeyDown("joystick 1 button " + i))
                 {
-                    print("XBOX Pressed");
+                    //print("XBOX Pressed");
                     xboxPress = true;
                 }
                 if (xboxPress)
                     break;
             }
             if (!xboxPress)
-                print("Keyboard Pressed");
+            {
+                //print("Keyboard Pressed");
+            }
+
         }
 
-
-
-        if (xboxPress)
+        // when page is found
+        if (UIReady)
         {
-            hintsPage.GetComponent<Image>().sprite = xbox;
+
+            // Switch UI
+            if (xboxPress)
+            {
+                hintsPage.GetComponent<Image>().sprite = xbox;
+            }
+            else
+            {
+                hintsPage.GetComponent<Image>().sprite = keys;
+            }
+
+
         }
-        else
-        {
-            hintsPage.GetComponent<Image>().sprite = keys;
-        }
-        
 
     }
 }
