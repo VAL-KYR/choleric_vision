@@ -4,7 +4,7 @@ using System.Collections;
 
 public class buttonPressed : MonoBehaviour {
 
-    static public bool xboxPress;
+    public static bool xboxPress;
     private GameObject hintsPage;
     public Sprite xbox;
     public Sprite keys;
