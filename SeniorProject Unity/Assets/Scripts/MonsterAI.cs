@@ -1028,7 +1028,7 @@ public class MonsterAI : MonoBehaviour {
         rayMove = Vector3.Lerp(rayMove, monsterEyes.transform.forward, Time.deltaTime * 2.0f); 
 
         // raycast from camera
-        if (Physics.Raycast(rayStart, rayMove, out hit, 1000))
+        if (Physics.Raycast(rayStart, monsterEyes.transform.forward, out hit, 1000))
         {
             // the object seen is what the raycast hit
             seen = hit.transform.gameObject;
@@ -1147,7 +1147,7 @@ public class MonsterAI : MonoBehaviour {
         {
             // Eyesight
             Gizmos.color = Color.magenta;
-            Gizmos.DrawLine(rayStart, hit.point);
+            Gizmos.DrawLine(monsterEyes.transform.position, hit.point);
 
             // eyesight distance
             Gizmos.color = Color.white;
