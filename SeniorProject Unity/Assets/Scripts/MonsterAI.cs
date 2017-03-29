@@ -87,7 +87,7 @@ public class MonsterAI : MonoBehaviour {
         public GameObject[] winZones;
         public GameObject headMaster;
         public GameObject clothes;
-
+        
         public Material fader;
         public bool KO = false;
         public bool death = false;
@@ -226,7 +226,7 @@ public class MonsterAI : MonoBehaviour {
         {
             FadeEvent();
         }
-        
+
 
         // calculate player's maximum possible speed
         playerManager.maxSpeed = player.GetComponent<controller>().playerMaxSpeed;
