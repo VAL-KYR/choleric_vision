@@ -7,6 +7,8 @@ public class MonsterMoveTest : MonoBehaviour {
     public bool debug = false;
     //public Rigidbody rb;
     public GameObject[] pos;
+    public int activePos;
+    public GameObject activeObj;
     GameObject[] unaturalLights;
     float[] unaturalLightIntensity;
     int i = 0;
@@ -100,6 +102,15 @@ public class MonsterMoveTest : MonoBehaviour {
                 i++;
             }
             //
+
+            // disable or enable an object at an activepos
+            if (i == activePos && activeObj)
+            {
+                if (!activeObj.activeSelf)
+                    activeObj.SetActive(true);
+                else
+                    activeObj.SetActive(false);
+            }
 
             if (affectLights)
             {
