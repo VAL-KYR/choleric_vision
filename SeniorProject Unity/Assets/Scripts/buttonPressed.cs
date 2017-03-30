@@ -10,6 +10,8 @@ public class buttonPressed : MonoBehaviour {
     public Sprite keys;
     public bool xboxPressed;
     public bool UIReady;
+    private Vector3 startScale = new Vector3(0, 0, 0);
+    private Vector3 startPos = new Vector3(0, 0, 0);
 
 
     // Use this for initialization
@@ -21,12 +23,24 @@ public class buttonPressed : MonoBehaviour {
         {
             hintsPage = GameObject.FindGameObjectWithTag("hints");
             UIReady = true;
+
+            if (startScale == new Vector3(0, 0, 0))
+            {
+                startScale = hintsPage.transform.localScale;
+            }
+
+            if (startPos == new Vector3(0, 0, 0))
+            {
+                startPos = hintsPage.transform.localPosition;
+            }
         }
         else
         {
             UIReady = false;
         }
+
         
+
     }
 
     // Update is called once per frame
@@ -39,11 +53,23 @@ public class buttonPressed : MonoBehaviour {
             {
                 hintsPage = GameObject.FindGameObjectWithTag("hints");
                 UIReady = true;
+
+                if (startScale == new Vector3(0, 0, 0))
+                {
+                    startScale = hintsPage.transform.localScale;
+                }
+
+                if (startPos == new Vector3(0, 0, 0))
+                {
+                    startPos = hintsPage.transform.localPosition;
+                }
             }
             else if (!GameObject.FindGameObjectWithTag("hints"))
             {
                 UIReady = false;
             }
+
+            
         }
 
         xboxPressed = xboxPress;
@@ -77,10 +103,14 @@ public class buttonPressed : MonoBehaviour {
             if (xboxPress)
             {
                 hintsPage.GetComponent<Image>().sprite = xbox;
+                hintsPage.transform.localScale = startScale;
+                hintsPage.transform.localPosition = startPos;
             }
             else
             {
                 hintsPage.GetComponent<Image>().sprite = keys;
+                hintsPage.transform.localScale = startScale * 0.61f;
+                hintsPage.transform.localPosition = new Vector3(startPos.x + (startPos.y * 1.2f), startPos.y, startPos.z);
             }
 
 
