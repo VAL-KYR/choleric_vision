@@ -219,8 +219,10 @@ public class controller : MonoBehaviour
         // Setting up camera to use (VR or no VR)
         if (VRSettings.enabled)
         {
+            // ADDED VR RESET
             camerasGroup.playerVR.SetActive(true);
             camerasGroup.playerNormal.SetActive(false);
+            UnityEngine.VR.InputTracking.Recenter();
         }
         else
         {
@@ -258,7 +260,12 @@ public class controller : MonoBehaviour
         else
         {
             if (!vrCam)
+            {
+                // ADDED VR RESET
                 vrCam = GameObject.FindGameObjectWithTag("VRCam");
+                UnityEngine.VR.InputTracking.Recenter();
+            }
+                
         }
         // Player Damage Effects
         Effects();
@@ -630,8 +637,8 @@ public class controller : MonoBehaviour
 
                                
                 
-
-                camerasGroup.playerVR.transform.parent = headJoint.transform;
+                // UNCOMMENT THIS AGAIN
+                //camerasGroup.playerVR.transform.parent = headJoint.transform;
 
                 UnityEngine.VR.InputTracking.Recenter();
 
