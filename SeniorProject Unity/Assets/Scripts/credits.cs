@@ -154,12 +154,15 @@ public class credits : MonoBehaviour {
             {
                 SceneManager.LoadScene("startScreen", LoadSceneMode.Single);
             }
+            else
+            {
+                gameObject.GetComponent<AudioSource>().volume = Mathf.Lerp(gameObject.GetComponent<AudioSource>().volume, 0.0f, 0.2f * Time.deltaTime);
+            }
 
         }
 
 
-
-            if (Input.GetButtonDown("Action"))
+        if (Input.GetButtonDown("Action"))
         {
             SceneManager.LoadScene("startScreen", LoadSceneMode.Single);
         }
