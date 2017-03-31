@@ -87,7 +87,7 @@ public class lookAtObject : MonoBehaviour {
             curCam = GameObject.FindGameObjectWithTag("NonVRCam");
 
 
-        zoomSpeed = 1.0f;
+        zoomSpeed = 0.2f;
         curZoom = scaleFactor;
 
         /// For Triggering Flashbacks or Voice Lines
