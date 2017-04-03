@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: d98f1cafb63e734438528ef19fc143ab
+timeCreated: 1491242299
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Conspiracy
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3aabd42020502de4dbd86c4929f85dfa, type: 3}
+  - {fileID: 12800000, guid: 97a1a5364ef3d534480f1695c3fcf465, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

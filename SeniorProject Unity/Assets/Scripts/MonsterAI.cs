@@ -64,7 +64,7 @@ public class MonsterAI : MonoBehaviour {
         public float sightDistance = 11.0f;
         public float hearPlayerDistance = 4.0f;
 
-        public float presenceEvasion = 3.5f;
+        public float presenceEvasion = 0.35f;
         public float presenceSearchInterrupt = 0.69f;
         public float presenceAwareToSearch = 0.47f;
         public float distanceAwareToSearch = 8.0f;
