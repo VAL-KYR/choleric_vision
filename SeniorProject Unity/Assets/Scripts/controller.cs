@@ -143,7 +143,7 @@ public class controller : MonoBehaviour
 
         withHeartBeat = HBDataScript.hbBool;
 
-        // lcok cursor
+        // lock cursor
         Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = (CursorLockMode.Locked != wantedMode);
 
