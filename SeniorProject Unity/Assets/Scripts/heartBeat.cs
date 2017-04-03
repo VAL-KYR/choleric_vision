@@ -142,6 +142,12 @@ public class heartBeat : MonoBehaviour {
 
                 }
             }
+
+            if(Input.GetButtonDown("hbRecal"))
+            {
+                numOfHeartAvgDone = 0;
+                calState = 1;
+            }
         }
         
         

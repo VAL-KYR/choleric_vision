@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 using System;
+using UnityEngine.VR;
 
 public class startUp : MonoBehaviour
 {
@@ -59,9 +60,9 @@ public class startUp : MonoBehaviour
     private bool beg;
 
 
-    private bool sel;
+    public bool sel;
     public bool startGame;
-    private bool selHB;
+    public bool selHB;
     private bool HBCal;
 
     private float startFade2;
@@ -177,6 +178,12 @@ public class startUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetButtonDown("VRToggle"))
+        {
+            VRSettings.enabled = !VRSettings.enabled;
+
+        }
 
 
         if (timer < splashScreen.djTimer && begining)
@@ -436,6 +443,8 @@ public class startUp : MonoBehaviour
             {
                 audioMenu.clip = selectS;
                 audioMenu.Play();
+
+                withHeartBeat = GetComponent<startHBCal>().readyCom;
 
                 if (curSelOpt == 0 && !withHeartBeat)
                 {
