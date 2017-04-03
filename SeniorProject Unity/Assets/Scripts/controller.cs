@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.VR;
+using UnityEngine.SceneManagement;
 
 public class controller : MonoBehaviour
 {
@@ -557,7 +558,8 @@ public class controller : MonoBehaviour
 
             if(quitTime > 4.0f)
             {
-                Application.Quit();
+                SceneManager.LoadScene("startScreen", LoadSceneMode.Single);
+                //Application.Quit();
             }
             
         }

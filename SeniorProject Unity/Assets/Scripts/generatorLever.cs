@@ -89,6 +89,7 @@ public class generatorLever : MonoBehaviour {
         {
             // lever click sound
             lever.Play();
+            gameObject.GetComponent<BoxCollider>().enabled = false;
             leverThrown = true;
         }
     }
@@ -96,8 +97,7 @@ public class generatorLever : MonoBehaviour {
     public void lookingAtMe(float lookAtDist)
     {
 
-        //if (lookAtDist <= interactDistance && !buttonPushed)
-        if (lookAtDist <= interactDistance && leverState.fullPathHash == offStateHash)
+        if (lookAtDist <= interactDistance && leverState.fullPathHash == offStateHash && !leverThrown)
         {
 
             uiText.enabled = true;

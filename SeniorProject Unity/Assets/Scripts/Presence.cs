@@ -54,7 +54,7 @@ public class Presence : MonoBehaviour {
         HBVar = 0.0f;
 
         samples = new float[qSamples];
-
+        
 		// update player flashlight status
 		foreach (GameObject f in flashLights)
 		{
