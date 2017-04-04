@@ -159,7 +159,7 @@ public class interactUI : MonoBehaviour {
                 ui.color = new Color(0, 0, 0, 0);
                 transform.localPosition = uiReset;
 
-                if (uiGlow)
+                if (uiGlow && (seeingObject.CompareTag("documentCabinet") || seeingObject.CompareTag("key")))
                 {
                     if (seeingObject.GetComponent<Renderer>() != null)
                     {
@@ -188,7 +188,7 @@ public class interactUI : MonoBehaviour {
             ui.color = new Color(0, 0, 0, 0);
             transform.localPosition = uiReset;
 
-            if (uiGlow)
+            if (uiGlow && (seeingObject.CompareTag("documentCabinet") || seeingObject.CompareTag("key")))
             {
                 if (seeingObject.GetComponent<Renderer>() != null)
                 {
@@ -222,7 +222,7 @@ public class interactUI : MonoBehaviour {
             ui.color = new Color(1, 1, 1, 1);
             transform.localPosition = new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.5f));
 
-            if (uiGlow)
+            if (uiGlow && (seeingObject.CompareTag("documentCabinet") || seeingObject.CompareTag("key")))
             {
                 if (seeingObject.GetComponent<Renderer>() != null)
                 {
