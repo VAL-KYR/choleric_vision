@@ -64,7 +64,10 @@ public class MonsterAI : MonoBehaviour {
         public float sightDistance = 11.0f;
         public float hearPlayerDistance = 4.0f;
 
-        public float presenceEvasion = 3.5f;
+        public float closeCallDistance = 1.3f;
+        public float closeCallPresence = 0.25f;
+
+        public float presenceEvasion = 0.35f;
         public float presenceSearchInterrupt = 0.69f;
         public float presenceAwareToSearch = 0.47f;
         public float distanceAwareToSearch = 8.0f;
@@ -380,7 +383,13 @@ public class MonsterAI : MonoBehaviour {
         DimLights();
         MonsterAnimate();
         Looking();
+        Listening();
         //
+
+        if (debug.monsterSpeakStates)
+        {
+            Debug.Log("playerManager.distanceAway " + playerManager.distanceAway);
+        }
 
     }
 
@@ -713,6 +722,16 @@ public class MonsterAI : MonoBehaviour {
                 Debug.Log("What was that?");
 
             state = "search";
+        }
+
+    }
+
+    // listening for a close player encounter if their 
+    public void Listening()
+    {
+        if (playerManager.distanceAway < monsterBalancer.closeCallDistance && (playerManager.flashlight || presence > monsterBalancer.closeCallPresence))
+        {
+            state = "chase";
         }
     }
     ////////// ------ BEHAVIOURS ------ //////////

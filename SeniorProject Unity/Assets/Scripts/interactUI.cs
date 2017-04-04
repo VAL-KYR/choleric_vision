@@ -5,8 +5,7 @@ using System.Collections.Generic;
 public class interactUI : MonoBehaviour {
 
     public bool debug = false;
-
-    public bool uiGlow = false;
+    public bool cursorOn = true;
 
     public GameObject lookAt;
     public GameObject vrLookAt;
@@ -75,21 +74,23 @@ public class interactUI : MonoBehaviour {
             Debug.Log("UI for " + currLookAt.GetComponent<lookAt>().playerLookAt + " with sprite " + ui.sprite + " because tag " + currLookAt.GetComponent<lookAt>().lookAtTag);
 
         // Interact objects
-        if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("key") || currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("generatorLever"))
+        if ((currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("key") || currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("generatorLever")) && (lookAtDist < 2.0f))
         {
-            ui.sprite = hand;
-            uiQueue();
+            ui.sprite = doorOpen;
         }
 
-        else if(currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("tapeRecorder") && currLookAt.GetComponent<lookAt>().lookAtDist <= 2.0f)
+        else if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("tapeRecorder") && (lookAtDist < 2.0f))
         {
-            ui.sprite = hand;
-            uiQueue();
+            ui.sprite = doorOpen;
         }
 
+        else if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("lookAtObject") && (lookAtDist < 2.0f))
+        {
+            ui.sprite = doorOpen;
+        }
 
         // Doors & States
-        else if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag(currLookAt.GetComponent<lookAt>().lookAtTag))
+        else if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag(currLookAt.GetComponent<lookAt>().lookAtTag) && (lookAtDist < 2.0f))
         {
             if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>())
             {
@@ -99,7 +100,6 @@ public class interactUI : MonoBehaviour {
                     if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
                     {
                         ui.sprite = doorLocked;
-                        uiQueue();
                     }
                 }
 
@@ -109,159 +109,81 @@ public class interactUI : MonoBehaviour {
                     if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
                     {
                         ui.sprite = doorClose;
-                        uiQueue();
                     }
                     else if (!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
                     {
                         ui.sprite = doorOpen;
-                        uiQueue();
                     }
                 }
             }
 
-            /// METAL DOOR CODE
-            
-            if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<metalDoorMaster>())
-            {
-                // Locked door
-                if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<metalDoorMaster>().doorLocked)
-                {
-                    if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<metalDoorMaster>().doorHasKey)
-                    {
-                        ui.sprite = doorLocked;
-                        uiQueue();
-                    }
-                }
 
-                // Not locked door
-                else
-                {
-                    ui.sprite = doorOpen;
-                    uiQueue();
-                }
-            }
 
             // document cabinet
             else if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<documentCabinet>())
             {
-                ui.sprite = hand;
-                uiQueue();
+                ui.sprite = doorOpen;
             }
             
             
         }
 
         // Not looking at interactUI objects
+        // Ignore the player
         else
         {
-            if (lookAtDist > 2.0f)
+            if (!currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("GameController"))
             {
-                ui.color = new Color(0, 0, 0, 0);
-                transform.localPosition = uiReset;
-
-                if (uiGlow)
-                {
-                    if (seeingObject.GetComponent<Renderer>() != null)
-                    {
-                        unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
-                        //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
-                        //unlitMat = seeingObject.GetComponent<Renderer>().material;
-
-                        /*
-                        if (seeingObject != lastSeenObject)
-                        {
-                            getMats(seeingObject);
-                        }
-                        */
-
-                        lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
-                        //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
-                        //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
-                    }
-                }
-                
-            }
-        }
-
-        if (lookAtLastDist >= 2.0f)
-        {
-            ui.color = new Color(0, 0, 0, 0);
-            transform.localPosition = uiReset;
-
-            if (uiGlow)
-            {
-                if (seeingObject.GetComponent<Renderer>() != null)
-                {
-                    unlitShader = seeingObject.GetComponent<Renderer>().material.shader;
-                    //unlitMat = seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1];
-                    //unlitMat = seeingObject.GetComponent<Renderer>().material;
-
-                    /*
-                    if (seeingObject != lastSeenObject)
-                    {
-                        getMats(seeingObject);
-                    }
-                    */
-
-                    lastSeenObject.GetComponent<Renderer>().material.shader = unlitShader;
-                    //lastSeenObject.GetComponent<Renderer>().materials[lastSeenObject.GetComponent<Renderer>().materials.Length - 1] = unlitMat;
-                    //lastSeenObject.GetComponent<Renderer>().material = unlitMat;
-                }
+                ui.sprite = hand;
             }
             
         }
-	
-	}
+        if (!currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("GameController"))
+        {
+            uiQueue();
+        }
 
-    //seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length-1].shader = litShader;
-
+    }
+    
     public void uiQueue()
     {
-        if(lookAtDist <= 2.0f)
+        if (lookAtDist < 2.0f || lookAtLastDist < 2.0f)
         {
-            ui.color = new Color(1, 1, 1, 1);
-            transform.localPosition = new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.5f));
+            ui.color = Color.Lerp(ui.color, new Color(0.7f, 0.7f, 0.7f, 1), ((lookAtDist - 2.0f) * -3) * 1.5f * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.45f)), ((lookAtDist - 2.0f) * -3) * 1.5f * Time.deltaTime);
 
-            if (uiGlow)
+        }
+        else
+        {
+            /// Cursor
+            if (!cursorOn)
             {
-                if (seeingObject.GetComponent<Renderer>() != null)
-                {
-                    seeingObject.GetComponent<Renderer>().material.shader = litShader;
-                    //seeingObject.GetComponent<Renderer>().materials[seeingObject.GetComponent<Renderer>().materials.Length - 1] = litMat;
-                    //seeingObject.GetComponent<Renderer>().material = litMat;
-
-                }
+                ui.color = Color.Lerp(ui.color, new Color(0, 0, 0, 0), Time.deltaTime);
             }
-                      
-            
+            else
+            {
+                ui.color = Color.Lerp(ui.color, new Color(1, 1, 1, 0.7f), Time.deltaTime);
+            }
+
+            transform.localPosition = Vector3.Lerp(transform.localPosition, uiReset, 1.7f * Time.deltaTime);
         }
-        
 
-        //changeMats(seeingObject, shaders);
-    }
-
-    /*
-    public void getMats(GameObject g)
-    {
-        shaders = new List<Shader>();
-
-        foreach (Material m in g.GetComponent<Renderer>().materials)
+        if (lookAtLastDist >= 2.0f || lookAtDist >= 2.0f)
         {
-            shaders.Add(m.shader);
+            /// Cursor
+            if (!cursorOn)
+            {
+                ui.color = Color.Lerp(ui.color, new Color(0, 0, 0, 0), Time.deltaTime);
+            }
+            else
+            {
+                ui.color = Color.Lerp(ui.color, new Color(1, 1, 1, 0.7f), Time.deltaTime);
+            }
+
+            transform.localPosition = Vector3.Lerp(transform.localPosition, uiReset, 1.7f * Time.deltaTime);
         }
+
     }
 
-    public void changeMats(GameObject g, List<Shader> s)
-    {
-        //int i = s.Count;
-        int i = 0;
-
-        foreach (Material m in g.GetComponent<Renderer>().materials)
-        {
-            i++;
-            m.shader = s[i];
-
-        }
-    }
-    */
+   
 }

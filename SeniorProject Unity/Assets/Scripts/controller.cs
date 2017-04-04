@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.VR;
+using UnityEngine.SceneManagement;
 
 public class controller : MonoBehaviour
 {
@@ -142,7 +143,7 @@ public class controller : MonoBehaviour
 
         withHeartBeat = HBDataScript.hbBool;
 
-        // lcok cursor
+        // lock cursor
         Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = (CursorLockMode.Locked != wantedMode);
 
@@ -291,8 +292,6 @@ public class controller : MonoBehaviour
 
         if (!holdObj)
         {
-
-            //-------------------------------------------------------------------------------Ask Chris about this
             // Without look restraints
             mYaw += playerSpeedGroup.speedH * Input.GetAxis("Mouse X");
 
@@ -309,8 +308,6 @@ public class controller : MonoBehaviour
             if (VRSettings.enabled)
             {
                 transform.eulerAngles = new Vector3(0.0f, (mYaw + YOffset), 0.0f);
-
-                
             }
             if (!VRSettings.enabled)
             {
@@ -334,37 +331,8 @@ public class controller : MonoBehaviour
             moveDirection.x *= playerSpeed;
             moveDirection.z *= playerSpeed;
 
-            //crouch state
-            /*
-            if (Input.GetButton("Crouch") && !crouch)
-            {
-                if (playerSprint)
-                    playerSprint = false;
-
-
-                headJoint.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
-                noteBookGO.transform.position -= new Vector3(0.0f, crouchDiffeance, 0.0f);
-
-                //  character scale capsule collider scale
-
-                crouch = true;
-                GetComponent<CapsuleCollider>().height = 2.0f;
-                GetComponent<CharacterController>().height = 2.0f;
-            }
-
-            else if (!Input.GetButton("Crouch") && crouch)
-            {
-                headJoint.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
-                noteBookGO.transform.position += new Vector3(0.0f, crouchDiffeance, 0.0f);
-
-                // character scale capsule collider scale
-                GetComponent<CapsuleCollider>().height = 1.0f;
-                GetComponent<CharacterController>().height = 1.0f;
-
-                crouch = false;
-            }
-            */
-
+           
+            // Crouch State
             if (Input.GetButton("Crouch"))
             {
                 crouch = true;
@@ -400,19 +368,9 @@ public class controller : MonoBehaviour
             }
         }
 
-        /* A known bug is that crouch spamming can lead to poor updates of original standing Y pos 
-			which can clip you through the ground depending on how high the player gravity is */
-        // The error can probably be fixed by removing the attached rigid body's gravity
-
-        /* Another known bug is being able to crouch onto objects higher than you */
-        // This could be fixed by lowering the player as the center and height for the controller are adjusted
-
+        // Direct movement
         moveDirection.y -= gravity * Time.deltaTime;
         gController.Move(moveDirection * Time.deltaTime);
-        //transform.Translate(moveDirection[0], 0.0f, moveDirection[2]);
-
-        //rb.AddForce(movement * playerSpeed);
-
 
         // Toggle playerSprint & cannot sprint with crouched
         if (Input.GetButtonDown("Sprint") && !crouch)
@@ -420,7 +378,6 @@ public class controller : MonoBehaviour
 
 		if (Input.GetButtonUp("Sprint"))
 			playerSprint = false;
-
 
         // TEST   -  Not needed with new code fix, but will keep just incase
         if (Input.GetButton("VRup") && headJoint.transform.position.y < 1.75)
@@ -545,7 +502,7 @@ public class controller : MonoBehaviour
 
 
 
-        // Toggle Journal (Alpha)
+        // Toggle Journal
         if (Input.GetButtonDown("NoteBook"))
         {
             noteBooks = GameObject.FindGameObjectsWithTag("noteBook");
@@ -601,7 +558,8 @@ public class controller : MonoBehaviour
 
             if(quitTime > 4.0f)
             {
-                Application.Quit();
+                SceneManager.LoadScene("startScreen", LoadSceneMode.Single);
+                //Application.Quit();
             }
             
         }
@@ -642,7 +600,7 @@ public class controller : MonoBehaviour
 
                 UnityEngine.VR.InputTracking.Recenter();
 
-                transform.eulerAngles = new Vector3(0, YOffset , 0);
+                transform.eulerAngles = new Vector3(0, YOffset, 0);
 
                 //YOffset = transform.eulerAngles.y;
 

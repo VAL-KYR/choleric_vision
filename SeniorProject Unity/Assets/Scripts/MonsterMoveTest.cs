@@ -8,6 +8,7 @@ public class MonsterMoveTest : MonoBehaviour {
     //public Rigidbody rb;
     public GameObject[] pos;
     public int activePos;
+    public float moveSpeedMult = 1.0f;
     public GameObject activeObj;
     GameObject[] unaturalLights;
     float[] unaturalLightIntensity;
@@ -94,7 +95,7 @@ public class MonsterMoveTest : MonoBehaviour {
             // Hecka Good movement code
             if (!pos[i].GetComponent<SphereCollider>().bounds.Contains(gameObject.transform.position))
             {
-                transform.position = Vector3.Lerp(transform.position, pos[i].transform.position, 0.3f * Time.deltaTime);
+                transform.position = Vector3.Lerp(transform.position, pos[i].transform.position, (0.3f * moveSpeedMult) * Time.deltaTime);
                 //rb.MovePosition(Vector3.Lerp(rb.position, pos[i].transform.position, 0.3f * Time.deltaTime));
             }
             else

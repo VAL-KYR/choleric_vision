@@ -107,6 +107,10 @@ public class documentCabinet : MonoBehaviour {
 
                     cabinetOpen = true;
 				}
+                else
+                {
+                    gameObject.GetComponent<AudioSource>().Play();
+                }
 			}
 		}
 	}

@@ -3,12 +3,18 @@ using System.Collections;
 
 public class inputHandler : MonoBehaviour {
 
-	static public string comNum;
+    CursorLockMode wantedMode;
+
+    static public string comNum;
 
     public GameObject comUI;
 
     public void Start()
     {
+        // lock cursor
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+
         comUI.SetActive(false);
     }
 

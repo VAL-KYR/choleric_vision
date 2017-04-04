@@ -11,7 +11,7 @@ public class startHBCal : MonoBehaviour {
 
     public int numOfHeartAvg;
     public int[] OfHeartAvgCount;
-    private int numOfHeartAvgDone;
+    public int numOfHeartAvgDone;
 
 
 
@@ -71,7 +71,7 @@ public class startHBCal : MonoBehaviour {
 
     private AudioSource audioMenu;
 
-
+    private int numFailed;
     // Use this for initialization
     void Start () {
 
@@ -111,6 +111,8 @@ public class startHBCal : MonoBehaviour {
         prevPressed = false;
 
         audioMenu = GetComponent<AudioSource>();
+
+        numFailed = 0;
     }
 
 	// Update is called once per frame
@@ -174,14 +176,48 @@ public class startHBCal : MonoBehaviour {
 
                         if (OfHeartAvgCountTemp <= 50 || OfHeartAvgCountTemp >= 110)
                         {
+                            numFailed++;
 
+                            if(numFailed > 10)
+                            {
+                                numFailed = 0;
+
+                                calState = 0;
+                                askCal = false;
+
+                                cali = false;
+
+                                
+
+                                loadBar.transform.localScale -= new Vector3((numOfHeartAvgDone * perBerBeat), 0.0f, 0.0f);
+
+                                numOfHeartAvgDone = 0;
+
+                                avBeatPerMin = 0;
+                                sel = 0;
+
+                                GetComponent<startUp>().calibrationStart = false;
+                                GetComponent<startUp>().sel = true;
+
+                                for (int i = 0; i < hbObjNum; i++)
+                                    hbObj[i].SetActive(false);
+
+                                GetComponent<startUp>().startScreen.startScreenOBJ.SetActive(true);
+
+                                for (int i = 0; i < GetComponent<startUp>().selObjNum; i++)
+                                    GetComponent<startUp>().selObj[i].SetActive(true);
+
+                                GetComponent<startUp>().startScreen.gameLogoOBJ.SetActive(true);
+                            }
                         }
                         else
                         {
                             OfHeartAvgCount[numOfHeartAvgDone] = OfHeartAvgCountTemp;
 
                             numOfHeartAvgDone++;
-                            
+                            numFailed = 0;
+
+
                             loadBar.transform.localScale += new Vector3(perBerBeat, 0.0f, 0.0f);
                         }
 
@@ -197,6 +233,8 @@ public class startHBCal : MonoBehaviour {
                 for (int i = 0; i < numOfHeartAvg; i++)
                 {
                     avBeatPerMin = avBeatPerMin + OfHeartAvgCount[i];
+
+
                 }
 
                 avBeatPerMin = avBeatPerMin / numOfHeartAvg;
@@ -325,6 +363,47 @@ public class startHBCal : MonoBehaviour {
                     else if (outlier >= 6)
                         hbState[3].SetActive(false);
                 }
+            }
+
+
+            if (Input.GetButtonDown("Back"))
+            {
+                audioMenu.clip = selectS;
+                audioMenu.Play();
+
+                calState = 0;
+                askCal = false;
+
+                cali = false;
+
+                numOfHeartAvgDone = 0;
+
+                loadBar.transform.localScale -= new Vector3(barX, 0.0f, 0.0f);
+
+                avBeatPerMin = 0;
+                sel = 0;
+
+                if (outlier >= 0 && outlier < 3)
+                    hbState[0].SetActive(false);
+                else if (outlier >= 3 && outlier < 4)
+                    hbState[1].SetActive(false);
+                else if (outlier >= 4 && outlier < 6)
+                    hbState[2].SetActive(false);
+                else if (outlier >= 6)
+                    hbState[3].SetActive(false);
+
+                GetComponent<startUp>().calibrationStart = false;
+                GetComponent<startUp>().sel = true;
+
+                for (int i = 0; i < askCalOBNum; i++)
+                    askCalOB[i].SetActive(false);
+
+                GetComponent<startUp>().startScreen.startScreenOBJ.SetActive(true);
+
+                for (int i = 0; i < GetComponent<startUp>().selObjNum; i++)
+                    GetComponent<startUp>().selObj[i].SetActive(true);
+
+                GetComponent<startUp>().startScreen.gameLogoOBJ.SetActive(true);
             }
         }
 
