@@ -246,7 +246,7 @@ public class controller : MonoBehaviour
             vrBodCal = true;
 
             //headJoint.transform.position += new Vector3(0.0f, 0.0f, -0.5f);
-            Debug.Log("head join pos " + headJoint.transform.position);
+            //Debug.Log("head join pos " + headJoint.transform.position);
 
         }
         /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)

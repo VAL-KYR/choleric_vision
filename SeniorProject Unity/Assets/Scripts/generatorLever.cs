@@ -6,6 +6,7 @@ public class generatorLever : MonoBehaviour {
     AudioSource lever;
 
     public bool debug;
+    public bool startLightsDead = true;
     public bool interactSpace;
     public GameObject generatorAnim;
     public AudioClip[] leverSounds;
@@ -43,6 +44,11 @@ public class generatorLever : MonoBehaviour {
         anim = generatorAnim.GetComponent<Animator>();
         render = gameObject.GetComponent<Renderer>();
         uiText = ui.GetComponent<Text>();
+
+        if (startLightsDead && lights.activeSelf)
+        {
+            lights.SetActive(false);
+        }
     }
 
     // Update is called once per frame

@@ -11,7 +11,8 @@ public class documentCabinet : MonoBehaviour {
 
 	public GameObject doorOpen;
 
-	public GameObject eExitLight;
+    public GameObject eExitLightPhysical;
+    public GameObject eExitLight;
 	public GameObject eExitLightRed;
     public GameObject[] activeObjects;
 
@@ -26,7 +27,9 @@ public class documentCabinet : MonoBehaviour {
 	void Start () {
 		render = gameObject.GetComponent<Renderer>();
 		uiText = ui.GetComponent<Text>();
-	}
+
+        eExitLightPhysical.GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", Color.black);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -92,9 +95,10 @@ public class documentCabinet : MonoBehaviour {
 
 					// Turn off Emergency Light
 					eExitLight.SetActive(false);
+                    eExitLightPhysical.GetComponent<Renderer>().materials[0].SetColor("_EmissionColor", Color.white);
 
-					// Turn on Emergency Climax Light
-					eExitLightRed.SetActive(true);
+                    // Turn on Emergency Climax Light
+                    eExitLightRed.SetActive(true);
 
                     foreach(GameObject g in activeObjects)
                     {
