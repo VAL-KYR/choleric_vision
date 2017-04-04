@@ -129,23 +129,28 @@ public class interactUI : MonoBehaviour {
         }
 
         // Not looking at interactUI objects
-        
+        // Ignore the player
         else
         {
-            ui.sprite = hand;
+            if (!currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("GameController"))
+            {
+                ui.sprite = hand;
+            }
+            
         }
-
-        uiQueue();
-
+        if (!currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("GameController"))
+        {
+            uiQueue();
+        }
 
     }
     
     public void uiQueue()
     {
-        if (lookAtDist < 2.0f)
+        if (lookAtDist < 2.0f || lookAtLastDist < 2.0f)
         {
-            ui.color = new Color(1, 1, 1, 1);
-            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.55f)), 1.6f * Time.deltaTime);
+            ui.color = Color.Lerp(ui.color, new Color(0.7f, 0.7f, 0.7f, 1), ((lookAtDist - 2.0f) * -3) * 1.5f * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.45f)), ((lookAtDist - 2.0f) * -3) * 1.5f * Time.deltaTime);
 
         }
         else
@@ -153,14 +158,14 @@ public class interactUI : MonoBehaviour {
             /// Cursor
             if (!cursorOn)
             {
-                ui.color = new Color(0, 0, 0, 0);
+                ui.color = Color.Lerp(ui.color, new Color(0, 0, 0, 0), Time.deltaTime);
             }
             else
             {
-                ui.color = new Color(1, 1, 1, 1);
+                ui.color = Color.Lerp(ui.color, new Color(1, 1, 1, 0.7f), Time.deltaTime);
             }
 
-            transform.localPosition = Vector3.Lerp(transform.localPosition, uiReset, 1.6f * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, uiReset, 1.7f * Time.deltaTime);
         }
 
         if (lookAtLastDist >= 2.0f || lookAtDist >= 2.0f)
@@ -168,14 +173,14 @@ public class interactUI : MonoBehaviour {
             /// Cursor
             if (!cursorOn)
             {
-                ui.color = new Color(0, 0, 0, 0);
+                ui.color = Color.Lerp(ui.color, new Color(0, 0, 0, 0), Time.deltaTime);
             }
             else
             {
-                ui.color = new Color(1, 1, 1, 1);
+                ui.color = Color.Lerp(ui.color, new Color(1, 1, 1, 0.7f), Time.deltaTime);
             }
 
-            transform.localPosition = Vector3.Lerp(transform.localPosition, uiReset, 1.6f * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, uiReset, 1.7f * Time.deltaTime);
         }
 
     }
