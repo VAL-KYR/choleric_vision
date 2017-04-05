@@ -9,6 +9,8 @@ public class controller : MonoBehaviour
 
     private float quitTime = 0.0f;
     public bool debug;
+    public bool fpsDisplay = false;
+    public float fpsTime = 0.0f;
     public float playerHealth = 100.0f;
 
     public bool withHeartBeat;
@@ -239,6 +241,8 @@ public class controller : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+        fpsTime += (Time.deltaTime - fpsTime) * 0.1f;
+
         /// HEAD NOTEBOOK ADJUSTMENT CODE (ERICA)       
         if (VRSettings.enabled && !vrBodCal)
         {
@@ -675,6 +679,25 @@ public class controller : MonoBehaviour
         activeMonster.GetComponent<MonsterAI>().PlayerKO();
         playerHealth = 100.0f;
         playerWin = false;
+    }
+
+    void OnGUI()
+    {
+        if (fpsDisplay)
+        {
+            int w = Screen.width, h = Screen.height;
+
+            GUIStyle style = new GUIStyle();
+
+            Rect rect = new Rect(0, 0, w, h * 2 / 100);
+            style.alignment = TextAnchor.UpperLeft;
+            style.fontSize = h * 2 / 100;
+            style.normal.textColor = new Color(0.0f, 0.0f, 0.5f, 1.0f);
+            float msec = fpsTime * 1000.0f;
+            float fps = 1.0f / fpsTime;
+            string text = string.Format("{0:0.0} ms ({1:0.} fps)", msec, fps);
+            GUI.Label(rect, text, style);
+        }
     }
 
 }

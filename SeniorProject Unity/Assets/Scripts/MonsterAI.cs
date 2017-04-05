@@ -4,7 +4,6 @@ using System;
 
 public class MonsterAI : MonoBehaviour {
 
-
     // Monster Debug Management
     [System.Serializable]
     public class mDebug
@@ -34,6 +33,15 @@ public class MonsterAI : MonoBehaviour {
     public GameObject[] tapeRecorders;
     int destinationIterator = 0;
     int x = 0;
+
+    // Monster Quality Settings
+    [System.Serializable]
+    public class monsterModelDetail
+    {
+        public int maxLOD = 1;
+        public int maxTexture = 1;
+    }
+    public monsterModelDetail monsterModel = new monsterModelDetail();
 
     // Monster Agent Management
     [System.Serializable]
@@ -147,9 +155,6 @@ public class MonsterAI : MonoBehaviour {
         monsterBalancer.hands = GameObject.FindGameObjectsWithTag("monsterHands");
         playerManager.headMaster = GameObject.FindGameObjectWithTag("headMaster");
         playerManager.clothes = GameObject.FindGameObjectWithTag("Clothes");
-
-        
-
 
         // Find faders
         if (!playerManager.fader)
