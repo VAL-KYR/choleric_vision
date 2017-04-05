@@ -70,8 +70,7 @@ public class interactUI : MonoBehaviour
         if ((seeingObject.CompareTag("key")
             || seeingObject.CompareTag("generatorLever")
             || seeingObject.CompareTag("lookAtObject")
-            || seeingObject.CompareTag("tapeRecorder")
-            || seeingObject.CompareTag("redirect"))
+            || seeingObject.CompareTag("tapeRecorder"))
             && (lookAtDist < 2.0f))
         {
             ui.sprite = doorOpen;
