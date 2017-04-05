@@ -24,6 +24,11 @@ public class triggerLookAt : MonoBehaviour {
             
         }
 
+        else if (rootObject.CompareTag("lookAtObject") && Input.GetButtonDown("Action"))
+        {
+            rootObject.GetComponent<lookAtObject>().virtualAction = true;
+        }
+
         else if (rootObject.CompareTag("documentCabinet"))
 			rootObject.GetComponent<documentCabinet>().lookingAtMe();
 	}
