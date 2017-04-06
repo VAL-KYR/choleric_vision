@@ -147,7 +147,7 @@ public class interactUI : MonoBehaviour
         if (lookAtDist < 2.0f || lookAtLastDist < 2.0f)
         {
             ui.color = Color.Lerp(ui.color, new Color(0.7f, 0.7f, 0.7f, 1), ((lookAtDist - 2.0f) * -4) * 1.5f * Time.deltaTime);
-            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.45f)), ((lookAtDist - 2.0f) * -4) * 1.5f * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.55f)), ((lookAtDist - 2.0f) * -12) * 1.5f * Time.deltaTime);
 
         }
         else
