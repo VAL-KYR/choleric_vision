@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 public class interactUI : MonoBehaviour
 {
+    public bool xboxUsing;
 
     public bool debug = false;
     public bool cursorOn = true;
@@ -23,6 +24,9 @@ public class interactUI : MonoBehaviour
     public Sprite doorLocked;
     public Sprite doorBroken;
 
+    public Sprite A;
+    public Sprite leftClick;
+
     public float lookAtDist;
     public float lookAtLastDist;
     public Vector3 uiReset;
@@ -32,6 +36,8 @@ public class interactUI : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+        xboxUsing = GameObject.FindGameObjectWithTag("buttonCheck").GetComponent<buttonPressed>().xboxPressed;
+
         if (lookAt.activeSelf)
             lookAtDist = lookAt.GetComponent<lookAt>().lookAtDist;
         else
@@ -43,6 +49,18 @@ public class interactUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        xboxUsing = GameObject.FindGameObjectWithTag("buttonCheck").GetComponent<buttonPressed>().xboxPressed;
+
+        if (xboxUsing)
+        {
+            doorOpen = A;
+        }
+        else
+        {
+            doorOpen = leftClick;
+        }
+
+
 
         if (lookAt.activeSelf)
         {
@@ -95,7 +113,7 @@ public class interactUI : MonoBehaviour
                 {
                     if (seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
                     {
-                        ui.sprite = doorClose;
+                        ui.sprite = doorOpen;
                     }
                     else if (!seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
                     {
