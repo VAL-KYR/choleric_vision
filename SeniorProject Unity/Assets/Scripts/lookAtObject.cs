@@ -6,6 +6,8 @@ public class lookAtObject : MonoBehaviour {
     private GameObject[] gui;
     private GameObject currGui;
 
+    public bool noScaling = false;
+
     private Vector3 oriLoc;
     public Vector3 oriSca;
     private Vector3 oriRot;
@@ -138,16 +140,7 @@ public class lookAtObject : MonoBehaviour {
         }
 
         if (!itemHold)
-        {
-            // show UI queue
-            if (objLookingAt == this.gameObject && distance < 2f)
-            {
-                // UI queue stuff
-                currGui.GetComponent<interactUI>().ui.sprite = currGui.GetComponent<interactUI>().hand;
-                currGui.GetComponent<interactUI>().uiQueue();
-            }
-
-            
+        {           
 
             distance = Vector3.Distance(player.transform.position, transform.position);
 
@@ -169,7 +162,12 @@ public class lookAtObject : MonoBehaviour {
 
                 transform.parent = ObjLookGO.transform;
                 transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-                transform.localScale = (oriSca * scaleFactor);
+
+                // no scaling
+                if (!noScaling)
+                {
+                    transform.localScale = (oriSca * scaleFactor);
+                }
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
                 // disable movement
