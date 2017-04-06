@@ -6,6 +6,9 @@ public class scareLockedInRoom : MonoBehaviour {
 
     public List<GameObject> doors;
     public bool lockOnce = false;
+    public bool killKey = false;
+    public GameObject keyKill;
+    public bool playSounds = true;
     public float time = 0;
     public float lockT = 0;
     public bool readyToLock = false;
@@ -21,7 +24,9 @@ public class scareLockedInRoom : MonoBehaviour {
     void Start () {
         previousLockState = readyToLock;
         lockOnce = false;
-        currentSound = scareSounds[Random.Range(0, scareSounds.Length)];
+
+        if (scareSounds.Length > 0)
+            currentSound = scareSounds[Random.Range(0, scareSounds.Length)];
     }
 	
 	// Update is called once per frame
@@ -34,6 +39,15 @@ public class scareLockedInRoom : MonoBehaviour {
             if (readyToLock)
             {
                 lockT = lockT + Time.deltaTime;
+
+                // get rid of keys
+                if (killKey)
+                {
+                    for (int t = 0; t < doors.Count; t++)
+                    {
+                        keyKill.SetActive(false);
+                    }
+                }
             }
 
             if (lockT > 1 && readyToLock && !lockOnce)
@@ -65,10 +79,14 @@ public class scareLockedInRoom : MonoBehaviour {
             }
 
 
-            if (!currentSound.GetComponent<AudioSource>().isPlaying && lockT > 0)
+            // play scare sounds
+            if (playSounds)
             {
-                currentSound = scareSounds[Random.Range(0, scareSounds.Length)];
-                currentSound.GetComponent<AudioSource>().Play();
+                if (!currentSound.GetComponent<AudioSource>().isPlaying && scareSounds.Length > 0 && lockT > 0)
+                {
+                    currentSound = scareSounds[Random.Range(0, scareSounds.Length)];
+                    currentSound.GetComponent<AudioSource>().Play();
+                }
             }
         }
 

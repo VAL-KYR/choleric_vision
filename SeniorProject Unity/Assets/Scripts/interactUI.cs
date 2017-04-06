@@ -2,7 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class interactUI : MonoBehaviour {
+public class interactUI : MonoBehaviour
+{
 
     public bool debug = false;
     public bool cursorOn = true;
@@ -15,14 +16,6 @@ public class interactUI : MonoBehaviour {
 
     public Shader unlitShader;
     public Shader litShader;
-    //public Material unlitMat;
-    //public Material litMat;
-    //public List<Shader> shaders;
-    //public List<Shader> unlitShaders;
-    //public List<Shader> litShaders;
-
-    //public Shader[] unlitShaders;
-    //public Shader[] litShaders;
 
     public Sprite hand;
     public Sprite doorOpen;
@@ -36,20 +29,20 @@ public class interactUI : MonoBehaviour {
 
     public SpriteRenderer ui;
 
-	// Use this for initialization
-	void Start () {
-        if(lookAt.activeSelf)
+    // Use this for initialization
+    void Start()
+    {
+        if (lookAt.activeSelf)
             lookAtDist = lookAt.GetComponent<lookAt>().lookAtDist;
         else
             lookAtDist = vrLookAt.GetComponent<lookAt>().lookAtDist;
 
         uiReset = transform.localPosition;
-        //unlitShader = Shader.Find("Diffuse");
-        //litShader = Shader.Find("Outlined/Silhouette Only");
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
 
         if (lookAt.activeSelf)
         {
@@ -71,33 +64,27 @@ public class interactUI : MonoBehaviour {
         ui = gameObject.GetComponent<SpriteRenderer>();
 
         if (debug)
-            Debug.Log("UI for " + currLookAt.GetComponent<lookAt>().playerLookAt + " with sprite " + ui.sprite + " because tag " + currLookAt.GetComponent<lookAt>().lookAtTag);
+            Debug.Log("UI for " + seeingObject + " with sprite " + ui.sprite + " because tag " + seeingObject.tag);
 
         // Interact objects
-        if ((currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("key") || currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("generatorLever")) && (lookAtDist < 2.0f))
-        {
-            ui.sprite = doorOpen;
-        }
-
-        else if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("tapeRecorder") && (lookAtDist < 2.0f))
-        {
-            ui.sprite = doorOpen;
-        }
-
-        else if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("lookAtObject") && (lookAtDist < 2.0f))
+        if ((seeingObject.CompareTag("key")
+            || seeingObject.CompareTag("generatorLever")
+            || seeingObject.CompareTag("lookAtObject")
+            || seeingObject.CompareTag("tapeRecorder"))
+            && (lookAtDist < 2.0f))
         {
             ui.sprite = doorOpen;
         }
 
         // Doors & States
-        else if (currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag(currLookAt.GetComponent<lookAt>().lookAtTag) && (lookAtDist < 2.0f))
+        else if (seeingObject.CompareTag(currLookAt.GetComponent<lookAt>().lookAtTag) && (lookAtDist < 2.0f))
         {
-            if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>())
+            if (seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>())
             {
                 // Locked door
-                if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorLocked)
+                if (seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorLocked)
                 {
-                    if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
+                    if (seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorHasKey)
                     {
                         ui.sprite = doorLocked;
                     }
@@ -106,11 +93,11 @@ public class interactUI : MonoBehaviour {
                 // Not locked door
                 else
                 {
-                    if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
+                    if (seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
                     {
                         ui.sprite = doorClose;
                     }
-                    else if (!currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
+                    else if (!seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<doorMaster>().doorOpen)
                     {
                         ui.sprite = doorOpen;
                     }
@@ -120,37 +107,47 @@ public class interactUI : MonoBehaviour {
 
 
             // document cabinet
-            else if (currLookAt.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject.GetComponent<documentCabinet>())
+            else if (seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<documentCabinet>() || seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<lookAtObject>())
             {
                 ui.sprite = doorOpen;
             }
-            
-            
+
+            // Look At Objects
+            if (seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<lookAtObject>())
+            {
+                ui.sprite = doorOpen;
+            }
         }
 
         // Not looking at interactUI objects
         // Ignore the player
         else
         {
-            if (!currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("GameController"))
+            if (!seeingObject.CompareTag("GameController"))
             {
                 ui.sprite = hand;
             }
-            
         }
-        if (!currLookAt.GetComponent<lookAt>().playerLookAt.CompareTag("GameController"))
+
+        if (!seeingObject.CompareTag("GameController"))
         {
             uiQueue();
         }
+        else
+        {
+            if (debug)
+                Debug.Log("THERE SHOULD BE NO FUCKING SPRITE HERE");
+        }
+
 
     }
-    
+
     public void uiQueue()
     {
         if (lookAtDist < 2.0f || lookAtLastDist < 2.0f)
         {
-            ui.color = Color.Lerp(ui.color, new Color(0.7f, 0.7f, 0.7f, 1), ((lookAtDist - 2.0f) * -3) * 1.5f * Time.deltaTime);
-            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.45f)), ((lookAtDist - 2.0f) * -3) * 1.5f * Time.deltaTime);
+            ui.color = Color.Lerp(ui.color, new Color(0.7f, 0.7f, 0.7f, 1), ((lookAtDist - 2.0f) * -4) * 1.5f * Time.deltaTime);
+            transform.localPosition = Vector3.Lerp(transform.localPosition, new Vector3(0.0f, 0.0f, uiReset.z + (lookAtDist - 0.55f)), ((lookAtDist - 2.0f) * -12) * 1.5f * Time.deltaTime);
 
         }
         else
@@ -185,5 +182,5 @@ public class interactUI : MonoBehaviour {
 
     }
 
-   
+
 }

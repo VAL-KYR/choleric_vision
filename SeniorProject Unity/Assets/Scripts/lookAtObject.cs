@@ -6,8 +6,10 @@ public class lookAtObject : MonoBehaviour {
     private GameObject[] gui;
     private GameObject currGui;
 
+    public bool noScaling = false;
+
     private Vector3 oriLoc;
-    private Vector3 oriSca;
+    public Vector3 oriSca;
     private Vector3 oriRot;
 
     public float scaleFactor;
@@ -58,6 +60,9 @@ public class lookAtObject : MonoBehaviour {
     }
     public Narrative narrative = new Narrative();
     /// For Triggering Flashbacks or Voice Lines
+    /// 
+
+    public bool virtualAction = false;
 
     // Use this for initialization
     void Start () {
@@ -101,6 +106,7 @@ public class lookAtObject : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
+
         if (VRSettings.enabled)
             curCam = GameObject.FindGameObjectWithTag("VRCam");
         else
@@ -118,28 +124,28 @@ public class lookAtObject : MonoBehaviour {
 
         if (VRSettings.enabled)
         {
-            objLookingAt = GameObject.FindGameObjectWithTag("VRUIRaycast").GetComponent<lookAt>().playerLookAt;
+            if (GameObject.FindGameObjectWithTag("VRUIRaycast").GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>())
+            {
+                objLookingAt = GameObject.FindGameObjectWithTag("VRUIRaycast").GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject;
+            }
+            
         }
         else
         {
-            objLookingAt = curCam.GetComponent<lookAt>().playerLookAt;
+            if (curCam.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>())
+            {
+                objLookingAt = curCam.GetComponent<lookAt>().playerLookAt.GetComponent<triggerLookAt>().rootObject;
+            }
+            
         }
 
         if (!itemHold)
-        {
-            // show UI queue
-            if (objLookingAt == this.gameObject && distance < 2f)
-            {
-                // UI queue stuff
-                currGui.GetComponent<interactUI>().ui.sprite = currGui.GetComponent<interactUI>().hand;
-                currGui.GetComponent<interactUI>().uiQueue();
-            }
-
-            
+        {           
 
             distance = Vector3.Distance(player.transform.position, transform.position);
 
-            if (Input.GetButtonDown("Action") && objLookingAt == this.gameObject && distance < 2f)
+            //if ((Input.GetButtonDown("Action") || virtualAction) && objLookingAt == gameObject && distance < 2f)
+            if (Input.GetButtonDown("Action") && objLookingAt == gameObject && distance < 2f)
             {
                 // fix camera in front of player if not vr camera
                 if (!VRSettings.enabled)
@@ -156,13 +162,20 @@ public class lookAtObject : MonoBehaviour {
 
                 transform.parent = ObjLookGO.transform;
                 transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
-                transform.localScale = (oriSca * scaleFactor);
+
+                // no scaling
+                if (!noScaling)
+                {
+                    transform.localScale = (oriSca * scaleFactor);
+                }
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
 
                 // disable movement
                 itemHold = true;
                 player.GetComponent<controller>().holdObj = true;
             }
+
+            virtualAction = false;
         }
         else if(itemHold)
         {
@@ -210,8 +223,8 @@ public class lookAtObject : MonoBehaviour {
             transform.localScale = new Vector3(curZoom , curZoom, curZoom);
 
             transform.eulerAngles = new Vector3(mPitch, mYaw, 0.0f);
-            
 
+            //if (Input.GetButtonDown("Action") || virtualAction)
             if (Input.GetButtonDown("Action"))
             {
                 if(oriParent == null)
@@ -239,6 +252,9 @@ public class lookAtObject : MonoBehaviour {
                 }
             }
         }
-        
+
+
+        virtualAction = false;
+
     }
 }
