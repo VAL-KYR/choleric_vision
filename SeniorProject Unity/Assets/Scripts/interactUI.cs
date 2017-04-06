@@ -112,7 +112,11 @@ public class interactUI : MonoBehaviour
                 ui.sprite = doorOpen;
             }
 
-
+            // Look At Objects
+            if (seeingObject.GetComponent<triggerLookAt>().rootObject.GetComponent<lookAtObject>())
+            {
+                ui.sprite = doorOpen;
+            }
         }
 
         // Not looking at interactUI objects
