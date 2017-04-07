@@ -133,7 +133,6 @@ public class MonsterAI : MonoBehaviour {
 
     // action operation handler
     public bool actionFast = false;
-    public bool monsterHandCollided = false;
     public float actionTime = 0.0f;
     public float searchTime = 0.0f;
 
@@ -396,12 +395,6 @@ public class MonsterAI : MonoBehaviour {
         CalculateRanges();
         DimLights();
         MonsterAnimate();
-
-        if (actionFast)
-        {
-            HandsCheck();
-        }
-
         Looking();
         Listening();
         //
@@ -410,8 +403,6 @@ public class MonsterAI : MonoBehaviour {
         {
             Debug.Log("playerManager.distanceAway " + playerManager.distanceAway);
         }
-
-        monsterHandCollided = false;
 
     }
 
@@ -572,7 +563,10 @@ public class MonsterAI : MonoBehaviour {
             if (playerManager.distanceAway < monsterBalancer.attackDistance && actionTime > monsterBalancer.actionCooldown)
             {
                 Attack();
-                actionTime = 0.0f;
+                if (!actionFast)
+                {
+                    actionTime = 0.0f;
+                }
             }
         }
 
@@ -644,7 +638,11 @@ public class MonsterAI : MonoBehaviour {
         if (playerManager.distanceAway < monsterBalancer.attackDistance && actionTime > monsterBalancer.actionCooldown)
         {
             Attack();
-            actionTime = 0.0f;
+            if (!actionFast)
+            {
+                actionTime = 0.0f;
+            }
+            
         }
 
         if (!playerManager.won)
@@ -971,53 +969,30 @@ public class MonsterAI : MonoBehaviour {
 
         gameObject.GetComponent<monsterAnimator>().attack = true;
 
-        if (actionFast && monsterHandCollided)
-        {
-            foreach (GameObject g in monsterBalancer.hands)
-            {
-                g.GetComponent<Collider>().enabled = false;
-            }
 
-            DamagePlayer();
-
-            if (debug.monsterSpeakStates)
-                Debug.Log("Hit you!");
-            //
-            return;
-        }
-        else
-        {
-            // for damage to hit arm must pass through player ???
-            foreach (GameObject g in monsterBalancer.hands)
-            {
-                if (g.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))
-                {
-                    g.GetComponent<Collider>().enabled = false;
-                    DamagePlayer();
-
-                    if (debug.monsterSpeakStates)
-                        Debug.Log("Hit you!");
-                    //
-                    return;
-                }
-
-            }
-        }
-        
-
-        
-    }
-
-    public void HandsCheck()
-    {
+        // for damage to hit arm must pass through player ???
         foreach (GameObject g in monsterBalancer.hands)
         {
             if (g.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))
             {
-                monsterHandCollided = true;
-            }
+                g.GetComponent<Collider>().enabled = false;
+                DamagePlayer();
 
+                if (actionFast)
+                {
+                    actionTime = 0.0f;
+                }
+                
+
+                if (debug.monsterSpeakStates)
+                    Debug.Log("Hit you!");
+                //
+                return;
+            }
         }
+        
+
+        
     }
 
     // Extra actions the monster can do - this one is to prevent getting stuck on a door
