@@ -132,6 +132,8 @@ public class MonsterAI : MonoBehaviour {
     private GameObject patrolObject;
 
     // action operation handler
+    public bool actionFast = false;
+    public bool monsterHandCollided = false;
     public float actionTime = 0.0f;
     public float searchTime = 0.0f;
 
@@ -226,6 +228,13 @@ public class MonsterAI : MonoBehaviour {
 
     // Update is called once per frame
     void Update() {
+
+        // ACTION ALL THE TIME
+        if (actionFast)
+        {
+            actionTime += Time.deltaTime;
+        }
+        
 
         // Find faders and do fade events
         if (!playerManager.fader)
@@ -387,6 +396,12 @@ public class MonsterAI : MonoBehaviour {
         CalculateRanges();
         DimLights();
         MonsterAnimate();
+
+        if (actionFast)
+        {
+            HandsCheck();
+        }
+
         Looking();
         Listening();
         //
@@ -395,6 +410,8 @@ public class MonsterAI : MonoBehaviour {
         {
             Debug.Log("playerManager.distanceAway " + playerManager.distanceAway);
         }
+
+        monsterHandCollided = false;
 
     }
 
@@ -524,7 +541,10 @@ public class MonsterAI : MonoBehaviour {
     public void Chase()
     {
         // action is a cooldown type so calculate time while in state
-        actionTime += Time.deltaTime;
+        if (!actionFast)
+        {
+            actionTime += Time.deltaTime;
+        }
 
         // if running into a door // AND the player isn't within the attack distance
         if (velocity.magnitude < agentManager.stuckDoorOpen && playerManager.distanceAway > monsterBalancer.attackDistance / 2)
@@ -600,7 +620,10 @@ public class MonsterAI : MonoBehaviour {
     public void ScriptedChase()
     {
         // action is a cooldown type so calculate time while in state
-        actionTime += Time.deltaTime;
+        if (!actionFast)
+        {
+            actionTime += Time.deltaTime;
+        }
 
         /// chasing the player
         // set the playerPursuit distance as a variable[make later], and presence pursuit variable[make later], also make it so that if he can still see you then keep chasing
@@ -692,7 +715,10 @@ public class MonsterAI : MonoBehaviour {
         }
         else
         {
-            actionTime += Time.deltaTime;
+            if (!actionFast)
+            {
+                actionTime += Time.deltaTime;
+            }
 
             if (actionTime > monsterBalancer.actionCooldown)
             {
@@ -945,29 +971,62 @@ public class MonsterAI : MonoBehaviour {
 
         gameObject.GetComponent<monsterAnimator>().attack = true;
 
-        // for damage to hit arm must pass through player ???
+        if (actionFast && monsterHandCollided)
+        {
+            foreach (GameObject g in monsterBalancer.hands)
+            {
+                g.GetComponent<Collider>().enabled = false;
+            }
+
+            DamagePlayer();
+
+            if (debug.monsterSpeakStates)
+                Debug.Log("Hit you!");
+            //
+            return;
+        }
+        else
+        {
+            // for damage to hit arm must pass through player ???
+            foreach (GameObject g in monsterBalancer.hands)
+            {
+                if (g.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))
+                {
+                    g.GetComponent<Collider>().enabled = false;
+                    DamagePlayer();
+
+                    if (debug.monsterSpeakStates)
+                        Debug.Log("Hit you!");
+                    //
+                    return;
+                }
+
+            }
+        }
+        
+
+        
+    }
+
+    public void HandsCheck()
+    {
         foreach (GameObject g in monsterBalancer.hands)
         {
             if (g.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))
             {
-                g.GetComponent<Collider>().enabled = false;
-                DamagePlayer();
-
-                if (debug.monsterSpeakStates)
-                    Debug.Log("Hit you!");
-                //
-                return;
+                monsterHandCollided = true;
             }
-                
-        }
 
-        
+        }
     }
 
     // Extra actions the monster can do - this one is to prevent getting stuck on a door
     public void OpenNearbyDoor()
     {
-        actionTime += Time.deltaTime;
+        if (!actionFast)
+        {
+            actionTime += Time.deltaTime;
+        }
 
         float[] doorDistances = new float[doors.Length];
 
