@@ -121,14 +121,14 @@ public class doorMaster : MonoBehaviour
 
     }
 
-    public void OnTriggerEnter()
-	{
-		interactSpace = true;
-		if (debug)
-			Debug.Log("Entered door interactSpace " + gameObject);
-	}
+    public void OnTriggerStay()
+    {
+        interactSpace = true;
+        if (debug)
+            Debug.Log("Entered door interactSpace " + gameObject);
+    }
 
-	public void OnTriggerExit()
+    public void OnTriggerExit()
 	{
 		interactSpace = false;
 		if (debug)

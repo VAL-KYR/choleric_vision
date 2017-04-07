@@ -82,6 +82,11 @@ public class lookAt : MonoBehaviour {
 				lastLookedAt = playerLookAt;
 			}
 
+            else if (playerLookAt.CompareTag("reset"))
+            {
+                lastLookedAt = playerLookAt;
+            }
+
             else if (playerLookAt.CompareTag("generatorLever"))
             {
                 if (debug)
