@@ -145,7 +145,7 @@ public class lookAtObject : MonoBehaviour {
             distance = Vector3.Distance(player.transform.position, transform.position);
 
             //if ((Input.GetButtonDown("Action") || virtualAction) && objLookingAt == gameObject && distance < 2f)
-            if (Input.GetButtonDown("Action") && objLookingAt == gameObject && distance < 2f)
+            if (Input.GetButtonDown("Action") && objLookingAt == gameObject && distance < 1.5f)
             {
                 // fix camera in front of player if not vr camera
                 if (!VRSettings.enabled)

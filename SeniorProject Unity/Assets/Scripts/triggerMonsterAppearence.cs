@@ -40,8 +40,10 @@ public class triggerMonsterAppearence : MonoBehaviour {
     {
         foreach (GameObject d in blockingDoors)
         {
-            d.GetComponent<doorMaster>().unLock();
-            d.GetComponent<doorMaster>().forceOpen();
+            if (d.GetComponent<doorMaster>().doorLocked)
+                d.GetComponent<doorMaster>().unLock();
+            if (!d.GetComponent<doorMaster>().doorOpen)
+                d.GetComponent<doorMaster>().forceOpen();
         }
     }
 }

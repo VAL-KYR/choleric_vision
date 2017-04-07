@@ -31,6 +31,10 @@ public class keyUI : MonoBehaviour {
     private float currentDis;
 
 	public bool triggerOnPickup;
+    public bool triggerObjOnPickup;
+
+    public GameObject[] pickupObjects;
+
 	public bool triggerOnUse;
 	public string triggerTag;
 	private bool triggerEvent;
@@ -122,8 +126,18 @@ public class keyUI : MonoBehaviour {
 				if (triggerOnPickup)
 				{
 					var go = GameObject.FindWithTag(triggerTag);
-					go.GetComponent<soundTrigger>().arm();
+					go.GetComponent<soundTrigger>().arm();                   
 				}
+                if (triggerObjOnPickup)
+                {
+                    foreach (GameObject p in pickupObjects)
+                    {
+                        if (p.activeSelf)
+                            p.SetActive(false);
+                        else
+                            p.SetActive(true);
+                    }
+                }
             }
         }
 
