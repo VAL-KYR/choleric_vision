@@ -68,7 +68,8 @@ public class MonsterAI : MonoBehaviour {
         public GameObject[] hands;
 
         public float evasionDistance = 12.0f;
-        public float attackDistance = 1.0f;
+        public float attackDistance = 1.3f;
+        public float instaKillDistance = 0.5f;
         public float sightDistance = 11.0f;
         public float hearPlayerDistance = 4.0f;
 
@@ -549,7 +550,7 @@ public class MonsterAI : MonoBehaviour {
 
 
             // Attack the player within a certain distance
-            if (playerManager.distanceAway < monsterBalancer.attackDistance && actionTime > monsterBalancer.actionCooldown)
+            if ((playerManager.distanceAway < monsterBalancer.attackDistance && actionTime > monsterBalancer.actionCooldown) || (playerManager.distanceAway < monsterBalancer.instaKillDistance && actionTime > monsterBalancer.actionCooldown))
             {
                 Attack();
                 actionTime = 0.0f;
@@ -618,7 +619,7 @@ public class MonsterAI : MonoBehaviour {
         agent.SetDestination(player.transform.position);
 
         // Attack the player within a certain distance
-        if (playerManager.distanceAway < monsterBalancer.attackDistance && actionTime > monsterBalancer.actionCooldown)
+        if ((playerManager.distanceAway < monsterBalancer.attackDistance && actionTime > monsterBalancer.actionCooldown) || (playerManager.distanceAway < monsterBalancer.instaKillDistance && actionTime > monsterBalancer.actionCooldown))
         {
             Attack();
             actionTime = 0.0f;
@@ -946,20 +947,32 @@ public class MonsterAI : MonoBehaviour {
         gameObject.GetComponent<monsterAnimator>().attack = true;
 
         // for damage to hit arm must pass through player ???
-        foreach (GameObject g in monsterBalancer.hands)
+        if (playerManager.distanceAway < monsterBalancer.instaKillDistance)
         {
-            if (g.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))
-            {
-                g.GetComponent<Collider>().enabled = false;
-                DamagePlayer();
+            player.GetComponent<Collider>().enabled = false;
+            DamagePlayer();
 
-                if (debug.monsterSpeakStates)
-                    Debug.Log("Hit you!");
-                //
-                return;
-            }
-                
+            if (debug.monsterSpeakStates)
+                Debug.Log("Hit you!");
         }
+        else
+        {
+            foreach (GameObject g in monsterBalancer.hands)
+            {
+                if (g.GetComponent<Collider>().bounds.Intersects(player.GetComponent<Collider>().bounds))
+                {
+                    g.GetComponent<Collider>().enabled = false;
+                    DamagePlayer();
+
+                    if (debug.monsterSpeakStates)
+                        Debug.Log("Hit you!");
+                    //
+                    return;
+                }
+
+            }
+        }
+        
 
         
     }
