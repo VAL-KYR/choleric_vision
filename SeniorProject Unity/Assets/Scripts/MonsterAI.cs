@@ -844,6 +844,9 @@ public class MonsterAI : MonoBehaviour {
         {
             g.GetComponent<Collider>().enabled = true;
         }
+
+		/// NEW FUNCTION TO MOVE MONSTER AWAY
+		MonsterTPAway();
     }
 
     // Death Teleport
@@ -858,6 +861,9 @@ public class MonsterAI : MonoBehaviour {
         {
             g.GetComponent<Collider>().enabled = true;
         }
+
+		/// NEW FUNCTION TO MOVE MONSTER AWAY
+		MonsterTPAway();
     }
     //
 
@@ -1083,6 +1089,25 @@ public class MonsterAI : MonoBehaviour {
     {
 
     }
+
+	/// TPs the MONSTER AWAY
+	public void MonsterTPAway()
+	{
+
+		float random = UnityEngine.Random.Range(0.0f, 1.0f);
+
+		if (random <= 0.5f)
+		{
+			destinationIterator = 2;
+		}
+		else if (random > 0.5f)
+		{
+			destinationIterator = 3;
+		}
+
+		gameObject.transform.position = patrolDestinations[destinationIterator].transform.position;
+
+	}
 
     // The function looks for the player and trips a boolean that the player has been seen
     public void Looking()
