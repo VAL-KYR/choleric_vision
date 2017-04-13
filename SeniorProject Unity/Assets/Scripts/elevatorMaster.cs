@@ -159,6 +159,14 @@ public class elevatorMaster : MonoBehaviour {
             uGateMove = true;
             uGateMoveBack = false;
         }
+		/// NEW CODE MOVING GATES BACK AFTER PLAYER GETS OUT
+		else if (currPos >= positions.Length && powerOn && !playerInElevator)
+		{
+			lGateMove = false;
+			lGateMoveBack = true;
+			uGateMove = false;
+			uGateMoveBack = true;
+		}
 
         if (lGateMove)
 		{
@@ -176,6 +184,12 @@ public class elevatorMaster : MonoBehaviour {
 		{
             lUpperGate.transform.position = Vector3.Lerp(lUpperGate.transform.position, uLGateStart.transform.position, 0.5f * Time.deltaTime);
             rUpperGate.transform.position = Vector3.Lerp(rUpperGate.transform.position, uRGateStart.transform.position, 0.5f * Time.deltaTime);
+		}
+
+		if (lGateMoveBack)
+		{
+			lUpperGate.transform.position = Vector3.Lerp(lUpperGate.transform.position, uLGateStart.transform.position, 0.5f * Time.deltaTime);
+			rUpperGate.transform.position = Vector3.Lerp(rUpperGate.transform.position, uRGateStart.transform.position, 0.5f * Time.deltaTime);
 		}
 
         /// Monster upper appearence trigger on/off
